@@ -7,7 +7,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { MessageCircle, UserPlus, X } from "lucide-react"
+import { MessageCircle, UserPlus, X, Flag } from "lucide-react"
 import Link from "next/link"
 
 export default function ProgramsPage() {
@@ -41,6 +41,7 @@ export default function ProgramsPage() {
       period: "PER MONTH",
       exclusive: true,
       oneOnOne: false,
+      flag: "🇳🇬",
     },
     {
       region: "AFRICAN",
@@ -48,6 +49,7 @@ export default function ProgramsPage() {
       period: "PER MONTH",
       exclusive: true,
       oneOnOne: false,
+      flag: "🌍",
     },
     {
       region: "USA/CANADA",
@@ -55,6 +57,7 @@ export default function ProgramsPage() {
       period: "PER MONTH",
       exclusive: true,
       oneOnOne: false,
+      flag: "🇺🇸",
     },
     {
       region: "EUROPE",
@@ -62,6 +65,7 @@ export default function ProgramsPage() {
       period: "PER MONTH",
       exclusive: true,
       oneOnOne: false,
+      flag: "🇪🇺",
     },
     {
       region: "NIGERIA",
@@ -69,6 +73,7 @@ export default function ProgramsPage() {
       period: "PER MONTH",
       exclusive: true,
       oneOnOne: true,
+      flag: "🇳🇬",
     },
     {
       region: "AFRICAN",
@@ -76,6 +81,7 @@ export default function ProgramsPage() {
       period: "PER MONTH",
       exclusive: true,
       oneOnOne: true,
+      flag: "🌍",
     },
     {
       region: "USA/CANADA",
@@ -83,6 +89,7 @@ export default function ProgramsPage() {
       period: "PER MONTH",
       exclusive: true,
       oneOnOne: true,
+      flag: "🇺🇸",
     },
     {
       region: "EUROPE",
@@ -90,6 +97,7 @@ export default function ProgramsPage() {
       period: "PER MONTH",
       exclusive: true,
       oneOnOne: true,
+      flag: "🇪🇺",
     },
   ]
 
@@ -101,10 +109,9 @@ export default function ProgramsPage() {
         {/* Hero Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#3895D3]/5">
           <div className="mx-auto max-w-6xl text-center space-y-6">
-            <h1 className="text-4xl sm:text-5xl font-bold text-balance">Our Comprehensive NCLEX Programs & Pricing</h1>
-            <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
-              Choose the perfect plan for your region and learning style. All programs include comprehensive NCLEX
-              preparation materials.
+            <h1 className="text-4xl sm:text-5xl font-bold text-balance">Our Tutoring Fees Are Location Based</h1>
+            <p className="text-xl text-muted-foreground text-pretty max-w-4xl mx-auto">
+              You may choose to learn with us on your own without 1 in 1 follow up (EXCLUSIVE) and you may as well opt in for a private time with a 1 in 1 NCLEX coach EXCLUSIVE with 1 in 1 push.
             </p>
           </div>
         </section>
@@ -119,7 +126,10 @@ export default function ProgramsPage() {
                   className="flex flex-col bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-[#3895D3] hover:border-[#1261A0]"
                 >
                   <CardHeader className="text-center space-y-4 pb-6">
-                    <CardTitle className="text-2xl font-bold">{program.region}</CardTitle>
+                    <div className="flex items-center justify-center gap-3">
+                      <span className="text-3xl">{program.flag}</span>
+                      <CardTitle className="text-2xl font-bold">{program.region}</CardTitle>
+                    </div>
                     <Badge className="mx-auto bg-[#072F5F] hover:bg-[#1261A0] text-white">
                       {program.exclusive ? "EXCLUSIVE" : "STANDARD"}
                     </Badge>
