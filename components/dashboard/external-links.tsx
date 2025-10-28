@@ -1,11 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MessageCircle, Send, ExternalLink, BookOpen, Users } from "lucide-react"
+import Link from "next/link"
 
 export function ExternalLinks() {
   const whatsappLink = "https://chat.whatsapp.com/ElcEioKKFbcH0DLccfjyaH?mode=ems_copy_t"
   const telegramLink = "https://t.me/+pfkI-HSjx0UzMGQ0"
-  const nclexKeysExamLink = "https://candidate.speedexam.net/openquiz.aspx?quiz=68A6BFA31A094327AA1ABD93DD8250DF"
 
   return (
     <Card className="border-soft hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 animate-fade-in">
@@ -52,19 +52,19 @@ export function ExternalLinks() {
           </Button>
 
           {/* NCLEX Keys Exam Practice */}
-          <Button variant="outline" className="h-auto py-4 justify-start bg-transparent hover:bg-purple-500/10 hover:border-purple-500/50 transition-all duration-300 group" asChild>
-            <a href={nclexKeysExamLink} target="_blank" rel="noopener noreferrer">
+          <Button variant="outline" className="h-auto py-4 justify-start bg-transparent hover:bg-[#3895D3]/10 hover:border-[#3895D3]/50 transition-all duration-300 group" asChild>
+            <Link href="/exam">
               <div className="flex items-center gap-3 w-full">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 text-purple-500 shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3895D3]/10 text-[#3895D3] shrink-0 group-hover:scale-110 transition-transform duration-300">
                   <BookOpen className="h-5 w-5" />
                 </div>
                 <div className="text-left flex-1">
-                  <div className="font-semibold text-purple-600 group-hover:text-purple-700">NCLEX Keys Exam</div>
-                  <div className="text-xs text-muted-foreground">Practice tests & assessments</div>
+                  <div className="font-semibold text-[#3895D3] group-hover:text-[#1261A0]">NCLEX Practice Exam</div>
+                  <div className="text-xs text-muted-foreground">100 questions with instant results</div>
                 </div>
-                <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-purple-600" />
+                <BookOpen className="h-4 w-4 text-muted-foreground group-hover:text-[#3895D3]" />
               </div>
-            </a>
+            </Link>
           </Button>
         </div>
       </CardContent>
