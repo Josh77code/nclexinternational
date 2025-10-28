@@ -85,7 +85,7 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center space-y-8">
             <div className="space-y-4 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-[#3895D3]/30 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border-2 border-[#3895D3] shadow-lg">
                 <Sparkles className="h-4 w-4 text-[#3895D3]" />
                 <span className="text-sm font-medium text-[#072F5F]">Premier Strategic NCLEX Coaching</span>
               </div>
@@ -136,7 +136,7 @@ export default function HomePage() {
             ].map((stat, index) => (
               <div
                 key={index}
-                className={`rounded-2xl p-8 text-center bg-gradient-to-br ${stat.color} border-2 border-white shadow-lg ${stat.shadow} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}
+                className={`rounded-2xl p-8 text-center bg-gradient-to-br ${stat.color} border-2 border-[#3895D3] shadow-lg ${stat.shadow} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-[#1261A0]`}
               >
                 <div className={`text-5xl font-bold ${stat.textColor} mb-2`}>
                   {stat.value}
@@ -163,7 +163,7 @@ export default function HomePage() {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 hover:-translate-y-2 border-2 hover:border-purple-400 bg-white"
+                className="group hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-300 hover:-translate-y-2 border-2 border-[#3895D3] hover:border-[#1261A0] bg-white"
               >
                 <CardHeader>
                   <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 text-purple-600 mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/50">
@@ -188,7 +188,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="group hover:shadow-2xl hover:shadow-indigo-500/30 transition-all duration-300 border-2 hover:border-indigo-400 bg-white">
+            <Card className="group hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-300 border-2 border-[#3895D3] hover:border-[#1261A0] bg-white">
               <CardHeader className="space-y-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 text-indigo-600 mb-2 group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-indigo-500/50">
                   <Target className="h-7 w-7" />
@@ -200,7 +200,7 @@ export default function HomePage() {
               </CardHeader>
             </Card>
 
-            <Card className="group hover:shadow-2xl hover:shadow-pink-500/30 transition-all duration-300 border-2 hover:border-pink-400 bg-white">
+            <Card className="group hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-300 border-2 border-[#3895D3] hover:border-[#1261A0] bg-white">
               <CardHeader className="space-y-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 text-pink-600 mb-2 group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-pink-500/50">
                   <Sparkles className="h-7 w-7" />

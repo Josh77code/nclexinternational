@@ -116,7 +116,7 @@ export default function ProgramsPage() {
               {programs.map((program, index) => (
                 <Card
                   key={index}
-                  className="flex flex-col bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  className="flex flex-col bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-[#3895D3] hover:border-[#1261A0]"
                 >
                   <CardHeader className="text-center space-y-4 pb-6">
                     <CardTitle className="text-2xl font-bold">{program.region}</CardTitle>
@@ -153,29 +153,29 @@ export default function ProgramsPage() {
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-bold mb-12 text-center">What's Included in All Programs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="p-6 bg-white rounded-lg shadow-sm">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Video Lectures</h3>
                 <p className="text-muted-foreground text-sm">Comprehensive video tutorials covering all NCLEX topics</p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Practice Questions</h3>
                 <p className="text-muted-foreground text-sm">
                   Thousands of practice questions with detailed explanations
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Study Materials</h3>
                 <p className="text-muted-foreground text-sm">Downloadable study guides and reference materials</p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Progress Tracking</h3>
                 <p className="text-muted-foreground text-sm">Monitor your learning progress with detailed analytics</p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Community Access</h3>
                 <p className="text-muted-foreground text-sm">Join WhatsApp and Telegram study groups</p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Mobile Access</h3>
                 <p className="text-muted-foreground text-sm">Study anywhere, anytime on any device</p>
               </div>

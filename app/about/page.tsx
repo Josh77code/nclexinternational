@@ -12,8 +12,8 @@ export default function AboutPage() {
     },
     {
       icon: Heart,
-      title: "Compassion",
-      description: "We care deeply about each student's success and well-being.",
+      title: "Passion",
+      description: "We have great and unbeatable passion for what we do. We ensure NCLEX PASS by every drop of blood need to achieve it. We care.",
     },
     {
       icon: Lightbulb,
@@ -23,7 +23,7 @@ export default function AboutPage() {
     {
       icon: Users,
       title: "Community",
-      description: "We foster a supportive learning environment for all students.",
+      description: "We foster supportive learning scheme for all students in a loving environment with the highest level of tolerance.",
     },
   ]
 
@@ -42,7 +42,7 @@ export default function AboutPage() {
     },
     {
       name: "Lawal Boluwatife Joseph",
-      title: "Registered Nurse (NGN RN, U.S. RN) | Mentor & Career Coach",
+      title: "Registered Nurse (NGN RN, U.S. RN) | Director of Academics",
       image: "/board 1.jpg",
       bio: "Meet Lawal Boluwatife Joseph, a Compassionate, versatile, dynamic, and results-driven Registered Nurse (NGN RN, U.S. RN) with a strong foundation in nursing careers. Beyond clinical expertise, I serve as a mentor, career coach, and relocation consultant, helping nurses excel in NCLEX preparation, achieve career growth, and navigate international transitions with confidence. Passionate about raising global nursing standards, I combine clinical knowledge, leadership, and coaching skills to empower nurses at every stage of their journey. My mission is to inspire, guide, and support the next generation of healthcare professionals to thrive in diverse practice environments worldwide and also build men who transform nations and territories.",
     },
@@ -89,8 +89,7 @@ export default function AboutPage() {
               About NCLEX Keys International
             </h1>
             <p className="text-2xl text-[#072F5F] text-pretty animate-fade-in-up stagger-1 max-w-4xl mx-auto leading-relaxed">
-              Empowering nursing students worldwide to achieve their professional goals through comprehensive NCLEX
-              preparation.
+              We are Global NCLEX Tutoring institute with high reputation home and abroad based on the incomparable level of EXCELLENCE we project in ensuring details content, strategic teaching and close monitoring.
             </p>
             <div className="flex justify-center animate-bounce-in stagger-3">
               <div className="w-24 h-1 bg-primary-solid rounded-full"></div>
@@ -144,7 +143,7 @@ export default function AboutPage() {
               {values.map((value, index) => (
                 <Card 
                   key={index}
-                  className="group card-3d-strong hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 hover:-translate-y-4 border-soft hover:border-glow animate-bounce-in glass-strong"
+                  className="group card-3d-strong hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-700 hover:-translate-y-4 border-2 border-[#3895D3] hover:border-[#1261A0] animate-bounce-in glass-strong"
                   style={{ animationDelay: `${index * 0.15}s` }}
                 >
                   <CardContent className="pt-10 text-center space-y-6">
@@ -174,7 +173,7 @@ export default function AboutPage() {
 
             {/* CEO Featured Section */}
             <div className="max-w-4xl mx-auto mb-16">
-              <Card className="group card-3d-strong overflow-hidden hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 border-2 border-primary/30 hover:border-primary/60 glass-ultra">
+              <Card className="group card-3d-strong overflow-hidden hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-700 border-2 border-[#3895D3] hover:border-[#1261A0] glass-ultra">
                 <div className="grid md:grid-cols-2 gap-0">
                   <div className="relative aspect-square md:aspect-auto overflow-hidden bg-gradient-to-br from-primary/20 to-purple-500/20">
                     <img
@@ -204,7 +203,7 @@ export default function AboutPage() {
               {boardMembers.slice(1).map((member, index) => (
                 <Card
                   key={index}
-                  className="group card-3d-strong overflow-hidden hover:shadow-2xl hover:shadow-primary/30 transition-all duration-700 hover:-translate-y-6 border-soft hover:border-glow animate-bounce-in glass-ultra"
+                  className="group card-3d-strong overflow-hidden hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-700 hover:-translate-y-6 border-2 border-[#3895D3] hover:border-[#1261A0] animate-bounce-in glass-ultra"
                   style={{ animationDelay: `${index * 0.15}s` }}
                 >
                   <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/20 to-purple-500/20">
