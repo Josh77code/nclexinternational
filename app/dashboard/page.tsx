@@ -7,6 +7,7 @@ import { CourseMaterials } from "@/components/dashboard/course-materials"
 import { LiveClassLinks } from "@/components/dashboard/live-class-links"
 import { ExternalLinks } from "@/components/dashboard/external-links"
 import { ProgressOverview } from "@/components/dashboard/progress-overview"
+import { ExamSection } from "@/components/dashboard/exam-section"
 
 export default async function DashboardPage() {
   const supabase = await getSupabaseServerClient()
@@ -98,6 +99,9 @@ export default async function DashboardPage() {
 
         {/* Progress Overview */}
         <ProgressOverview progressPercentage={progressPercentage} />
+
+        {/* Practice Exam Section */}
+        <ExamSection />
 
         {/* Live Class Links */}
         <LiveClassLinks links={liveClassLinks || []} />
