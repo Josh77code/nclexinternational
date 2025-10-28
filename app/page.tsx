@@ -76,22 +76,22 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col overflow-hidden">
       <Header />
 
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
         {/* Floating shapes */}
-        <div className="absolute top-20 -left-20 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
-        <div className="absolute top-40 -right-32 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
-        <div className="absolute bottom-20 left-1/3 w-64 h-64 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "4s" }} />
+        <div className="absolute top-20 -left-20 w-72 h-72 bg-[#3895D3]/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
+        <div className="absolute top-40 -right-32 w-96 h-96 bg-[#1261A0]/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
+        <div className="absolute bottom-20 left-1/3 w-64 h-64 bg-[#072F5F]/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "4s" }} />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center space-y-8">
             <div className="space-y-4 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200 shadow-sm">
-                <Sparkles className="h-4 w-4 text-yellow-500" />
-                <span className="text-sm font-medium text-gray-900">Premier Strategic NCLEX Coaching</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-[#3895D3]/30 shadow-sm">
+                <Sparkles className="h-4 w-4 text-[#3895D3]" />
+                <span className="text-sm font-medium text-[#072F5F]">Premier Strategic NCLEX Coaching</span>
               </div>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-balance">
-                Your Path to <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">NCLEX Excellence</span>
+                Your Path to <span className="text-primary-solid">NCLEX Excellence</span>
               </h1>
             </div>
 
@@ -103,7 +103,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 asChild
-                className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 text-white text-lg px-8 py-6 shadow-xl shadow-purple-500/40 hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-105"
+                className="bg-primary-solid text-white text-lg px-8 py-6 shadow-xl shadow-[#3895D3]/40 hover:shadow-2xl hover:shadow-[#3895D3]/50 transition-all hover:scale-105 hover:bg-[#1261A0]"
               >
                 <Link href="/programs">
                   <span className="flex items-center gap-2">
@@ -116,7 +116,7 @@ export default function HomePage() {
                 size="lg"
                 variant="outline"
                 asChild
-                className="border-2 border-purple-300 hover:border-purple-500 bg-white hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 text-gray-900 text-lg px-8 py-6 transition-all hover:scale-105 hover:shadow-lg"
+                className="border-2 border-[#3895D3] hover:border-[#1261A0] bg-white hover:bg-[#3895D3]/10 text-[#072F5F] text-lg px-8 py-6 transition-all hover:scale-105 hover:shadow-lg"
               >
                 <Link href="/about">
                   <span className="flex items-center gap-2">
@@ -130,9 +130,9 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-20">
             {[
-              { value: "100+", label: "Nurses Coached to Success", color: "from-indigo-100 to-indigo-200", textColor: "text-indigo-600", shadow: "hover:shadow-indigo-500/30" },
-              { value: "1 Year", label: "Academy Excellence", color: "from-purple-100 to-purple-200", textColor: "text-purple-600", shadow: "hover:shadow-purple-500/30" },
-              { value: "25 Years", label: "Clinical Experience", color: "from-pink-100 to-pink-200", textColor: "text-pink-600", shadow: "hover:shadow-pink-500/30" },
+              { value: "100+", label: "Nurses Coached to Success", color: "from-[#072F5F]/10 to-[#1261A0]/20", textColor: "text-[#072F5F]", shadow: "hover:shadow-[#072F5F]/30" },
+              { value: "1 Year", label: "Academy Excellence", color: "from-[#1261A0]/10 to-[#3895D3]/20", textColor: "text-[#1261A0]", shadow: "hover:shadow-[#1261A0]/30" },
+              { value: "25 Years", label: "Clinical Experience", color: "from-[#3895D3]/10 to-[#072F5F]/20", textColor: "text-[#3895D3]", shadow: "hover:shadow-[#3895D3]/30" },
             ].map((stat, index) => (
               <div
                 key={index}
@@ -141,7 +141,7 @@ export default function HomePage() {
                 <div className={`text-5xl font-bold ${stat.textColor} mb-2`}>
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-700 font-medium">{stat.label}</div>
+                <div className="text-sm text-[#072F5F] font-medium">{stat.label}</div>
               </div>
             ))}
           </div>

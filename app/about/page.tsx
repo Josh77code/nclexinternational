@@ -80,42 +80,42 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="relative py-24 px-4 sm:px-6 lg:px-8 animated-bg-morphing overflow-hidden">
           {/* Advanced animated background shapes */}
-          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-primary/30 to-purple-500/30 rounded-full floating-shape-morphing" />
-          <div className="absolute bottom-10 right-20 w-80 h-80 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full floating-shape-morphing stagger-2" />
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full floating-shape-morphing stagger-4" />
+          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-[#072F5F]/30 to-[#1261A0]/30 rounded-full floating-shape-morphing" />
+          <div className="absolute bottom-10 right-20 w-80 h-80 bg-gradient-to-br from-[#1261A0]/30 to-[#3895D3]/30 rounded-full floating-shape-morphing stagger-2" />
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-[#3895D3]/20 to-[#072F5F]/20 rounded-full floating-shape-morphing stagger-4" />
           
           <div className="mx-auto max-w-5xl text-center space-y-8 relative z-10">
-            <h1 className="text-5xl sm:text-7xl font-black animate-fade-in-up gradient-text text-shadow-strong">
+            <h1 className="text-5xl sm:text-7xl font-black animate-fade-in-up text-primary-solid text-shadow-strong">
               About NCLEX Keys International
             </h1>
-            <p className="text-2xl text-gray-700 text-pretty animate-fade-in-up stagger-1 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-2xl text-[#072F5F] text-pretty animate-fade-in-up stagger-1 max-w-4xl mx-auto leading-relaxed">
               Empowering nursing students worldwide to achieve their professional goals through comprehensive NCLEX
               preparation.
             </p>
             <div className="flex justify-center animate-bounce-in stagger-3">
-              <div className="w-24 h-1 bg-gradient-to-r from-primary to-purple-600 rounded-full"></div>
+              <div className="w-24 h-1 bg-primary-solid rounded-full"></div>
             </div>
           </div>
         </section>
 
         {/* Mission Section */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-purple-500/5"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-background via-[#3895D3]/5 to-[#1261A0]/5"></div>
           <div className="mx-auto max-w-5xl space-y-16 relative z-10">
             <div className="group interactive-card p-8 rounded-3xl glass-strong animate-fade-in-up">
-              <h2 className="text-4xl sm:text-5xl font-black mb-8 gradient-text-secondary text-shadow">
+              <h2 className="text-4xl sm:text-5xl font-black mb-8 text-secondary-solid text-shadow">
                 Our Mission
               </h2>
-              <p className="text-xl text-gray-700 leading-relaxed group-hover:text-gray-900 transition-all duration-500">
+              <p className="text-xl text-[#072F5F] leading-relaxed group-hover:text-[#1261A0] transition-all duration-500">
                 NCLEX KEYS is dedicated to empowering future nurses by providing intensive, results-driven coaching and strategic mentorship. We decode the NCLEX exam through expert guidance, ensuring our students achieve licensure with confidence, efficiency, and the knowledge required for immediate professional success.
               </p>
             </div>
 
             <div className="group interactive-card p-8 rounded-3xl glass-strong animate-fade-in-up stagger-2">
-              <h2 className="text-4xl sm:text-5xl font-black mb-8 gradient-text-accent text-shadow">
+              <h2 className="text-4xl sm:text-5xl font-black mb-8 text-accent-solid text-shadow">
                 Our Vision
               </h2>
-              <p className="text-xl text-gray-700 leading-relaxed group-hover:text-gray-900 transition-all duration-500">
+              <p className="text-xl text-[#072F5F] leading-relaxed group-hover:text-[#1261A0] transition-all duration-500">
                 To be the globally recognized, premier standard for strategic NCLEX preparation, transforming aspiring nurses into confident, licensed clinicians ready to excel and lead in patient care.
               </p>
             </div>

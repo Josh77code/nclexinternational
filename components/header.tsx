@@ -34,11 +34,11 @@ export function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-lg shadow-purple-500/50">
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-primary-solid text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-lg shadow-[#3895D3]/50 group-hover:bg-secondary-solid">
               <GraduationCap className="h-6 w-6" />
               <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-yellow-300 animate-pulse" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <span className="text-xl font-bold text-primary-solid">
               NCLEX Keys
             </span>
           </Link>
@@ -52,7 +52,7 @@ export function Header() {
                 className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 group"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-solid transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
@@ -63,7 +63,7 @@ export function Header() {
             </Button>
             <Button
               asChild
-              className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105"
+              className="bg-primary-solid hover:bg-secondary-solid text-white shadow-lg shadow-[#3895D3]/40 hover:shadow-xl hover:shadow-[#3895D3]/50 transition-all duration-300 hover:scale-105"
             >
               <Link href="/register">Get Started</Link>
             </Button>
@@ -96,7 +96,7 @@ export function Header() {
               <Button variant="ghost" asChild className="w-full">
                 <Link href="/login">Login</Link>
               </Button>
-              <Button asChild className="w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
+              <Button asChild className="w-full bg-primary-solid hover:bg-secondary-solid text-white">
                 <Link href="/register">Get Started</Link>
               </Button>
             </div>

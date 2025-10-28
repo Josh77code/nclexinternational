@@ -22,11 +22,11 @@ export function DashboardStats({
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-muted-foreground mb-2">Total Courses</p>
-              <p className="text-3xl font-bold bg-gradient-to-br from-primary to-purple-600 bg-clip-text text-transparent">
+              <p className="text-3xl font-bold text-primary-solid">
                 {totalCourses}
               </p>
             </div>
-            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-purple-500/20 text-primary group-hover:scale-110 transition-transform duration-500 group-hover:rotate-6">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#072F5F]/20 text-[#072F5F] group-hover:scale-110 transition-transform duration-500 group-hover:rotate-6">
               <BookOpen className="h-7 w-7" />
             </div>
           </div>
@@ -39,11 +39,11 @@ export function DashboardStats({
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-muted-foreground mb-2">Completed</p>
-              <p className="text-3xl font-bold bg-gradient-to-br from-green-500 to-emerald-600 bg-clip-text text-transparent">
+              <p className="text-3xl font-bold text-green-600">
                 {completedCourses}
               </p>
             </div>
-            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 text-green-500 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-6">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-green-500/20 text-green-500 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-6">
               <CheckCircle className="h-7 w-7" />
             </div>
           </div>
@@ -56,11 +56,11 @@ export function DashboardStats({
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-muted-foreground mb-2">Progress</p>
-              <p className="text-3xl font-bold bg-gradient-to-br from-blue-500 to-cyan-600 bg-clip-text text-transparent">
+              <p className="text-3xl font-bold text-[#1261A0]">
                 {progressPercentage}%
               </p>
             </div>
-            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 text-blue-500 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-6">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#1261A0]/20 text-[#1261A0] group-hover:scale-110 transition-transform duration-500 group-hover:rotate-6">
               <TrendingUp className="h-7 w-7" />
             </div>
           </div>
@@ -73,11 +73,11 @@ export function DashboardStats({
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-muted-foreground mb-2">Programs</p>
-              <p className="text-3xl font-bold bg-gradient-to-br from-purple-500 to-pink-600 bg-clip-text text-transparent">
+              <p className="text-3xl font-bold text-[#3895D3]">
                 {enrollments.length}
               </p>
             </div>
-            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 text-purple-500 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-6">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#3895D3]/20 text-[#3895D3] group-hover:scale-110 transition-transform duration-500 group-hover:rotate-6">
               <Award className="h-7 w-7" />
             </div>
           </div>

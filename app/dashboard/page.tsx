@@ -62,13 +62,13 @@ export default async function DashboardPage() {
   const progressPercentage = totalCourses > 0 ? Math.round((completedCourses / totalCourses) * 100) : 0
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-[#3895D3]/5 to-background">
       <DashboardHeader user={userData} />
 
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 space-y-10">
         {/* Welcome Section */}
         <div className="animate-fade-in-up">
-          <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-primary via-purple-600 to-primary bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl font-bold text-primary-solid">
             Welcome back, {userData?.full_name}!
           </h1>
           <p className="text-enhanced mt-3 text-lg">Continue your NCLEX preparation journey</p>

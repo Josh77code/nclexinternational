@@ -99,7 +99,7 @@ export default function ProgramsPage() {
 
       <main className="flex-1 pt-24">
         {/* Hero Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#3895D3]/5">
           <div className="mx-auto max-w-6xl text-center space-y-6">
             <h1 className="text-4xl sm:text-5xl font-bold text-balance">Our Comprehensive NCLEX Programs & Pricing</h1>
             <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
@@ -120,7 +120,7 @@ export default function ProgramsPage() {
                 >
                   <CardHeader className="text-center space-y-4 pb-6">
                     <CardTitle className="text-2xl font-bold">{program.region}</CardTitle>
-                    <Badge className="mx-auto bg-blue-600 hover:bg-blue-700 text-white">
+                    <Badge className="mx-auto bg-[#072F5F] hover:bg-[#1261A0] text-white">
                       {program.exclusive ? "EXCLUSIVE" : "STANDARD"}
                     </Badge>
                     {program.oneOnOne && (
@@ -131,12 +131,12 @@ export default function ProgramsPage() {
                     )}
                   </CardHeader>
                   <CardContent className="flex-1 text-center space-y-2">
-                    <div className="text-3xl sm:text-4xl font-bold text-blue-600">{program.price}</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-[#3895D3]">{program.price}</div>
                     <div className="text-sm text-muted-foreground uppercase tracking-wide">{program.period}</div>
                   </CardContent>
                   <CardFooter>
                     <Button 
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold" 
+                      className="w-full bg-[#072F5F] hover:bg-[#1261A0] text-white font-semibold" 
                       onClick={() => handleSelectProgram(program)}
                     >
                       Select Program
@@ -149,7 +149,7 @@ export default function ProgramsPage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#3895D3]/5">
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-bold mb-12 text-center">What's Included in All Programs</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -189,7 +189,7 @@ export default function ProgramsPage() {
             <h2 className="text-3xl font-bold mb-8 text-center">How Enrollment Works</h2>
             <div className="space-y-6">
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#072F5F] text-white font-bold shrink-0">
                   1
                 </div>
                 <div>
@@ -200,7 +200,7 @@ export default function ProgramsPage() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1261A0] text-white font-bold shrink-0">
                   2
                 </div>
                 <div>
@@ -211,7 +211,7 @@ export default function ProgramsPage() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#3895D3] text-white font-bold shrink-0">
                   3
                 </div>
                 <div>
@@ -222,7 +222,7 @@ export default function ProgramsPage() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#072F5F] text-white font-bold shrink-0">
                   4
                 </div>
                 <div>
@@ -243,15 +243,15 @@ export default function ProgramsPage() {
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="sm:max-w-md bg-background border-soft shadow-2xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-center bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+            <DialogTitle className="text-2xl font-bold text-center text-primary-solid">
               Choose Your Next Step
             </DialogTitle>
             <DialogDescription className="text-center text-enhanced">
               {selectedProgram && (
                 <>
-                  You've selected the <span className="font-semibold text-primary">{selectedProgram.region}</span> program
+                  You've selected the <span className="font-semibold text-[#072F5F]">{selectedProgram.region}</span> program
                   <br />
-                  <span className="text-lg font-bold text-blue-600">{selectedProgram.price} {selectedProgram.period}</span>
+                  <span className="text-lg font-bold text-[#3895D3]">{selectedProgram.price} {selectedProgram.period}</span>
                 </>
               )}
             </DialogDescription>
@@ -261,7 +261,7 @@ export default function ProgramsPage() {
             {/* Enroll Now Button */}
             <Button 
               onClick={handleEnrollNow}
-              className="w-full h-14 text-lg bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+              className="w-full h-14 text-lg bg-primary-solid hover:bg-secondary-solid text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
             >
               <UserPlus className="h-5 w-5 mr-2" />
               Enroll Now
