@@ -31,7 +31,7 @@ export default function AboutPage() {
     {
       name: "Bola Oyerinde",
       title: "NRN, USRN | Founder & CEO (Boss B)",
-      image: "/board5.jpg",
+      image: "/New board.jpeg",
       bio: "Better known by her powerful moniker, 'Boss B,' is the dynamic founder and CEO of NCLEX KEYS—a premier coaching service dedicated to unlocking the nursing license for ambitious professionals worldwide. For over two decades, Boss B has been a cornerstone of local nursing, dedicating 25 years to extensive, hands-on clinical practice. This incredible depth of experience gives her an unparalleled perspective on the real-world demands of the profession and serves as the bedrock of her teaching philosophy. While her roots are deep in patient care, Boss B's true calling is mentorship. Recognizing the high stakes and stress of the NCLEX exam which she has done successfully for over 3 years. However, she launched NCLEX KEYS Academy just one year ago to transform the preparation process. Her approach isn't just about reviewing content; it's about strategic, intensive coaching that meticulously decodes the exam's logic. Through her signature methods, she has successfully guided over 100 aspiring nurses to navigate their rigorous NCLEX journey with newfound confidence and the greatest ease. Boss B operates on the belief that passion fuels practice, and her commitment ensures that every student she coaches doesn't just pass the exam—they emerge as competent, confident clinicians ready to make a significant impact on patient care and lead with excellence.",
     },
     {

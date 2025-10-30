@@ -171,6 +171,80 @@ function ResultsContent() {
     router.push('/dashboard')
   }
 
+  const handleDownloadPdf = async () => {
+    if (!result) return
+    const { jsPDF } = await import('jspdf')
+    const doc = new jsPDF()
+
+    const lineHeight = 8
+    let y = 15
+
+    doc.setFontSize(18)
+    doc.text('NCLEX Keys - Exam Result', 14, y)
+    y += 10
+
+    doc.setFontSize(12)
+    doc.text(`Candidate: ${result.user_email}`, 14, y)
+    y += lineHeight
+    doc.text(`Completed: ${new Date(result.completed_at).toLocaleString()}`, 14, y)
+    y += lineHeight
+    doc.text(`Session: ${result.session_id}`, 14, y)
+    y += lineHeight + 2
+
+    doc.setFontSize(14)
+    doc.text('Summary', 14, y)
+    y += lineHeight
+    doc.setFontSize(12)
+    doc.text(`Score: ${result.score_percentage.toFixed(1)}%`, 14, y)
+    y += lineHeight
+    doc.text(`Correct: ${result.correct_answers} / ${result.total_questions}`, 14, y)
+    y += lineHeight
+    doc.text(`Incorrect: ${result.incorrect_answers}`, 14, y)
+    y += lineHeight
+    doc.text(`Time Taken: ${formatTime(result.time_taken)}`, 14, y)
+    y += lineHeight
+    doc.text(`Status: ${result.passed ? 'PASSED' : 'NEEDS IMPROVEMENT'}`, 14, y)
+    y += lineHeight + 4
+
+    // Category breakdown
+    const breakdown = getCategoryBreakdown()
+    doc.setFontSize(14)
+    doc.text('Performance by Category', 14, y)
+    y += lineHeight
+    doc.setFontSize(12)
+    Object.entries(breakdown).forEach(([category, stats]) => {
+      const pct = ((stats.correct / stats.total) * 100).toFixed(0)
+      doc.text(`${category}: ${stats.correct}/${stats.total} (${pct}%)`, 14, y)
+      y += lineHeight
+      if (y > 280) {
+        doc.addPage()
+        y = 15
+      }
+    })
+
+    // Optional: include first N questions summary
+    if (questionResults.length) {
+      y += 2
+      if (y > 270) { doc.addPage(); y = 15 }
+      doc.setFontSize(14)
+      doc.text('Question Summary (first 20)', 14, y)
+      y += lineHeight
+      doc.setFontSize(11)
+      questionResults.slice(0, 20).forEach((q, idx) => {
+        const status = q.is_correct ? '✓' : '✗'
+        const line = `${idx + 1}. ${status} Your: ${q.user_answer || '-'} | Correct: ${q.correct_answer}`
+        const split = doc.splitTextToSize(line, 180)
+        split.forEach((l: string) => {
+          doc.text(l, 14, y)
+          y += 6
+          if (y > 280) { doc.addPage(); y = 15 }
+        })
+      })
+    }
+
+    doc.save(`exam-result-${result.session_id}.pdf`)
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -322,6 +396,14 @@ function ResultsContent() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <Button
+              onClick={handleDownloadPdf}
+              variant="outline"
+              className="border-2 border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10 px-8 py-3"
+            >
+              <Download className="h-5 w-5 mr-2" />
+              Download PDF
+            </Button>
             <Button
               onClick={handleRetakeExam}
               className="bg-[#3895D3] hover:bg-[#1261A0] text-white px-8 py-3"
