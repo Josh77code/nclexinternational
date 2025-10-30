@@ -11,3 +11,6 @@ export function getSupabaseBrowserClient() {
 
   return client
 }
+
+// Backward-compatible alias for code importing `{ createClient }` from this module
+export const createClient = getSupabaseBrowserClient
