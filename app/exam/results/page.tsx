@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
@@ -45,7 +45,7 @@ interface QuestionResult {
   category: string
 }
 
-export default function ExamResultsPage() {
+function ResultsContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session')
@@ -433,5 +433,13 @@ export default function ExamResultsPage() {
 
       <Footer />
     </div>
+  )
+}
+
+export default function ExamResultsPage() {
+  return (
+    <Suspense>
+      <ResultsContent />
+    </Suspense>
   )
 }
