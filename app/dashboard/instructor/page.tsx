@@ -236,6 +236,14 @@ export default function InstructorDashboard() {
                 </Button>
               )}
               <Button 
+                onClick={() => window.location.href = '/dashboard/instructor/upload-questions'}
+                variant="outline"
+                className="border-2 border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50 text-indigo-700 font-semibold"
+              >
+                <Upload className="w-4 h-4 mr-2" />
+                Upload Questions
+              </Button>
+              <Button 
                 onClick={() => window.location.href = '/dashboard/instructor/create-course'}
                 className="bg-gradient-to-r from-teal-500 to-indigo-500 hover:from-teal-600 hover:to-indigo-600 text-white font-semibold shadow-lg shadow-teal-500/40"
               >
@@ -478,6 +486,14 @@ export default function InstructorDashboard() {
             >
               <Users className="w-6 h-6 mb-2 text-gray-700" />
               <span className="text-gray-900 font-medium">Manage Students</span>
+            </Button>
+            <Button 
+              variant="outline" 
+              className="border-2 h-20 flex-col bg-white hover:bg-gray-50 text-gray-900"
+              onClick={() => window.location.href = '/dashboard/instructor/upload-questions'}
+            >
+              <Upload className="w-6 h-6 mb-2 text-gray-700" />
+              <span className="text-gray-900 font-medium">Upload Questions</span>
             </Button>
             <Button 
               variant="outline" 

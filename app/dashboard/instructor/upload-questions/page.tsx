@@ -23,16 +23,29 @@ export default function UploadQuestionsPage() {
     if (!file) return
     setIsUploading(true)
     setResult(null)
-    const fd = new FormData()
-    fd.append('file', file)
-    const res = await fetch('/api/questions/upload', {
-      method: 'POST',
-      headers: process.env.NEXT_PUBLIC_UPLOAD_TOKEN ? { 'x-upload-token': process.env.NEXT_PUBLIC_UPLOAD_TOKEN } as any : undefined,
-      body: fd,
-    })
-    const data = await res.json()
-    setResult({ ok: res.ok, data })
-    setIsUploading(false)
+    try {
+      const fd = new FormData()
+      fd.append('file', file)
+      
+      // Get upload token if configured (optional security)
+      const uploadToken = process.env.NEXT_PUBLIC_UPLOAD_TOKEN
+      const headers: HeadersInit = {}
+      if (uploadToken) {
+        headers['x-upload-token'] = uploadToken
+      }
+      
+      const res = await fetch('/api/questions/upload', {
+        method: 'POST',
+        headers,
+        body: fd,
+      })
+      const data = await res.json()
+      setResult({ ok: res.ok, data })
+    } catch (error: any) {
+      setResult({ ok: false, data: { error: error?.message || 'Upload failed' } })
+    } finally {
+      setIsUploading(false)
+    }
   }
 
   return (
