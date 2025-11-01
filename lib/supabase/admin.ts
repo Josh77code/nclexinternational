@@ -9,7 +9,6 @@ export function createAdminClient() {
   return createClient(supabaseUrl, serviceKey, { auth: { persistSession: false } })
 }
 
-// Admin client with service role key for bypassing RLS
 export function getSupabaseAdminClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
