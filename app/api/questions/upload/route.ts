@@ -37,9 +37,23 @@ export async function POST(req: Request) {
   }
 
   const text = await file.text()
-  const parsed = Papa.parse<CsvRow>(text, { header: true, skipEmptyLines: true })
-  if (parsed.errors.length) {
-    return NextResponse.json({ error: 'CSV parse error', details: parsed.errors }, { status: 400 })
+  const parsed = Papa.parse<CsvRow>(text, { 
+    header: true, 
+    skipEmptyLines: 'greedy',
+    transformHeader: (header: string) => header.trim(),
+    transform: (value: string) => value.trim(),
+    // Handle field mismatches gracefully - ignore extra fields
+    dynamicTyping: false,
+    worker: false
+  })
+  
+  // Filter out non-critical errors (warnings about extra fields are okay)
+  const criticalErrors = parsed.errors.filter(error => 
+    error.type !== 'FieldMismatch' && error.code !== 'TooManyFields'
+  )
+  
+  if (criticalErrors.length > 0) {
+    return NextResponse.json({ error: 'CSV parse error', details: criticalErrors }, { status: 400 })
   }
 
   const rows = parsed.data
