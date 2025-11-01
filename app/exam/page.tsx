@@ -91,12 +91,31 @@ export default function ExamPage() {
 
       setExamSession(sessionData)
 
-      // Fetch only active questions (filter out inactive ones)
-      const { data: questionsData, error: questionsError } = await supabase
+      // Fetch questions - try active ones first, fallback to all if column doesn't exist
+      let questionsData, questionsError
+      
+      // Try fetching active questions first
+      const activeQuery = supabase
         .from('exam_questions')
         .select('*')
         .eq('is_active', true)
         .limit(100)
+      
+      const activeResult = await activeQuery
+      questionsData = activeResult.data
+      questionsError = activeResult.error
+      
+      // If error (likely column doesn't exist) or no active questions, fetch all questions
+      if (questionsError || !questionsData || questionsData.length === 0) {
+        const allQuery = supabase
+          .from('exam_questions')
+          .select('*')
+          .limit(100)
+        
+        const allResult = await allQuery
+        questionsData = allResult.data
+        questionsError = allResult.error
+      }
 
       if (questionsError) {
         console.error('Error fetching questions:', questionsError)
