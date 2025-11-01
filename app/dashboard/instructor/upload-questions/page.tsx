@@ -12,6 +12,8 @@ export default function UploadQuestionsPage() {
   const [file, setFile] = useState<File | null>(null)
   const [isUploading, setIsUploading] = useState(false)
   const [result, setResult] = useState<any>(null)
+  const [deactivatePrevious, setDeactivatePrevious] = useState(true)
+  const [weekLabel, setWeekLabel] = useState('')
   const router = useRouter()
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +28,10 @@ export default function UploadQuestionsPage() {
     try {
       const fd = new FormData()
       fd.append('file', file)
+      fd.append('deactivate_previous', deactivatePrevious.toString())
+      if (weekLabel.trim()) {
+        fd.append('week_label', weekLabel.trim())
+      }
       
       // Get upload token if configured (optional security)
       const uploadToken = process.env.NEXT_PUBLIC_UPLOAD_TOKEN
@@ -58,14 +64,63 @@ export default function UploadQuestionsPage() {
               <CardTitle className="text-2xl text-[#072F5F]">Upload Weekly Questions (CSV)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-sm text-gray-700">
-                Use the CSV template to add questions weekly. Required columns: question_text, option_a, option_b, option_c, option_d, correct_answer (A/B/C/D). Optional: explanation, category, difficulty_level (easy/medium/hard).
-              </p>
-              <div className="flex items-center gap-3">
-                <Input type="file" accept=".csv" onChange={onChange} />
-                <Button onClick={() => router.push('/questions-template.csv')} variant="outline" className="border-2 border-[#3895D3] text-[#3895D3]">Download Template</Button>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
+                <p className="font-semibold text-blue-900">How Weekly Uploads Work:</p>
+                <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
+                  <li>Upload your CSV file with questions</li>
+                  <li>New questions are automatically marked as <strong>active</strong> (visible to students)</li>
+                  <li>Check "Deactivate Previous Questions" to hide old questions when uploading new ones</li>
+                  <li>Only <strong>active</strong> questions appear in student exams</li>
+                  <li>Old questions are kept in the database (not deleted) for history</li>
+                </ul>
               </div>
-              <div className="flex gap-3">
+              
+              <div className="space-y-2">
+                <p className="text-sm text-gray-700">
+                  <strong>Required CSV columns:</strong> question_text, option_a, option_b, option_c, option_d, correct_answer (A/B/C/D)
+                  <br />
+                  <strong>Optional columns:</strong> explanation, category, difficulty_level (easy/medium/hard), week_label, is_active
+                </p>
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <Input type="file" accept=".csv" onChange={onChange} className="flex-1" />
+                <Button onClick={() => window.open('/questions-template.csv', '_blank')} variant="outline" className="border-2 border-[#3895D3] text-[#3895D3]">
+                  Download Template
+                </Button>
+              </div>
+              
+              <div className="space-y-3 border-t pt-3">
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="deactivate"
+                    checked={deactivatePrevious}
+                    onChange={(e) => setDeactivatePrevious(e.target.checked)}
+                    className="w-4 h-4"
+                  />
+                  <label htmlFor="deactivate" className="text-sm text-gray-700 cursor-pointer">
+                    <strong>Deactivate Previous Questions</strong> - Hide all existing questions and show only these new ones
+                  </label>
+                </div>
+                
+                <div className="space-y-1">
+                  <label htmlFor="week" className="text-sm font-medium text-gray-700">
+                    Week Label (Optional):
+                  </label>
+                  <Input
+                    id="week"
+                    type="text"
+                    placeholder="e.g., Week 1, Week of Jan 15, etc."
+                    value={weekLabel}
+                    onChange={(e) => setWeekLabel(e.target.value)}
+                    className="max-w-xs"
+                  />
+                  <p className="text-xs text-gray-500">Label these questions for tracking (e.g., "Week 1", "January 2024")</p>
+                </div>
+              </div>
+              
+              <div className="flex gap-3 pt-2">
                 <Button disabled={!file || isUploading} onClick={onSubmit} className="bg-[#3895D3] hover:bg-[#1261A0]">
                   {isUploading ? 'Uploading...' : 'Upload CSV'}
                 </Button>

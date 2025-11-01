@@ -29,6 +29,9 @@ export async function POST(req: Request) {
 
   const formData = await req.formData()
   const file = formData.get('file') as File | null
+  const deactivatePrevious = formData.get('deactivate_previous') === 'true'
+  const weekLabel = formData.get('week_label') as string | null
+  
   if (!file) {
     return NextResponse.json({ error: 'Missing CSV file' }, { status: 400 })
   }
@@ -61,6 +64,14 @@ export async function POST(req: Request) {
       errors.push({ index: i, message: 'Invalid difficulty_level' })
       return
     }
+    // Handle week_label and is_active - use form data week_label or row week_label
+    const questionWeekLabel = weekLabel || row.week_label?.trim() || null
+    const isActive = row.is_active !== undefined 
+      ? (typeof row.is_active === 'string' 
+          ? row.is_active.toLowerCase() === 'true' || row.is_active === '1'
+          : Boolean(row.is_active))
+      : true // Default to active if not specified
+    
     toInsert.push({
       question_text: q,
       option_a: a,
@@ -71,6 +82,8 @@ export async function POST(req: Request) {
       explanation: row.explanation?.trim() || null,
       category: row.category?.trim() || null,
       difficulty_level: difficulty,
+      week_label: questionWeekLabel,
+      is_active: isActive,
     })
   })
 
@@ -80,6 +93,20 @@ export async function POST(req: Request) {
 
   try {
     const admin = createAdminClient()
+    
+    // If deactivate_previous is true, deactivate all currently active questions
+    if (deactivatePrevious) {
+      const { error: deactivateError } = await admin
+        .from('exam_questions')
+        .update({ is_active: false })
+        .eq('is_active', true)
+      
+      if (deactivateError) {
+        console.error('Error deactivating previous questions:', deactivateError)
+        // Continue anyway - this is not critical
+      }
+    }
+    
     // Batch insert in chunks of 500
     const chunkSize = 500
     for (let i = 0; i < toInsert.length; i += chunkSize) {
@@ -89,7 +116,18 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: error.message, at: i }, { status: 500 })
       }
     }
-    return NextResponse.json({ inserted: toInsert.length, invalid: errors })
+    
+    const response: any = { 
+      inserted: toInsert.length, 
+      invalid: errors,
+      deactivated_previous: deactivatePrevious
+    }
+    
+    if (weekLabel) {
+      response.week_label = weekLabel
+    }
+    
+    return NextResponse.json(response)
   } catch (e: any) {
     return NextResponse.json({ error: e?.message || 'Unknown error' }, { status: 500 })
   }

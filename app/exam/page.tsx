@@ -91,10 +91,11 @@ export default function ExamPage() {
 
       setExamSession(sessionData)
 
-      // Fetch questions
+      // Fetch only active questions (filter out inactive ones)
       const { data: questionsData, error: questionsError } = await supabase
         .from('exam_questions')
         .select('*')
+        .eq('is_active', true)
         .limit(100)
 
       if (questionsError) {
