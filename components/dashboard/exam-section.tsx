@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -13,7 +14,8 @@ import {
   TrendingUp,
   Play,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  ListChecks
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 
@@ -27,15 +29,27 @@ interface ExamResult {
   time_taken: number
 }
 
+interface AvailableExam {
+  id: string
+  title: string
+  description: string
+  question_count: number
+  avg_time_per_question: number
+}
+
 export function ExamSection() {
+  const router = useRouter()
   const [examResults, setExamResults] = useState<ExamResult[]>([])
+  const [availableExams, setAvailableExams] = useState<AvailableExam[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingExams, setIsLoadingExams] = useState(true)
   const [hasAttempted, setHasAttempted] = useState(false)
 
   const supabase = createClient()
 
   useEffect(() => {
     fetchExamResults()
+    fetchAvailableExams()
   }, [])
 
   const fetchExamResults = async () => {
@@ -76,6 +90,155 @@ export function ExamSection() {
     )
   }
 
+  const fetchAvailableExams = async () => {
+    try {
+      setIsLoadingExams(true)
+      
+      // Check if user is authenticated
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (!user) return
+
+      // Fetch courses with their question counts
+      const { data: coursesData, error: coursesError } = await supabase
+        .from('courses')
+        .select('id, title, description, status')
+        .eq('status', 'active')
+
+      if (coursesError) {
+        console.error('Error loading courses:', coursesError)
+        setIsLoadingExams(false)
+        return
+      }
+
+      // For each course, count available questions
+      const coursesWithCounts = await Promise.all(
+        (coursesData || []).map(async (course) => {
+          // Try with is_active filter first
+          let query = supabase
+            .from('exam_questions')
+            .select('*, question_time_limit', { count: 'exact', head: true })
+            .eq('course_id', course.id)
+            .eq('is_active', true)
+
+          let { count, error: countError } = await query
+
+          // If error (likely is_active column doesn't exist), try without it
+          if (countError) {
+            query = supabase
+              .from('exam_questions')
+              .select('*, question_time_limit', { count: 'exact', head: true })
+              .eq('course_id', course.id)
+            
+            const retryResult = await query
+            count = retryResult.count
+            countError = retryResult.error
+          }
+
+          if (countError || !count || count === 0) {
+            return null
+          }
+
+          // Get average time limit
+          let timeQuery = supabase
+            .from('exam_questions')
+            .select('question_time_limit')
+            .eq('course_id', course.id)
+            .eq('is_active', true)
+            .limit(100)
+
+          let { data: timeData, error: timeError } = await timeQuery
+
+          if (timeError) {
+            timeQuery = supabase
+              .from('exam_questions')
+              .select('question_time_limit')
+              .eq('course_id', course.id)
+              .limit(100)
+            
+            const retryTime = await timeQuery
+            timeData = retryTime.data
+          }
+
+          const avgTime = timeData && timeData.length > 0
+            ? Math.round(timeData.reduce((sum, q) => sum + (q.question_time_limit || 60), 0) / timeData.length)
+            : 60
+
+          return {
+            id: course.id,
+            title: course.title,
+            description: course.description || 'NCLEX practice questions',
+            question_count: count || 0,
+            avg_time_per_question: avgTime
+          }
+        })
+      )
+
+      // Filter out null entries
+      const validCourses = coursesWithCounts.filter(c => c !== null) as AvailableExam[]
+
+      // Also add general exam if questions exist without course
+      let generalQuery = supabase
+        .from('exam_questions')
+        .select('*', { count: 'exact', head: true })
+        .is('course_id', null)
+        .eq('is_active', true)
+
+      let { count: generalCount, error: generalError } = await generalQuery
+
+      if (generalError) {
+        generalQuery = supabase
+          .from('exam_questions')
+          .select('*', { count: 'exact', head: true })
+          .is('course_id', null)
+        
+        const retryGeneral = await generalQuery
+        generalCount = retryGeneral.count
+      }
+
+      if (generalCount && generalCount > 0) {
+        let generalTimeQuery = supabase
+          .from('exam_questions')
+          .select('question_time_limit')
+          .is('course_id', null)
+          .eq('is_active', true)
+          .limit(100)
+
+        let { data: timeData, error: timeError } = await generalTimeQuery
+
+        if (timeError) {
+          generalTimeQuery = supabase
+            .from('exam_questions')
+            .select('question_time_limit')
+            .is('course_id', null)
+            .limit(100)
+          
+          const retryTime = await generalTimeQuery
+          timeData = retryTime.data
+        }
+
+        const avgTime = timeData && timeData.length > 0
+          ? Math.round(timeData.reduce((sum, q) => sum + (q.question_time_limit || 60), 0) / timeData.length)
+          : 60
+
+        validCourses.unshift({
+          id: 'general',
+          title: 'General NCLEX Practice',
+          description: 'Mixed practice questions from all categories',
+          question_count: generalCount,
+          avg_time_per_question: avgTime
+        })
+      }
+
+      console.log('Available exams found:', validCourses)
+      setAvailableExams(validCourses)
+      setIsLoadingExams(false)
+    } catch (error) {
+      console.error('Error loading available exams:', error)
+      setIsLoadingExams(false)
+    }
+  }
+
   const formatTime = (minutes: number) => {
     const hours = Math.floor(minutes / 60)
     const mins = minutes % 60
@@ -106,18 +269,81 @@ export function ExamSection() {
   }
 
   return (
-    <Card className="border-2 border-[#3895D3] bg-white hover:shadow-lg transition-all duration-300">
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-xl text-[#072F5F] flex items-center gap-2">
-            <BookOpen className="h-6 w-6 text-[#3895D3]" />
-            Practice Exam
-          </CardTitle>
-          <Badge className="bg-[#3895D3] text-white">
-            {hasAttempted ? 'Available' : 'New'}
-          </Badge>
-        </div>
-      </CardHeader>
+    <div className="space-y-6">
+      {/* Available Exams Section */}
+      <Card className="border-2 border-[#3895D3] bg-white hover:shadow-lg transition-all duration-300">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-xl text-[#072F5F] flex items-center gap-2">
+              <ListChecks className="h-6 w-6 text-[#3895D3]" />
+              Available Exams
+            </CardTitle>
+            <Badge className="bg-[#3895D3] text-white">
+              {availableExams.length} {availableExams.length === 1 ? 'Exam' : 'Exams'}
+            </Badge>
+          </div>
+        </CardHeader>
+        
+        <CardContent>
+          {isLoadingExams ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#3895D3]"></div>
+            </div>
+          ) : availableExams.length === 0 ? (
+            <div className="text-center py-8">
+              <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600">No exams available at the moment. Please check back later.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {availableExams.map((exam) => (
+                <Card key={exam.id} className="border border-gray-200 hover:border-[#3895D3] transition-all">
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-[#072F5F] mb-1">{exam.title}</h3>
+                        <p className="text-sm text-gray-600">{exam.description}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-4 mb-4 text-sm">
+                      <Badge className="bg-[#3895D3] text-white">
+                        {exam.question_count} Questions
+                      </Badge>
+                      <div className="flex items-center gap-1 text-gray-600">
+                        <Clock className="h-3 w-3" />
+                        {exam.avg_time_per_question}s/question
+                      </div>
+                    </div>
+                    
+                    <Button
+                      onClick={() => router.push(`/exam?courseId=${exam.id}`)}
+                      className="w-full bg-[#3895D3] hover:bg-[#1261A0] text-white"
+                    >
+                      <Play className="h-4 w-4 mr-2" />
+                      Start Exam
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Exam Results Section */}
+      <Card className="border-2 border-[#3895D3] bg-white hover:shadow-lg transition-all duration-300">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-xl text-[#072F5F] flex items-center gap-2">
+              <BookOpen className="h-6 w-6 text-[#3895D3]" />
+              Exam Results
+            </CardTitle>
+            <Badge className="bg-[#3895D3] text-white">
+              {hasAttempted ? 'Available' : 'New'}
+            </Badge>
+          </div>
+        </CardHeader>
       
       <CardContent className="space-y-6">
         {/* Exam Description */}
@@ -240,6 +466,7 @@ export function ExamSection() {
           </div>
         </div>
       </CardContent>
-    </Card>
+      </Card>
+    </div>
   )
 }
