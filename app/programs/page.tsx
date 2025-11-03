@@ -57,7 +57,7 @@ export default function ProgramsPage() {
       period: "PER MONTH",
       exclusive: true,
       oneOnOne: false,
-      flag: "🇺🇸",
+      flag: "🇺🇸🇨🇦",
     },
     {
       region: "EUROPE",
@@ -89,7 +89,7 @@ export default function ProgramsPage() {
       period: "PER MONTH",
       exclusive: true,
       oneOnOne: true,
-      flag: "🇺🇸",
+      flag: "🇺🇸🇨🇦",
     },
     {
       region: "EUROPE",
@@ -126,8 +126,8 @@ export default function ProgramsPage() {
                   className="flex flex-col bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-[#3895D3] hover:border-[#1261A0]"
                 >
                   <CardHeader className="text-center space-y-4 pb-6">
-                    <div className="flex items-center justify-center gap-3">
-                      <span className="text-3xl">{program.flag}</span>
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="text-6xl leading-none mb-2">{program.flag}</div>
                       <CardTitle className="text-2xl font-bold">{program.region}</CardTitle>
                     </div>
                     <Badge className="mx-auto bg-[#072F5F] hover:bg-[#1261A0] text-white">
@@ -259,8 +259,10 @@ export default function ProgramsPage() {
             <DialogDescription className="text-center text-enhanced">
               {selectedProgram && (
                 <>
-                  You've selected the <span className="font-semibold text-[#072F5F]">{selectedProgram.region}</span> program
-                  <br />
+                  <div className="flex items-center justify-center gap-3 mb-3">
+                    <div className="text-4xl leading-none">{selectedProgram.flag}</div>
+                    <span className="font-semibold text-[#072F5F] text-xl">{selectedProgram.region}</span>
+                  </div>
                   <span className="text-lg font-bold text-[#3895D3]">{selectedProgram.price} {selectedProgram.period}</span>
                 </>
               )}

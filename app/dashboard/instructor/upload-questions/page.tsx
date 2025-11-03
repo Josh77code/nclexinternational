@@ -18,7 +18,7 @@ export default function UploadQuestionsPage() {
   const [deactivatePrevious, setDeactivatePrevious] = useState(true)
   const [weekLabel, setWeekLabel] = useState('')
   const [courses, setCourses] = useState<any[]>([])
-  const [selectedCourseId, setSelectedCourseId] = useState<string>('')
+  const [selectedCourseId, setSelectedCourseId] = useState<string>('none')
   const [questionTimeLimit, setQuestionTimeLimit] = useState<string>('60')
   const router = useRouter()
   const supabase = createClient()
@@ -61,7 +61,7 @@ export default function UploadQuestionsPage() {
       if (weekLabel.trim()) {
         fd.append('week_label', weekLabel.trim())
       }
-      if (selectedCourseId) {
+      if (selectedCourseId && selectedCourseId !== 'none') {
         fd.append('course_id', selectedCourseId)
       }
       if (questionTimeLimit) {
@@ -129,7 +129,7 @@ export default function UploadQuestionsPage() {
                     <SelectValue placeholder="Select a course (optional)" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">No specific course</SelectItem>
+                    <SelectItem value="none">No specific course</SelectItem>
                     {courses.map((course) => (
                       <SelectItem key={course.id} value={course.id}>
                         {course.title}
