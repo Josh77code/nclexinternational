@@ -100,15 +100,17 @@ export default function UploadQuestionsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
-                <p className="font-semibold text-blue-900">How Weekly Uploads Work:</p>
+                <p className="font-semibold text-blue-900">How Course-Based Question Uploads Work:</p>
                 <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
+                  <li><strong>Each course can have its own questions:</strong> Select the course before uploading</li>
                   <li><strong>Recommended: 100+ questions</strong> per course exam for best results</li>
-                  <li>Upload your CSV file with questions for the week</li>
+                  <li>Upload different question sets for each of the 5 courses separately</li>
                   <li>New questions are automatically marked as <strong>active</strong> (visible to students)</li>
-                  <li>Check "Deactivate Previous Questions" to hide last week's questions when uploading new ones</li>
+                  <li>Check "Deactivate Previous Questions" to hide last week's questions for that specific course</li>
                   <li>Only <strong>active</strong> questions appear in student exams</li>
-                  <li>Old questions are kept in the database (not deleted) for history</li>
-                  <li><strong>Weekly Workflow:</strong> This week upload → Next week deactivate previous → Upload new</li>
+                  <li>Each course maintains its own question history</li>
+                  <li><strong>Weekly Workflow:</strong> Upload for Course 1 → Deactivate previous → Upload new for Course 1, then repeat for Course 2, etc.</li>
+                  <li><strong>Multi-Course Support:</strong> Students can see and select from all 5 courses with their respective questions</li>
                 </ul>
               </div>
               
@@ -122,14 +124,14 @@ export default function UploadQuestionsPage() {
               
               <div className="space-y-2">
                 <Label htmlFor="course-select" className="text-sm font-medium text-gray-700">
-                  Course (Optional):
+                  Course: <span className="text-red-600">*Required for course-specific questions</span>
                 </Label>
                 <Select value={selectedCourseId} onValueChange={setSelectedCourseId}>
-                  <SelectTrigger id="course-select" className="w-full">
-                    <SelectValue placeholder="Select a course (optional)" />
+                  <SelectTrigger id="course-select" className="w-full border-2 border-[#3895D3]">
+                    <SelectValue placeholder="Select a course (required for 5 courses setup)" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="none">No specific course</SelectItem>
+                    <SelectItem value="none">General Questions (No specific course)</SelectItem>
                     {courses.map((course) => (
                       <SelectItem key={course.id} value={course.id}>
                         {course.title}
@@ -137,7 +139,17 @@ export default function UploadQuestionsPage() {
                     ))}
                   </SelectContent>
                 </Select>
-                <p className="text-xs text-gray-500">Associate these questions with a specific course</p>
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                  <p className="text-xs text-yellow-800 font-semibold">
+                    <strong>⚠️ IMPORTANT for 5 Courses Setup:</strong>
+                  </p>
+                  <ul className="text-xs text-yellow-700 mt-1 space-y-1 list-disc list-inside">
+                    <li>Select the course BEFORE uploading questions</li>
+                    <li>Upload different question sets for each of the 5 courses separately</li>
+                    <li>Students will see and select exams by course name</li>
+                    <li>Each course maintains its own question history</li>
+                  </ul>
+                </div>
               </div>
               
               <div className="space-y-1">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
@@ -40,15 +40,31 @@ export default function ExamPage() {
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
-  const [timeRemaining, setTimeRemaining] = useState(120) // 2 hours in minutes
+  const [timeRemaining, setTimeRemaining] = useState(7200) // 2 hours in seconds (120 * 60)
   const [examSession, setExamSession] = useState<ExamSession | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [flaggedQuestions, setFlaggedQuestions] = useState<Set<number>>(new Set())
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false)
   const [courseId, setCourseId] = useState<string | null>(null)
+  const examSessionRef = useRef<ExamSession | null>(null)
+  const questionsRef = useRef<Question[]>([])
+  const answersRef = useRef<Record<string, string>>({})
 
   const supabase = createClient()
+
+  // Keep refs in sync
+  useEffect(() => {
+    examSessionRef.current = examSession
+  }, [examSession])
+
+  useEffect(() => {
+    questionsRef.current = questions
+  }, [questions])
+
+  useEffect(() => {
+    answersRef.current = answers
+  }, [answers])
 
   useEffect(() => {
     // Get courseId from URL params if present
@@ -59,16 +75,21 @@ export default function ExamPage() {
   }, [])
 
   useEffect(() => {
-    if (timeRemaining > 0) {
-      const timer = setTimeout(() => {
-        setTimeRemaining(timeRemaining - 1)
-      }, 60000) // Update every minute
-      return () => clearTimeout(timer)
-    } else {
-      // Time's up - auto submit
-      handleSubmitExam()
-    }
-  }, [timeRemaining])
+    if (!examSession) return
+    
+    const timer = setInterval(() => {
+      setTimeRemaining(prev => {
+        if (prev <= 1) {
+          // Time's up - auto submit
+          handleSubmitExam()
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000) // Update every second
+    
+    return () => clearInterval(timer)
+  }, [examSession])
 
   const initializeExam = async (course: string | null) => {
     try {
@@ -195,7 +216,11 @@ export default function ExamPage() {
   }
 
   const handleSubmitExam = async () => {
-    if (!examSession) return
+    const session = examSessionRef.current
+    const examQuestions = questionsRef.current
+    const userAnswers = answersRef.current
+    
+    if (!session) return
 
     setIsSubmitting(true)
     try {
@@ -203,22 +228,22 @@ export default function ExamPage() {
       let correctAnswers = 0
       const examAnswers = []
 
-      for (const question of questions) {
-        const userAnswer = answers[question.id]
+      for (const question of examQuestions) {
+        const userAnswer = userAnswers[question.id]
         const isCorrect = userAnswer === question.correct_answer
         
         if (isCorrect) correctAnswers++
 
         examAnswers.push({
-          session_id: examSession.id,
+          session_id: session.id,
           question_id: question.id,
           user_answer: userAnswer || null,
           is_correct: isCorrect
         })
       }
 
-      const scorePercentage = (correctAnswers / questions.length) * 100
-      const timeTaken = 120 - timeRemaining
+      const scorePercentage = (correctAnswers / examQuestions.length) * 100
+      const timeTaken = Math.floor((7200 - timeRemaining) / 60) // Convert seconds to minutes
 
       // Insert answers
       const { error: answersError } = await supabase
@@ -240,7 +265,7 @@ export default function ExamPage() {
           score_percentage: scorePercentage,
           status: 'completed'
         })
-        .eq('id', examSession.id)
+        .eq('id', session.id)
 
       if (sessionError) {
         console.error('Error updating session:', sessionError)
@@ -251,12 +276,12 @@ export default function ExamPage() {
       const { error: resultError } = await supabase
         .from('exam_results')
         .insert({
-          session_id: examSession.id,
-          user_id: examSession.user_id,
-          user_email: examSession.user_email,
-          total_questions: questions.length,
+          session_id: session.id,
+          user_id: session.user_id,
+          user_email: session.user_email,
+          total_questions: examQuestions.length,
           correct_answers: correctAnswers,
-          incorrect_answers: questions.length - correctAnswers,
+          incorrect_answers: examQuestions.length - correctAnswers,
           score_percentage: scorePercentage,
           time_taken: timeTaken,
           passed: scorePercentage >= 75
@@ -268,7 +293,7 @@ export default function ExamPage() {
       }
 
       // Redirect to results page
-      router.push(`/exam/results?session=${examSession.id}`)
+      router.push(`/exam/results?session=${session.id}`)
     } catch (error) {
       console.error('Error submitting exam:', error)
     } finally {
@@ -276,10 +301,11 @@ export default function ExamPage() {
     }
   }
 
-  const formatTime = (minutes: number) => {
-    const hours = Math.floor(minutes / 60)
-    const mins = minutes % 60
-    return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`
+  const formatTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600)
+    const mins = Math.floor((seconds % 3600) / 60)
+    const secs = seconds % 60
+    return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
   }
 
   const getAnsweredCount = () => {
