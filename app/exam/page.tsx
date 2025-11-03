@@ -22,6 +22,8 @@ interface Question {
   explanation: string
   category: string
   difficulty_level: string
+  course_id?: string | null
+  question_time_limit?: number
 }
 
 interface ExamSession {
@@ -44,11 +46,16 @@ export default function ExamPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [flaggedQuestions, setFlaggedQuestions] = useState<Set<number>>(new Set())
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false)
+  const [courseId, setCourseId] = useState<string | null>(null)
 
   const supabase = createClient()
 
   useEffect(() => {
-    initializeExam()
+    // Get courseId from URL params if present
+    const params = new URLSearchParams(window.location.search)
+    const course = params.get('courseId')
+    setCourseId(course)
+    initializeExam(course)
   }, [])
 
   useEffect(() => {
@@ -63,7 +70,7 @@ export default function ExamPage() {
     }
   }, [timeRemaining])
 
-  const initializeExam = async () => {
+  const initializeExam = async (course: string | null) => {
     try {
       // Check if user is authenticated
       const { data: { user } } = await supabase.auth.getUser()
@@ -74,13 +81,19 @@ export default function ExamPage() {
       }
 
       // Create new exam session
+      const sessionPayload: any = {
+        user_id: user.id,
+        user_email: user.email,
+        status: 'in_progress'
+      }
+      
+      if (course && course !== 'general') {
+        sessionPayload.course_id = course
+      }
+
       const { data: sessionData, error: sessionError } = await supabase
         .from('exam_sessions')
-        .insert({
-          user_id: user.id,
-          user_email: user.email,
-          status: 'in_progress'
-        })
+        .insert(sessionPayload)
         .select()
         .single()
 
@@ -91,26 +104,33 @@ export default function ExamPage() {
 
       setExamSession(sessionData)
 
-      // Fetch questions - try active ones first, fallback to all if column doesn't exist
+      // Fetch questions based on course
       let questionsData, questionsError
+      let activeQuery = supabase.from('exam_questions').select('*')
       
-      // Try fetching active questions first
-      const activeQuery = supabase
-        .from('exam_questions')
-        .select('*')
-        .eq('is_active', true)
-        .limit(100)
+      // If course is specified, filter by course_id
+      if (course && course !== 'general') {
+        activeQuery = activeQuery.eq('course_id', course)
+      } else if (course === 'general') {
+        activeQuery = activeQuery.is('course_id', null)
+      }
+      
+      // Filter by active questions
+      activeQuery = activeQuery.eq('is_active', true).limit(100)
       
       const activeResult = await activeQuery
       questionsData = activeResult.data
       questionsError = activeResult.error
       
-      // If error (likely column doesn't exist) or no active questions, fetch all questions
+      // If error or no active questions, try without active filter
       if (questionsError || !questionsData || questionsData.length === 0) {
-        const allQuery = supabase
-          .from('exam_questions')
-          .select('*')
-          .limit(100)
+        let allQuery = supabase.from('exam_questions').select('*').limit(100)
+        
+        if (course && course !== 'general') {
+          allQuery = allQuery.eq('course_id', course)
+        } else if (course === 'general') {
+          allQuery = allQuery.is('course_id', null)
+        }
         
         const allResult = await allQuery
         questionsData = allResult.data
@@ -120,6 +140,11 @@ export default function ExamPage() {
       if (questionsError) {
         console.error('Error fetching questions:', questionsError)
         return
+      }
+
+      // Just log warning if less than 100 questions
+      if (questionsData && questionsData.length < 100) {
+        console.warn(`Warning: Exam has only ${questionsData.length} questions. Recommended: 100+ questions for a complete exam.`)
       }
 
       setQuestions(questionsData || [])
@@ -273,9 +298,11 @@ export default function ExamPage() {
           <CardContent className="pt-6 text-center">
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <h2 className="text-xl font-bold text-[#072F5F] mb-2">No Questions Available</h2>
-            <p className="text-gray-600 mb-4">Unable to load exam questions. Please try again later.</p>
-            <Button onClick={() => router.push('/dashboard')} className="bg-[#3895D3] hover:bg-[#1261A0]">
-              Return to Dashboard
+            <p className="text-gray-600 mb-4">
+              Unable to load exam questions. Please check back later.
+            </p>
+            <Button onClick={() => router.push('/exam/select')} className="bg-[#3895D3] hover:bg-[#1261A0]">
+              Return to Exam Selection
             </Button>
           </CardContent>
         </Card>
@@ -298,7 +325,7 @@ export default function ExamPage() {
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                   <CardTitle className="text-2xl font-bold text-[#072F5F]">NCLEX Practice Exam</CardTitle>
-                  <p className="text-gray-600">Complete all 100 questions to receive your score</p>
+                  <p className="text-gray-600">Complete all {questions.length} questions to receive your score</p>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2 text-[#072F5F]">

@@ -1,12 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase/client'
 
 export default function UploadQuestionsPage() {
   const [file, setFile] = useState<File | null>(null)
@@ -14,7 +17,33 @@ export default function UploadQuestionsPage() {
   const [result, setResult] = useState<any>(null)
   const [deactivatePrevious, setDeactivatePrevious] = useState(true)
   const [weekLabel, setWeekLabel] = useState('')
+  const [courses, setCourses] = useState<any[]>([])
+  const [selectedCourseId, setSelectedCourseId] = useState<string>('')
+  const [questionTimeLimit, setQuestionTimeLimit] = useState<string>('60')
   const router = useRouter()
+  const supabase = createClient()
+
+  useEffect(() => {
+    loadCourses()
+  }, [])
+
+  const loadCourses = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('courses')
+        .select('id, title')
+        .eq('status', 'active')
+        .order('title')
+      
+      if (error) {
+        console.error('Error loading courses:', error)
+      } else {
+        setCourses(data || [])
+      }
+    } catch (error) {
+      console.error('Error loading courses:', error)
+    }
+  }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0] || null
@@ -31,6 +60,12 @@ export default function UploadQuestionsPage() {
       fd.append('deactivate_previous', deactivatePrevious.toString())
       if (weekLabel.trim()) {
         fd.append('week_label', weekLabel.trim())
+      }
+      if (selectedCourseId) {
+        fd.append('course_id', selectedCourseId)
+      }
+      if (questionTimeLimit) {
+        fd.append('question_time_limit', questionTimeLimit)
       }
       
       // Get upload token if configured (optional security)
@@ -67,11 +102,13 @@ export default function UploadQuestionsPage() {
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
                 <p className="font-semibold text-blue-900">How Weekly Uploads Work:</p>
                 <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
-                  <li>Upload your CSV file with questions</li>
+                  <li><strong>Recommended: 100+ questions</strong> per course exam for best results</li>
+                  <li>Upload your CSV file with questions for the week</li>
                   <li>New questions are automatically marked as <strong>active</strong> (visible to students)</li>
-                  <li>Check "Deactivate Previous Questions" to hide old questions when uploading new ones</li>
+                  <li>Check "Deactivate Previous Questions" to hide last week's questions when uploading new ones</li>
                   <li>Only <strong>active</strong> questions appear in student exams</li>
                   <li>Old questions are kept in the database (not deleted) for history</li>
+                  <li><strong>Weekly Workflow:</strong> This week upload → Next week deactivate previous → Upload new</li>
                 </ul>
               </div>
               
@@ -79,8 +116,45 @@ export default function UploadQuestionsPage() {
                 <p className="text-sm text-gray-700">
                   <strong>Required CSV columns:</strong> question_text, option_a, option_b, option_c, option_d, correct_answer (A/B/C/D)
                   <br />
-                  <strong>Optional columns:</strong> explanation, category, difficulty_level (easy/medium/hard), week_label, is_active
+                  <strong>Optional columns:</strong> explanation, category, difficulty_level (easy/medium/hard), week_label, is_active, course_id, question_time_limit
                 </p>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="course-select" className="text-sm font-medium text-gray-700">
+                  Course (Optional):
+                </Label>
+                <Select value={selectedCourseId} onValueChange={setSelectedCourseId}>
+                  <SelectTrigger id="course-select" className="w-full">
+                    <SelectValue placeholder="Select a course (optional)" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">No specific course</SelectItem>
+                    {courses.map((course) => (
+                      <SelectItem key={course.id} value={course.id}>
+                        {course.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-gray-500">Associate these questions with a specific course</p>
+              </div>
+              
+              <div className="space-y-1">
+                <Label htmlFor="time-limit" className="text-sm font-medium text-gray-700">
+                  Question Time Limit (seconds):
+                </Label>
+                <Input
+                  id="time-limit"
+                  type="number"
+                  placeholder="60"
+                  value={questionTimeLimit}
+                  onChange={(e) => setQuestionTimeLimit(e.target.value)}
+                  className="max-w-xs"
+                  min="30"
+                  max="300"
+                />
+                <p className="text-xs text-gray-500">Time allowed per question (default: 60 seconds, range: 30-300)</p>
               </div>
               
               <div className="flex items-center gap-3">

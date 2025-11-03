@@ -15,6 +15,8 @@ type CsvRow = {
   published_at?: string
   week_label?: string
   is_active?: string | boolean
+  course_id?: string
+  question_time_limit?: string
 }
 
 export const runtime = 'nodejs'
@@ -31,6 +33,8 @@ export async function POST(req: Request) {
   const file = formData.get('file') as File | null
   const deactivatePrevious = formData.get('deactivate_previous') === 'true'
   const weekLabel = formData.get('week_label') as string | null
+  const courseId = formData.get('course_id') as string | null
+  const questionTimeLimit = formData.get('question_time_limit') as string | null
   
   if (!file) {
     return NextResponse.json({ error: 'Missing CSV file' }, { status: 400 })
@@ -86,6 +90,12 @@ export async function POST(req: Request) {
           : Boolean(row.is_active))
       : true // Default to active if not specified
     
+    // Handle course_id and question_time_limit
+    const rowCourseId = courseId || row.course_id?.trim() || null
+    const timeLimit = questionTimeLimit || row.question_time_limit?.trim() || '60'
+    const parsedTimeLimit = parseInt(timeLimit, 10)
+    const finalTimeLimit = isNaN(parsedTimeLimit) ? 60 : parsedTimeLimit
+    
     toInsert.push({
       question_text: q,
       option_a: a,
@@ -98,6 +108,8 @@ export async function POST(req: Request) {
       difficulty_level: difficulty,
       week_label: questionWeekLabel,
       is_active: isActive,
+      course_id: rowCourseId,
+      question_time_limit: finalTimeLimit,
     })
   })
 
@@ -105,15 +117,21 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'No valid rows to insert', errors }, { status: 400 })
   }
 
+  // Inform if less than 100 questions for a course exam
+  if (courseId && toInsert.length < 100) {
+    console.warn(`Warning: Only ${toInsert.length} questions uploaded for course. Recommended: 100+ questions for a complete exam.`)
+  }
+
   try {
     const admin = createAdminClient()
     
-    // If deactivate_previous is true, deactivate all currently active questions
-    if (deactivatePrevious) {
+    // If deactivate_previous is true, deactivate all currently active questions for this course
+    if (deactivatePrevious && courseId) {
       const { error: deactivateError } = await admin
         .from('exam_questions')
         .update({ is_active: false })
         .eq('is_active', true)
+        .eq('course_id', courseId)
       
       if (deactivateError) {
         console.error('Error deactivating previous questions:', deactivateError)

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { getStudentCourses, enrollInCourse, getAllCourses } from "@/lib/actions/courses";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -47,6 +48,7 @@ interface Course {
 }
 
 export default function StudentDashboard() {
+  const router = useRouter()
   const [activeTab, setActiveTab] = useState("browse"); // Default to browse tab
   const [selectedCourse, setSelectedCourse] = useState<any | null>(null);
   const [enrollments, setEnrollments] = useState<any[]>([]);
@@ -239,6 +241,12 @@ export default function StudentDashboard() {
               </div>
             </div>
             <div className="flex items-center gap-4">
+              <Button 
+                onClick={() => router.push('/exam/select')}
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold shadow-lg"
+              >
+                Take Exam
+              </Button>
               <div className="text-right">
                 <div className="text-sm text-gray-600 font-medium">Overall Progress</div>
                 <div className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">68%</div>
