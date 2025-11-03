@@ -56,14 +56,30 @@ export default function ExamSelectPage() {
       // For each course, count available questions
       const coursesWithCounts = await Promise.all(
         (coursesData || []).map(async (course) => {
-          const { count, error: countError } = await supabase
+          // Try with is_active filter first
+          let query = supabase
             .from('exam_questions')
             .select('*, question_time_limit', { count: 'exact', head: true })
             .eq('course_id', course.id)
             .eq('is_active', true)
 
+          let { count, error: countError } = await query
+
+          // If error (likely is_active column doesn't exist), try without it
           if (countError) {
-            console.error('Error counting questions:', countError)
+            console.warn('Error with is_active filter, trying without:', countError)
+            query = supabase
+              .from('exam_questions')
+              .select('*, question_time_limit', { count: 'exact', head: true })
+              .eq('course_id', course.id)
+            
+            const retryResult = await query
+            count = retryResult.count
+            countError = retryResult.error
+          }
+
+          if (countError) {
+            console.error('Error counting questions for course:', course.id, countError)
             return null
           }
 
@@ -73,12 +89,26 @@ export default function ExamSelectPage() {
           }
 
           // Get average time limit for questions in this course
-          const { data: timeData } = await supabase
+          let timeQuery = supabase
             .from('exam_questions')
             .select('question_time_limit')
             .eq('course_id', course.id)
             .eq('is_active', true)
             .limit(100)
+
+          let { data: timeData, error: timeError } = await timeQuery
+
+          // If error, try without is_active filter
+          if (timeError) {
+            timeQuery = supabase
+              .from('exam_questions')
+              .select('question_time_limit')
+              .eq('course_id', course.id)
+              .limit(100)
+            
+            const retryTime = await timeQuery
+            timeData = retryTime.data
+          }
 
           const avgTime = timeData && timeData.length > 0
             ? Math.round(timeData.reduce((sum, q) => sum + (q.question_time_limit || 60), 0) / timeData.length)
@@ -98,19 +128,48 @@ export default function ExamSelectPage() {
       const validCourses = coursesWithCounts.filter(c => c !== null) as Course[]
 
       // Also add a general exam option if there are questions without a course
-      const { count: generalCount } = await supabase
+      let generalQuery = supabase
         .from('exam_questions')
         .select('*', { count: 'exact', head: true })
         .is('course_id', null)
         .eq('is_active', true)
 
+      let { count: generalCount, error: generalError } = await generalQuery
+
+      // If error, try without is_active filter
+      if (generalError) {
+        console.warn('Error with is_active filter for general questions, trying without:', generalError)
+        generalQuery = supabase
+          .from('exam_questions')
+          .select('*', { count: 'exact', head: true })
+          .is('course_id', null)
+        
+        const retryGeneral = await generalQuery
+        generalCount = retryGeneral.count
+        generalError = retryGeneral.error
+      }
+
       if (generalCount && generalCount > 0) {
-        const { data: timeData } = await supabase
+        let generalTimeQuery = supabase
           .from('exam_questions')
           .select('question_time_limit')
           .is('course_id', null)
           .eq('is_active', true)
           .limit(100)
+
+        let { data: timeData, error: timeError } = await generalTimeQuery
+
+        // If error, try without is_active filter
+        if (timeError) {
+          generalTimeQuery = supabase
+            .from('exam_questions')
+            .select('question_time_limit')
+            .is('course_id', null)
+            .limit(100)
+          
+          const retryTime = await generalTimeQuery
+          timeData = retryTime.data
+        }
 
         const avgTime = timeData && timeData.length > 0
           ? Math.round(timeData.reduce((sum, q) => sum + (q.question_time_limit || 60), 0) / timeData.length)
@@ -125,6 +184,9 @@ export default function ExamSelectPage() {
         })
       }
 
+      console.log('Found valid courses with questions:', validCourses)
+      console.log('Total courses found:', validCourses.length)
+      
       setCourses(validCourses)
       setIsLoading(false)
     } catch (error) {

@@ -111,19 +111,24 @@ export default function ExamPage() {
       // If course is specified, filter by course_id
       if (course && course !== 'general') {
         activeQuery = activeQuery.eq('course_id', course)
+        console.log('Fetching questions for course:', course)
       } else if (course === 'general') {
         activeQuery = activeQuery.is('course_id', null)
+        console.log('Fetching general questions (no course)')
+      } else {
+        console.log('No course specified, fetching all questions')
       }
       
-      // Filter by active questions
+      // Try with is_active filter first
       activeQuery = activeQuery.eq('is_active', true).limit(100)
       
       const activeResult = await activeQuery
       questionsData = activeResult.data
       questionsError = activeResult.error
       
-      // If error or no active questions, try without active filter
-      if (questionsError || !questionsData || questionsData.length === 0) {
+      // If error (likely is_active column doesn't exist), try without active filter
+      if (questionsError) {
+        console.warn('Error with is_active filter, trying without:', questionsError)
         let allQuery = supabase.from('exam_questions').select('*').limit(100)
         
         if (course && course !== 'general') {
@@ -135,6 +140,11 @@ export default function ExamPage() {
         const allResult = await allQuery
         questionsData = allResult.data
         questionsError = allResult.error
+      }
+      
+      // If no questions found, log for debugging
+      if (!questionsError && (!questionsData || questionsData.length === 0)) {
+        console.warn('No questions found for course:', course)
       }
 
       if (questionsError) {
