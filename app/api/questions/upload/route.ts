@@ -17,6 +17,7 @@ type CsvRow = {
   is_active?: string | boolean
   course_id?: string
   question_time_limit?: string
+  student_grade?: string
 }
 
 export const runtime = 'nodejs'
@@ -35,6 +36,7 @@ export async function POST(req: Request) {
   const weekLabel = formData.get('week_label') as string | null
   const courseId = formData.get('course_id') as string | null
   const questionTimeLimit = formData.get('question_time_limit') as string | null
+  const studentGrade = formData.get('student_grade') as string | null
   
   if (!file) {
     return NextResponse.json({ error: 'Missing CSV file' }, { status: 400 })
@@ -96,6 +98,10 @@ export async function POST(req: Request) {
     const parsedTimeLimit = parseInt(timeLimit, 10)
     const finalTimeLimit = isNaN(parsedTimeLimit) ? 60 : parsedTimeLimit
     
+    // Handle student_grade - use form data or row data, validate it's one of the allowed values
+    const rowGrade = studentGrade || row.student_grade?.trim().toLowerCase() || null
+    const validGrade = rowGrade && ['starter', 'mid', 'higher'].includes(rowGrade) ? rowGrade : null
+    
     toInsert.push({
       question_text: q,
       option_a: a,
@@ -110,6 +116,7 @@ export async function POST(req: Request) {
       is_active: isActive,
       course_id: rowCourseId,
       question_time_limit: finalTimeLimit,
+      student_grade: validGrade,
     })
   })
 
@@ -125,13 +132,22 @@ export async function POST(req: Request) {
   try {
     const admin = createAdminClient()
     
-    // If deactivate_previous is true, deactivate all currently active questions for this course
-    if (deactivatePrevious && courseId) {
-      const { error: deactivateError } = await admin
+    // If deactivate_previous is true, deactivate all currently active questions for this course and grade
+    if (deactivatePrevious) {
+      let deactivateQuery = admin
         .from('exam_questions')
         .update({ is_active: false })
         .eq('is_active', true)
-        .eq('course_id', courseId)
+      
+      if (courseId) {
+        deactivateQuery = deactivateQuery.eq('course_id', courseId)
+      }
+      
+      if (studentGrade && ['starter', 'mid', 'higher'].includes(studentGrade)) {
+        deactivateQuery = deactivateQuery.eq('student_grade', studentGrade)
+      }
+      
+      const { error: deactivateError } = await deactivateQuery
       
       if (deactivateError) {
         console.error('Error deactivating previous questions:', deactivateError)

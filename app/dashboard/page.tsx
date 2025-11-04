@@ -30,12 +30,27 @@ export default async function DashboardPage() {
     .eq("user_id", user.id)
     .eq("status", "active")
 
+  // Get user's grade if student
+  const { data: userDataWithGrade } = await supabase
+    .from("users")
+    .select("student_grade, role")
+    .eq("id", user.id)
+    .single()
+
+  const userGrade = userDataWithGrade?.role === 'student' ? userDataWithGrade?.student_grade : null
+
   // Get ALL active courses from the courses table (instructor-created courses)
-  const { data: instructorCourses } = await supabase
+  // Filter by student grade if user is a student
+  let coursesQuery = supabase
     .from("courses")
     .select("*, course_materials(*)")
     .eq("status", "active")
-    .order("created_at", { ascending: false })
+  
+  if (userGrade) {
+    coursesQuery = coursesQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+  }
+  
+  const { data: instructorCourses } = await coursesQuery.order("created_at", { ascending: false })
 
   // Get courses for enrolled programs (old system)
   const programIds = enrollments?.map((e) => e.program_id) || []
@@ -73,6 +88,16 @@ export default async function DashboardPage() {
             Welcome back, {userData?.full_name}!
           </h1>
           <p className="text-enhanced mt-3 text-lg">Continue your NCLEX preparation journey</p>
+          {userData?.role === 'student' && userData?.student_grade && (
+            <div className="mt-4 inline-block">
+              <span className="px-4 py-2 bg-[#3895D3]/10 text-[#3895D3] rounded-lg font-semibold border border-[#3895D3]/30">
+                Grade: {userData.student_grade === 'starter' ? 'Starter (Beginner)' : 
+                       userData.student_grade === 'mid' ? 'Mid (Intermediate)' : 
+                       userData.student_grade === 'higher' ? 'Higher (Advanced)' : 
+                       userData.student_grade}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Payment Verification Alert */}

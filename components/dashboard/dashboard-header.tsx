@@ -60,6 +60,14 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium text-[#072F5F]">{user?.full_name}</p>
                     <p className="text-xs text-[#1261A0]">{user?.email}</p>
+                    {user?.role === 'student' && user?.student_grade && (
+                      <p className="text-xs font-semibold text-[#3895D3] mt-1">
+                        Grade: {user.student_grade === 'starter' ? 'Starter (Beginner)' : 
+                               user.student_grade === 'mid' ? 'Mid (Intermediate)' : 
+                               user.student_grade === 'higher' ? 'Higher (Advanced)' : 
+                               user.student_grade}
+                      </p>
+                    )}
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-[#3895D3]/30" />

@@ -41,11 +41,26 @@ export default function ExamSelectPage() {
         return
       }
 
-      // Fetch courses with their question counts
-      const { data: coursesData, error: coursesError } = await supabase
+      // Get user's grade if student
+      const { data: userData } = await supabase
+        .from('users')
+        .select('student_grade, role')
+        .eq('id', user.id)
+        .single()
+      
+      const userGrade = userData?.role === 'student' ? userData?.student_grade : null
+
+      // Fetch courses with their question counts - filter by student grade if student
+      let coursesQuery = supabase
         .from('courses')
         .select('id, title, description, status')
         .eq('status', 'active')
+      
+      if (userGrade) {
+        coursesQuery = coursesQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+      }
+      
+      const { data: coursesData, error: coursesError } = await coursesQuery
 
       if (coursesError) {
         console.error('Error loading courses:', coursesError)
@@ -56,12 +71,17 @@ export default function ExamSelectPage() {
       // For each course, count available questions
       const coursesWithCounts = await Promise.all(
         (coursesData || []).map(async (course) => {
-          // Try with is_active filter first
+          // Try with is_active filter first - also filter by student grade
           let query = supabase
             .from('exam_questions')
             .select('*, question_time_limit', { count: 'exact', head: true })
             .eq('course_id', course.id)
             .eq('is_active', true)
+          
+          // Filter by student grade if user is a student with a grade
+          if (userGrade) {
+            query = query.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+          }
 
           let { count, error: countError } = await query
 
@@ -72,6 +92,11 @@ export default function ExamSelectPage() {
               .from('exam_questions')
               .select('*, question_time_limit', { count: 'exact', head: true })
               .eq('course_id', course.id)
+            
+            // Filter by student grade if user is a student with a grade
+            if (userGrade) {
+              query = query.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+            }
             
             const retryResult = await query
             count = retryResult.count
@@ -88,13 +113,18 @@ export default function ExamSelectPage() {
             return null
           }
 
-          // Get average time limit for questions in this course
+          // Get average time limit for questions in this course - filter by grade
           let timeQuery = supabase
             .from('exam_questions')
             .select('question_time_limit')
             .eq('course_id', course.id)
             .eq('is_active', true)
             .limit(100)
+          
+          // Filter by student grade if user is a student with a grade
+          if (userGrade) {
+            timeQuery = timeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+          }
 
           let { data: timeData, error: timeError } = await timeQuery
 
@@ -105,6 +135,11 @@ export default function ExamSelectPage() {
               .select('question_time_limit')
               .eq('course_id', course.id)
               .limit(100)
+            
+            // Filter by student grade if user is a student with a grade
+            if (userGrade) {
+              timeQuery = timeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+            }
             
             const retryTime = await timeQuery
             timeData = retryTime.data
@@ -127,12 +162,17 @@ export default function ExamSelectPage() {
       // Filter out null entries (courses with no questions)
       const validCourses = coursesWithCounts.filter(c => c !== null) as Course[]
 
-      // Also add a general exam option if there are questions without a course
+      // Also add a general exam option if there are questions without a course - filter by grade
       let generalQuery = supabase
         .from('exam_questions')
         .select('*', { count: 'exact', head: true })
         .is('course_id', null)
         .eq('is_active', true)
+      
+      // Filter by student grade if user is a student with a grade
+      if (userGrade) {
+        generalQuery = generalQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+      }
 
       let { count: generalCount, error: generalError } = await generalQuery
 
@@ -143,6 +183,11 @@ export default function ExamSelectPage() {
           .from('exam_questions')
           .select('*', { count: 'exact', head: true })
           .is('course_id', null)
+        
+        // Filter by student grade if user is a student with a grade
+        if (userGrade) {
+          generalQuery = generalQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+        }
         
         const retryGeneral = await generalQuery
         generalCount = retryGeneral.count
@@ -156,6 +201,11 @@ export default function ExamSelectPage() {
           .is('course_id', null)
           .eq('is_active', true)
           .limit(100)
+        
+        // Filter by student grade if user is a student with a grade
+        if (userGrade) {
+          generalTimeQuery = generalTimeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+        }
 
         let { data: timeData, error: timeError } = await generalTimeQuery
 
@@ -166,6 +216,11 @@ export default function ExamSelectPage() {
             .select('question_time_limit')
             .is('course_id', null)
             .limit(100)
+          
+          // Filter by student grade if user is a student with a grade
+          if (userGrade) {
+            generalTimeQuery = generalTimeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+          }
           
           const retryTime = await generalTimeQuery
           timeData = retryTime.data

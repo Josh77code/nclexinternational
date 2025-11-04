@@ -9,6 +9,7 @@ export interface CourseData {
   duration: string;
   price: string;
   category: string;
+  student_grade?: 'starter' | 'mid' | 'higher' | null;
 }
 
 export interface CourseMaterial {
@@ -43,6 +44,7 @@ export async function createCourse(
         duration: courseData.duration,
         price: courseData.price,
         category: courseData.category,
+        student_grade: courseData.student_grade || null,
         status: 'active'
       })
       .select()
@@ -296,19 +298,40 @@ export async function getAllCourses() {
 
     console.log('Getting all courses for user:', user?.id || 'not authenticated');
 
+    // Get user's grade if student
+    let userGrade: string | null = null;
+    if (user) {
+      const { data: userData } = await supabase
+        .from('users')
+        .select('student_grade, role')
+        .eq('id', user.id)
+        .single();
+      
+      if (userData?.role === 'student') {
+        userGrade = userData.student_grade;
+      }
+    }
+
     // Get all active courses with materials
+    // Filter by student grade if user is a student
     let courses, coursesError;
     
     try {
-      const result = await supabase
+      let query = supabase
         .from('courses')
         .select(`
           *,
           course_materials(*),
           users!courses_instructor_id_fkey(full_name)
         `)
-        .eq('status', 'active')
-        .order('created_at', { ascending: false });
+        .eq('status', 'active');
+      
+      // If user is a student with a grade, filter courses by grade
+      if (userGrade) {
+        query = query.or(`student_grade.is.null,student_grade.eq.${userGrade}`);
+      }
+      
+      const result = await query.order('created_at', { ascending: false });
       
       courses = result.data;
       coursesError = result.error;
@@ -316,11 +339,17 @@ export async function getAllCourses() {
       // Fallback to separate queries
       console.log('Relationship query failed for all courses, trying separate queries...');
       
-      const { data: coursesData, error: coursesErr } = await supabase
+      let coursesQuery = supabase
         .from('courses')
         .select('*')
-        .eq('status', 'active')
-        .order('created_at', { ascending: false });
+        .eq('status', 'active');
+      
+      // If user is a student with a grade, filter courses by grade
+      if (userGrade) {
+        coursesQuery = coursesQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`);
+      }
+      
+      const { data: coursesData, error: coursesErr } = await coursesQuery.order('created_at', { ascending: false });
       
       if (coursesErr) {
         coursesError = coursesErr;

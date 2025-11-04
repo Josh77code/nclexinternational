@@ -20,6 +20,7 @@ export default function UploadQuestionsPage() {
   const [courses, setCourses] = useState<any[]>([])
   const [selectedCourseId, setSelectedCourseId] = useState<string>('none')
   const [questionTimeLimit, setQuestionTimeLimit] = useState<string>('60')
+  const [selectedGrade, setSelectedGrade] = useState<string>('')
   const router = useRouter()
   const supabase = createClient()
 
@@ -66,6 +67,9 @@ export default function UploadQuestionsPage() {
       }
       if (questionTimeLimit) {
         fd.append('question_time_limit', questionTimeLimit)
+      }
+      if (selectedGrade && ['starter', 'mid', 'higher'].includes(selectedGrade)) {
+        fd.append('student_grade', selectedGrade)
       }
       
       // Get upload token if configured (optional security)
@@ -152,6 +156,23 @@ export default function UploadQuestionsPage() {
                 </div>
               </div>
               
+              <div className="space-y-2">
+                <Label htmlFor="student-grade" className="text-sm font-medium text-gray-700">
+                  Student Grade (Required):
+                </Label>
+                <Select value={selectedGrade} onValueChange={setSelectedGrade}>
+                  <SelectTrigger id="student-grade" className="w-full border-2 border-[#3895D3]">
+                    <SelectValue placeholder="Select grade level for these questions" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="starter">Starter (Beginner)</SelectItem>
+                    <SelectItem value="mid">Mid (Intermediate)</SelectItem>
+                    <SelectItem value="higher">Higher (Advanced)</SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-gray-500">Students will only see questions for their grade level. This is required.</p>
+              </div>
+              
               <div className="space-y-1">
                 <Label htmlFor="time-limit" className="text-sm font-medium text-gray-700">
                   Question Time Limit (seconds):
@@ -207,10 +228,13 @@ export default function UploadQuestionsPage() {
               </div>
               
               <div className="flex gap-3 pt-2">
-                <Button disabled={!file || isUploading} onClick={onSubmit} className="bg-[#3895D3] hover:bg-[#1261A0]">
+                <Button disabled={!file || isUploading || !selectedGrade} onClick={onSubmit} className="bg-[#3895D3] hover:bg-[#1261A0]">
                   {isUploading ? 'Uploading...' : 'Upload CSV'}
                 </Button>
               </div>
+              {!selectedGrade && (
+                <p className="text-sm text-red-600">Please select a student grade level before uploading.</p>
+              )}
               {result && (
                 <div className={`mt-4 p-3 rounded border ${result.ok ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
                   <pre className="whitespace-pre-wrap text-sm">{JSON.stringify(result.data, null, 2)}</pre>

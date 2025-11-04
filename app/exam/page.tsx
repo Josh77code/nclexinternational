@@ -125,7 +125,16 @@ export default function ExamPage() {
 
       setExamSession(sessionData)
 
-      // Fetch questions based on course
+      // Get user's grade if student
+      const { data: userData } = await supabase
+        .from('users')
+        .select('student_grade, role')
+        .eq('id', user.id)
+        .single()
+      
+      const userGrade = userData?.role === 'student' ? userData?.student_grade : null
+      
+      // Fetch questions based on course and grade
       let questionsData, questionsError
       let activeQuery = supabase.from('exam_questions').select('*')
       
@@ -138,6 +147,12 @@ export default function ExamPage() {
         console.log('Fetching general questions (no course)')
       } else {
         console.log('No course specified, fetching all questions')
+      }
+      
+      // Filter by student grade if user is a student with a grade
+      if (userGrade) {
+        activeQuery = activeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+        console.log('Filtering questions for student grade:', userGrade)
       }
       
       // Try with is_active filter first
@@ -156,6 +171,11 @@ export default function ExamPage() {
           allQuery = allQuery.eq('course_id', course)
         } else if (course === 'general') {
           allQuery = allQuery.is('course_id', null)
+        }
+        
+        // Filter by student grade if user is a student with a grade
+        if (userGrade) {
+          allQuery = allQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
         }
         
         const allResult = await allQuery

@@ -28,3 +28,4 @@ UPDATE exam_questions
 SET question_time_limit = 60 
 WHERE question_time_limit IS NULL;
 
+

@@ -47,7 +47,8 @@ export default function CreateCoursePage() {
     description: "",
     duration: "",
     price: "",
-    category: "NCLEX-RN"
+    category: "NCLEX-RN",
+    student_grade: "" as 'starter' | 'mid' | 'higher' | '' | null
   });
 
   const [materials, setMaterials] = useState<LocalCourseMaterial[]>([]);
@@ -101,7 +102,7 @@ export default function CreateCoursePage() {
 
   // Save course
   const handleSaveCourse = async () => {
-    if (!courseData.title || !courseData.description) {
+    if (!courseData.title || !courseData.description || !courseData.student_grade) {
       return;
     }
 
@@ -119,8 +120,14 @@ export default function CreateCoursePage() {
         order_index: index + 1
       }));
 
-      // Save to database
-      const result = await createCourse(courseData, dbMaterials);
+      // Save to database - ensure student_grade is properly formatted
+      const courseDataToSave = {
+        ...courseData,
+        student_grade: courseData.student_grade && courseData.student_grade !== '' 
+          ? courseData.student_grade as 'starter' | 'mid' | 'higher' 
+          : null
+      };
+      const result = await createCourse(courseDataToSave, dbMaterials);
       
       if (result.success) {
         setSuccess(true);
@@ -165,7 +172,7 @@ export default function CreateCoursePage() {
               </Button>
               <Button 
                 onClick={handleSaveCourse}
-                disabled={uploading || !courseData.title || !courseData.description}
+                disabled={uploading || !courseData.title || !courseData.description || !courseData.student_grade}
                 className="bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {uploading ? (
@@ -231,6 +238,22 @@ export default function CreateCoursePage() {
                       onChange={(e) => setCourseData({...courseData, category: e.target.value})}
                       className="border-soft"
                     />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="student_grade">Student Grade (Required)</Label>
+                    <select
+                      id="student_grade"
+                      value={courseData.student_grade || ''}
+                      onChange={(e) => setCourseData({...courseData, student_grade: e.target.value as 'starter' | 'mid' | 'higher' | '' | null})}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3895D3]"
+                      required
+                    >
+                      <option value="">Select Grade Level</option>
+                      <option value="starter">Starter (Beginner)</option>
+                      <option value="mid">Mid (Intermediate)</option>
+                      <option value="higher">Higher (Advanced)</option>
+                    </select>
+                    <p className="text-xs text-gray-500">Select which grade level this course is for. Students will only see courses for their grade.</p>
                   </div>
               </div>
 
