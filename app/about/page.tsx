@@ -70,6 +70,12 @@ export default function AboutPage() {
       image: "/board7.jpg",
       bio: "A dedicated and passionate nurse tutor with extensive experience in helping aspiring nurses achieve their goals. Proven track record of success, having guided over 100 nurses in passing the NCLEX exam. Committed to providing personalized guidance, support, and expert instruction to empower students in achieving academic and professional excellence. Nr Florence Bala also practices bedside nursing in Rasheed Shekoni Teaching Hospital Dutse, Jigawa State, as a critical care nurse.",
     },
+    {
+      name: "Favour Priscilla Ige",
+      title: "BSN, USRN, NGRN | Tutor",
+      image: "/Board8.jpeg",
+      bio: "I'm a registered nurse and tutor with over two years of professional experience and nearly a year of helping aspiring nurses achieve exam success. I focus on simplifying complex nursing concepts and building my students' confidence through clear, practical, and supportive teaching. I'm driven by a love for learning, mentorship, and empowering future nurses to reach their full potential.",
+    },
   ]
 
   return (
