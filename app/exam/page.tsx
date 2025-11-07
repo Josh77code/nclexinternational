@@ -1,5 +1,7 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { Header } from '@/components/header'
@@ -40,7 +42,7 @@ export default function ExamPage() {
   const [questions, setQuestions] = useState<Question[]>([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string>>({})
-  const [timeRemaining, setTimeRemaining] = useState(7200) // 2 hours in seconds (120 * 60)
+  const [timeRemaining, setTimeRemaining] = useState(7200)
   const [examSession, setExamSession] = useState<ExamSession | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -50,10 +52,18 @@ export default function ExamPage() {
   const examSessionRef = useRef<ExamSession | null>(null)
   const questionsRef = useRef<Question[]>([])
   const answersRef = useRef<Record<string, string>>({})
+  const supabaseRef = useRef<ReturnType<typeof createClient> | null>(null)
 
-  const supabase = createClient()
+  const getSupabase = () => {
+    if (!supabaseRef.current) {
+      if (typeof window === 'undefined') {
+        return null
+      }
+      supabaseRef.current = createClient()
+    }
+    return supabaseRef.current
+  }
 
-  // Keep refs in sync
   useEffect(() => {
     examSessionRef.current = examSession
   }, [examSession])
@@ -67,47 +77,46 @@ export default function ExamPage() {
   }, [answers])
 
   useEffect(() => {
-    // Get courseId from URL params if present
     const params = new URLSearchParams(window.location.search)
     const course = params.get('courseId')
     setCourseId(course)
-    initializeExam(course)
+    const supabase = getSupabase()
+    if (supabase) {
+      initializeExam(supabase, course)
+    }
   }, [])
 
   useEffect(() => {
     if (!examSession) return
-    
+
     const timer = setInterval(() => {
-      setTimeRemaining(prev => {
+      setTimeRemaining((prev) => {
         if (prev <= 1) {
-          // Time's up - auto submit
           handleSubmitExam()
           return 0
         }
         return prev - 1
       })
-    }, 1000) // Update every second
-    
+    }, 1000)
+
     return () => clearInterval(timer)
   }, [examSession])
 
-  const initializeExam = async (course: string | null) => {
+  const initializeExam = async (supabase: ReturnType<typeof createClient>, course: string | null) => {
     try {
-      // Check if user is authenticated
       const { data: { user } } = await supabase.auth.getUser()
-      
+
       if (!user) {
         router.push('/login')
         return
       }
 
-      // Create new exam session
       const sessionPayload: any = {
         user_id: user.id,
         user_email: user.email,
-        status: 'in_progress'
+        status: 'in_progress',
       }
-      
+
       if (course && course !== 'general') {
         sessionPayload.course_id = course
       }
@@ -125,65 +134,52 @@ export default function ExamPage() {
 
       setExamSession(sessionData)
 
-      // Get user's grade if student
       const { data: userData } = await supabase
         .from('users')
         .select('student_grade, role')
         .eq('id', user.id)
         .single()
-      
+
       const userGrade = userData?.role === 'student' ? userData?.student_grade : null
-      
-      // Fetch questions based on course and grade
+
       let questionsData, questionsError
       let activeQuery = supabase.from('exam_questions').select('*')
-      
-      // If course is specified, filter by course_id
+
       if (course && course !== 'general') {
         activeQuery = activeQuery.eq('course_id', course)
-        console.log('Fetching questions for course:', course)
       } else if (course === 'general') {
         activeQuery = activeQuery.is('course_id', null)
-        console.log('Fetching general questions (no course)')
-      } else {
-        console.log('No course specified, fetching all questions')
       }
-      
-      // Filter by student grade if user is a student with a grade
+
       if (userGrade) {
         activeQuery = activeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
-        console.log('Filtering questions for student grade:', userGrade)
       }
-      
-      // Try with is_active filter first
+
       activeQuery = activeQuery.eq('is_active', true).limit(100)
-      
+
       const activeResult = await activeQuery
       questionsData = activeResult.data
       questionsError = activeResult.error
-      
-      // If error (likely is_active column doesn't exist), try without active filter
+
       if (questionsError) {
         console.warn('Error with is_active filter, trying without:', questionsError)
         let allQuery = supabase.from('exam_questions').select('*').limit(100)
-        
+
         if (course && course !== 'general') {
           allQuery = allQuery.eq('course_id', course)
         } else if (course === 'general') {
           allQuery = allQuery.is('course_id', null)
         }
-        
-        // Filter by student grade if user is a student with a grade
+
         if (userGrade) {
           allQuery = allQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
         }
-        
+
         const allResult = await allQuery
         questionsData = allResult.data
         questionsError = allResult.error
       }
-      
-      // If no questions found, log for debugging
+
       if (!questionsError && (!questionsData || questionsData.length === 0)) {
         console.warn('No questions found for course:', course)
       }
@@ -193,7 +189,6 @@ export default function ExamPage() {
         return
       }
 
-      // Just log warning if less than 100 questions
       if (questionsData && questionsData.length < 100) {
         console.warn(`Warning: Exam has only ${questionsData.length} questions. Recommended: 100+ questions for a complete exam.`)
       }
@@ -207,9 +202,9 @@ export default function ExamPage() {
   }
 
   const handleAnswerSelect = (questionId: string, answer: string) => {
-    setAnswers(prev => ({
+    setAnswers((prev) => ({
       ...prev,
-      [questionId]: answer
+      [questionId]: answer,
     }))
   }
 
@@ -239,33 +234,32 @@ export default function ExamPage() {
     const session = examSessionRef.current
     const examQuestions = questionsRef.current
     const userAnswers = answersRef.current
-    
-    if (!session) return
+    const supabase = getSupabase()
+
+    if (!session || !supabase) return
 
     setIsSubmitting(true)
     try {
-      // Calculate score
       let correctAnswers = 0
       const examAnswers = []
 
       for (const question of examQuestions) {
         const userAnswer = userAnswers[question.id]
         const isCorrect = userAnswer === question.correct_answer
-        
+
         if (isCorrect) correctAnswers++
 
         examAnswers.push({
           session_id: session.id,
           question_id: question.id,
           user_answer: userAnswer || null,
-          is_correct: isCorrect
+          is_correct: isCorrect,
         })
       }
 
       const scorePercentage = (correctAnswers / examQuestions.length) * 100
-      const timeTaken = Math.floor((7200 - timeRemaining) / 60) // Convert seconds to minutes
+      const timeTaken = Math.floor((7200 - timeRemaining) / 60)
 
-      // Insert answers
       const { error: answersError } = await supabase
         .from('exam_answers')
         .insert(examAnswers)
@@ -275,7 +269,6 @@ export default function ExamPage() {
         return
       }
 
-      // Update session
       const { error: sessionError } = await supabase
         .from('exam_sessions')
         .update({
@@ -283,7 +276,7 @@ export default function ExamPage() {
           time_taken: timeTaken,
           correct_answers: correctAnswers,
           score_percentage: scorePercentage,
-          status: 'completed'
+          status: 'completed',
         })
         .eq('id', session.id)
 
@@ -292,7 +285,6 @@ export default function ExamPage() {
         return
       }
 
-      // Create exam result
       const { error: resultError } = await supabase
         .from('exam_results')
         .insert({
@@ -304,7 +296,7 @@ export default function ExamPage() {
           incorrect_answers: examQuestions.length - correctAnswers,
           score_percentage: scorePercentage,
           time_taken: timeTaken,
-          passed: scorePercentage >= 75
+          passed: scorePercentage >= 75,
         })
 
       if (resultError) {
@@ -312,7 +304,6 @@ export default function ExamPage() {
         return
       }
 
-      // Redirect to results page
       router.push(`/exam/results?session=${session.id}`)
     } catch (error) {
       console.error('Error submitting exam:', error)

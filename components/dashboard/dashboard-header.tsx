@@ -62,28 +62,27 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
                     <p className="text-xs text-[#1261A0]">{user?.email}</p>
                     {user?.role === 'student' && user?.student_grade && (
                       <p className="text-xs font-semibold text-[#3895D3] mt-1">
-                        Grade: {user.student_grade === 'starter' ? 'Starter (Beginner)' : 
-                               user.student_grade === 'mid' ? 'Mid (Intermediate)' : 
-                               user.student_grade === 'higher' ? 'Higher (Advanced)' : 
-                               user.student_grade}
+                        Grade: {user.student_grade === 'starter'
+                          ? 'Starter (Beginner)'
+                          : user.student_grade === 'mid'
+                          ? 'Mid (Intermediate)'
+                          : user.student_grade === 'higher'
+                          ? 'Higher (Advanced)'
+                          : user.student_grade}
                       </p>
                     )}
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-[#3895D3]/30" />
-                <DropdownMenuItem onClick={handleLogout} disabled={loading} className="text-[#072F5F] hover:bg-[#3895D3]/10 hover:text-[#3895D3]">
+                <DropdownMenuItem
+                  onClick={handleLogout}
+                  disabled={loading}
+                  className="text-[#072F5F] hover:bg-[#3895D3]/10 hover:text-[#3895D3]"
+                >
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>{loading ? "Logging out..." : "Logout"}</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </div>
-      </div>
-    </header>
-  )
-}
-
             </DropdownMenu>
           </div>
         </div>

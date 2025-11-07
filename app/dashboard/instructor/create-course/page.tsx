@@ -496,26 +496,3 @@ export default function CreateCoursePage() {
     </div>
   );
 }
-                            <div className="flex-1">
-                              <div className="font-medium">{material.title || `Material ${index + 1}`}</div>
-                              <div className="text-sm text-gray-600">{material.description || "No description"}</div>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              {material.type === 'video' && <Play className="w-4 h-4 text-gray-400" />}
-                              {material.type === 'pdf' && <File className="w-4 h-4 text-gray-400" />}
-                              {material.type === 'slides' && <Image className="w-4 h-4 text-gray-400" />}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-              </div>
-          </CardContent>
-        </Card>
-          </TabsContent>
-        </Tabs>
-      </div>
-    </div>
-  );
-}
