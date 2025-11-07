@@ -143,3 +143,28 @@ export default async function DashboardPage() {
     </div>
   )
 }
+
+          enrollments={enrollments || []}
+        />
+
+        {/* Progress Overview */}
+        <ProgressOverview progressPercentage={progressPercentage} />
+
+        {/* Practice Exam Section */}
+        <ExamSection />
+
+        {/* Live Class Links */}
+        <LiveClassLinks links={liveClassLinks || []} />
+
+        {/* Course Materials */}
+        <CourseMaterials courses={courses || []} userProgress={progress || []} />
+
+        {/* External Links */}
+        <ExternalLinks />
+
+        {/* Course List */}
+        <CourseList courses={courses || []} userProgress={progress || []} />
+      </main>
+    </div>
+  )
+}

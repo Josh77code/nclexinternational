@@ -446,3 +446,32 @@ export async function enrollInCourse(courseId: string) {
     return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 }
+
+    }
+
+    // Create material progress entries
+    const { data: materials } = await supabase
+      .from('course_materials')
+      .select('id')
+      .eq('course_id', courseId);
+
+    if (materials && materials.length > 0) {
+      const progressEntries = materials.map(material => ({
+        enrollment_id: enrollment.id,
+        material_id: material.id,
+        completed: false
+      }));
+
+      await supabase
+        .from('material_progress')
+        .insert(progressEntries);
+    }
+
+    revalidatePath('/dashboard');
+    revalidatePath('/dashboard/student');
+    return { success: true, enrollment };
+  } catch (error) {
+    console.error('Error enrolling in course:', error);
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+  }
+}

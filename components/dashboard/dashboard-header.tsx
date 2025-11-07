@@ -83,3 +83,11 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
     </header>
   )
 }
+
+            </DropdownMenu>
+          </div>
+        </div>
+      </div>
+    </header>
+  )
+}
