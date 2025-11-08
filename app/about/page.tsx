@@ -68,6 +68,7 @@ export default function AboutPage() {
       name: "Florence Bala Dawet",
       title: "RN, RCCN, USRN, BNSc. | NCLEX/IELTS Tutor",
       image: "/Florence.jpeg",
+      objectPosition: "object-top",
       bio: "A dedicated and passionate nurse tutor with extensive experience in helping aspiring nurses achieve their goals. Proven track record of success, having guided over 100 nurses in passing the NCLEX exam. Committed to providing personalized guidance, support, and expert instruction to empower students in achieving academic and professional excellence. Nr Florence Bala also practices bedside nursing in Rasheed Shekoni Teaching Hospital Dutse, Jigawa State, as a critical care nurse.",
     },
     {
@@ -216,7 +217,7 @@ export default function AboutPage() {
                     <img
                       src={member.image || "/placeholder.svg"}
                       alt={member.name}
-                      className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-120 group-hover:rotate-3"
+                      className={`w-full h-full object-cover transition-all duration-1000 group-hover:scale-120 group-hover:rotate-3 ${member.objectPosition ?? ""}`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
