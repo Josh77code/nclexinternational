@@ -72,7 +72,7 @@ export default function ContactPage() {
                       <Input 
                         id="phone" 
                         type="tel" 
-                        placeholder="+1 (555) 123-4567"
+                placeholder="+234 703 736 7480"
                         className="h-11 transition-all duration-300 focus:scale-[1.02] border-primary/20 focus:border-primary/50"
                       />
                     </div>
@@ -111,8 +111,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors duration-300">Email</h3>
-                          <p className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">info@nclexkeys.com</p>
-                          <p className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">support@nclexkeys.com</p>
+                          <p className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">nclexkeysintl.academy@gmail.com</p>
                         </div>
                       </CardContent>
                     </Card>
@@ -124,7 +123,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors duration-300">Phone</h3>
-                          <p className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">+1 (555) 123-4567</p>
+                          <p className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">+234 703 736 7480</p>
                           <p className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">Mon-Fri: 9AM - 6PM EST</p>
                         </div>
                       </CardContent>
@@ -137,7 +136,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                           <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors duration-300">WhatsApp</h3>
-                          <p className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">+1 (555) 123-4567</p>
+                          <p className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">+234 703 736 7480</p>
                           <p className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">24/7 Support Available</p>
                         </div>
                       </CardContent>

@@ -215,7 +215,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
+      <section id="testimonials" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30">
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in-up">
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground">

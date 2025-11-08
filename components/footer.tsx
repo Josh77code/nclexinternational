@@ -42,6 +42,14 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link 
+                  href="/#testimonials" 
+                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                >
+                  → Testimonials
+                </Link>
+              </li>
+              <li>
                 <Link
                   href="/programs"
                   className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
@@ -80,9 +88,6 @@ export function Footer() {
               <li className="text-sm text-foreground hover:text-primary transition-colors duration-300 cursor-pointer font-bold">
                 ✓ NCLEX-PN Essentials
               </li>
-              <li className="text-sm text-foreground hover:text-primary transition-colors duration-300 cursor-pointer font-bold">
-                ✓ NCLEX Bootcamp
-              </li>
             </ul>
           </div>
 
@@ -104,7 +109,9 @@ export function Footer() {
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#072F5F]/20 to-[#1261A0]/20 text-[#3895D3]">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span>+1 (555) 123-4567</span>
+                <a href="tel:+2347037367480" className="hover:text-[#3895D3] transition-colors duration-300">
+                  +234 703 736 7480
+                </a>
               </li>
               <li className="flex items-center gap-3 text-sm text-foreground hover:text-[#3895D3] transition-all duration-300 hover:translate-x-1 cursor-pointer font-bold">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#072F5F]/20 to-[#1261A0]/20 text-[#3895D3]">

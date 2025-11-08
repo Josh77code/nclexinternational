@@ -54,7 +54,7 @@ export default function AboutPage() {
     },
     {
       name: "Oladimeji Ajayi",
-      title: "ND, BSc, MSc, NLA, AERM, PM, HRM | HR/Admin Manager",
+      title: "ND, BSc, MSc, NLA, AERM, PM, HRM | Director of Admin and Human Relation",
       image: "/board3.jpg",
       bio: "Oladimeji Ajayi (ND, BSc, MSc, NLA, AERM, PM, HRM) is a seasoned Human Resources Manager excelling in strategy, business development, team management, content development, and project management. Currently, he serves as HR/Admin at NCLEX Keys, leveraging his expertise to drive organizational success. Additionally, Oladimeji works as a Management Services Manager at Paul Esther Consulting, overseeing office operations and conducting training sessions in leadership, management, and communication. He's a certified Project Manager and Enterprise Risk Management Specialist, known for meticulous planning, diligent work ethic, and effective teamwork.",
     },
@@ -67,7 +67,7 @@ export default function AboutPage() {
     {
       name: "Florence Bala Dawet",
       title: "RN, RCCN, USRN, BNSc. | NCLEX/IELTS Tutor",
-      image: "/board7.jpg",
+      image: "/Florence.jpeg",
       bio: "A dedicated and passionate nurse tutor with extensive experience in helping aspiring nurses achieve their goals. Proven track record of success, having guided over 100 nurses in passing the NCLEX exam. Committed to providing personalized guidance, support, and expert instruction to empower students in achieving academic and professional excellence. Nr Florence Bala also practices bedside nursing in Rasheed Shekoni Teaching Hospital Dutse, Jigawa State, as a critical care nurse.",
     },
     {
