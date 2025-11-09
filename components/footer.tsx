@@ -16,8 +16,8 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4 group">
             <div className="flex items-center gap-3">
-              <div className="relative flex h-12 w-12 items-center justify-center rounded-xl border border-[#072F5F]/20 bg-white shadow-lg shadow-[#3895D3]/40 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-                <Logo className="h-9 w-9 text-[#1261A0]" aria-hidden />
+              <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-[#072F5F]/20 bg-white shadow-lg shadow-[#3895D3]/40 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
+                <Logo className="h-12 w-12 text-[#072F5F] drop-shadow-md" aria-hidden />
                 <span className="sr-only">NCLEX Keys International</span>
               </div>
               <span className="text-xl font-bold text-[#072F5F] tracking-wide">

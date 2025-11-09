@@ -35,8 +35,8 @@ export function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative flex h-11 w-11 items-center justify-center rounded-xl border border-[#072F5F]/20 bg-white shadow-lg shadow-[#3895D3]/40 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-2">
-              <Logo className="h-8 w-8 text-[#1261A0]" aria-hidden />
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-[#072F5F]/20 bg-white shadow-lg shadow-[#3895D3]/40 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-2">
+              <Logo className="h-10 w-10 text-[#072F5F] drop-shadow-md" aria-hidden />
               <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-[#F5B301] animate-pulse" />
             </div>
             <span className="text-xl font-bold text-[#072F5F] tracking-wide">
