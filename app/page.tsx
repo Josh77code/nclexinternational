@@ -279,15 +279,14 @@ export default function HomePage() {
           <div className="relative max-w-xl mx-auto">
             <div className="relative overflow-hidden rounded-xl shadow-lg bg-white">
               {isImageSlide ? (
-                <div className="relative aspect-[4/3] w-full max-h-80">
+                <div className="relative w-full h-[24rem] bg-white flex items-center justify-center">
                   <Image
                     src={currentSlide.src}
                     alt={currentSlide.alt}
                     fill
-                    className="object-cover transition-all duration-500 ease-in-out"
+                    className="object-contain transition-all duration-500 ease-in-out"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
               ) : (
                 <div className="p-8 bg-gradient-to-br from-[#072F5F]/10 via-white to-[#3895D3]/10 min-h-[22rem] flex flex-col justify-between">

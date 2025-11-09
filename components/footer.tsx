@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Mail, Phone, MapPin, Twitter, Linkedin, Facebook } from "lucide-react"
 
 export function Footer() {
@@ -17,13 +16,8 @@ export function Footer() {
           <div className="space-y-4 group">
             <div className="flex items-center gap-3">
               <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-[#072F5F]/20 bg-white shadow-lg shadow-[#3895D3]/40 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-                <Image
-                  src="/logo.png"
-                  alt="NCLEX Keys logo"
-                  fill
-                  className="object-contain p-2 logo-blue-filter"
-                  sizes="48px"
-                />
+                <span className="logo-blue-mark" aria-hidden="true" />
+                <span className="sr-only">NCLEX Keys International</span>
               </div>
               <span className="text-xl font-bold text-[#072F5F] tracking-wide">
                 NCLEX Keys International

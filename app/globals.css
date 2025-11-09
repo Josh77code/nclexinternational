@@ -149,8 +149,18 @@
   transform: translateY(-2px);
 }
 
-.logo-blue-filter {
-  filter: brightness(0) saturate(100%) invert(20%) sepia(72%) saturate(1066%) hue-rotate(186deg) brightness(91%) contrast(96%);
+.logo-blue-mark {
+  position: absolute;
+  inset: 0.35rem;
+  background-color: #1261A0;
+  mask-image: url("/logo.png");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: url("/logo.png");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 }
 
 /* ========================================

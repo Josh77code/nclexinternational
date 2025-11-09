@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Sparkles } from "lucide-react"
@@ -36,13 +35,8 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-[#072F5F]/20 bg-white shadow-lg shadow-[#3895D3]/40 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-2">
-              <Image
-                src="/logo.png"
-                alt="NCLEX Keys logo"
-                fill
-                className="object-contain p-2 logo-blue-filter"
-                sizes="44px"
-              />
+              <span className="logo-blue-mark" aria-hidden="true" />
+              <span className="sr-only">NCLEX Keys International</span>
               <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-[#F5B301] animate-pulse" />
             </div>
             <span className="text-xl font-bold text-[#072F5F] tracking-wide">
