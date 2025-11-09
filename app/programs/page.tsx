@@ -262,32 +262,3 @@ export default function ProgramsPage() {
     </div>
   )
 }
-            <Button 
-              onClick={handleEnrollNow}
-              className="w-full h-14 text-lg bg-primary-solid hover:bg-secondary-solid text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
-            >
-              <UserPlus className="h-5 w-5 mr-2" />
-              Enroll Now
-            </Button>
-
-            {/* Message Admin Button */}
-            <Button 
-              onClick={handleMessageAdmin}
-              variant="outline"
-              className="w-full h-14 text-lg border-green-500 text-green-600 hover:bg-green-50 hover:border-green-600 hover:text-green-700 transition-all duration-300 hover:scale-[1.02]"
-            >
-              <MessageCircle className="h-5 w-5 mr-2" />
-              Message Admin on WhatsApp
-            </Button>
-          </div>
-
-          <div className="text-center">
-            <p className="text-sm text-enhanced">
-              Need help choosing? Our admin can guide you through the enrollment process.
-            </p>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </div>
-  )
-}
