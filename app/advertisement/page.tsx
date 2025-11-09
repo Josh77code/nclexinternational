@@ -70,20 +70,24 @@ export default function AdvertisementPage() {
             {adverts.map((advert) => (
               <Card
                 key={advert.title}
-                className="overflow-hidden border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+                className="overflow-hidden border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl bg-white"
               >
-                <div className="relative h-64 w-full">
-                  <Image
-                    src={advert.image}
-                    alt={advert.title}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                  <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white font-semibold tracking-wide uppercase">
-                    <Sparkles className="h-5 w-5" />
-                    Spotlight
+                <div className="w-full bg-white flex flex-col">
+                  <div className="w-full h-64 bg-white flex items-center justify-center">
+                    <Image
+                      src={advert.image}
+                      alt={advert.title}
+                      width={1200}
+                      height={800}
+                      priority
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="px-5 pt-4">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-[#072F5F]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#072F5F]">
+                      <Sparkles className="h-4 w-4" />
+                      Spotlight
+                    </span>
                   </div>
                 </div>
                 <CardHeader className="space-y-3">

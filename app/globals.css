@@ -149,6 +149,10 @@
   transform: translateY(-2px);
 }
 
+.logo-blue-filter {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(72%) saturate(1066%) hue-rotate(186deg) brightness(91%) contrast(96%);
+}
+
 /* ========================================
    ENHANCED ANIMATIONS
    ======================================== */

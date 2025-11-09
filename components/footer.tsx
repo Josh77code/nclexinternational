@@ -21,7 +21,7 @@ export function Footer() {
                   src="/logo.png"
                   alt="NCLEX Keys logo"
                   fill
-                  className="object-contain p-2"
+                  className="object-contain p-2 logo-blue-filter"
                   sizes="48px"
                 />
               </div>

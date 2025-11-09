@@ -90,19 +90,21 @@ export default function OperationsPage() {
         </section>
 
         <section className="py-12 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl rounded-3xl overflow-hidden shadow-lg border border-[#072F5F]/10">
-            <div className="relative h-80 w-full">
-              <Image
-                src="/Operation.jpeg"
-                alt="NCLEX Keys operations overview"
-                fill
-                className="object-cover object-center"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
-                <p className="text-sm uppercase tracking-[0.3em]">Operations Spotlight</p>
-                <h2 className="text-2xl sm:text-3xl font-bold leading-tight">
+          <div className="mx-auto max-w-5xl rounded-3xl overflow-hidden shadow-lg border border-[#072F5F]/10 bg-white">
+            <div className="w-full bg-white flex flex-col">
+              <div className="w-full bg-white flex items-center justify-center">
+                <Image
+                  src="/Operation.jpeg"
+                  alt="NCLEX Keys operations overview"
+                  width={1600}
+                  height={1067}
+                  priority
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+              <div className="px-8 py-6 text-center space-y-3">
+                <p className="text-sm uppercase tracking-[0.35em] text-[#1261A0]">Operations Spotlight</p>
+                <h2 className="text-2xl sm:text-3xl font-bold leading-tight text-[#072F5F]">
                   Structured systems that translate passion into predictable NCLEX success.
                 </h2>
               </div>

@@ -40,7 +40,7 @@ export function Header() {
                 src="/logo.png"
                 alt="NCLEX Keys logo"
                 fill
-                className="object-contain p-2"
+                className="object-contain p-2 logo-blue-filter"
                 sizes="44px"
               />
               <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-[#F5B301] animate-pulse" />
