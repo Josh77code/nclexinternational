@@ -12,30 +12,76 @@ import Image from "next/image"
 export default function HomePage() {
   const [currentTestimony, setCurrentTestimony] = useState(0)
   
-  const testimonyImages = [
-    "/testimony1.jpg",
-    "/testimony2.jpg", 
-    "/testimony3.jpg",
-    "/testimony4.jpg",
-    "/testimony5.jpg",
-    "/testimony6.jpg"
-  ]
+  const testimonySlides = [
+    { type: "image", src: "/testimony1.jpg", alt: "NCLEX Keys student success highlight 1" },
+    { type: "image", src: "/testimony2.jpg", alt: "NCLEX Keys student success highlight 2" },
+    { type: "image", src: "/testimony3.jpg", alt: "NCLEX Keys student success highlight 3" },
+    { type: "image", src: "/testimony4.jpg", alt: "NCLEX Keys student success highlight 4" },
+    { type: "image", src: "/testimony5.jpg", alt: "NCLEX Keys student success highlight 5" },
+    { type: "image", src: "/testimony6.jpg", alt: "NCLEX Keys student success highlight 6" },
+    { type: "image", src: "/testimony7.jpeg", alt: "NCLEX Keys student success highlight 7" },
+    { type: "image", src: "/testimony8.jpeg", alt: "NCLEX Keys student success highlight 8" },
+    { type: "image", src: "/testimony9.jpeg", alt: "NCLEX Keys student success highlight 9" },
+    { type: "image", src: "/testimony10.jpeg", alt: "NCLEX Keys student success highlight 10" },
+    { type: "image", src: "/testimony11.jpeg", alt: "NCLEX Keys student success highlight 11" },
+    { type: "image", src: "/testimony12.jpeg", alt: "NCLEX Keys student success highlight 12" },
+    { type: "image", src: "/testimony13.jpeg", alt: "NCLEX Keys student success highlight 13" },
+    { type: "image", src: "/testimony14.jpeg", alt: "NCLEX Keys student success highlight 14" },
+    { type: "image", src: "/testimony15.jpeg", alt: "NCLEX Keys student success highlight 15" },
+    { type: "image", src: "/testimony16.jpeg", alt: "NCLEX Keys student success highlight 16" },
+    { type: "image", src: "/testimony17.jpeg", alt: "NCLEX Keys student success highlight 17" },
+    { type: "image", src: "/testimony18.jpeg", alt: "NCLEX Keys student success highlight 18" },
+    {
+      type: "quote",
+      headline: "Boss B the NCLEX Teacher",
+      person: "Odun UK",
+      body: [
+        "Boss B the NCLEX TEACHER (try to work with her pressure and everything; it is all geared toward success).",
+        "Boss Favour sends voice notes to keep you updated with the content—just keep listening.",
+        "The Living Water: the questions are enough as a content.",
+        "Lucy Nneoma is the content herself.",
+        "Thank you to all the bosses for their sacrificial support towards making this a success.",
+      ],
+    },
+    {
+      type: "quote",
+      headline: "Informative, Motivational, Person-Centred",
+      person: "Dubem U.K",
+      body: [
+        "NCLEX KEYS, spearheaded by Boss B, has been one of my most informative courses in recent years.",
+        "Very educative, motivational, and truly person-centred.",
+        "I will be recommending the academy to more people preparing for the NCLEX.",
+      ],
+    },
+    {
+      type: "quote",
+      headline: "NCLEX Is Doable",
+      person: "Ella",
+      body: [
+        "Like our tutors and predecessors have always said, NCLEX is doable.",
+        "Put in the hard work, stay persistent, follow everything the NCLEX KEYS tutors teach, and keep praying—your pass is assured.",
+        "Read as if your exam is tomorrow. Do not wait for your ATT before you start preparing.",
+        "Follow instructions, implement the strategies shared by our intelligent tutors, and collect your key early—they hold the keys used to unlock the USRN licence.",
+        "Special thanks to Boss B whose strategies 30 minutes before my test became my questions 1, 2, and 4. God bless Boss Abigail for the two months of one-on-one tutoring that reset my brain, Boss J for the prayers, and every tutor for their impact.",
+      ],
+    },
+  ] as const
 
   // Auto-rotate testimonies every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTestimony((prev) => (prev + 1) % testimonyImages.length)
+      setCurrentTestimony((prev) => (prev + 1) % testimonySlides.length)
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [testimonyImages.length])
+  }, [testimonySlides.length])
 
   const nextTestimony = () => {
-    setCurrentTestimony((prev) => (prev + 1) % testimonyImages.length)
+    setCurrentTestimony((prev) => (prev + 1) % testimonySlides.length)
   }
 
   const prevTestimony = () => {
-    setCurrentTestimony((prev) => (prev - 1 + testimonyImages.length) % testimonyImages.length)
+    setCurrentTestimony((prev) => (prev - 1 + testimonySlides.length) % testimonySlides.length)
   }
 
   const features = [
@@ -71,6 +117,9 @@ export default function HomePage() {
     },
   ]
 
+
+  const currentSlide = testimonySlides[currentTestimony]
+  const isImageSlide = currentSlide.type === "image"
 
   return (
     <div className="min-h-screen flex flex-col overflow-hidden">
@@ -228,48 +277,68 @@ export default function HomePage() {
 
           {/* Testimony Carousel */}
           <div className="relative max-w-xl mx-auto">
-            <div className="relative overflow-hidden rounded-xl shadow-lg">
-              {/* Main testimony image */}
-              <div className="relative aspect-[4/3] w-full max-h-80">
-                <Image
-                  src={testimonyImages[currentTestimony]}
-                  alt={`Student testimony ${currentTestimony + 1}`}
-                  fill
-                  className="object-cover transition-all duration-500 ease-in-out"
-                  priority
-                />
-                
-                {/* Overlay gradient for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                
-                {/* Navigation arrows */}
-                <button
-                  onClick={prevTestimony}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 transition-all duration-300 hover:scale-110"
-                  aria-label="Previous testimony"
-                >
-                  <ChevronLeft className="h-4 w-4 text-white" />
-                </button>
-                
-                <button
-                  onClick={nextTestimony}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 transition-all duration-300 hover:scale-110"
-                  aria-label="Next testimony"
-                >
-                  <ChevronRight className="h-4 w-4 text-white" />
-                </button>
-              </div>
+            <div className="relative overflow-hidden rounded-xl shadow-lg bg-white">
+              {isImageSlide ? (
+                <div className="relative aspect-[4/3] w-full max-h-80">
+                  <Image
+                    src={currentSlide.src}
+                    alt={currentSlide.alt}
+                    fill
+                    className="object-cover transition-all duration-500 ease-in-out"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                </div>
+              ) : (
+                <div className="p-8 bg-gradient-to-br from-[#072F5F]/10 via-white to-[#3895D3]/10 min-h-[22rem] flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#072F5F]/10 text-[#072F5F] text-xs font-semibold uppercase tracking-wide">
+                      <Sparkles className="h-3 w-3" />
+                      Testimonial Spotlight
+                    </span>
+                    <h3 className="text-2xl font-bold text-[#072F5F]">
+                      {currentSlide.headline}
+                    </h3>
+                    <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+                      {currentSlide.body.map((paragraph: string) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="pt-6 text-right text-sm font-semibold text-[#072F5F]">
+                    — {currentSlide.person}
+                  </div>
+                </div>
+              )}
+
+              <button
+                onClick={prevTestimony}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 transition-all duration-300 hover:scale-110"
+                aria-label="Previous testimony"
+              >
+                <ChevronLeft className="h-4 w-4 text-white" />
+              </button>
+
+              <button
+                onClick={nextTestimony}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 transition-all duration-300 hover:scale-110"
+                aria-label="Next testimony"
+              >
+                <ChevronRight className="h-4 w-4 text-white" />
+              </button>
             </div>
 
             {/* Dots indicator */}
             <div className="flex justify-center mt-6 space-x-2">
-              {testimonyImages.map((_, index) => (
+              {testimonySlides.map((slide, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentTestimony(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentTestimony
                       ? "bg-primary scale-125"
+                      : slide.type === "quote"
+                      ? "bg-muted hover:bg-muted-foreground border border-primary/40"
                       : "bg-muted hover:bg-muted-foreground"
                   }`}
                   aria-label={`Go to testimony ${index + 1}`}
@@ -280,7 +349,7 @@ export default function HomePage() {
             {/* Testimony counter */}
             <div className="text-center mt-4">
               <span className="text-sm text-muted-foreground">
-                {currentTestimony + 1} of {testimonyImages.length}
+                {currentTestimony + 1} of {testimonySlides.length}
               </span>
             </div>
           </div>

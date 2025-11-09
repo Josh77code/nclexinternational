@@ -1,106 +1,69 @@
-"use client"
+ "use client"
 
-import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { MessageCircle, UserPlus, X, Flag } from "lucide-react"
+import { MessageCircle, Users, CalendarCheck, Clock, Mail, Sparkles } from "lucide-react"
 import Link from "next/link"
 
+const packages = [
+  {
+    name: "General Plan",
+    icon: Users,
+    summary:
+      "Immersive general coaching that keeps you accountable with structured group mentorship, recorded replays, and the vibrant NCLEX KEYS community.",
+    highlights: [
+      "Daily strategic group classes anchored by Boss B and specialist tutors",
+      "Community accountability, curated resources, and testimony vault access",
+      "Assessments that map your readiness and guide your weekly priorities",
+    ],
+  },
+  {
+    name: "1 in 1 Push with General Plan",
+    icon: MessageCircle,
+    summary:
+      "The best of both worlds: full general membership plus private coaching hours that sharpen weak areas and accelerate readiness.",
+    highlights: [
+      "Everything in the General Plan included",
+      "Dedicated tutor assigned to you from day one till you pass",
+      "Weekly personalised checkpoints and rapid remediation support",
+    ],
+  },
+  {
+    name: "1 in 1 Push Alone",
+    icon: CalendarCheck,
+    summary:
+      "Designed for nurses who need a fully tailored experience. Every minute is personalised around your goals, pace, and availability.",
+    highlights: [
+      "Flexible coaching blocks aligned with your shifts and time zones",
+      "Focused case reviews, live drills, and confidence boosting simulations",
+      "Direct, timely feedback on assignments, question banks, and strategy",
+    ],
+  },
+  {
+    name: "Fixed Days & Hours Schedule",
+    icon: Clock,
+    summary:
+      "Stay consistent with a preset timetable that guarantees coverage of the entire syllabus while respecting your work-life rhythm.",
+    highlights: [
+      "Pre-arranged calendar with clearly defined milestones",
+      "Rotating sub-classes so you never miss high-impact sessions",
+      "Ideal for nurses balancing shifts, family time, and exam prep",
+    ],
+  },
+]
+
+const contactAdmin = (packageName?: string) => {
+  const baseMessage =
+    "Hello NCLEX KEYS Admin! I would love to get the pricing details and next steps."
+  const message = packageName ? `${baseMessage} I'm interested in the ${packageName}.` : baseMessage
+  const encodedMessage = encodeURIComponent(message)
+  const whatsappUrl = `https://wa.me/2347037367480?text=${encodedMessage}`
+  window.open(whatsappUrl, "_blank")
+}
+
 export default function ProgramsPage() {
-  const [selectedProgram, setSelectedProgram] = useState<any>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const handleSelectProgram = (program: any) => {
-    setSelectedProgram(program)
-    setIsModalOpen(true)
-  }
-
-  const handleEnrollNow = () => {
-    setIsModalOpen(false)
-    // Redirect to registration page
-    window.location.href = "/register"
-  }
-
-  const handleMessageAdmin = () => {
-    setIsModalOpen(false)
-    // Open WhatsApp chat with admin
-    const whatsappMessage = `Hi! I'm interested in the ${selectedProgram?.region} program (${selectedProgram?.price} ${selectedProgram?.period}). Can you help me with enrollment?`
-    const encodedMessage = encodeURIComponent(whatsappMessage)
-    const whatsappUrl = `https://wa.me/2347037367480?text=${encodedMessage}`
-    window.open(whatsappUrl, '_blank')
-  }
-
-  const programs = [
-    {
-      region: "NIGERIA",
-      price: "30,000 NGN",
-      period: "PER MONTH",
-      exclusive: true,
-      oneOnOne: false,
-      flag: "🇳🇬",
-    },
-    {
-      region: "AFRICAN",
-      price: "35,000 NGN",
-      period: "PER MONTH",
-      exclusive: true,
-      oneOnOne: false,
-      flag: "🌍",
-    },
-    {
-      region: "USA/CANADA",
-      price: "60 US DOLLARS",
-      period: "PER MONTH",
-      exclusive: true,
-      oneOnOne: false,
-      flag: "🇺🇸🇨🇦",
-    },
-    {
-      region: "EUROPE",
-      price: "35 POUNDS",
-      period: "PER MONTH",
-      exclusive: true,
-      oneOnOne: false,
-      flag: "🇪🇺",
-    },
-    {
-      region: "NIGERIA",
-      price: "60,000 NGN",
-      period: "PER MONTH",
-      exclusive: true,
-      oneOnOne: true,
-      flag: "🇳🇬",
-    },
-    {
-      region: "AFRICAN",
-      price: "65,000 NGN",
-      period: "PER MONTH",
-      exclusive: true,
-      oneOnOne: true,
-      flag: "🌍",
-    },
-    {
-      region: "USA/CANADA",
-      price: "100 US DOLLARS",
-      period: "PER MONTH",
-      exclusive: true,
-      oneOnOne: true,
-      flag: "🇺🇸🇨🇦",
-    },
-    {
-      region: "EUROPE",
-      price: "50 POUNDS",
-      period: "PER MONTH",
-      exclusive: true,
-      oneOnOne: true,
-      flag: "🇪🇺",
-    },
-  ]
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -108,48 +71,53 @@ export default function ProgramsPage() {
       <main className="flex-1 pt-24">
         {/* Hero Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#3895D3]/5">
-          <div className="mx-auto max-w-6xl text-center space-y-6">
-            <h1 className="text-4xl sm:text-5xl font-bold text-balance">Our Tutoring Fees Are Location Based</h1>
-            <p className="text-xl text-muted-foreground text-pretty max-w-4xl mx-auto">
-              You may choose to learn with us on your own without 1 in 1 follow up (EXCLUSIVE) and you may as well opt in for a private time with a 1 in 1 NCLEX coach EXCLUSIVE with 1 in 1 push.
+          <div className="mx-auto max-w-5xl text-center space-y-6">
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#072F5F]/5 border border-[#072F5F]/20">
+              <Sparkles className="h-4 w-4 text-[#072F5F]" />
+              <span className="text-sm font-semibold text-[#072F5F] tracking-wide">OUR PACKAGES</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl font-bold text-balance">Tailored NCLEX Pathways for Every Nurse</h1>
+            <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
+              Pricing is shared directly by our admin team so we can recommend the perfect plan for your goals, location,
+              and timeline. Review the options below and reach out for your personalised quote.
             </p>
           </div>
         </section>
 
-        {/* Programs Grid */}
+        {/* Packages Grid */}
         <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {programs.map((program, index) => (
+          <div className="mx-auto max-w-6xl space-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {packages.map((pkg) => (
                 <Card
-                  key={index}
-                  className="flex flex-col bg-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-[#3895D3] hover:border-[#1261A0]"
+                  key={pkg.name}
+                  className="flex flex-col bg-white hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-[#3895D3] hover:border-[#1261A0]"
                 >
-                  <CardHeader className="text-center space-y-4 pb-6">
-                    <div className="flex flex-col items-center gap-2">
-                      <div className="text-6xl leading-none mb-2">{program.flag}</div>
-                      <CardTitle className="text-2xl font-bold">{program.region}</CardTitle>
-                    </div>
-                    <Badge className="mx-auto bg-[#072F5F] hover:bg-[#1261A0] text-white">
-                      {program.exclusive ? "EXCLUSIVE" : "STANDARD"}
-                    </Badge>
-                    {program.oneOnOne && (
-                      <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                        <span>ONE ON ONE PUSH</span>
-                        <span>→</span>
+                  <CardHeader className="space-y-4 pb-0">
+                    <div className="flex items-center justify-between gap-4">
+                      <CardTitle className="text-2xl font-bold text-[#072F5F]">{pkg.name}</CardTitle>
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#072F5F]/15 to-[#3895D3]/20 text-[#072F5F]">
+                        <pkg.icon className="h-6 w-6" />
                       </div>
-                    )}
+                    </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{pkg.summary}</p>
                   </CardHeader>
-                  <CardContent className="flex-1 text-center space-y-2">
-                    <div className="text-3xl sm:text-4xl font-bold text-[#3895D3]">{program.price}</div>
-                    <div className="text-sm text-muted-foreground uppercase tracking-wide">{program.period}</div>
+                  <CardContent className="flex-1 pt-6">
+                    <ul className="space-y-3 text-sm text-muted-foreground">
+                      {pkg.highlights.map((item) => (
+                        <li key={item} className="flex items-start gap-2">
+                          <span className="mt-1 h-2 w-2 rounded-full bg-[#3895D3]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </CardContent>
-                  <CardFooter>
-                    <Button 
-                      className="w-full bg-[#072F5F] hover:bg-[#1261A0] text-white font-semibold" 
-                      onClick={() => handleSelectProgram(program)}
+                  <CardFooter className="pt-0">
+                    <Button
+                      className="w-full bg-[#072F5F] hover:bg-[#1261A0] text-white font-semibold"
+                      onClick={() => contactAdmin(pkg.name)}
                     >
-                      Select Program
+                      Contact Admin for Pricing
                     </Button>
                   </CardFooter>
                 </Card>
@@ -161,33 +129,43 @@ export default function ProgramsPage() {
         {/* Features Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#3895D3]/5">
           <div className="mx-auto max-w-6xl">
-            <h2 className="text-3xl font-bold mb-12 text-center">What's Included in All Programs</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center">What You Enjoy in Every Package</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
-                <h3 className="font-semibold text-lg mb-2">Video Lectures</h3>
-                <p className="text-muted-foreground text-sm">Comprehensive video tutorials covering all NCLEX topics</p>
+                <h3 className="font-semibold text-lg mb-2">Strategic Video Lectures</h3>
+                <p className="text-muted-foreground text-sm">
+                  Six hours weekly with Boss B and specialist tutors, replayable on-demand so you never miss a lesson.
+                </p>
               </div>
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Practice Questions</h3>
                 <p className="text-muted-foreground text-sm">
-                  Thousands of practice questions with detailed explanations
+                  Curated drills, NCLEX-style assessments, and academy question banks to sharpen your exam instincts.
                 </p>
               </div>
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Study Materials</h3>
-                <p className="text-muted-foreground text-sm">Downloadable study guides and reference materials</p>
+                <p className="text-muted-foreground text-sm">
+                  Downloadable curriculum, schedules, and revision checklists tailored to your target test date.
+                </p>
               </div>
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Progress Tracking</h3>
-                <p className="text-muted-foreground text-sm">Monitor your learning progress with detailed analytics</p>
+                <p className="text-muted-foreground text-sm">
+                  Monthly reviews and readiness checks backed by tutor insight and assessment data.
+                </p>
               </div>
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Community Access</h3>
-                <p className="text-muted-foreground text-sm">Join WhatsApp and Telegram study groups</p>
+                <p className="text-muted-foreground text-sm">
+                  Immediate entry into our Telegram and WhatsApp hubs for support, testimonies, and accountability.
+                </p>
               </div>
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Mobile Access</h3>
-                <p className="text-muted-foreground text-sm">Study anywhere, anytime on any device</p>
+                <p className="text-muted-foreground text-sm">
+                  Learn anywhere, anytime with resources optimised for mobile, so shifts never slow your growth.
+                </p>
               </div>
             </div>
           </div>
@@ -203,9 +181,9 @@ export default function ProgramsPage() {
                   1
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Choose Your Program</h3>
+                  <h3 className="font-semibold mb-2">Choose Your Package</h3>
                   <p className="text-muted-foreground">
-                    Select the program that matches your region and learning preference.
+                    Pick the structure and support that align with your preferred learning style.
                   </p>
                 </div>
               </div>
@@ -214,9 +192,13 @@ export default function ProgramsPage() {
                   2
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Register & Pay</h3>
+                  <h3 className="font-semibold mb-2">Reach Out for Pricing</h3>
                   <p className="text-muted-foreground">
-                    Create your account and make payment via WhatsApp. Send your payment screenshot for verification.
+                    Chat with our admin on WhatsApp via <span className="font-semibold">+234 703 736 7480</span> or email{" "}
+                    <a className="text-primary hover:underline" href="mailto:nclexkeysintl.academy@gmail.com">
+                      nclexkeysintl.academy@gmail.com
+                    </a>{" "}
+                    to get the exact quote and onboarding steps.
                   </p>
                 </div>
               </div>
@@ -225,9 +207,9 @@ export default function ProgramsPage() {
                   3
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2">Get Your Token</h3>
+                  <h3 className="font-semibold mb-2">Confirm & Enrol</h3>
                   <p className="text-muted-foreground">
-                    After payment verification, you'll receive an enrollment token to activate your account.
+                    Finalise your plan, complete payment, and receive your access token for the academy.
                   </p>
                 </div>
               </div>
@@ -238,39 +220,48 @@ export default function ProgramsPage() {
                 <div>
                   <h3 className="font-semibold mb-2">Start Learning</h3>
                   <p className="text-muted-foreground">
-                    Access your dashboard and begin your NCLEX preparation journey immediately.
+                    Dive into classes, communities, and personalised guidance immediately.
                   </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Direct Contact CTA */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#072F5F]/5">
+          <div className="mx-auto max-w-3xl text-center space-y-6">
+            <h2 className="text-3xl font-bold text-[#072F5F]">Ready for Your Personalised Quote?</h2>
+            <p className="text-muted-foreground text-lg">
+              Send us a message and our administrative team will guide you to the plan that guarantees your NCLEX success.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button
+                className="w-full sm:w-auto bg-[#072F5F] hover:bg-[#1261A0] text-white"
+                onClick={() => contactAdmin()}
+              >
+                <MessageCircle className="h-5 w-5 mr-2" />
+                WhatsApp +234 703 736 7480
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full sm:w-auto border-[#3895D3] text-[#072F5F] hover:bg-[#3895D3]/10"
+                asChild
+              >
+                <Link href="mailto:nclexkeysintl.academy@gmail.com">
+                  <Mail className="h-5 w-5 mr-2" />
+                  Email nclexkeysintl.academy@gmail.com
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
-
-      {/* Program Selection Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="sm:max-w-md bg-background border-soft shadow-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-center text-primary-solid">
-              Choose Your Next Step
-            </DialogTitle>
-            <DialogDescription className="text-center text-enhanced">
-              {selectedProgram && (
-                <>
-                  <div className="flex items-center justify-center gap-3 mb-3">
-                    <div className="text-4xl leading-none">{selectedProgram.flag}</div>
-                    <span className="font-semibold text-[#072F5F] text-xl">{selectedProgram.region}</span>
-                  </div>
-                  <span className="text-lg font-bold text-[#3895D3]">{selectedProgram.price} {selectedProgram.period}</span>
-                </>
-              )}
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-4 py-6">
-            {/* Enroll Now Button */}
+    </div>
+  )
+}
             <Button 
               onClick={handleEnrollNow}
               className="w-full h-14 text-lg bg-primary-solid hover:bg-secondary-solid text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"

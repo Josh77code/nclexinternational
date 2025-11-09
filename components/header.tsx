@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X, GraduationCap, Sparkles } from "lucide-react"
+import { Menu, X, Sparkles } from "lucide-react"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -33,13 +34,19 @@ export function Header() {
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-primary-solid text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-lg shadow-[#3895D3]/50 group-hover:bg-secondary-solid">
-              <GraduationCap className="h-6 w-6" />
-              <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-yellow-300 animate-pulse" />
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-[#072F5F]/20 bg-white shadow-lg shadow-[#3895D3]/40 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-2">
+              <Image
+                src="/logo.png"
+                alt="NCLEX Keys logo"
+                fill
+                className="object-contain p-2"
+                sizes="44px"
+              />
+              <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-[#F5B301] animate-pulse" />
             </div>
-            <span className="text-xl font-bold text-primary-solid">
-              NCLEX Keys
+            <span className="text-xl font-bold text-[#072F5F] tracking-wide">
+              NCLEX Keys International
             </span>
           </Link>
 

@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { GraduationCap, Mail, Phone, MapPin, Twitter, Linkedin, Facebook } from "lucide-react"
+import Image from "next/image"
+import { Mail, Phone, MapPin, Twitter, Linkedin, Facebook } from "lucide-react"
 
 export function Footer() {
   return (
@@ -14,16 +15,22 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="space-y-4 group">
-            <div className="flex items-center gap-2">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-solid text-white shadow-lg shadow-[#3895D3]/50 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-6 group-hover:bg-secondary-solid">
-                <GraduationCap className="h-7 w-7" />
+            <div className="flex items-center gap-3">
+              <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-[#072F5F]/20 bg-white shadow-lg shadow-[#3895D3]/40 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
+                <Image
+                  src="/logo.png"
+                  alt="NCLEX Keys logo"
+                  fill
+                  className="object-contain p-2"
+                  sizes="48px"
+                />
               </div>
-              <span className="text-xl font-bold text-primary-solid">
-                NCLEX Keys
+              <span className="text-xl font-bold text-[#072F5F] tracking-wide">
+                NCLEX Keys International
               </span>
             </div>
-            <p className="text-sm text-foreground leading-relaxed group-hover:text-primary transition-colors duration-300 font-semibold">
-              Empowering nursing students to achieve their dreams through comprehensive NCLEX preparation.
+            <p className="text-sm text-[#1b3b68] leading-relaxed group-hover:text-[#072F5F] transition-colors duration-300 font-semibold">
+              Empowering nursing professionals with strategic coaching, relentless support, and transformative NCLEX outcomes.
             </p>
           </div>
 
@@ -71,6 +78,30 @@ export function Footer() {
                   className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
                 >
                   → Contact
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/advertisement"
+                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                >
+                  → Advertisement
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/operations"
+                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                >
+                  → Our Operations
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/terms-policy"
+                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                >
+                  → Terms & Policy
                 </Link>
               </li>
             </ul>
