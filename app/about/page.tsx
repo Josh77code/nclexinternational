@@ -1,7 +1,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
-import { Target, Heart, Lightbulb, Users } from "lucide-react"
+import { Target, Heart, Lightbulb, Users, Sparkles } from "lucide-react"
 
 export default function AboutPage() {
   const values = [
@@ -24,6 +24,11 @@ export default function AboutPage() {
       icon: Users,
       title: "Community",
       description: "We foster supportive learning scheme for all students in a loving environment with the highest level of tolerance.",
+    },
+    {
+      icon: Sparkles,
+      title: "Spirituality",
+      description: "We observe monthly fasts and corporate prayers, trusting God for every student's success and celebrating testimonies together.",
     },
   ]
 
@@ -167,14 +172,14 @@ export default function AboutPage() {
         </section>
 
         <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-purple-500/5 to-primary/5"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-purple-500/5 to-primary/5"></div>
           <div className="mx-auto max-w-7xl relative z-10">
             <div className="text-center space-y-6 mb-20">
               <h2 className="text-4xl sm:text-6xl font-black gradient-text text-shadow-strong animate-text-reveal">
-                Leadership Team
+                Board of Directors
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up stagger-1">
-                Meet the visionary leaders driving NCLEX KEYS to excellence in nursing education and strategic global engagement.
+                Visionary leaders driving NCLEX KEYS to excellence in nursing education and strategic global engagement.
               </p>
             </div>
 
