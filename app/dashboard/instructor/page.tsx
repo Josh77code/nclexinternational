@@ -474,7 +474,7 @@ export default function InstructorDashboard() {
             <Button 
               variant="outline" 
               className="border-2 h-20 flex-col bg-white hover:bg-gray-50 text-gray-900"
-              onClick={() => setShowCreateCourse(true)}
+              onClick={() => { window.location.href = '/dashboard/instructor/create-course' }}
             >
               <BookOpen className="w-6 h-6 mb-2 text-gray-700" />
               <span className="text-gray-900 font-medium">Add Course Material</span>
@@ -482,7 +482,7 @@ export default function InstructorDashboard() {
             <Button 
               variant="outline" 
               className="border-2 h-20 flex-col bg-white hover:bg-gray-50 text-gray-900"
-              onClick={() => {/* Handle manage students */}}
+              onClick={() => { window.location.href = '/dashboard/instructor/manage-students' }}
             >
               <Users className="w-6 h-6 mb-2 text-gray-700" />
               <span className="text-gray-900 font-medium">Manage Students</span>

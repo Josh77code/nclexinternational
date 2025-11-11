@@ -8,6 +8,15 @@ import { LiveClassLinks } from "@/components/dashboard/live-class-links"
 import { ExternalLinks } from "@/components/dashboard/external-links"
 import { ProgressOverview } from "@/components/dashboard/progress-overview"
 import { ExamSection } from "@/components/dashboard/exam-section"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Shield, BookOpen } from "lucide-react"
 
 export default async function DashboardPage() {
   const supabase = await getSupabaseServerClient()
@@ -37,7 +46,16 @@ export default async function DashboardPage() {
     .eq("id", user.id)
     .single()
 
-  const userGrade = userDataWithGrade?.role === 'student' ? userDataWithGrade?.student_grade : null
+  const userGrade = userDataWithGrade?.role === "student" ? userDataWithGrade?.student_grade : null
+
+  const gradeLabel =
+    userGrade === "starter"
+      ? "Starter (Beginner)"
+      : userGrade === "mid"
+        ? "Mid (Intermediate)"
+        : userGrade === "higher"
+          ? "Higher (Advanced)"
+          : null
 
   // Get ALL active courses from the courses table (instructor-created courses)
   // Filter by student grade if user is a student
@@ -81,64 +99,104 @@ export default async function DashboardPage() {
     <div className="min-h-screen bg-gradient-to-br from-background via-[#3895D3]/5 to-background">
       <DashboardHeader user={userData} />
 
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-        {/* Welcome Section */}
-        <div className="animate-fade-in-up">
-          <h1 className="text-4xl sm:text-5xl font-bold text-primary-solid">
-            Welcome back, {userData?.full_name}!
-          </h1>
-          <p className="text-enhanced mt-3 text-lg">Continue your NCLEX preparation journey</p>
-          {userData?.role === 'student' && userData?.student_grade && (
-            <div className="mt-4 inline-block">
-              <span className="px-4 py-2 bg-[#3895D3]/10 text-[#3895D3] rounded-lg font-semibold border border-[#3895D3]/30">
-                Grade: {userData.student_grade === 'starter' ? 'Starter (Beginner)' : 
-                       userData.student_grade === 'mid' ? 'Mid (Intermediate)' : 
-                       userData.student_grade === 'higher' ? 'Higher (Advanced)' : 
-                       userData.student_grade}
-              </span>
-            </div>
-          )}
-        </div>
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex flex-col gap-10 lg:flex-row">
+          <aside className="lg:w-80 flex-shrink-0 space-y-6">
+            <Card className="border-2 border-[#3895D3]/30 shadow-sm bg-white">
+              <CardHeader>
+                <CardTitle className="text-[#072F5F] text-2xl">Welcome back</CardTitle>
+                <CardDescription className="text-sm text-muted-foreground">
+                  Your profile updates automatically as we migrate you across grades.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-1">
+                  <p className="text-lg font-semibold text-[#072F5F]">
+                    {userData?.full_name || "NCLEX Keys Student"}
+                  </p>
+                  <p className="text-sm text-muted-foreground">{user?.email}</p>
+                </div>
+                {gradeLabel && (
+                  <Badge className="bg-[#3895D3]/10 text-[#1261A0] border border-[#3895D3]/40 px-3 py-1 text-xs font-semibold uppercase tracking-wide">
+                    <Shield className="mr-1 h-3 w-3" />
+                    {gradeLabel}
+                  </Badge>
+                )}
+                <div className="rounded-lg border border-[#3895D3]/20 bg-[#3895D3]/5 p-3 text-xs text-[#072F5F] space-y-2">
+                  <p className="font-semibold">Grade migration</p>
+                  <p>
+                    The admin team upgrades you from Starter → Mid → Higher as you complete coaching milestones.
+                    Keep attending sessions and submitting tasks to unlock the next level.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-        {/* Payment Verification Alert */}
-        {enrollments && enrollments.length > 0 && !enrollments[0].payment_verified && (
-          <div className="relative overflow-hidden bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-xl p-6 animate-fade-in shadow-lg">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/20 rounded-full blur-2xl" />
-            <div className="relative z-10">
-              <h3 className="font-bold text-yellow-700 dark:text-yellow-400 mb-2 text-lg">Payment Verification Pending</h3>
-              <p className="text-sm text-yellow-600 dark:text-yellow-300">
-                Your payment is being verified. You'll get full access once verification is complete (usually within 24
-                hours).
+            <Card className="border border-[#3895D3]/20 bg-white">
+              <CardHeader>
+                <CardTitle className="text-sm text-[#072F5F] flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  Quick Progress Snapshot
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2 text-sm text-muted-foreground">
+                <p>
+                  Courses completed: <span className="font-semibold text-[#072F5F]">{completedCourses}</span> /{" "}
+                  <span className="font-semibold text-[#072F5F]">{totalCourses}</span>
+                </p>
+                <p>
+                  Overall progress:{" "}
+                  <span className="font-semibold text-[#072F5F]">{progressPercentage}%</span>
+                </p>
+              </CardContent>
+            </Card>
+          </aside>
+
+          <section className="flex-1 space-y-10">
+            <div className="animate-fade-in-up">
+              <h1 className="text-4xl sm:text-5xl font-bold text-primary-solid">
+                Welcome back, {userData?.full_name}!
+              </h1>
+              <p className="text-enhanced mt-3 text-lg">
+                Continue your NCLEX preparation journey with fresh content curated for your grade level.
               </p>
             </div>
-          </div>
-        )}
 
-        {/* Stats */}
-        <DashboardStats
-          totalCourses={totalCourses}
-          completedCourses={completedCourses}
-          progressPercentage={progressPercentage}
-          enrollments={enrollments || []}
-        />
+            {enrollments && enrollments.length > 0 && !enrollments[0].payment_verified && (
+              <div className="relative overflow-hidden bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-xl p-6 animate-fade-in shadow-lg">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/20 rounded-full blur-2xl" />
+                <div className="relative z-10">
+                  <h3 className="font-bold text-yellow-700 dark:text-yellow-400 mb-2 text-lg">
+                    Payment Verification Pending
+                  </h3>
+                  <p className="text-sm text-yellow-600 dark:text-yellow-300">
+                    Your payment is being verified. You'll get full access once verification is complete (usually within 24
+                    hours).
+                  </p>
+                </div>
+              </div>
+            )}
 
-        {/* Progress Overview */}
-        <ProgressOverview progressPercentage={progressPercentage} />
+            <DashboardStats
+              totalCourses={totalCourses}
+              completedCourses={completedCourses}
+              progressPercentage={progressPercentage}
+              enrollments={enrollments || []}
+            />
 
-        {/* Practice Exam Section */}
-        <ExamSection />
+            <ProgressOverview progressPercentage={progressPercentage} />
 
-        {/* Live Class Links */}
-        <LiveClassLinks links={liveClassLinks || []} />
+            <ExamSection />
 
-        {/* Course Materials */}
-        <CourseMaterials courses={courses || []} userProgress={progress || []} />
+            <LiveClassLinks links={liveClassLinks || []} />
 
-        {/* External Links */}
-        <ExternalLinks />
+            <CourseMaterials courses={courses || []} userProgress={progress || []} />
 
-        {/* Course List */}
-        <CourseList courses={courses || []} userProgress={progress || []} />
+            <ExternalLinks />
+
+            <CourseList courses={courses || []} userProgress={progress || []} />
+          </section>
+        </div>
       </main>
     </div>
   )

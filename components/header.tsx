@@ -66,7 +66,7 @@ export function Header() {
               asChild
               className="bg-primary-solid hover:bg-secondary-solid text-white shadow-lg shadow-[#3895D3]/40 hover:shadow-xl hover:shadow-[#3895D3]/50 transition-all duration-300 hover:scale-105"
             >
-              <Link href="/register">Get Started</Link>
+              <Link href="/contact">Request Access</Link>
             </Button>
           </div>
 
@@ -98,7 +98,7 @@ export function Header() {
                 <Link href="/login">Login</Link>
               </Button>
               <Button asChild className="w-full bg-primary-solid hover:bg-secondary-solid text-white">
-                <Link href="/register">Get Started</Link>
+                <Link href="/contact">Request Access</Link>
               </Button>
             </div>
           </div>

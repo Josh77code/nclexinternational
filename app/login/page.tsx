@@ -139,9 +139,9 @@ export default function LoginPage() {
             </Button>
 
             <div className="text-center text-sm pt-2">
-              <span className="text-gray-600">Don't have an account? </span>
-              <Link href="/register" className="text-purple-600 hover:text-pink-600 font-semibold hover:underline">
-                Register
+              <span className="text-gray-600">Need an account? </span>
+              <Link href="/contact" className="text-purple-600 hover:text-pink-600 font-semibold hover:underline">
+                Contact the Admin Team
               </Link>
             </div>
 
