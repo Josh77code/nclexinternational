@@ -79,8 +79,20 @@ export default function AboutPage() {
     {
       name: "Favour Priscilla Ige",
       title: "BSN, USRN, NGRN | Tutor",
-      image: "/Board8.jpeg",
+      image: "/newfavourimage.jpeg",
       bio: "I'm a registered nurse and tutor with over two years of professional experience and nearly a year of helping aspiring nurses achieve exam success. I focus on simplifying complex nursing concepts and building my students' confidence through clear, practical, and supportive teaching. I'm driven by a love for learning, mentorship, and empowering future nurses to reach their full potential.",
+    },
+    {
+      name: "Ukabara Lucy Nneoma",
+      title: "USRN, RN, RM | Director of Student Affairs",
+      image: "/board9.jpeg",
+      bio: "Ukabara Lucy Nneoma (USRN, RN, RM) is a renowned NCLEX coach with NCLEX Keys Academy, bringing a wealth of experience in guiding prospective US Registered Nurses to success. With more than eight years of committed nursing practice, she nurtures patients toward total wellness while championing global nursing excellence. Lucy also serves as the Regional Health Educational Lead for the South Eastern Region under the Global Asthma and COPD Outreach Inc., where she supports patients living with respiratory conditions. Her passion for saving lives and love for teaching have earned the admiration of her patients, students, and community alike. She is happily married with children.",
+    },
+    {
+      name: "Edafe Stephen Daniel",
+      title: "Certified Educator & English Proficiency Coach",
+      image: "/board10.jpeg",
+      bio: "Edafe Stephen Daniel is a certified educator with more than a decade of teaching experience. With an academic background in Communication Arts, he has prepared numerous candidates for English proficiency examinations and has helped many learners overcome hurdles on their path to immigration and academic admissions. Edafe has a proven record of applying inclusive, multidisciplinary teaching strategies that measurably improve language skills for diverse learners.",
     },
   ]
 
