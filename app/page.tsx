@@ -65,6 +65,22 @@ export default function HomePage() {
         "Special thanks to Boss B whose strategies 30 minutes before my test became my questions 1, 2, and 4. God bless Boss Abigail for the two months of one-on-one tutoring that reset my brain, Boss J for the prayers, and every tutor for their impact.",
       ],
     },
+    {
+      type: "quote",
+      headline: "Success After Multiple Attempts",
+      person: "NCLEX Keys Student",
+      body: [
+        "Many thanks, Boss B. Thank you for allowing God to use you as a vessel of inspiration. You truly carry an oil of success that will never run dry, in Jesus' name. I'm deeply grateful to you and your team.",
+        "I decided to take the bold step. I remember telling you I wanted to take a break because of my tight schedule, but you said 'No.' Although I'm not the talking type, I held on to your words.",
+        "When you reviewed my UWorld scores and they were mostly in the 60s, I expected disappointment—but instead, you said I had started well. That encouragement meant so much. Every time you spoke in class, it felt like you were speaking directly to me, even when I was quietly in the background.",
+        "A day before my exam on 10/11, you brought in 2 people to encourage us. I hadn't told you I'd already booked my exam, yet their words felt like they were meant just for me. I connected deeply with everything from the general classes to my one-on-one sessions with Coach Ramhat.",
+        "I often listened to the class recordings instead of music while driving. They became a source of strength and motivation. My confidence grew, and I went for it.",
+        "I sincerely apologize for not informing you or even Coach Ramhat before taking the test. I also connected with the May prayer recording on the general group, it may have been old, but it was powerful and still relevant. I connected with it deeply, prayed along, and asked for grace.",
+        "And here I am—with a PASS! 🎉",
+        "NCLEX Key is truly the best. This wasn't my first attempt, nor my second, but through God's grace, and with your guidance and support, success finally came.",
+        "Once again, thank you so much. Much love to you and your amazing team. ❤️",
+      ],
+    },
   ] as const
 
   // Auto-rotate testimonies every 5 seconds

@@ -108,11 +108,11 @@ export default function UploadQuestionsPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
-      <main className="flex-1 pt-24 pb-12">
+      <main className="flex-1 pt-24 pb-12 bg-white">
         <div className="max-w-3xl mx-auto px-4">
-          <Card className="border-2 border-[#3895D3]">
+          <Card className="border-2 border-[#3895D3] bg-white">
             <CardHeader>
               <CardTitle className="text-2xl text-[#072F5F]">Upload Weekly Questions (CSV)</CardTitle>
             </CardHeader>
