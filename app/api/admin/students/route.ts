@@ -109,7 +109,8 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { data: created, error: authError } = await adminClient.auth.admin.createUser({
+    // Try to create the user first
+    let { data: created, error: authError } = await adminClient.auth.admin.createUser({
       email,
       password,
       email_confirm: true,
@@ -118,6 +119,51 @@ export async function POST(req: NextRequest) {
         phone_number: phoneNumber ?? null,
       },
     })
+
+    // If user already exists, find and delete the existing user, then try again
+    if (authError && authError.message?.toLowerCase().includes("already registered")) {
+      console.log(`[admin/students] User with email ${email} already exists, deleting before recreating...`)
+      
+      // Find the existing user by email
+      const { data: existingUsers, error: listError } = await adminClient.auth.admin.listUsers()
+      if (!listError && existingUsers?.users) {
+        const existingUser = existingUsers.users.find((u) => u.email?.toLowerCase() === email.toLowerCase())
+        if (existingUser) {
+          // Delete existing user from both auth.users and public.users
+          // Delete from auth.users (this will cascade to public.users if CASCADE is set up)
+          const { error: deleteAuthError } = await adminClient.auth.admin.deleteUser(existingUser.id)
+          if (deleteAuthError) {
+            console.error("[admin/students] Error deleting existing auth user:", deleteAuthError)
+          }
+          
+          // Also delete from public.users to be safe
+          const { error: deletePublicError } = await adminClient
+            .from("users")
+            .delete()
+            .eq("email", email)
+          if (deletePublicError) {
+            console.error("[admin/students] Error deleting existing public user:", deletePublicError)
+          }
+          
+          // Wait a bit for the deletion to complete
+          await new Promise(resolve => setTimeout(resolve, 500))
+          
+          // Try creating the user again
+          const retryResult = await adminClient.auth.admin.createUser({
+            email,
+            password,
+            email_confirm: true,
+            user_metadata: {
+              full_name: fullName,
+              phone_number: phoneNumber ?? null,
+            },
+          })
+          
+          created = retryResult.data
+          authError = retryResult.error
+        }
+      }
+    }
 
     if (authError) {
       const status = authError.message?.toLowerCase().includes("already registered") ? 409 : 400
@@ -240,4 +286,56 @@ export async function PATCH(req: NextRequest) {
     )
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  const auth = await ensureAdmin()
+  if ("error" in auth) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status })
+  }
+  const { adminClient } = auth
+
+  const { searchParams } = new URL(req.url)
+  const userId = searchParams.get("userId")
+
+  if (!userId) {
+    return NextResponse.json({ error: "userId is required" }, { status: 400 })
+  }
+
+  try {
+    // Delete from auth.users first (this should cascade to public.users if CASCADE is set up)
+    const { error: deleteAuthError } = await adminClient.auth.admin.deleteUser(userId)
+    if (deleteAuthError) {
+      console.error("[admin/students] Error deleting auth user:", deleteAuthError)
+      // Continue to try deleting from public.users
+    }
+
+    // Also delete from public.users to ensure complete removal
+    const { error: deletePublicError } = await adminClient
+      .from("users")
+      .delete()
+      .eq("id", userId)
+
+    if (deletePublicError) {
+      console.error("[admin/students] Error deleting public user:", deletePublicError)
+      // If auth deletion succeeded but public deletion failed, still return success
+      // since the user won't be able to log in anyway
+      if (deleteAuthError) {
+        return NextResponse.json({ error: deletePublicError.message }, { status: 500 })
+      }
+    }
+
+    return NextResponse.json({ success: true, message: "Student deleted successfully" })
+  } catch (error: any) {
+    console.error("[admin/students] DELETE error", error)
+    return NextResponse.json(
+      { error: error?.message || "Unexpected error deleting student" },
+      { status: 500 }
+    )
+  }
+}
+
+
+
+
+
 
