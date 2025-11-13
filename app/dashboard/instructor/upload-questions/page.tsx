@@ -145,13 +145,13 @@ export default function UploadQuestionsPage() {
                   Course: <span className="text-[#072F5F] font-semibold">*Required for course-specific questions</span>
                 </Label>
                 <Select value={selectedCourseId} onValueChange={setSelectedCourseId}>
-                  <SelectTrigger id="course-select" className="w-full border-2 border-[#3895D3]">
-                    <SelectValue placeholder="Select a course (required for 5 courses setup)" />
+                  <SelectTrigger id="course-select" className="w-full border-2 border-[#3895D3] text-[#3895D3]">
+                    <SelectValue placeholder="Select a course (required for 5 courses setup)" className="text-[#3895D3]" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="none">General Questions (No specific course)</SelectItem>
+                    <SelectItem value="none" className="text-[#3895D3] focus:text-[#3895D3]">General Questions (No specific course)</SelectItem>
                     {courses.map((course) => (
-                      <SelectItem key={course.id} value={course.id}>
+                      <SelectItem key={course.id} value={course.id} className="text-[#3895D3] focus:text-[#3895D3]">
                         {course.title}
                       </SelectItem>
                     ))}
@@ -175,13 +175,13 @@ export default function UploadQuestionsPage() {
                   Student Grade (Required):
                 </Label>
                 <Select value={selectedGrade} onValueChange={setSelectedGrade}>
-                  <SelectTrigger id="student-grade" className="w-full border-2 border-[#3895D3]">
-                    <SelectValue placeholder="Select grade level for these questions" />
+                  <SelectTrigger id="student-grade" className="w-full border-2 border-[#3895D3] text-[#3895D3]">
+                    <SelectValue placeholder="Select grade level for these questions" className="text-[#3895D3]" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="starter">Starter (Beginner)</SelectItem>
-                    <SelectItem value="mid">Mid (Intermediate)</SelectItem>
-                    <SelectItem value="higher">Higher (Advanced)</SelectItem>
+                    <SelectItem value="starter" className="text-[#3895D3] focus:text-[#3895D3]">Starter (Beginner)</SelectItem>
+                    <SelectItem value="mid" className="text-[#3895D3] focus:text-[#3895D3]">Mid (Intermediate)</SelectItem>
+                    <SelectItem value="higher" className="text-[#3895D3] focus:text-[#3895D3]">Higher (Advanced)</SelectItem>
                   </SelectContent>
                 </Select>
                 <p className="text-xs text-gray-500">Students will only see questions for their grade level. This is required.</p>
