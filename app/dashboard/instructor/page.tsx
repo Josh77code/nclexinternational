@@ -430,15 +430,15 @@ export default function InstructorDashboard() {
         <div className="space-y-6 mt-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">Question Bank</h2>
-              <p className="text-gray-600 mt-1">Manage and store all exam questions</p>
+              <h2 className="text-2xl font-bold text-gray-900">Question Bank Collections</h2>
+              <p className="text-gray-600 mt-1">Organize and manage exam questions in collections</p>
             </div>
             <Button 
               onClick={() => window.location.href = '/dashboard/instructor/upload-questions'}
-              className="bg-gradient-to-r from-teal-500 to-indigo-500 hover:from-teal-600 hover:to-indigo-600 text-white font-semibold shadow-lg shadow-teal-500/40"
+              className="bg-[#3895D3] hover:bg-[#1261A0] text-white font-semibold"
             >
-              <Plus className="w-4 h-4 mr-2" />
-              Add Questions
+              <Upload className="w-4 h-4 mr-2" />
+              Upload Questions
             </Button>
           </div>
           <QuestionBankSection />

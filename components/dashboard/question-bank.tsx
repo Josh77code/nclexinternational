@@ -19,7 +19,10 @@ import {
   Plus,
   Download,
   Upload,
-  BookOpen
+  BookOpen,
+  Folder,
+  FolderPlus,
+  X
 } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { useToast } from "@/components/ui/use-toast"
@@ -37,13 +40,26 @@ interface Question {
   difficulty_level: string
   course_id: string | null
   student_grade: string | null
+  bank_id: string | null
   is_active: boolean
   created_at: string
+}
+
+interface QuestionBank {
+  id: string
+  name: string
+  description: string | null
+  created_by: string | null
+  is_active: boolean
+  created_at: string
+  question_count?: number
 }
 
 export function QuestionBankSection() {
   const { toast } = useToast()
   const [questions, setQuestions] = useState<Question[]>([])
+  const [questionBanks, setQuestionBanks] = useState<QuestionBank[]>([])
+  const [selectedBankId, setSelectedBankId] = useState<string>("all")
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
   const [filterCategory, setFilterCategory] = useState<string>("all")
@@ -52,20 +68,72 @@ export function QuestionBankSection() {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+  const [isCreateBankDialogOpen, setIsCreateBankDialogOpen] = useState(false)
 
   const supabase = createClient()
 
   useEffect(() => {
+    loadQuestionBanks()
     loadQuestions()
   }, [])
+
+  useEffect(() => {
+    loadQuestions()
+  }, [selectedBankId])
+
+  const loadQuestionBanks = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('question_banks')
+        .select('*')
+        .order('created_at', { ascending: false })
+
+      if (error) {
+        console.error('Error loading question banks:', error)
+        // If table doesn't exist, continue without collections
+        return
+      }
+
+      // Get question counts for each bank
+      if (data && data.length > 0) {
+        const banksWithCounts = await Promise.all(
+          data.map(async (bank) => {
+            const { count, error } = await supabase
+              .from('exam_questions')
+              .select('*', { count: 'exact', head: true })
+              .eq('bank_id', bank.id)
+            
+            return {
+              ...bank,
+              question_count: (count !== null && !error) ? count : 0
+            }
+          })
+        )
+        setQuestionBanks(banksWithCounts)
+      } else {
+        setQuestionBanks([])
+      }
+    } catch (error) {
+      console.error('Error loading question banks:', error)
+    }
+  }
 
   const loadQuestions = async () => {
     setLoading(true)
     try {
-      const { data, error } = await supabase
+      let query = supabase
         .from('exam_questions')
         .select('*')
-        .order('created_at', { ascending: false })
+      
+      if (selectedBankId !== 'all') {
+        if (selectedBankId === 'none') {
+          query = query.is('bank_id', null)
+        } else {
+          query = query.eq('bank_id', selectedBankId)
+        }
+      }
+
+      const { data, error } = await query.order('created_at', { ascending: false })
 
       if (error) {
         console.error('Error loading questions:', error)
@@ -108,12 +176,48 @@ export function QuestionBankSection() {
       description: "Question deleted successfully"
     })
     loadQuestions()
+    loadQuestionBanks()
+  }
+
+  const handleCreateBank = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const bankData = {
+      name: formData.get('bank_name') as string,
+      description: formData.get('bank_description') as string || null,
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }
+
+    const { error } = await supabase
+      .from('question_banks')
+      .insert(bankData)
+
+    if (error) {
+      console.error('Error creating question bank:', error)
+      toast({
+        title: "Error",
+        description: "Failed to create question bank",
+        variant: "destructive"
+      })
+      return
+    }
+
+    toast({
+      title: "Success",
+      description: "Question bank created successfully"
+    })
+    setIsCreateBankDialogOpen(false)
+    e.currentTarget.reset()
+    loadQuestionBanks()
   }
 
   const handleAddQuestion = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
+    const bankId = formData.get('bank_id') as string
     const questionData = {
       question_text: formData.get('question_text') as string,
       option_a: formData.get('option_a') as string,
@@ -124,6 +228,7 @@ export function QuestionBankSection() {
       explanation: formData.get('explanation') as string || null,
       category: formData.get('category') as string || null,
       difficulty_level: formData.get('difficulty_level') as string,
+      bank_id: bankId && bankId !== 'none' ? bankId : null,
       is_active: formData.get('is_active') === 'true',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
@@ -151,6 +256,7 @@ export function QuestionBankSection() {
     // Reset form
     e.currentTarget.reset()
     loadQuestions()
+    loadQuestionBanks()
   }
 
   const handleUpdateQuestion = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -168,6 +274,9 @@ export function QuestionBankSection() {
       explanation: formData.get('explanation') as string || null,
       category: formData.get('category') as string || null,
       difficulty_level: formData.get('difficulty_level') as string,
+      bank_id: formData.get('bank_id') && formData.get('bank_id') !== 'none' 
+        ? formData.get('bank_id') as string 
+        : null,
       is_active: formData.get('is_active') === 'true',
       updated_at: new Date().toISOString()
     }
@@ -193,6 +302,7 @@ export function QuestionBankSection() {
     })
     setIsEditDialogOpen(false)
     loadQuestions()
+    loadQuestionBanks()
   }
 
   const filteredQuestions = questions.filter(q => {
@@ -219,25 +329,92 @@ export function QuestionBankSection() {
   if (loading) {
     return (
       <div className="text-center py-12">
-        <div className="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-        <p className="text-gray-600">Loading questions...</p>
+        <div className="w-8 h-8 border-4 border-[#3895D3] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-[#072F5F]">Loading questions...</p>
       </div>
     )
   }
 
+  const selectedBankName = selectedBankId === 'all' 
+    ? 'All Question Banks' 
+    : selectedBankId === 'none'
+    ? 'Unassigned Questions'
+    : questionBanks.find(b => b.id === selectedBankId)?.name || 'All Question Banks'
+
   return (
     <div className="space-y-6">
+      {/* Question Bank Collections */}
+      <Card className="border-2 border-[#3895D3]/30">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="text-[#072F5F] flex items-center gap-2">
+                <Folder className="h-5 w-5" />
+                Question Bank Collections
+              </CardTitle>
+              <CardDescription>Organize questions into different collections</CardDescription>
+            </div>
+            <Button
+              onClick={() => setIsCreateBankDialogOpen(true)}
+              className="bg-[#3895D3] hover:bg-[#1261A0] text-white"
+            >
+              <FolderPlus className="h-4 w-4 mr-2" />
+              Create Collection
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap gap-3">
+            <Button
+              variant={selectedBankId === 'all' ? 'default' : 'outline'}
+              onClick={() => setSelectedBankId('all')}
+              className={selectedBankId === 'all' 
+                ? 'bg-[#3895D3] hover:bg-[#1261A0] text-white' 
+                : 'border-2 border-[#3895D3]/40 text-[#072F5F] hover:bg-[#3895D3]/10'
+              }
+            >
+              <BookOpen className="h-4 w-4 mr-2" />
+              All Questions ({questions.length})
+            </Button>
+            <Button
+              variant={selectedBankId === 'none' ? 'default' : 'outline'}
+              onClick={() => setSelectedBankId('none')}
+              className={selectedBankId === 'none'
+                ? 'bg-[#3895D3] hover:bg-[#1261A0] text-white'
+                : 'border-2 border-[#3895D3]/40 text-[#072F5F] hover:bg-[#3895D3]/10'
+              }
+            >
+              Unassigned
+            </Button>
+            {questionBanks.map((bank) => (
+              <Button
+                key={bank.id}
+                variant={selectedBankId === bank.id ? 'default' : 'outline'}
+                onClick={() => setSelectedBankId(bank.id)}
+                className={selectedBankId === bank.id
+                  ? 'bg-[#3895D3] hover:bg-[#1261A0] text-white'
+                  : 'border-2 border-[#3895D3]/40 text-[#072F5F] hover:bg-[#3895D3]/10'
+                }
+              >
+                <Folder className="h-4 w-4 mr-2" />
+                {bank.name} ({bank.question_count || 0})
+              </Button>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="border-2 border-teal-100">
+        <Card className="border-2 border-[#3895D3]/30">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-gray-600">Total Questions</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
+            <div className="text-2xl font-bold text-[#072F5F]">{stats.total}</div>
           </CardContent>
         </Card>
-        <Card className="border-2 border-green-100">
+        <Card className="border-2 border-[#3895D3]/30">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-gray-600">Active</CardTitle>
           </CardHeader>
@@ -245,7 +422,7 @@ export function QuestionBankSection() {
             <div className="text-2xl font-bold text-green-600">{stats.active}</div>
           </CardContent>
         </Card>
-        <Card className="border-2 border-blue-100">
+        <Card className="border-2 border-[#3895D3]/30">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-gray-600">Easy</CardTitle>
           </CardHeader>
@@ -253,7 +430,7 @@ export function QuestionBankSection() {
             <div className="text-2xl font-bold text-blue-600">{stats.byDifficulty.easy}</div>
           </CardContent>
         </Card>
-        <Card className="border-2 border-orange-100">
+        <Card className="border-2 border-[#3895D3]/30">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-gray-600">Medium/Hard</CardTitle>
           </CardHeader>
@@ -266,10 +443,13 @@ export function QuestionBankSection() {
       </div>
 
       {/* Filters */}
-      <Card className="border-2 border-teal-100">
+      <Card className="border-2 border-[#3895D3]/30">
         <CardHeader>
-          <CardTitle className="text-lg text-gray-900">Question Bank</CardTitle>
-          <CardDescription>View and manage all exam questions</CardDescription>
+          <CardTitle className="text-[#072F5F] flex items-center gap-2">
+            <BookOpen className="h-5 w-5" />
+            {selectedBankName}
+          </CardTitle>
+          <CardDescription>View and manage questions in this collection</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
@@ -335,7 +515,7 @@ export function QuestionBankSection() {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline" className="border-teal-200 text-teal-700">
+                        <Badge variant="outline" className="border-[#3895D3]/40 text-[#072F5F]">
                           {question.category || 'Uncategorized'}
                         </Badge>
                       </TableCell>
@@ -370,7 +550,7 @@ export function QuestionBankSection() {
                               setSelectedQuestion(question)
                               setIsViewDialogOpen(true)
                             }}
-                            className="border-teal-200 text-teal-700 hover:bg-teal-50"
+                            className="border-[#3895D3]/40 text-[#3895D3] hover:bg-[#3895D3]/10"
                           >
                             <Eye className="h-4 w-4" />
                           </Button>
@@ -381,7 +561,7 @@ export function QuestionBankSection() {
                               setSelectedQuestion(question)
                               setIsEditDialogOpen(true)
                             }}
-                            className="border-blue-200 text-blue-700 hover:bg-blue-50"
+                            className="border-[#3895D3]/40 text-[#3895D3] hover:bg-[#3895D3]/10"
                           >
                             <Edit className="h-4 w-4" />
                           </Button>
@@ -566,17 +746,35 @@ export function QuestionBankSection() {
                 className="mt-1"
               />
             </div>
-            <div>
-              <Label htmlFor="new_is_active">Status</Label>
-              <Select name="is_active" defaultValue="true" required>
-                <SelectTrigger className="mt-1">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="true">Active</SelectItem>
-                  <SelectItem value="false">Inactive</SelectItem>
-                </SelectContent>
-              </Select>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="new_bank_id">Question Bank Collection</Label>
+                <Select name="bank_id" defaultValue={selectedBankId !== 'all' && selectedBankId !== 'none' ? selectedBankId : 'none'}>
+                  <SelectTrigger className="mt-1">
+                    <SelectValue placeholder="Select collection" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">No Collection (Unassigned)</SelectItem>
+                    {questionBanks.map((bank) => (
+                      <SelectItem key={bank.id} value={bank.id}>
+                        {bank.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label htmlFor="new_is_active">Status</Label>
+                <Select name="is_active" defaultValue="true" required>
+                  <SelectTrigger className="mt-1">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="true">Active</SelectItem>
+                    <SelectItem value="false">Inactive</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
             <div className="flex justify-end gap-3 pt-4">
               <Button
@@ -586,7 +784,7 @@ export function QuestionBankSection() {
               >
                 Cancel
               </Button>
-              <Button type="submit" className="bg-teal-600 hover:bg-teal-700">
+              <Button type="submit" className="bg-[#3895D3] hover:bg-[#1261A0] text-white">
                 <Plus className="w-4 h-4 mr-2" />
                 Add Question
               </Button>
@@ -705,17 +903,35 @@ export function QuestionBankSection() {
                   className="mt-1"
                 />
               </div>
-              <div>
-                <Label htmlFor="is_active">Status</Label>
-                <Select name="is_active" defaultValue={selectedQuestion.is_active ? 'true' : 'false'} required>
-                  <SelectTrigger className="mt-1">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="true">Active</SelectItem>
-                    <SelectItem value="false">Inactive</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="bank_id">Question Bank Collection</Label>
+                  <Select name="bank_id" defaultValue={selectedQuestion.bank_id || 'none'}>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue placeholder="Select collection" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="none">No Collection (Unassigned)</SelectItem>
+                      {questionBanks.map((bank) => (
+                        <SelectItem key={bank.id} value={bank.id}>
+                          {bank.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="is_active">Status</Label>
+                  <Select name="is_active" defaultValue={selectedQuestion.is_active ? 'true' : 'false'} required>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="true">Active</SelectItem>
+                      <SelectItem value="false">Inactive</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
               <div className="flex justify-end gap-3 pt-4">
                 <Button
@@ -725,12 +941,59 @@ export function QuestionBankSection() {
                 >
                   Cancel
                 </Button>
-                <Button type="submit" className="bg-teal-600 hover:bg-teal-700">
+                <Button type="submit" className="bg-[#3895D3] hover:bg-[#1261A0] text-white">
                   Save Changes
                 </Button>
               </div>
             </form>
           )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Create Question Bank Dialog */}
+      <Dialog open={isCreateBankDialogOpen} onOpenChange={setIsCreateBankDialogOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-[#072F5F]">Create New Question Bank Collection</DialogTitle>
+            <DialogDescription>
+              Create a new collection to organize your questions
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleCreateBank} className="space-y-4">
+            <div>
+              <Label htmlFor="bank_name">Collection Name</Label>
+              <Input
+                id="bank_name"
+                name="bank_name"
+                required
+                className="mt-1 border-2 border-[#3895D3]/40"
+                placeholder="e.g., NCLEX-RN Practice, Pharmacology, Medical-Surgical"
+              />
+            </div>
+            <div>
+              <Label htmlFor="bank_description">Description (Optional)</Label>
+              <Textarea
+                id="bank_description"
+                name="bank_description"
+                className="mt-1 border-2 border-[#3895D3]/40"
+                placeholder="Describe what questions belong in this collection..."
+              />
+            </div>
+            <div className="flex justify-end gap-3 pt-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setIsCreateBankDialogOpen(false)}
+                className="border-2 border-[#3895D3]/40 text-[#072F5F]"
+              >
+                Cancel
+              </Button>
+              <Button type="submit" className="bg-[#3895D3] hover:bg-[#1261A0] text-white">
+                <FolderPlus className="w-4 h-4 mr-2" />
+                Create Collection
+              </Button>
+            </div>
+          </form>
         </DialogContent>
       </Dialog>
     </div>
