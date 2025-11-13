@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getInstructorCourses, updateCourseStatus, deleteCourse } from "@/lib/actions/courses";
 import { getInstructorLiveClassLinks } from "@/lib/actions/live-class-links";
 import { LiveClassManagement } from "@/components/dashboard/live-class-management";
+import { QuestionBankSection } from "@/components/dashboard/question-bank";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -425,6 +426,24 @@ export default function InstructorDashboard() {
           )}
         </div>
 
+        {/* Question Bank Section */}
+        <div className="space-y-6 mt-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900">Question Bank</h2>
+              <p className="text-gray-600 mt-1">Manage and store all exam questions</p>
+            </div>
+            <Button 
+              onClick={() => window.location.href = '/dashboard/instructor/upload-questions'}
+              className="bg-gradient-to-r from-teal-500 to-indigo-500 hover:from-teal-600 hover:to-indigo-600 text-white font-semibold shadow-lg shadow-teal-500/40"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Add Questions
+            </Button>
+          </div>
+          <QuestionBankSection />
+        </div>
+
         {/* Students Section */}
         <div className="mt-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Students</h3>
@@ -494,6 +513,14 @@ export default function InstructorDashboard() {
             >
               <Upload className="w-6 h-6 mb-2 text-gray-700" />
               <span className="text-gray-900 font-medium">Upload Questions</span>
+            </Button>
+            <Button 
+              variant="outline" 
+              className="border-2 h-20 flex-col bg-white hover:bg-gray-50 text-gray-900"
+              onClick={() => window.location.href = '/dashboard/instructor/import-teachers'}
+            >
+              <Users className="w-6 h-6 mb-2 text-gray-700" />
+              <span className="text-gray-900 font-medium">Import Teachers</span>
             </Button>
             <Button 
               variant="outline" 

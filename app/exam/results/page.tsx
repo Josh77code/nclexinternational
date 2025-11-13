@@ -17,7 +17,8 @@ import {
   BookOpen, 
   Target,
   Download,
-  RotateCcw
+  RotateCcw,
+  Printer
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 
@@ -169,6 +170,10 @@ function ResultsContent() {
 
   const handleBackToDashboard = () => {
     router.push('/dashboard')
+  }
+
+  const handlePrintResults = () => {
+    window.print()
   }
 
   const handleDownloadPdf = async () => {
@@ -395,7 +400,15 @@ function ResultsContent() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 print:hidden">
+            <Button
+              onClick={handlePrintResults}
+              variant="outline"
+              className="border-2 border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10 px-8 py-3"
+            >
+              <Printer className="h-5 w-5 mr-2" />
+              Print Results
+            </Button>
             <Button
               onClick={handleDownloadPdf}
               variant="outline"

@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Badge } from '@/components/ui/badge'
-import { Clock, CheckCircle, AlertCircle, ArrowLeft, ArrowRight, Flag } from 'lucide-react'
+import { Clock, CheckCircle, AlertCircle, ArrowLeft, ArrowRight, Flag, Pause, Play } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 
 interface Question {
@@ -49,10 +49,13 @@ export default function ExamPage() {
   const [flaggedQuestions, setFlaggedQuestions] = useState<Set<number>>(new Set())
   const [showConfirmSubmit, setShowConfirmSubmit] = useState(false)
   const [courseId, setCourseId] = useState<string | null>(null)
+  const [isPaused, setIsPaused] = useState(false)
+  const [pausedTime, setPausedTime] = useState<number | null>(null)
   const examSessionRef = useRef<ExamSession | null>(null)
   const questionsRef = useRef<Question[]>([])
   const answersRef = useRef<Record<string, string>>({})
   const supabaseRef = useRef<ReturnType<typeof createClient> | null>(null)
+  const timerIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
   const getSupabase = () => {
     if (!supabaseRef.current) {
@@ -86,21 +89,50 @@ export default function ExamPage() {
     }
   }, [])
 
+  // Load paused state from localStorage on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && examSession) {
+      const savedState = localStorage.getItem(`exam_paused_${examSession.id}`)
+      const savedTime = localStorage.getItem(`exam_time_${examSession.id}`)
+      if (savedState === 'true' && savedTime) {
+        setIsPaused(true)
+        setTimeRemaining(parseInt(savedTime, 10))
+      }
+    }
+  }, [examSession])
+
   useEffect(() => {
     if (!examSession) return
 
-    const timer = setInterval(() => {
-      setTimeRemaining((prev) => {
-        if (prev <= 1) {
-          handleSubmitExam()
-          return 0
-        }
-        return prev - 1
-      })
-    }, 1000)
+    // Clear any existing timer
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current)
+    }
 
-    return () => clearInterval(timer)
-  }, [examSession])
+    // Only start timer if not paused
+    if (!isPaused) {
+      timerIntervalRef.current = setInterval(() => {
+        setTimeRemaining((prev) => {
+          // Save time to localStorage
+          if (examSession) {
+            localStorage.setItem(`exam_time_${examSession.id}`, prev.toString())
+          }
+          
+          if (prev <= 1) {
+            handleSubmitExam()
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+    }
+
+    return () => {
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current)
+      }
+    }
+  }, [examSession, isPaused])
 
   const initializeExam = async (supabase: ReturnType<typeof createClient>, course: string | null) => {
     try {
@@ -228,6 +260,50 @@ export default function ExamPage() {
       newFlagged.add(currentQuestionIndex)
     }
     setFlaggedQuestions(newFlagged)
+  }
+
+  const handlePauseExam = async () => {
+    const supabase = getSupabase()
+    const session = examSessionRef.current
+    
+    if (!supabase || !session) return
+
+    setIsPaused(true)
+    setPausedTime(timeRemaining)
+    
+    // Save to localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(`exam_paused_${session.id}`, 'true')
+      localStorage.setItem(`exam_time_${session.id}`, timeRemaining.toString())
+      localStorage.setItem(`exam_answers_${session.id}`, JSON.stringify(answers))
+    }
+
+    // Update session status in database
+    await supabase
+      .from('exam_sessions')
+      .update({ status: 'paused' })
+      .eq('id', session.id)
+  }
+
+  const handleResumeExam = async () => {
+    const supabase = getSupabase()
+    const session = examSessionRef.current
+    
+    if (!supabase || !session) return
+
+    setIsPaused(false)
+    setPausedTime(null)
+    
+    // Remove from localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(`exam_paused_${session.id}`)
+    }
+
+    // Update session status in database
+    await supabase
+      .from('exam_sessions')
+      .update({ status: 'in_progress' })
+      .eq('id', session.id)
   }
 
   const handleSubmitExam = async () => {
@@ -378,10 +454,37 @@ export default function ExamPage() {
                   <div className="flex items-center gap-2 text-[#072F5F]">
                     <Clock className="h-5 w-5" />
                     <span className="font-bold text-lg">{formatTime(timeRemaining)}</span>
+                    {isPaused && (
+                      <Badge variant="outline" className="border-orange-500 text-orange-600 bg-orange-50">
+                        PAUSED
+                      </Badge>
+                    )}
                   </div>
                   <Badge className="bg-[#3895D3] text-white">
                     {getAnsweredCount()}/{questions.length} Answered
                   </Badge>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={isPaused ? handleResumeExam : handlePauseExam}
+                    className={`border-2 ${
+                      isPaused
+                        ? 'border-green-500 text-green-600 hover:bg-green-50'
+                        : 'border-orange-500 text-orange-600 hover:bg-orange-50'
+                    }`}
+                  >
+                    {isPaused ? (
+                      <>
+                        <Play className="h-4 w-4 mr-2" />
+                        Resume
+                      </>
+                    ) : (
+                      <>
+                        <Pause className="h-4 w-4 mr-2" />
+                        Pause
+                      </>
+                    )}
+                  </Button>
                 </div>
               </div>
               
@@ -492,6 +595,7 @@ export default function ExamPage() {
                           value={option}
                           checked={answers[currentQuestion.id] === option}
                           onChange={(e) => handleAnswerSelect(currentQuestion.id, e.target.value)}
+                          disabled={isPaused}
                           className="sr-only"
                         />
                         <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center ${
@@ -516,7 +620,7 @@ export default function ExamPage() {
                   <Button
                     variant="outline"
                     onClick={handlePreviousQuestion}
-                    disabled={currentQuestionIndex === 0}
+                    disabled={currentQuestionIndex === 0 || isPaused}
                     className="border-2 border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10"
                   >
                     <ArrowLeft className="h-4 w-4 mr-2" />
@@ -528,13 +632,14 @@ export default function ExamPage() {
                       <Button
                         onClick={() => setShowConfirmSubmit(true)}
                         className="bg-[#072F5F] hover:bg-[#1261A0] text-white"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || isPaused}
                       >
                         {isSubmitting ? 'Submitting...' : 'Submit Exam'}
                       </Button>
                     ) : (
                       <Button
                         onClick={handleNextQuestion}
+                        disabled={isPaused}
                         className="bg-[#3895D3] hover:bg-[#1261A0] text-white"
                       >
                         Next
