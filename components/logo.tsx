@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils"
-
 type LogoProps = {
   className?: string
   title?: string
@@ -13,7 +11,7 @@ export function Logo({ className, title = "NCLEX Keys logo", "aria-hidden": aria
       role={ariaHidden ? undefined : "img"}
       aria-hidden={ariaHidden}
       aria-label={ariaHidden ? undefined : title}
-      className={cn("fill-current", className)}
+      className={className}
     >
       {!ariaHidden && <title>{title}</title>}
       <g transform="translate(0.000000,300.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
@@ -56,4 +54,6 @@ export function Logo({ className, title = "NCLEX Keys logo", "aria-hidden": aria
     </svg>
   )
 }
+
+
 

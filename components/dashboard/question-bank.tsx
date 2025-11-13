@@ -419,7 +419,7 @@ export function QuestionBankSection() {
             <CardTitle className="text-sm font-medium text-gray-600">Active</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">{stats.active}</div>
+            <div className="text-2xl font-bold text-[#3895D3]">{stats.active}</div>
           </CardContent>
         </Card>
         <Card className="border-2 border-[#3895D3]/30">
@@ -427,7 +427,7 @@ export function QuestionBankSection() {
             <CardTitle className="text-sm font-medium text-gray-600">Easy</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">{stats.byDifficulty.easy}</div>
+            <div className="text-2xl font-bold text-[#3895D3]">{stats.byDifficulty.easy}</div>
           </CardContent>
         </Card>
         <Card className="border-2 border-[#3895D3]/30">
@@ -435,7 +435,7 @@ export function QuestionBankSection() {
             <CardTitle className="text-sm font-medium text-gray-600">Medium/Hard</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-600">
+            <div className="text-2xl font-bold text-[#072F5F]">
               {stats.byDifficulty.medium + stats.byDifficulty.hard}
             </div>
           </CardContent>
@@ -487,7 +487,7 @@ export function QuestionBankSection() {
           </div>
 
           {/* Questions Table */}
-          <div className="rounded-lg border border-teal-200 bg-white">
+          <div className="rounded-lg border border-[#3895D3]/20 bg-white">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -523,9 +523,9 @@ export function QuestionBankSection() {
                         <Badge 
                           variant="outline" 
                           className={`${
-                            question.difficulty_level === 'easy' ? 'border-green-200 text-green-700' :
-                            question.difficulty_level === 'medium' ? 'border-yellow-200 text-yellow-700' :
-                            'border-red-200 text-red-700'
+                            question.difficulty_level === 'easy' ? 'border-[#3895D3]/40 text-[#3895D3] bg-[#3895D3]/5' :
+                            question.difficulty_level === 'medium' ? 'border-[#1261A0]/40 text-[#1261A0] bg-[#1261A0]/5' :
+                            'border-[#072F5F]/40 text-[#072F5F] bg-[#072F5F]/5'
                           }`}
                         >
                           {question.difficulty_level}
@@ -533,9 +533,9 @@ export function QuestionBankSection() {
                       </TableCell>
                       <TableCell>
                         {question.is_active ? (
-                          <Badge className="bg-green-100 text-green-800">Active</Badge>
+                          <Badge className="bg-[#3895D3]/10 text-[#3895D3] border-[#3895D3]/40">Active</Badge>
                         ) : (
-                          <Badge variant="outline" className="border-gray-300 text-gray-600">Inactive</Badge>
+                          <Badge variant="outline" className="border-[#3895D3]/40 text-gray-600">Inactive</Badge>
                         )}
                       </TableCell>
                       <TableCell>
@@ -569,7 +569,7 @@ export function QuestionBankSection() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleDeleteQuestion(question.id)}
-                            className="border-red-200 text-red-700 hover:bg-red-50"
+                            className="border-[#3895D3]/40 text-[#072F5F] hover:bg-[#3895D3]/10"
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
@@ -616,7 +616,7 @@ export function QuestionBankSection() {
               </div>
               <div>
                 <Label className="text-sm font-semibold text-gray-700">Correct Answer</Label>
-                <Badge className="mt-1 bg-green-100 text-green-800">{selectedQuestion.correct_answer}</Badge>
+                <Badge className="mt-1 bg-[#3895D3]/10 text-[#3895D3] border-[#3895D3]/40">{selectedQuestion.correct_answer}</Badge>
               </div>
               {selectedQuestion.explanation && (
                 <div>
@@ -781,6 +781,7 @@ export function QuestionBankSection() {
                 type="button"
                 variant="outline"
                 onClick={() => setIsAddDialogOpen(false)}
+                className="border-2 border-[#3895D3]/40 text-[#072F5F]"
               >
                 Cancel
               </Button>
@@ -938,6 +939,7 @@ export function QuestionBankSection() {
                   type="button"
                   variant="outline"
                   onClick={() => setIsEditDialogOpen(false)}
+                  className="border-2 border-[#3895D3]/40 text-[#072F5F]"
                 >
                   Cancel
                 </Button>

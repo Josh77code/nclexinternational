@@ -117,9 +117,9 @@ export default function UploadQuestionsPage() {
               <CardTitle className="text-2xl text-[#072F5F]">Upload Weekly Questions (CSV)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
-                <p className="font-semibold text-blue-900">How Course-Based Question Uploads Work:</p>
-                <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
+              <div className="bg-[#3895D3]/10 border border-[#3895D3]/30 rounded-lg p-4 space-y-2">
+                <p className="font-semibold text-[#072F5F]">How Course-Based Question Uploads Work:</p>
+                <ul className="text-sm text-[#072F5F] space-y-1 list-disc list-inside">
                   <li><strong>Each course can have its own questions:</strong> Select the course before uploading</li>
                   <li><strong>Recommended: 100+ questions</strong> per course exam for best results</li>
                   <li>Upload different question sets for each of the 5 courses separately</li>
@@ -142,7 +142,7 @@ export default function UploadQuestionsPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="course-select" className="text-sm font-medium text-gray-700">
-                  Course: <span className="text-red-600">*Required for course-specific questions</span>
+                  Course: <span className="text-[#072F5F] font-semibold">*Required for course-specific questions</span>
                 </Label>
                 <Select value={selectedCourseId} onValueChange={setSelectedCourseId}>
                   <SelectTrigger id="course-select" className="w-full border-2 border-[#3895D3]">
@@ -157,11 +157,11 @@ export default function UploadQuestionsPage() {
                     ))}
                   </SelectContent>
                 </Select>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                  <p className="text-xs text-yellow-800 font-semibold">
+                <div className="bg-[#3895D3]/10 border border-[#3895D3]/30 rounded-lg p-3">
+                  <p className="text-xs text-[#072F5F] font-semibold">
                     <strong>⚠️ IMPORTANT for 5 Courses Setup:</strong>
                   </p>
-                  <ul className="text-xs text-yellow-700 mt-1 space-y-1 list-disc list-inside">
+                  <ul className="text-xs text-[#072F5F] mt-1 space-y-1 list-disc list-inside">
                     <li>Select the course BEFORE uploading questions</li>
                     <li>Upload different question sets for each of the 5 courses separately</li>
                     <li>Students will see and select exams by course name</li>
@@ -247,11 +247,11 @@ export default function UploadQuestionsPage() {
                 </Button>
               </div>
               {!selectedGrade && (
-                <p className="text-sm text-red-600">Please select a student grade level before uploading.</p>
+                <p className="text-sm text-[#072F5F]">Please select a student grade level before uploading.</p>
               )}
               {result && (
-                <div className={`mt-4 p-3 rounded border ${result.ok ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-                  <pre className="whitespace-pre-wrap text-sm">{JSON.stringify(result.data, null, 2)}</pre>
+                <div className={`mt-4 p-3 rounded border ${result.ok ? 'bg-[#3895D3]/10 border-[#3895D3]/30' : 'bg-[#072F5F]/10 border-[#072F5F]/30'}`}>
+                  <pre className={`whitespace-pre-wrap text-sm ${result.ok ? 'text-[#072F5F]' : 'text-[#072F5F]'}`}>{JSON.stringify(result.data, null, 2)}</pre>
                 </div>
               )}
             </CardContent>
