@@ -5,19 +5,20 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import dynamic from "next/dynamic"
+// import dynamic from "next/dynamic"
 import { CheckCircle, BookOpen, Users, Award, TrendingUp, Clock, Sparkles, Zap, Target, ChevronLeft, ChevronRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 
-// Dynamically import Three.js component with SSR disabled (requires browser APIs)
-const NCLEX3DScene = dynamic(
-  () => import("@/components/nclex-3d-scene").then((mod) => ({ default: mod.NCLEX3DScene })).catch(() => ({ default: () => null })),
-  {
-    ssr: false,
-    loading: () => <div className="w-full h-full bg-transparent" />
-  }
-)
+// Temporarily disabled Three.js component to fix build
+// TODO: Re-enable once build is stable
+// const NCLEX3DScene = dynamic(
+//   () => import("@/components/nclex-3d-scene").then((mod) => ({ default: mod.NCLEX3DScene })).catch(() => ({ default: () => null })),
+//   {
+//     ssr: false,
+//     loading: () => <div className="w-full h-full bg-transparent" />
+//   }
+// )
 
 export default function HomePage() {
   const [currentTestimony, setCurrentTestimony] = useState(0)
@@ -202,10 +203,8 @@ export default function HomePage() {
           </svg>
         </div>
         
-        {/* Three.js 3D Scene */}
-        <div className="absolute top-20 right-10 w-[400px] h-[500px] pointer-events-none z-10 hidden lg:block">
-          <NCLEX3DScene />
-        </div>
+        {/* Three.js 3D Scene - Temporarily disabled to fix build */}
+        {/* TODO: Re-enable once build is stable */}
 
         <div className="relative mx-auto max-w-7xl z-10">
           <div className="max-w-2xl space-y-8 text-left">
