@@ -5,9 +5,9 @@
 
 :root {
   --background: 255 255 255; /* White */
-  --foreground: 17 24 39; /* Gray-900 */
+  --foreground: 107 33 168; /* Purple-800 - Changed to purple */
   --card: 255 255 255; /* White */
-  --card-foreground: 17 24 39; /* Gray-900 */
+  --card-foreground: 107 33 168; /* Purple-800 - Changed to purple */
   --popover: 255 255 255; /* White */
   --popover-foreground: 17 24 39; /* Gray-900 */
   --primary: 147 51 234; /* Purple-600 */

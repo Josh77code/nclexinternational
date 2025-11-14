@@ -142,37 +142,71 @@ export default function HomePage() {
       <Header />
 
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
-        {/* Large Purple Wave Shapes on Right */}
-        <div className="absolute top-0 right-0 w-[600px] h-[700px] opacity-90 pointer-events-none z-0">
-          <svg viewBox="0 0 600 700" className="w-full h-full absolute top-0 right-0">
+        {/* Enhanced SVG Wave Shapes on Right */}
+        <div className="absolute top-0 right-0 w-[700px] h-[800px] opacity-90 pointer-events-none z-0">
+          <svg viewBox="0 0 700 800" className="w-full h-full absolute top-0 right-0">
+            <defs>
+              <linearGradient id="waveGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#9333EA" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#A855F7" stopOpacity="0.7" />
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
             <path
-              d="M0,300 Q150,200 300,280 T600,260 L600,700 L0,700 Z"
-              fill="#9333EA"
+              d="M0,350 Q175,250 350,320 T700,300 L700,800 L0,800 Z"
+              fill="url(#waveGradient1)"
+              filter="url(#glow)"
+              className="animate-pulse-slow"
+            />
+            <path
+              d="M0,300 Q150,220 300,290 T600,270 L600,800 L0,800 Z"
+              fill="#C084FC"
+              opacity="0.6"
             />
           </svg>
         </div>
-        {/* Lighter Purple Wave Overlay */}
-        <div className="absolute top-20 right-0 w-[500px] h-[600px] opacity-60 pointer-events-none z-0">
-          <svg viewBox="0 0 500 600" className="absolute top-0 right-0">
+        {/* Secondary Wave Layer */}
+        <div className="absolute top-10 right-0 w-[600px] h-[700px] opacity-70 pointer-events-none z-0">
+          <svg viewBox="0 0 600 700" className="absolute top-0 right-0">
+            <defs>
+              <radialGradient id="waveGradient2">
+                <stop offset="0%" stopColor="#A855F7" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#C084FC" stopOpacity="0.4" />
+              </radialGradient>
+            </defs>
             <path
-              d="M0,250 Q120,180 250,240 T500,220 L500,600 L0,600 Z"
-              fill="#A855F7"
+              d="M0,280 Q120,200 250,260 T500,240 L500,700 L0,700 Z"
+              fill="url(#waveGradient2)"
             />
-            {/* White circular highlight on wave crest */}
-            <circle cx="400" cy="240" r="12" fill="white" opacity="0.8" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.1))" />
+            {/* Enhanced white highlight on wave crest */}
+            <circle cx="450" cy="250" r="15" fill="white" opacity="0.9" filter="drop-shadow(0 4px 8px rgba(147, 51, 234, 0.3))">
+              <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="380" cy="280" r="8" fill="white" opacity="0.6" filter="drop-shadow(0 2px 4px rgba(147, 51, 234, 0.2))" />
           </svg>
+        </div>
+        
+        {/* Three.js 3D Scene */}
+        <div className="absolute top-20 right-10 w-[400px] h-[500px] pointer-events-none z-10 hidden lg:block">
+          <NCLEX3DScene />
         </div>
 
         <div className="relative mx-auto max-w-7xl z-10">
           <div className="max-w-2xl space-y-8 text-left">
             {/* Headline - Split into two lines */}
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 leading-tight">
-              The Power<br />of Good Advice
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-purple-600 leading-tight">
+              NCLEX<br />Keys
             </h1>
 
             {/* Paragraph */}
-            <p className="text-xl sm:text-2xl text-gray-600 max-w-xl leading-relaxed">
-              I'm a paragraph. Click here to add your own text and edit me.
+            <p className="text-xl sm:text-2xl text-purple-700 max-w-xl leading-relaxed">
+              Your path to NCLEX excellence. Join over 100 successful nursing professionals who have unlocked their NCLEX with intensive, results-driven coaching from Boss B and the NCLEX KEYS team.
             </p>
 
             {/* Single CTA Button */}
