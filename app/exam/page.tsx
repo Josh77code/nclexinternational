@@ -119,7 +119,9 @@ export default function ExamPage() {
           }
           
           if (prev <= 1) {
-            handleSubmitExam()
+            if (handleSubmitExamRef.current) {
+              handleSubmitExamRef.current()
+            }
             return 0
           }
           return prev - 1
@@ -306,6 +308,8 @@ export default function ExamPage() {
       .eq('id', session.id)
   }
 
+  const handleSubmitExamRef = useRef<() => Promise<void>>()
+
   const handleSubmitExam = async () => {
     const session = examSessionRef.current
     const examQuestions = questionsRef.current
@@ -334,7 +338,8 @@ export default function ExamPage() {
       }
 
       const scorePercentage = (correctAnswers / examQuestions.length) * 100
-      const timeTaken = Math.floor((7200 - timeRemaining) / 60)
+      const currentTimeRemaining = timeRemaining
+      const timeTaken = Math.floor((7200 - currentTimeRemaining) / 60)
 
       const { error: answersError } = await supabase
         .from('exam_answers')
@@ -388,6 +393,11 @@ export default function ExamPage() {
     }
   }
 
+  // Store handleSubmitExam in ref to avoid stale closure in timer
+  useEffect(() => {
+    handleSubmitExamRef.current = handleSubmitExam
+  }, [timeRemaining])
+
   const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / 3600)
     const mins = Math.floor((seconds % 3600) / 60)
@@ -407,8 +417,8 @@ export default function ExamPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3895D3] mx-auto mb-4"></div>
-          <p className="text-lg text-[#072F5F]">Loading exam...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#304674] mx-auto mb-4"></div>
+          <p className="text-lg text-[#304674]">Loading exam...</p>
         </div>
       </div>
     )
@@ -417,14 +427,14 @@ export default function ExamPage() {
   if (questions.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Card className="max-w-md mx-auto border-2 border-[#3895D3]">
+        <Card className="max-w-md mx-auto border-2 border-[#304674]">
           <CardContent className="pt-6 text-center">
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-[#072F5F] mb-2">No Questions Available</h2>
+            <h2 className="text-xl font-bold text-[#304674] mb-2">No Questions Available</h2>
             <p className="text-gray-600 mb-4">
               Unable to load exam questions. Please check back later.
             </p>
-            <Button onClick={() => router.push('/exam/select')} className="bg-[#3895D3] hover:bg-[#1261A0]">
+            <Button onClick={() => router.push('/exam/select')} className="bg-[#304674] hover:bg-[#98bad5]">
               Return to Exam Selection
             </Button>
           </CardContent>
@@ -437,21 +447,21 @@ export default function ExamPage() {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-[#3895D3]/5 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-[#304674]/5 to-background">
       <Header />
       
       <main className="pt-24 pb-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Exam Header */}
-          <Card className="mb-6 border-2 border-[#3895D3] bg-white">
+          <Card className="mb-6 border-2 border-[#304674] bg-white">
             <CardHeader className="pb-4">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                  <CardTitle className="text-2xl font-bold text-[#072F5F]">NCLEX Practice Exam</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-[#304674]">NCLEX Practice Exam</CardTitle>
                   <p className="text-gray-600">Complete all {questions.length} questions to receive your score</p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2 text-[#072F5F]">
+                  <div className="flex items-center gap-2 text-[#304674]">
                     <Clock className="h-5 w-5" />
                     <span className="font-bold text-lg">{formatTime(timeRemaining)}</span>
                     {isPaused && (
@@ -460,7 +470,7 @@ export default function ExamPage() {
                       </Badge>
                     )}
                   </div>
-                  <Badge className="bg-[#3895D3] text-white">
+                  <Badge className="bg-[#304674] text-white">
                     {getAnsweredCount()}/{questions.length} Answered
                   </Badge>
                   <Button
@@ -501,9 +511,9 @@ export default function ExamPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Question Navigation Sidebar */}
-            <Card className="lg:col-span-1 border-2 border-[#3895D3] bg-white">
+            <Card className="lg:col-span-1 border-2 border-[#304674] bg-white">
               <CardHeader>
-                <CardTitle className="text-lg text-[#072F5F]">Question Navigation</CardTitle>
+                <CardTitle className="text-lg text-[#304674]">Question Navigation</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-5 gap-2">
@@ -513,7 +523,7 @@ export default function ExamPage() {
                       onClick={() => setCurrentQuestionIndex(index)}
                       className={`w-8 h-8 rounded text-sm font-medium transition-all ${
                         index === currentQuestionIndex
-                          ? 'bg-[#3895D3] text-white'
+                          ? 'bg-[#304674] text-white'
                           : answers[questions[index].id]
                           ? 'bg-green-100 text-green-700 border border-green-300'
                           : flaggedQuestions.has(index)
@@ -543,17 +553,17 @@ export default function ExamPage() {
             </Card>
 
             {/* Question Content */}
-            <Card className="lg:col-span-3 border-2 border-[#3895D3] bg-white">
+            <Card className="lg:col-span-3 border-2 border-[#304674] bg-white">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <Badge className="bg-[#072F5F] text-white">
+                    <Badge className="bg-[#304674] text-white">
                       Question {currentQuestionIndex + 1} of {questions.length}
                     </Badge>
-                    <Badge variant="outline" className="border-[#1261A0] text-[#1261A0]">
+                    <Badge variant="outline" className="border-[#98bad5] text-[#98bad5]">
                       {currentQuestion.category}
                     </Badge>
-                    <Badge variant="outline" className="border-[#3895D3] text-[#3895D3]">
+                    <Badge variant="outline" className="border-[#304674] text-[#304674]">
                       {currentQuestion.difficulty_level}
                     </Badge>
                   </div>
@@ -564,7 +574,7 @@ export default function ExamPage() {
                     className={`border-2 ${
                       flaggedQuestions.has(currentQuestionIndex)
                         ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-                        : 'border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10'
+                        : 'border-[#304674] text-[#304674] hover:bg-[#304674]/10'
                     }`}
                   >
                     <Flag className="h-4 w-4 mr-2" />
@@ -575,7 +585,7 @@ export default function ExamPage() {
               
               <CardContent className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-[#072F5F] mb-4">
+                  <h3 className="text-lg font-semibold text-[#304674] mb-4">
                     {currentQuestion.question_text}
                   </h3>
                   
@@ -585,8 +595,8 @@ export default function ExamPage() {
                         key={option}
                         className={`flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all ${
                           answers[currentQuestion.id] === option
-                            ? 'border-[#3895D3] bg-[#3895D3]/10'
-                            : 'border-gray-200 hover:border-[#3895D3]/50 hover:bg-[#3895D3]/5'
+                            ? 'border-[#304674] bg-[#304674]/10'
+                            : 'border-gray-200 hover:border-[#304674]/50 hover:bg-[#304674]/5'
                         }`}
                       >
                         <input
@@ -600,14 +610,14 @@ export default function ExamPage() {
                         />
                         <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center ${
                           answers[currentQuestion.id] === option
-                            ? 'border-[#3895D3] bg-[#3895D3]'
+                            ? 'border-[#304674] bg-[#304674]'
                             : 'border-gray-300'
                         }`}>
                           {answers[currentQuestion.id] === option && (
                             <CheckCircle className="h-4 w-4 text-white" />
                           )}
                         </div>
-                        <span className="font-medium text-[#072F5F]">
+                        <span className="font-medium text-[#304674]">
                           {option}. {currentQuestion[`option_${option.toLowerCase()}` as keyof Question] as string}
                         </span>
                       </label>
@@ -621,7 +631,7 @@ export default function ExamPage() {
                     variant="outline"
                     onClick={handlePreviousQuestion}
                     disabled={currentQuestionIndex === 0 || isPaused}
-                    className="border-2 border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10"
+                    className="border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10"
                   >
                     <ArrowLeft className="h-4 w-4 mr-2" />
                     Previous
@@ -631,7 +641,7 @@ export default function ExamPage() {
                     {currentQuestionIndex === questions.length - 1 ? (
                       <Button
                         onClick={() => setShowConfirmSubmit(true)}
-                        className="bg-[#072F5F] hover:bg-[#1261A0] text-white"
+                        className="bg-[#304674] hover:bg-[#98bad5] text-white"
                         disabled={isSubmitting || isPaused}
                       >
                         {isSubmitting ? 'Submitting...' : 'Submit Exam'}
@@ -640,7 +650,7 @@ export default function ExamPage() {
                       <Button
                         onClick={handleNextQuestion}
                         disabled={isPaused}
-                        className="bg-[#3895D3] hover:bg-[#1261A0] text-white"
+                        className="bg-[#304674] hover:bg-[#98bad5] text-white"
                       >
                         Next
                         <ArrowRight className="h-4 w-4 ml-2" />
@@ -657,9 +667,9 @@ export default function ExamPage() {
       {/* Submit Confirmation Modal */}
       {showConfirmSubmit && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <Card className="max-w-md w-full border-2 border-[#3895D3] bg-white">
+          <Card className="max-w-md w-full border-2 border-[#304674] bg-white">
             <CardHeader>
-              <CardTitle className="text-xl text-[#072F5F]">Submit Exam?</CardTitle>
+              <CardTitle className="text-xl text-[#304674]">Submit Exam?</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-gray-600">
@@ -677,13 +687,13 @@ export default function ExamPage() {
                 <Button
                   variant="outline"
                   onClick={() => setShowConfirmSubmit(false)}
-                  className="flex-1 border-2 border-[#3895D3] text-[#3895D3]"
+                  className="flex-1 border-2 border-[#304674] text-[#304674]"
                 >
                   Cancel
                 </Button>
                 <Button
                   onClick={handleSubmitExam}
-                  className="flex-1 bg-[#072F5F] hover:bg-[#1261A0] text-white"
+                  className="flex-1 bg-[#304674] hover:bg-[#98bad5] text-white"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit'}

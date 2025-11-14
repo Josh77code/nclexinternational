@@ -213,24 +213,24 @@ export default function TeacherDashboard() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3895D3] mx-auto mb-4"></div>
-          <p className="text-lg text-[#072F5F]">Loading dashboard...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#304674] mx-auto mb-4"></div>
+          <p className="text-lg text-[#304674]">Loading dashboard...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-slate-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-[#d8e1e8] via-[#c6d3e3] to-[#b2cbde]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-[#072F5F]">
+            <div className="flex items-center gap-2 text-[#304674]">
               <BookOpen className="h-6 w-6" />
               <span className="text-sm font-semibold uppercase tracking-wide">Teacher Dashboard</span>
             </div>
-            <h1 className="text-3xl font-bold text-[#072F5F]">Student Monitoring & Analytics</h1>
+            <h1 className="text-3xl font-bold text-[#304674]">Student Monitoring & Analytics</h1>
             <p className="text-sm text-muted-foreground max-w-2xl">
               View student activities, exam performance, and track progress across all registered students.
             </p>
@@ -238,7 +238,7 @@ export default function TeacherDashboard() {
           <div className="flex flex-wrap gap-3">
             <Button
               variant="outline"
-              className="border-2 border-[#3895D3]/40 text-[#072F5F] hover:bg-[#3895D3]/10"
+              className="border-2 border-[#304674]/40 text-[#304674] hover:bg-[#304674]/10"
               onClick={loadData}
               disabled={loading}
             >
@@ -250,49 +250,49 @@ export default function TeacherDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="border-2 border-[#3895D3]/30">
+          <Card className="border-2 border-[#304674]/30">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">Total Students</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
-                <div className="text-3xl font-bold text-[#072F5F]">{stats.totalStudents}</div>
-                <Users className="h-8 w-8 text-[#3895D3]" />
+                <div className="text-3xl font-bold text-[#304674]">{stats.totalStudents}</div>
+                <Users className="h-8 w-8 text-[#304674]" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#3895D3]/30">
+          <Card className="border-2 border-[#304674]/30">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">Total Exams</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
-                <div className="text-3xl font-bold text-[#072F5F]">{stats.totalExams}</div>
-                <BookOpen className="h-8 w-8 text-[#3895D3]" />
+                <div className="text-3xl font-bold text-[#304674]">{stats.totalExams}</div>
+                <BookOpen className="h-8 w-8 text-[#304674]" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#3895D3]/30">
+          <Card className="border-2 border-[#304674]/30">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">Average Score</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
-                <div className="text-3xl font-bold text-[#072F5F]">{stats.avgScore.toFixed(1)}%</div>
+                <div className="text-3xl font-bold text-[#304674]">{stats.avgScore.toFixed(1)}%</div>
                 <TrendingUp className="h-8 w-8 text-green-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#3895D3]/30">
+          <Card className="border-2 border-[#304674]/30">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">Pass Rate</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
-                <div className="text-3xl font-bold text-[#072F5F]">{stats.passRate.toFixed(1)}%</div>
+                <div className="text-3xl font-bold text-[#304674]">{stats.passRate.toFixed(1)}%</div>
                 <Award className="h-8 w-8 text-yellow-600" />
               </div>
             </CardContent>
@@ -309,9 +309,9 @@ export default function TeacherDashboard() {
 
           {/* Student Activities Tab */}
           <TabsContent value="activities" className="space-y-4">
-            <Card className="border-2 border-[#3895D3]/30">
+            <Card className="border-2 border-[#304674]/30">
               <CardHeader>
-                <CardTitle className="text-[#072F5F]">Student Activity Overview</CardTitle>
+                <CardTitle className="text-[#304674]">Student Activity Overview</CardTitle>
                 <CardDescription>
                   View comprehensive activity statistics for each student
                 </CardDescription>
@@ -324,7 +324,7 @@ export default function TeacherDashboard() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="max-w-md"
                   />
-                  <div className="rounded-lg border border-[#3895D3]/20 bg-white">
+                  <div className="rounded-lg border border-[#304674]/20 bg-white">
                     <Table>
                       <TableHeader>
                         <TableRow>
@@ -344,12 +344,12 @@ export default function TeacherDashboard() {
                           )
                           .map((activity) => (
                             <TableRow key={activity.student_id}>
-                              <TableCell className="font-medium text-[#072F5F]">
+                              <TableCell className="font-medium text-[#304674]">
                                 {activity.student_name}
                               </TableCell>
                               <TableCell>{activity.student_email}</TableCell>
                               <TableCell>
-                                <Badge variant="outline" className="border-[#3895D3]/40 text-[#072F5F]">
+                                <Badge variant="outline" className="border-[#304674]/40 text-[#304674]">
                                   {activity.exam_count}
                                 </Badge>
                               </TableCell>
@@ -382,9 +382,9 @@ export default function TeacherDashboard() {
 
           {/* Exam Results Tab */}
           <TabsContent value="exams" className="space-y-4">
-            <Card className="border-2 border-[#3895D3]/30">
+            <Card className="border-2 border-[#304674]/30">
               <CardHeader>
-                <CardTitle className="text-[#072F5F]">Recent Exam Results</CardTitle>
+                <CardTitle className="text-[#304674]">Recent Exam Results</CardTitle>
                 <CardDescription>
                   View detailed results from all student exams
                 </CardDescription>
@@ -397,7 +397,7 @@ export default function TeacherDashboard() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="max-w-md"
                   />
-                  <div className="rounded-lg border border-[#3895D3]/20 bg-white">
+                  <div className="rounded-lg border border-[#304674]/20 bg-white">
                     <Table>
                       <TableHeader>
                         <TableRow>
@@ -413,7 +413,7 @@ export default function TeacherDashboard() {
                       <TableBody>
                         {filteredResults.map((result) => (
                           <TableRow key={result.id}>
-                            <TableCell className="font-medium text-[#072F5F]">
+                            <TableCell className="font-medium text-[#304674]">
                               {result.user_email}
                             </TableCell>
                             <TableCell>
@@ -453,7 +453,7 @@ export default function TeacherDashboard() {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => router.push(`/exam/results?session=${result.session_id}`)}
-                                className="border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10"
+                                className="border-[#304674] text-[#304674] hover:bg-[#304674]/10"
                               >
                                 <Eye className="h-4 w-4 mr-2" />
                                 View
@@ -471,9 +471,9 @@ export default function TeacherDashboard() {
 
           {/* All Students Tab */}
           <TabsContent value="students" className="space-y-4">
-            <Card className="border-2 border-[#3895D3]/30">
+            <Card className="border-2 border-[#304674]/30">
               <CardHeader>
-                <CardTitle className="text-[#072F5F]">All Registered Students</CardTitle>
+                <CardTitle className="text-[#304674]">All Registered Students</CardTitle>
                 <CardDescription>
                   View and manage all student accounts
                 </CardDescription>
@@ -490,7 +490,7 @@ export default function TeacherDashboard() {
                     <select
                       value={filterGrade}
                       onChange={(e) => setFilterGrade(e.target.value)}
-                      className="px-3 py-2 border-2 border-[#3895D3]/40 rounded-md"
+                      className="px-3 py-2 border-2 border-[#304674]/40 rounded-md"
                     >
                       <option value="all">All Grades</option>
                       <option value="starter">Starter</option>
@@ -498,7 +498,7 @@ export default function TeacherDashboard() {
                       <option value="higher">Higher</option>
                     </select>
                   </div>
-                  <div className="rounded-lg border border-[#3895D3]/20 bg-white">
+                  <div className="rounded-lg border border-[#304674]/20 bg-white">
                     <Table>
                       <TableHeader>
                         <TableRow>
@@ -511,12 +511,12 @@ export default function TeacherDashboard() {
                       <TableBody>
                         {filteredStudents.map((student) => (
                           <TableRow key={student.id}>
-                            <TableCell className="font-medium text-[#072F5F]">
+                            <TableCell className="font-medium text-[#304674]">
                               {student.full_name}
                             </TableCell>
                             <TableCell>{student.email}</TableCell>
                             <TableCell>
-                              <Badge variant="outline" className="border-[#3895D3]/40 text-[#072F5F]">
+                              <Badge variant="outline" className="border-[#304674]/40 text-[#304674]">
                                 {student.student_grade || 'Not Assigned'}
                               </Badge>
                             </TableCell>

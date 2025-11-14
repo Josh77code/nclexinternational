@@ -5,38 +5,38 @@
 
 :root {
   --background: 255 255 255; /* White */
-  --foreground: 7 47 95; /* Cool Black */
+  --foreground: 48 70 116; /* #304674 - Dark Navy Blue */
   --card: 255 255 255; /* White */
-  --card-foreground: 7 47 95; /* Cool Black */
+  --card-foreground: 48 70 116; /* #304674 */
   --popover: 255 255 255; /* White */
-  --popover-foreground: 7 47 95; /* Cool Black */
-  --primary: 7 47 95; /* Cool Black */
+  --popover-foreground: 48 70 116; /* #304674 */
+  --primary: 48 70 116; /* #304674 - Dark Navy Blue */
   --primary-foreground: 255 255 255; /* White */
-  --secondary: 18 97 160; /* Medium Persian Blue */
+  --secondary: 152 186 213; /* #98bad5 - Light Blue */
   --secondary-foreground: 255 255 255; /* White */
-  --muted: 248 250 252; /* Very light blue-gray */
+  --muted: 216 225 232; /* #d8e1e8 - Very light blue-gray */
   --muted-foreground: 100 116 139; /* Slate-500 */
-  --accent: 56 149 211; /* Tufts Blue */
+  --accent: 152 186 213; /* #98bad5 - Light Blue */
   --accent-foreground: 255 255 255; /* White */
   --destructive: 239 68 68; /* Red-500 */
   --destructive-foreground: 255 255 255; /* White */
-  --border: 56 149 211; /* Tufts Blue - Blue borders */
-  --input: 56 149 211; /* Tufts Blue - Blue input borders */
-  --ring: 7 47 95; /* Cool Black */
-  --chart-1: 7 47 95; /* Cool Black */
-  --chart-2: 18 97 160; /* Medium Persian Blue */
-  --chart-3: 56 149 211; /* Tufts Blue */
-  --chart-4: 99 102 241; /* Indigo-500 */
-  --chart-5: 139 92 246; /* Purple-500 */
+  --border: 198 211 227; /* #c6d3e3 - Light blue-gray borders */
+  --input: 198 211 227; /* #c6d3e3 - Light blue-gray input borders */
+  --ring: 48 70 116; /* #304674 */
+  --chart-1: 48 70 116; /* #304674 */
+  --chart-2: 152 186 213; /* #98bad5 */
+  --chart-3: 178 203 222; /* #b2cbde */
+  --chart-4: 198 211 227; /* #c6d3e3 */
+  --chart-5: 216 225 232; /* #d8e1e8 */
   --radius: 0.75rem;
-  --sidebar: 248 250 252; /* Very light blue-gray */
-  --sidebar-foreground: 7 47 95; /* Cool Black */
-  --sidebar-primary: 7 47 95; /* Cool Black */
+  --sidebar: 216 225 232; /* #d8e1e8 */
+  --sidebar-foreground: 48 70 116; /* #304674 */
+  --sidebar-primary: 48 70 116; /* #304674 */
   --sidebar-primary-foreground: 255 255 255; /* White */
-  --sidebar-accent: 241 245 249; /* Slate-100 */
-  --sidebar-accent-foreground: 7 47 95; /* Cool Black */
-  --sidebar-border: 56 149 211; /* Tufts Blue - Blue sidebar borders */
-  --sidebar-ring: 7 47 95; /* Cool Black */
+  --sidebar-accent: 198 211 227; /* #c6d3e3 */
+  --sidebar-accent-foreground: 48 70 116; /* #304674 */
+  --sidebar-border: 198 211 227; /* #c6d3e3 */
+  --sidebar-ring: 48 70 116; /* #304674 */
 }
 
 .dark {
@@ -46,32 +46,32 @@
   --card-foreground: 248 250 252; /* Slate-50 */
   --popover: 30 41 59; /* Slate-800 */
   --popover-foreground: 248 250 252; /* Slate-50 */
-  --primary: 56 149 211; /* Tufts Blue - lighter for dark mode */
+  --primary: 152 186 213; /* #98bad5 - lighter for dark mode */
   --primary-foreground: 15 23 42; /* Slate-900 */
-  --secondary: 56 149 211; /* Tufts Blue */
+  --secondary: 152 186 213; /* #98bad5 */
   --secondary-foreground: 248 250 252; /* Slate-50 */
   --muted: 51 65 85; /* Slate-700 */
   --muted-foreground: 148 163 184; /* Slate-400 */
-  --accent: 56 149 211; /* Tufts Blue */
+  --accent: 152 186 213; /* #98bad5 */
   --accent-foreground: 248 250 252; /* Slate-50 */
   --destructive: 239 68 68; /* Red-500 */
   --destructive-foreground: 248 250 252; /* Slate-50 */
   --border: 51 65 85; /* Slate-700 */
   --input: 51 65 85; /* Slate-700 */
-  --ring: 56 149 211; /* Tufts Blue */
-  --chart-1: 56 149 211; /* Tufts Blue */
-  --chart-2: 18 97 160; /* Medium Persian Blue */
-  --chart-3: 99 102 241; /* Indigo-500 */
-  --chart-4: 139 92 246; /* Purple-500 */
-  --chart-5: 236 72 153; /* Pink-500 */
+  --ring: 152 186 213; /* #98bad5 */
+  --chart-1: 152 186 213; /* #98bad5 */
+  --chart-2: 178 203 222; /* #b2cbde */
+  --chart-3: 198 211 227; /* #c6d3e3 */
+  --chart-4: 216 225 232; /* #d8e1e8 */
+  --chart-5: 48 70 116; /* #304674 */
   --sidebar: 15 23 42; /* Slate-900 */
   --sidebar-foreground: 248 250 252; /* Slate-50 */
-  --sidebar-primary: 56 149 211; /* Tufts Blue */
+  --sidebar-primary: 152 186 213; /* #98bad5 */
   --sidebar-primary-foreground: 15 23 42; /* Slate-900 */
   --sidebar-accent: 30 41 59; /* Slate-800 */
   --sidebar-accent-foreground: 248 250 252; /* Slate-50 */
   --sidebar-border: 51 65 85; /* Slate-700 */
-  --sidebar-ring: 56 149 211; /* Tufts Blue */
+  --sidebar-ring: 152 186 213; /* #98bad5 */
 }
 
 * {

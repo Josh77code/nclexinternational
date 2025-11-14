@@ -70,11 +70,11 @@ export default function ProgramsPage() {
 
       <main className="flex-1 pt-24">
         {/* Hero Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#3895D3]/5">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#304674]/5">
           <div className="mx-auto max-w-5xl text-center space-y-6">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#072F5F]/5 border border-[#072F5F]/20">
-              <Sparkles className="h-4 w-4 text-[#072F5F]" />
-              <span className="text-sm font-semibold text-[#072F5F] tracking-wide">OUR PACKAGES</span>
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#304674]/5 border border-[#304674]/20">
+              <Sparkles className="h-4 w-4 text-[#304674]" />
+              <span className="text-sm font-semibold text-[#304674] tracking-wide">OUR PACKAGES</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-balance">Tailored NCLEX Pathways for Every Nurse</h1>
             <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
@@ -91,12 +91,12 @@ export default function ProgramsPage() {
               {packages.map((pkg) => (
                 <Card
                   key={pkg.name}
-                  className="flex flex-col bg-white hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-[#3895D3] hover:border-[#1261A0]"
+                  className="flex flex-col bg-white hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-[#304674] hover:border-[#98bad5]"
                 >
                   <CardHeader className="space-y-4 pb-0">
                     <div className="flex items-center justify-between gap-4">
-                      <CardTitle className="text-2xl font-bold text-[#072F5F]">{pkg.name}</CardTitle>
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#072F5F]/15 to-[#3895D3]/20 text-[#072F5F]">
+                      <CardTitle className="text-2xl font-bold text-[#304674]">{pkg.name}</CardTitle>
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#304674]/15 to-[#304674]/20 text-[#304674]">
                         <pkg.icon className="h-6 w-6" />
                       </div>
                     </div>
@@ -106,7 +106,7 @@ export default function ProgramsPage() {
                     <ul className="space-y-3 text-sm text-muted-foreground">
                       {pkg.highlights.map((item) => (
                         <li key={item} className="flex items-start gap-2">
-                          <span className="mt-1 h-2 w-2 rounded-full bg-[#3895D3]" />
+                          <span className="mt-1 h-2 w-2 rounded-full bg-[#304674]" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -114,7 +114,7 @@ export default function ProgramsPage() {
                   </CardContent>
                   <CardFooter className="pt-0">
                     <Button
-                      className="w-full bg-[#072F5F] hover:bg-[#1261A0] text-white font-semibold"
+                      className="w-full bg-[#304674] hover:bg-[#98bad5] text-white font-semibold"
                       onClick={() => contactAdmin(pkg.name)}
                     >
                       Contact Admin for Pricing
@@ -127,41 +127,41 @@ export default function ProgramsPage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#3895D3]/5">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#304674]/5">
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-bold mb-12 text-center">What You Enjoy in Every Package</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Strategic Video Lectures</h3>
                 <p className="text-muted-foreground text-sm">
                   Six hours weekly with Boss B and specialist tutors, replayable on-demand so you never miss a lesson.
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Practice Questions</h3>
                 <p className="text-muted-foreground text-sm">
                   Curated drills, NCLEX-style assessments, and academy question banks to sharpen your exam instincts.
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Study Materials</h3>
                 <p className="text-muted-foreground text-sm">
                   Downloadable curriculum, schedules, and revision checklists tailored to your target test date.
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Progress Tracking</h3>
                 <p className="text-muted-foreground text-sm">
                   Monthly reviews and readiness checks backed by tutor insight and assessment data.
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Community Access</h3>
                 <p className="text-muted-foreground text-sm">
                   Immediate entry into our Telegram and WhatsApp hubs for support, testimonies, and accountability.
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#3895D3] hover:border-[#1261A0] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Mobile Access</h3>
                 <p className="text-muted-foreground text-sm">
                   Learn anywhere, anytime with resources optimised for mobile, so shifts never slow your growth.
@@ -177,7 +177,7 @@ export default function ProgramsPage() {
             <h2 className="text-3xl font-bold mb-8 text-center">How Enrollment Works</h2>
             <div className="space-y-6">
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#072F5F] text-white font-bold shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#304674] text-white font-bold shrink-0">
                   1
                 </div>
                 <div>
@@ -188,7 +188,7 @@ export default function ProgramsPage() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1261A0] text-white font-bold shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#98bad5] text-white font-bold shrink-0">
                   2
                 </div>
                 <div>
@@ -203,7 +203,7 @@ export default function ProgramsPage() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#3895D3] text-white font-bold shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#304674] text-white font-bold shrink-0">
                   3
                 </div>
                 <div>
@@ -214,7 +214,7 @@ export default function ProgramsPage() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#072F5F] text-white font-bold shrink-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#304674] text-white font-bold shrink-0">
                   4
                 </div>
                 <div>
@@ -229,15 +229,15 @@ export default function ProgramsPage() {
         </section>
 
         {/* Direct Contact CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#072F5F]/5">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#304674]/5">
           <div className="mx-auto max-w-3xl text-center space-y-6">
-            <h2 className="text-3xl font-bold text-[#072F5F]">Ready for Your Personalised Quote?</h2>
+            <h2 className="text-3xl font-bold text-[#304674]">Ready for Your Personalised Quote?</h2>
             <p className="text-muted-foreground text-lg">
               Send us a message and our administrative team will guide you to the plan that guarantees your NCLEX success.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
-                className="w-full sm:w-auto bg-[#072F5F] hover:bg-[#1261A0] text-white"
+                className="w-full sm:w-auto bg-[#304674] hover:bg-[#98bad5] text-white"
                 onClick={() => contactAdmin()}
               >
                 <MessageCircle className="h-5 w-5 mr-2" />
@@ -245,7 +245,7 @@ export default function ProgramsPage() {
               </Button>
               <Button
                 variant="outline"
-                className="w-full sm:w-auto border-[#3895D3] text-[#072F5F] hover:bg-[#3895D3]/10"
+                className="w-full sm:w-auto border-[#304674] text-[#304674] hover:bg-[#304674]/10"
                 asChild
               >
                 <Link href="mailto:nclexkeysintl.academy@gmail.com">

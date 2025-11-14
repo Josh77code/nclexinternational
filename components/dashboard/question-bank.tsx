@@ -329,8 +329,8 @@ export function QuestionBankSection() {
   if (loading) {
     return (
       <div className="text-center py-12">
-        <div className="w-8 h-8 border-4 border-[#3895D3] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-        <p className="text-[#072F5F]">Loading questions...</p>
+        <div className="w-8 h-8 border-4 border-[#98bad5] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-[#304674]">Loading questions...</p>
       </div>
     )
   }
@@ -344,11 +344,11 @@ export function QuestionBankSection() {
   return (
     <div className="space-y-6">
       {/* Question Bank Collections */}
-      <Card className="border-2 border-[#3895D3]/30">
+      <Card className="border-2 border-[#c6d3e3]">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-[#072F5F] flex items-center gap-2">
+              <CardTitle className="text-[#304674] flex items-center gap-2">
                 <Folder className="h-5 w-5" />
                 Question Bank Collections
               </CardTitle>
@@ -356,7 +356,7 @@ export function QuestionBankSection() {
             </div>
             <Button
               onClick={() => setIsCreateBankDialogOpen(true)}
-              className="bg-[#3895D3] hover:bg-[#1261A0] text-white"
+              className="bg-[#304674] hover:bg-[#304674]/90 text-white"
             >
               <FolderPlus className="h-4 w-4 mr-2" />
               Create Collection
@@ -368,9 +368,9 @@ export function QuestionBankSection() {
             <Button
               variant={selectedBankId === 'all' ? 'default' : 'outline'}
               onClick={() => setSelectedBankId('all')}
-              className={selectedBankId === 'all' 
-                ? 'bg-[#3895D3] hover:bg-[#1261A0] text-white' 
-                : 'border-2 border-[#3895D3]/40 text-[#072F5F] hover:bg-[#3895D3]/10'
+              className={selectedBankId === 'all'
+                ? 'bg-[#304674] hover:bg-[#304674]/90 text-white' 
+                : 'border-2 border-[#c6d3e3] text-[#304674] hover:bg-[#d8e1e8]'
               }
             >
               <BookOpen className="h-4 w-4 mr-2" />
@@ -380,8 +380,8 @@ export function QuestionBankSection() {
               variant={selectedBankId === 'none' ? 'default' : 'outline'}
               onClick={() => setSelectedBankId('none')}
               className={selectedBankId === 'none'
-                ? 'bg-[#3895D3] hover:bg-[#1261A0] text-white'
-                : 'border-2 border-[#3895D3]/40 text-[#072F5F] hover:bg-[#3895D3]/10'
+                ? 'bg-gradient-to-r from-[#304674] to-[#304674] hover:from-[#304674]/90 hover:to-[#304674]/90 text-white'
+                : 'border-2 border-[#c6d3e3] text-[#304674] hover:bg-[#d8e1e8]'
               }
             >
               Unassigned
@@ -392,8 +392,8 @@ export function QuestionBankSection() {
                 variant={selectedBankId === bank.id ? 'default' : 'outline'}
                 onClick={() => setSelectedBankId(bank.id)}
                 className={selectedBankId === bank.id
-                  ? 'bg-[#3895D3] hover:bg-[#1261A0] text-white'
-                  : 'border-2 border-[#3895D3]/40 text-[#072F5F] hover:bg-[#3895D3]/10'
+                  ? 'bg-gradient-to-r from-[#304674] to-[#304674] hover:from-[#304674]/90 hover:to-[#304674]/90 text-white'
+                  : 'border-2 border-[#c6d3e3] text-[#304674] hover:bg-[#d8e1e8]'
                 }
               >
                 <Folder className="h-4 w-4 mr-2" />
@@ -406,36 +406,36 @@ export function QuestionBankSection() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="border-2 border-[#3895D3]/30">
+        <Card className="border-2 border-[#c6d3e3]">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-gray-600">Total Questions</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-[#072F5F]">{stats.total}</div>
+            <div className="text-2xl font-bold text-[#304674]">{stats.total}</div>
           </CardContent>
         </Card>
-        <Card className="border-2 border-[#3895D3]/30">
+        <Card className="border-2 border-[#c6d3e3]">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-gray-600">Active</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-[#3895D3]">{stats.active}</div>
+            <div className="text-2xl font-bold text-[#304674]">{stats.active}</div>
           </CardContent>
         </Card>
-        <Card className="border-2 border-[#3895D3]/30">
+        <Card className="border-2 border-[#c6d3e3]">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-gray-600">Easy</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-[#3895D3]">{stats.byDifficulty.easy}</div>
+            <div className="text-2xl font-bold text-[#304674]">{stats.byDifficulty.easy}</div>
           </CardContent>
         </Card>
-        <Card className="border-2 border-[#3895D3]/30">
+        <Card className="border-2 border-[#c6d3e3]">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-gray-600">Medium/Hard</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-[#072F5F]">
+            <div className="text-2xl font-bold text-[#304674]">
               {stats.byDifficulty.medium + stats.byDifficulty.hard}
             </div>
           </CardContent>
@@ -443,9 +443,9 @@ export function QuestionBankSection() {
       </div>
 
       {/* Filters */}
-      <Card className="border-2 border-[#3895D3]/30">
+      <Card className="border-2 border-[#c6d3e3]">
         <CardHeader>
-          <CardTitle className="text-[#072F5F] flex items-center gap-2">
+          <CardTitle className="text-[#304674] flex items-center gap-2">
             <BookOpen className="h-5 w-5" />
             {selectedBankName}
           </CardTitle>
@@ -487,7 +487,7 @@ export function QuestionBankSection() {
           </div>
 
           {/* Questions Table */}
-          <div className="rounded-lg border border-[#3895D3]/20 bg-white">
+          <div className="rounded-lg border border-[#c6d3e3] bg-white">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -515,7 +515,7 @@ export function QuestionBankSection() {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline" className="border-[#3895D3]/40 text-[#072F5F]">
+                        <Badge variant="outline" className="border-[#c6d3e3]/40 text-[#304674]">
                           {question.category || 'Uncategorized'}
                         </Badge>
                       </TableCell>
@@ -523,9 +523,9 @@ export function QuestionBankSection() {
                         <Badge 
                           variant="outline" 
                           className={`${
-                            question.difficulty_level === 'easy' ? 'border-[#3895D3]/40 text-[#3895D3] bg-[#3895D3]/5' :
-                            question.difficulty_level === 'medium' ? 'border-[#1261A0]/40 text-[#1261A0] bg-[#1261A0]/5' :
-                            'border-[#072F5F]/40 text-[#072F5F] bg-[#072F5F]/5'
+                            question.difficulty_level === 'easy' ? 'border-[#c6d3e3]/40 text-[#304674] bg-[#304674]/5' :
+                            question.difficulty_level === 'medium' ? 'border-[#98bad5]/40 text-[#304674] bg-[#d8e1e8]' :
+                            'border-[#c6d3e3] text-[#304674] bg-[#d8e1e8]'
                           }`}
                         >
                           {question.difficulty_level}
@@ -533,9 +533,9 @@ export function QuestionBankSection() {
                       </TableCell>
                       <TableCell>
                         {question.is_active ? (
-                          <Badge className="bg-[#3895D3]/10 text-[#3895D3] border-[#3895D3]/40">Active</Badge>
+                          <Badge className="bg-[#304674]/10 text-[#304674] border-[#c6d3e3]/40">Active</Badge>
                         ) : (
-                          <Badge variant="outline" className="border-[#3895D3]/40 text-gray-600">Inactive</Badge>
+                          <Badge variant="outline" className="border-[#c6d3e3]/40 text-gray-600">Inactive</Badge>
                         )}
                       </TableCell>
                       <TableCell>
@@ -550,7 +550,7 @@ export function QuestionBankSection() {
                               setSelectedQuestion(question)
                               setIsViewDialogOpen(true)
                             }}
-                            className="border-[#3895D3]/40 text-[#3895D3] hover:bg-[#3895D3]/10"
+                            className="border-[#c6d3e3]/40 text-[#304674] hover:bg-[#304674]/10"
                           >
                             <Eye className="h-4 w-4" />
                           </Button>
@@ -561,7 +561,7 @@ export function QuestionBankSection() {
                               setSelectedQuestion(question)
                               setIsEditDialogOpen(true)
                             }}
-                            className="border-[#3895D3]/40 text-[#3895D3] hover:bg-[#3895D3]/10"
+                            className="border-[#c6d3e3]/40 text-[#304674] hover:bg-[#304674]/10"
                           >
                             <Edit className="h-4 w-4" />
                           </Button>
@@ -569,7 +569,7 @@ export function QuestionBankSection() {
                             variant="outline"
                             size="sm"
                             onClick={() => handleDeleteQuestion(question.id)}
-                            className="border-[#3895D3]/40 text-[#072F5F] hover:bg-[#3895D3]/10"
+                            className="border-[#c6d3e3]/40 text-[#304674] hover:bg-[#304674]/10"
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
@@ -616,7 +616,7 @@ export function QuestionBankSection() {
               </div>
               <div>
                 <Label className="text-sm font-semibold text-gray-700">Correct Answer</Label>
-                <Badge className="mt-1 bg-[#3895D3]/10 text-[#3895D3] border-[#3895D3]/40">{selectedQuestion.correct_answer}</Badge>
+                <Badge className="mt-1 bg-[#304674]/10 text-[#304674] border-[#c6d3e3]/40">{selectedQuestion.correct_answer}</Badge>
               </div>
               {selectedQuestion.explanation && (
                 <div>
@@ -781,11 +781,11 @@ export function QuestionBankSection() {
                 type="button"
                 variant="outline"
                 onClick={() => setIsAddDialogOpen(false)}
-                className="border-2 border-[#3895D3]/40 text-[#072F5F]"
+                className="border-2 border-[#c6d3e3]/40 text-[#304674]"
               >
                 Cancel
               </Button>
-              <Button type="submit" className="bg-[#3895D3] hover:bg-[#1261A0] text-white">
+              <Button type="submit" className="bg-[#304674] hover:bg-[#304674]/90 text-white">
                 <Plus className="w-4 h-4 mr-2" />
                 Add Question
               </Button>
@@ -939,11 +939,11 @@ export function QuestionBankSection() {
                   type="button"
                   variant="outline"
                   onClick={() => setIsEditDialogOpen(false)}
-                  className="border-2 border-[#3895D3]/40 text-[#072F5F]"
+                  className="border-2 border-[#c6d3e3]/40 text-[#304674]"
                 >
                   Cancel
                 </Button>
-                <Button type="submit" className="bg-[#3895D3] hover:bg-[#1261A0] text-white">
+                <Button type="submit" className="bg-[#304674] hover:bg-[#304674]/90 text-white">
                   Save Changes
                 </Button>
               </div>
@@ -956,7 +956,7 @@ export function QuestionBankSection() {
       <Dialog open={isCreateBankDialogOpen} onOpenChange={setIsCreateBankDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="text-[#072F5F]">Create New Question Bank Collection</DialogTitle>
+            <DialogTitle className="text-[#304674]">Create New Question Bank Collection</DialogTitle>
             <DialogDescription>
               Create a new collection to organize your questions
             </DialogDescription>
@@ -968,7 +968,7 @@ export function QuestionBankSection() {
                 id="bank_name"
                 name="bank_name"
                 required
-                className="mt-1 border-2 border-[#3895D3]/40"
+                className="mt-1 border-2 border-[#c6d3e3]/40"
                 placeholder="e.g., NCLEX-RN Practice, Pharmacology, Medical-Surgical"
               />
             </div>
@@ -977,7 +977,7 @@ export function QuestionBankSection() {
               <Textarea
                 id="bank_description"
                 name="bank_description"
-                className="mt-1 border-2 border-[#3895D3]/40"
+                className="mt-1 border-2 border-[#c6d3e3]/40"
                 placeholder="Describe what questions belong in this collection..."
               />
             </div>
@@ -986,11 +986,11 @@ export function QuestionBankSection() {
                 type="button"
                 variant="outline"
                 onClick={() => setIsCreateBankDialogOpen(false)}
-                className="border-2 border-[#3895D3]/40 text-[#072F5F]"
+                className="border-2 border-[#c6d3e3]/40 text-[#304674]"
               >
                 Cancel
               </Button>
-              <Button type="submit" className="bg-[#3895D3] hover:bg-[#1261A0] text-white">
+              <Button type="submit" className="bg-[#304674] hover:bg-[#304674]/90 text-white">
                 <FolderPlus className="w-4 h-4 mr-2" />
                 Create Collection
               </Button>

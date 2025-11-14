@@ -254,8 +254,8 @@ function ResultsContent() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3895D3] mx-auto mb-4"></div>
-          <p className="text-lg text-[#072F5F]">Loading results...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#304674] mx-auto mb-4"></div>
+          <p className="text-lg text-[#304674]">Loading results...</p>
         </div>
       </div>
     )
@@ -264,12 +264,12 @@ function ResultsContent() {
   if (!result) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Card className="max-w-md mx-auto border-2 border-[#3895D3]">
+        <Card className="max-w-md mx-auto border-2 border-[#304674]">
           <CardContent className="pt-6 text-center">
             <XCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-[#072F5F] mb-2">Results Not Found</h2>
+            <h2 className="text-xl font-bold text-[#304674] mb-2">Results Not Found</h2>
             <p className="text-gray-600 mb-4">Unable to load exam results.</p>
-            <Button onClick={handleBackToDashboard} className="bg-[#3895D3] hover:bg-[#1261A0]">
+            <Button onClick={handleBackToDashboard} className="bg-[#304674] hover:bg-[#98bad5]">
               Return to Dashboard
             </Button>
           </CardContent>
@@ -281,13 +281,13 @@ function ResultsContent() {
   const categoryBreakdown = getCategoryBreakdown()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-[#3895D3]/5 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-[#304674]/5 to-background">
       <Header />
       
       <main className="pt-24 pb-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Results Header */}
-          <Card className="mb-8 border-2 border-[#3895D3] bg-white">
+          <Card className="mb-8 border-2 border-[#304674] bg-white">
             <CardHeader className="text-center">
               <div className="flex justify-center mb-4">
                 {result.passed ? (
@@ -301,7 +301,7 @@ function ResultsContent() {
                 )}
               </div>
               
-              <CardTitle className="text-3xl font-bold text-[#072F5F] mb-2">
+              <CardTitle className="text-3xl font-bold text-[#304674] mb-2">
                 {result.passed ? 'Congratulations!' : 'Keep Studying!'}
               </CardTitle>
               
@@ -323,14 +323,14 @@ function ResultsContent() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Score Overview */}
-            <Card className="lg:col-span-2 border-2 border-[#3895D3] bg-white">
+            <Card className="lg:col-span-2 border-2 border-[#304674] bg-white">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#072F5F]">Exam Summary</CardTitle>
+                <CardTitle className="text-2xl text-[#304674]">Exam Summary</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Score Display */}
                 <div className="text-center">
-                  <div className="text-6xl font-bold text-[#072F5F] mb-2">
+                  <div className="text-6xl font-bold text-[#304674] mb-2">
                     {result.score_percentage.toFixed(1)}%
                   </div>
                   <div className="text-lg text-gray-600">
@@ -374,9 +374,9 @@ function ResultsContent() {
             </Card>
 
             {/* Category Breakdown */}
-            <Card className="border-2 border-[#3895D3] bg-white">
+            <Card className="border-2 border-[#304674] bg-white">
               <CardHeader>
-                <CardTitle className="text-xl text-[#072F5F]">Performance by Category</CardTitle>
+                <CardTitle className="text-xl text-[#304674]">Performance by Category</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -385,7 +385,7 @@ function ResultsContent() {
                     return (
                       <div key={category} className="space-y-2">
                         <div className="flex justify-between text-sm">
-                          <span className="font-medium text-[#072F5F]">{category}</span>
+                          <span className="font-medium text-[#304674]">{category}</span>
                           <span className="text-gray-600">
                             {stats.correct}/{stats.total} ({percentage.toFixed(0)}%)
                           </span>
@@ -404,7 +404,7 @@ function ResultsContent() {
             <Button
               onClick={handlePrintResults}
               variant="outline"
-              className="border-2 border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10 px-8 py-3"
+              className="border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10 px-8 py-3"
             >
               <Printer className="h-5 w-5 mr-2" />
               Print Results
@@ -412,14 +412,14 @@ function ResultsContent() {
             <Button
               onClick={handleDownloadPdf}
               variant="outline"
-              className="border-2 border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10 px-8 py-3"
+              className="border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10 px-8 py-3"
             >
               <Download className="h-5 w-5 mr-2" />
               Download PDF
             </Button>
             <Button
               onClick={handleRetakeExam}
-              className="bg-[#3895D3] hover:bg-[#1261A0] text-white px-8 py-3"
+              className="bg-[#304674] hover:bg-[#98bad5] text-white px-8 py-3"
             >
               <RotateCcw className="h-5 w-5 mr-2" />
               Retake Exam
@@ -428,7 +428,7 @@ function ResultsContent() {
             <Button
               onClick={handleBackToDashboard}
               variant="outline"
-              className="border-2 border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10 px-8 py-3"
+              className="border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10 px-8 py-3"
             >
               <BookOpen className="h-5 w-5 mr-2" />
               Back to Dashboard
@@ -440,7 +440,7 @@ function ResultsContent() {
             <Button
               variant="outline"
               onClick={() => setShowDetails(!showDetails)}
-              className="border-2 border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10"
+              className="border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10"
             >
               {showDetails ? 'Hide' : 'Show'} Detailed Results
             </Button>
@@ -448,9 +448,9 @@ function ResultsContent() {
 
           {/* Detailed Question Results */}
           {showDetails && (
-            <Card className="mt-8 border-2 border-[#3895D3] bg-white">
+            <Card className="mt-8 border-2 border-[#304674] bg-white">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#072F5F]">Question-by-Question Review</CardTitle>
+                <CardTitle className="text-2xl text-[#304674]">Question-by-Question Review</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
@@ -472,7 +472,7 @@ function ResultsContent() {
                           }`}>
                             Question {index + 1}
                           </Badge>
-                          <Badge variant="outline" className="border-[#3895D3] text-[#3895D3]">
+                          <Badge variant="outline" className="border-[#304674] text-[#304674]">
                             {question.category}
                           </Badge>
                         </div>
@@ -485,7 +485,7 @@ function ResultsContent() {
                         </div>
                       </div>
                       
-                      <p className="text-lg font-medium text-[#072F5F] mb-4">
+                      <p className="text-lg font-medium text-[#304674] mb-4">
                         {question.question_text}
                       </p>
                       

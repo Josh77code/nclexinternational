@@ -255,13 +255,13 @@ export function ExamSection() {
 
   if (isLoading) {
     return (
-      <Card className="border-2 border-[#3895D3] bg-white">
+      <Card className="border-2 border-[#304674] bg-white">
         <CardHeader>
-          <CardTitle className="text-xl text-[#072F5F]">Practice Exam</CardTitle>
+          <CardTitle className="text-xl text-[#304674]">Practice Exam</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#3895D3]"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#304674]"></div>
           </div>
         </CardContent>
       </Card>
@@ -271,14 +271,14 @@ export function ExamSection() {
   return (
     <div className="space-y-6">
       {/* Available Exams Section */}
-      <Card className="border-2 border-[#3895D3] bg-white hover:shadow-lg transition-all duration-300">
+      <Card className="border-2 border-[#304674] bg-white hover:shadow-lg transition-all duration-300">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-xl text-[#072F5F] flex items-center gap-2">
-              <ListChecks className="h-6 w-6 text-[#3895D3]" />
+            <CardTitle className="text-xl text-[#304674] flex items-center gap-2">
+              <ListChecks className="h-6 w-6 text-[#304674]" />
               Available Exams
             </CardTitle>
-            <Badge className="bg-[#3895D3] text-white">
+            <Badge className="bg-[#304674] text-white">
               {availableExams.length} {availableExams.length === 1 ? 'Exam' : 'Exams'}
             </Badge>
           </div>
@@ -287,7 +287,7 @@ export function ExamSection() {
         <CardContent>
           {isLoadingExams ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#3895D3]"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#304674]"></div>
             </div>
           ) : availableExams.length === 0 ? (
             <div className="text-center py-8">
@@ -297,17 +297,17 @@ export function ExamSection() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {availableExams.map((exam) => (
-                <Card key={exam.id} className="border border-gray-200 hover:border-[#3895D3] transition-all">
+                <Card key={exam.id} className="border border-gray-200 hover:border-[#304674] transition-all">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-[#072F5F] mb-1">{exam.title}</h3>
+                        <h3 className="font-semibold text-[#304674] mb-1">{exam.title}</h3>
                         <p className="text-sm text-gray-600">{exam.description}</p>
                       </div>
                     </div>
                     
                     <div className="flex items-center gap-4 mb-4 text-sm">
-                      <Badge className="bg-[#3895D3] text-white">
+                      <Badge className="bg-[#304674] text-white">
                         {exam.question_count} Questions
                       </Badge>
                       <div className="flex items-center gap-1 text-gray-600">
@@ -318,7 +318,7 @@ export function ExamSection() {
                     
                     <Button
                       onClick={() => router.push(`/exam?courseId=${exam.id}`)}
-                      className="w-full bg-[#3895D3] hover:bg-[#1261A0] text-white"
+                      className="w-full bg-[#304674] hover:bg-[#98bad5] text-white"
                     >
                       <Play className="h-4 w-4 mr-2" />
                       Start Exam
@@ -332,14 +332,14 @@ export function ExamSection() {
       </Card>
 
       {/* Exam Results Section */}
-      <Card className="border-2 border-[#3895D3] bg-white hover:shadow-lg transition-all duration-300">
+      <Card className="border-2 border-[#304674] bg-white hover:shadow-lg transition-all duration-300">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-xl text-[#072F5F] flex items-center gap-2">
-              <BookOpen className="h-6 w-6 text-[#3895D3]" />
+            <CardTitle className="text-xl text-[#304674] flex items-center gap-2">
+              <BookOpen className="h-6 w-6 text-[#304674]" />
               Exam Results
             </CardTitle>
-            <Badge className="bg-[#3895D3] text-white">
+            <Badge className="bg-[#304674] text-white">
               {hasAttempted ? 'Available' : 'New'}
             </Badge>
           </div>
@@ -373,7 +373,7 @@ export function ExamSection() {
         {hasAttempted && getLatestResult() && (
           <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between mb-3">
-              <h4 className="font-semibold text-[#072F5F]">Latest Attempt</h4>
+              <h4 className="font-semibold text-[#304674]">Latest Attempt</h4>
               <Badge className={`${
                 getLatestResult()?.passed 
                   ? 'bg-green-100 text-green-800 border-green-300' 
@@ -385,25 +385,25 @@ export function ExamSection() {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
               <div className="text-center">
-                <div className="text-2xl font-bold text-[#072F5F]">
+                <div className="text-2xl font-bold text-[#304674]">
                   {getLatestResult()?.score_percentage.toFixed(1)}%
                 </div>
                 <div className="text-gray-600">Score</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-[#072F5F]">
+                <div className="text-2xl font-bold text-[#304674]">
                   {getLatestResult()?.correct_answers}/{getLatestResult()?.total_questions}
                 </div>
                 <div className="text-gray-600">Correct</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-[#072F5F]">
+                <div className="text-2xl font-bold text-[#304674]">
                   {formatTime(getLatestResult()?.time_taken || 0)}
                 </div>
                 <div className="text-gray-600">Time</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-[#072F5F]">
+                <div className="text-2xl font-bold text-[#304674]">
                   {getPerformanceMessage(getLatestResult()?.score_percentage || 0)}
                 </div>
                 <div className="text-gray-600">Performance</div>
@@ -416,7 +416,7 @@ export function ExamSection() {
         {hasAttempted && examResults.length > 1 && (
           <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
             <div className="flex items-center justify-between mb-3">
-              <h4 className="font-semibold text-[#072F5F] flex items-center gap-2">
+              <h4 className="font-semibold text-[#304674] flex items-center gap-2">
                 <TrendingUp className="h-4 w-4" />
                 Best Performance
               </h4>
@@ -433,7 +433,7 @@ export function ExamSection() {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button asChild className="flex-1 bg-[#3895D3] hover:bg-[#1261A0] text-white">
+          <Button asChild className="flex-1 bg-[#304674] hover:bg-[#98bad5] text-white">
             <Link href="/exam" className="flex items-center justify-center gap-2">
               <Play className="h-4 w-4" />
               {hasAttempted ? 'Retake Exam' : 'Start Exam'}
@@ -441,7 +441,7 @@ export function ExamSection() {
           </Button>
           
           {hasAttempted && getLatestResult() && (
-            <Button asChild variant="outline" className="flex-1 border-2 border-[#3895D3] text-[#3895D3] hover:bg-[#3895D3]/10">
+            <Button asChild variant="outline" className="flex-1 border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10">
               <Link href={`/exam/results?session=${getLatestResult()?.id}`} className="flex items-center justify-center gap-2">
                 <CheckCircle className="h-4 w-4" />
                 View Results

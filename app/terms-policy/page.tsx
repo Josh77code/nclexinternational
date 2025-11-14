@@ -69,7 +69,7 @@ export default function TermsPolicyPage() {
       <Header />
 
       <main className="flex-1 pt-24">
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#3895D3]/10">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#304674]/10">
           <div className="mx-auto max-w-4xl text-center space-y-4">
             <h1 className="text-4xl sm:text-5xl font-bold text-balance">NCLEX KEYS Terms & Policy</h1>
             <p className="text-muted-foreground text-lg">
@@ -80,9 +80,9 @@ export default function TermsPolicyPage() {
         </section>
 
         <section className="py-16 px-4 sm:px-6 lg:px-8 space-y-12 max-w-5xl mx-auto">
-          <Card className="border-2 border-[#3895D3]">
+          <Card className="border-2 border-[#304674]">
             <CardHeader>
-              <CardTitle className="text-2xl text-[#072F5F]">1. Introduction</CardTitle>
+              <CardTitle className="text-2xl text-[#304674]">1. Introduction</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
               {introductionParagraphs.map((paragraph) => (
@@ -91,9 +91,9 @@ export default function TermsPolicyPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#3895D3]">
+          <Card className="border-2 border-[#304674]">
             <CardHeader>
-              <CardTitle className="text-2xl text-[#072F5F]">2. General Policies</CardTitle>
+              <CardTitle className="text-2xl text-[#304674]">2. General Policies</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
               <ul className="list-disc list-inside space-y-3">
@@ -104,9 +104,9 @@ export default function TermsPolicyPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#3895D3]">
+          <Card className="border-2 border-[#304674]">
             <CardHeader>
-              <CardTitle className="text-2xl text-[#072F5F]">2a. General Classes</CardTitle>
+              <CardTitle className="text-2xl text-[#304674]">2a. General Classes</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
               <ul className="list-disc list-inside space-y-3">
@@ -117,9 +117,9 @@ export default function TermsPolicyPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#3895D3]">
+          <Card className="border-2 border-[#304674]">
             <CardHeader>
-              <CardTitle className="text-2xl text-[#072F5F]">2b. One-on-One Push</CardTitle>
+              <CardTitle className="text-2xl text-[#304674]">2b. One-on-One Push</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
               <ul className="list-disc list-inside space-y-3">
@@ -130,9 +130,9 @@ export default function TermsPolicyPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#3895D3]">
+          <Card className="border-2 border-[#304674]">
             <CardHeader>
-              <CardTitle className="text-2xl text-[#072F5F]">2c. Payment Policy</CardTitle>
+              <CardTitle className="text-2xl text-[#304674]">2c. Payment Policy</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
               <ul className="list-disc list-inside space-y-3">
@@ -143,16 +143,16 @@ export default function TermsPolicyPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#3895D3]">
+          <Card className="border-2 border-[#304674]">
             <CardHeader>
-              <CardTitle className="text-2xl text-[#072F5F]">3. Return Policy</CardTitle>
+              <CardTitle className="text-2xl text-[#304674]">3. Return Policy</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
               {returnPolicyParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
               <div>
-                <p className="font-semibold text-[#072F5F] mb-2">Terms & Conditions</p>
+                <p className="font-semibold text-[#304674] mb-2">Terms & Conditions</p>
                 <ul className="list-disc list-inside space-y-3">
                   {returnPolicyTerms.map((policy) => (
                     <li key={policy}>{policy}</li>
@@ -162,9 +162,9 @@ export default function TermsPolicyPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#3895D3]">
+          <Card className="border-2 border-[#304674]">
             <CardHeader>
-              <CardTitle className="text-2xl text-[#072F5F]">4. Conclusion</CardTitle>
+              <CardTitle className="text-2xl text-[#304674]">4. Conclusion</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
               {conclusionParagraphs.map((paragraph) => (

@@ -104,19 +104,19 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="relative py-24 px-4 sm:px-6 lg:px-8 animated-bg-morphing overflow-hidden">
           {/* Advanced animated background shapes */}
-          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-[#072F5F]/30 to-[#1261A0]/30 rounded-full floating-shape-morphing" />
-          <div className="absolute bottom-10 right-20 w-80 h-80 bg-gradient-to-br from-[#1261A0]/30 to-[#3895D3]/30 rounded-full floating-shape-morphing stagger-2" />
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-[#3895D3]/20 to-[#072F5F]/20 rounded-full floating-shape-morphing stagger-4" />
+          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full floating-shape-morphing" />
+          <div className="absolute bottom-10 right-20 w-80 h-80 bg-gradient-to-br from-[#b2cbde]/30 to-[#98bad5]/30 rounded-full floating-shape-morphing stagger-2" />
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-[#98bad5]/20 to-[#304674]/20 rounded-full floating-shape-morphing stagger-4" />
           
           <div className="mx-auto max-w-5xl text-center space-y-8 relative z-10">
-            <h1 className="text-5xl sm:text-7xl font-black animate-fade-in-up text-primary-solid text-shadow-strong">
+            <h1 className="text-5xl sm:text-7xl font-black animate-fade-in-up text-[#304674] text-shadow-strong">
               About NCLEX Keys International
             </h1>
-            <p className="text-2xl text-[#072F5F] text-pretty animate-fade-in-up stagger-1 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-2xl text-[#304674] text-pretty animate-fade-in-up stagger-1 max-w-4xl mx-auto leading-relaxed">
               We are Global NCLEX Tutoring institute with high reputation home and abroad based on the incomparable level of EXCELLENCE we project in ensuring details content, strategic teaching and close monitoring.
             </p>
             <div className="flex justify-center animate-bounce-in stagger-3">
-              <div className="w-24 h-1 bg-primary-solid rounded-full"></div>
+              <div className="w-24 h-1 bg-[#304674] rounded-full"></div>
             </div>
           </div>
         </section>
@@ -126,19 +126,19 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-background via-[#3895D3]/5 to-[#1261A0]/5"></div>
           <div className="mx-auto max-w-5xl space-y-16 relative z-10">
             <div className="group interactive-card p-8 rounded-3xl glass-strong animate-fade-in-up">
-              <h2 className="text-4xl sm:text-5xl font-black mb-8 text-secondary-solid text-shadow">
+              <h2 className="text-4xl sm:text-5xl font-black mb-8 text-[#304674] text-shadow">
                 Our Mission
               </h2>
-              <p className="text-xl text-[#072F5F] leading-relaxed group-hover:text-[#1261A0] transition-all duration-500">
+              <p className="text-xl text-[#304674] leading-relaxed group-hover:text-[#304674] transition-all duration-500">
                 NCLEX KEYS is dedicated to empowering future nurses by providing intensive, results-driven coaching and strategic mentorship. We decode the NCLEX exam through expert guidance, ensuring our students achieve licensure with confidence, efficiency, and the knowledge required for immediate professional success.
               </p>
             </div>
 
             <div className="group interactive-card p-8 rounded-3xl glass-strong animate-fade-in-up stagger-2">
-              <h2 className="text-4xl sm:text-5xl font-black mb-8 text-accent-solid text-shadow">
+              <h2 className="text-4xl sm:text-5xl font-black mb-8 text-#304674 text-shadow">
                 Our Vision
               </h2>
-              <p className="text-xl text-[#072F5F] leading-relaxed group-hover:text-[#1261A0] transition-all duration-500">
+              <p className="text-xl text-[#304674] leading-relaxed group-hover:text-[#304674] transition-all duration-500">
                 To be the globally recognized, premier standard for strategic NCLEX preparation, transforming aspiring nurses into confident, licensed clinicians ready to excel and lead in patient care.
               </p>
             </div>
@@ -149,7 +149,7 @@ export default function AboutPage() {
         <section className="relative py-24 px-4 sm:px-6 lg:px-8 animated-bg overflow-hidden">
           {/* Advanced decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none">
-            <div className="absolute top-20 right-10 w-80 h-80 bg-gradient-to-br from-primary/30 to-purple-500/30 rounded-full blur-3xl floating-shape-morphing" />
+            <div className="absolute top-20 right-10 w-80 h-80 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full blur-3xl floating-shape-morphing" />
             <div className="absolute bottom-20 left-10 w-64 h-64 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full blur-3xl floating-shape-morphing stagger-3" />
           </div>
           
@@ -171,7 +171,7 @@ export default function AboutPage() {
                   style={{ animationDelay: `${index * 0.15}s` }}
                 >
                   <CardContent className="pt-10 text-center space-y-6">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/30 to-purple-500/30 text-primary mx-auto group-hover:scale-125 transition-all duration-700 group-hover:rotate-12 animate-tilt">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 text-primary mx-auto group-hover:scale-125 transition-all duration-700 group-hover:rotate-12 animate-tilt">
                       <value.icon className="h-10 w-10 group-hover:animate-pulse" />
                     </div>
                     <h3 className="font-black text-2xl group-hover:text-primary transition-all duration-500 gradient-text-secondary">{value.title}</h3>
@@ -184,7 +184,7 @@ export default function AboutPage() {
         </section>
 
         <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-purple-500/5 to-primary/5"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-[#c6d3e3] to-[#d8e1e8]"></div>
           <div className="mx-auto max-w-7xl relative z-10">
             <div className="text-center space-y-6 mb-20">
               <h2 className="text-4xl sm:text-6xl font-black gradient-text text-shadow-strong animate-text-reveal">

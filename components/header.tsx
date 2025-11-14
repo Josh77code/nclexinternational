@@ -35,11 +35,11 @@ export function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-[#072F5F]/20 bg-white shadow-lg shadow-[#3895D3]/40 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-2">
-              <Logo className="h-10 w-10 text-[#072F5F] drop-shadow-md" aria-hidden />
-              <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-[#F5B301] animate-pulse" />
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-[#c6d3e3] bg-white shadow-lg shadow-[#98bad5]/40 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-2">
+              <Logo className="h-10 w-10 text-[#304674] drop-shadow-md" aria-hidden />
+              <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-[#98bad5] animate-pulse" />
             </div>
-            <span className="text-xl font-bold text-[#072F5F] tracking-wide">
+            <span className="text-xl font-bold text-[#304674] tracking-wide">
               NCLEX Keys International
             </span>
           </Link>
@@ -53,7 +53,7 @@ export function Header() {
                 className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 group"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-solid transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#304674] transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
@@ -64,7 +64,7 @@ export function Header() {
             </Button>
             <Button
               asChild
-              className="bg-primary-solid hover:bg-secondary-solid text-white shadow-lg shadow-[#3895D3]/40 hover:shadow-xl hover:shadow-[#3895D3]/50 transition-all duration-300 hover:scale-105"
+              className="bg-[#304674] hover:bg-[#304674]/90 text-white shadow-lg shadow-[#98bad5]/40 hover:shadow-xl hover:shadow-[#98bad5]/50 transition-all duration-300 hover:scale-105"
             >
               <Link href="/contact">Request Access</Link>
             </Button>
@@ -97,7 +97,7 @@ export function Header() {
               <Button variant="ghost" asChild className="w-full">
                 <Link href="/login">Login</Link>
               </Button>
-              <Button asChild className="w-full bg-primary-solid hover:bg-secondary-solid text-white">
+              <Button asChild className="w-full bg-[#304674] hover:bg-[#304674]/90 text-white">
                 <Link href="/contact">Request Access</Link>
               </Button>
             </div>

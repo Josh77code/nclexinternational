@@ -245,7 +245,7 @@ export default function CreateCoursePage() {
                       id="student_grade"
                       value={courseData.student_grade || ''}
                       onChange={(e) => setCourseData({...courseData, student_grade: e.target.value as 'starter' | 'mid' | 'higher' | '' | null})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3895D3]"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#304674]"
                       required
                     >
                       <option value="">Select Grade Level</option>

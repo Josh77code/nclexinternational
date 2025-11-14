@@ -203,17 +203,17 @@ export default function InstructorDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-[#d8e1e8] via-[#c6d3e3] to-[#b2cbde]">
       {/* Header */}
       <div className="bg-white shadow-md border-b-2 border-teal-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-gradient-to-br from-teal-500 to-indigo-500 rounded-lg shadow-lg shadow-teal-500/50">
+              <div className="p-2 bg-gradient-to-br from-[#304674] to-[#304674] rounded-lg shadow-lg shadow-teal-500/50">
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-indigo-600 bg-clip-text text-transparent">Instructor Dashboard</h1>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-[#304674] to-[#304674] bg-clip-text text-transparent">Instructor Dashboard</h1>
                 <p className="text-gray-600 font-medium">Manage your courses and students</p>
               </div>
             </div>
@@ -239,14 +239,14 @@ export default function InstructorDashboard() {
               <Button 
                 onClick={() => window.location.href = '/dashboard/instructor/upload-questions'}
                 variant="outline"
-                className="border-2 border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50 text-indigo-700 font-semibold"
+                className="border-2 border-[#c6d3e3] hover:border-[#98bad5] hover:bg-[#d8e1e8] text-[#304674] font-semibold"
               >
                 <Upload className="w-4 h-4 mr-2" />
                 Upload Questions
               </Button>
               <Button 
                 onClick={() => window.location.href = '/dashboard/instructor/create-course'}
-                className="bg-gradient-to-r from-teal-500 to-indigo-500 hover:from-teal-600 hover:to-indigo-600 text-white font-semibold shadow-lg shadow-teal-500/40"
+                className="bg-gradient-to-r from-[#304674] to-[#304674] hover:from-teal-600 hover:to-indigo-600 text-white font-semibold shadow-lg shadow-teal-500/40"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Create Course
@@ -270,7 +270,7 @@ export default function InstructorDashboard() {
                       {stat.change} from last month
                     </p>
                   </div>
-                  <div className="p-3 bg-gradient-to-br from-teal-500 to-indigo-500 rounded-lg shadow-lg shadow-teal-500/40">
+                  <div className="p-3 bg-gradient-to-br from-[#304674] to-[#304674] rounded-lg shadow-lg shadow-teal-500/40">
                     <stat.icon className="w-6 h-6 text-white" />
                   </div>
                 </div>
@@ -435,7 +435,7 @@ export default function InstructorDashboard() {
             </div>
             <Button 
               onClick={() => window.location.href = '/dashboard/instructor/upload-questions'}
-              className="bg-[#3895D3] hover:bg-[#1261A0] text-white font-semibold"
+              className="bg-[#304674] hover:bg-[#98bad5] text-white font-semibold"
             >
               <Upload className="w-4 h-4 mr-2" />
               Upload Questions

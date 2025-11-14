@@ -141,22 +141,22 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col overflow-hidden">
       <Header />
 
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-[#d8e1e8] via-[#c6d3e3] to-[#b2cbde]">
         {/* Floating shapes */}
-        <div className="absolute top-20 -left-20 w-72 h-72 bg-[#3895D3]/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
-        <div className="absolute top-40 -right-32 w-96 h-96 bg-[#1261A0]/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
-        <div className="absolute bottom-20 left-1/3 w-64 h-64 bg-[#072F5F]/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "4s" }} />
+        <div className="absolute top-20 -left-20 w-72 h-72 bg-[#98bad5] rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
+        <div className="absolute top-40 -right-32 w-96 h-96 bg-[#b2cbde] rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
+        <div className="absolute bottom-20 left-1/3 w-64 h-64 bg-[#98bad5] rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "4s" }} />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center space-y-8">
             <div className="space-y-4 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border-2 border-[#3895D3] shadow-lg">
-                <Sparkles className="h-4 w-4 text-[#3895D3]" />
-                <span className="text-sm font-medium text-[#072F5F]">Premier Strategic NCLEX Coaching</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border-2 border-[#c6d3e3] shadow-lg">
+                <Sparkles className="h-4 w-4 text-[#304674]" />
+                <span className="text-sm font-medium text-[#304674]">Premier Strategic NCLEX Coaching</span>
               </div>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-balance">
-                Your Path to <span className="text-primary-solid">NCLEX Excellence</span>
+                Your Path to <span className="text-[#304674]">NCLEX Excellence</span>
               </h1>
             </div>
 
@@ -168,7 +168,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 asChild
-                className="bg-primary-solid text-white text-lg px-8 py-6 shadow-xl shadow-[#3895D3]/40 hover:shadow-2xl hover:shadow-[#3895D3]/50 transition-all hover:scale-105 hover:bg-[#1261A0]"
+                className="bg-[#304674] hover:bg-[#304674]/90 text-white text-lg px-8 py-6 shadow-xl shadow-[#98bad5]/40 hover:shadow-2xl hover:shadow-[#98bad5]/50 transition-all hover:scale-105"
               >
                 <Link href="/programs">
                   <span className="flex items-center gap-2">
@@ -181,7 +181,7 @@ export default function HomePage() {
                 size="lg"
                 variant="outline"
                 asChild
-                className="border-2 border-[#3895D3] hover:border-[#1261A0] bg-white hover:bg-[#3895D3]/10 text-[#072F5F] text-lg px-8 py-6 transition-all hover:scale-105 hover:shadow-lg"
+                className="border-2 border-[#c6d3e3] hover:border-[#98bad5] bg-white hover:bg-[#d8e1e8] text-[#304674] text-lg px-8 py-6 transition-all hover:scale-105 hover:shadow-lg"
               >
                 <Link href="/about">
                   <span className="flex items-center gap-2">
@@ -195,18 +195,18 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-20">
             {[
-              { value: "100+", label: "Nurses Coached to Success", color: "from-[#072F5F]/10 to-[#1261A0]/20", textColor: "text-[#072F5F]", shadow: "hover:shadow-[#072F5F]/30" },
-              { value: "1 Year", label: "Academy Excellence", color: "from-[#1261A0]/10 to-[#3895D3]/20", textColor: "text-[#1261A0]", shadow: "hover:shadow-[#1261A0]/30" },
-              { value: "25 Years", label: "Clinical Experience", color: "from-[#3895D3]/10 to-[#072F5F]/20", textColor: "text-[#3895D3]", shadow: "hover:shadow-[#3895D3]/30" },
+              { value: "100+", label: "Nurses Coached to Success", bgColor: "bg-[#d8e1e8]", textColor: "text-[#304674]", shadow: "hover:shadow-[#98bad5]/30" },
+              { value: "1 Year", label: "Academy Excellence", bgColor: "bg-[#c6d3e3]", textColor: "text-[#304674]", shadow: "hover:shadow-[#98bad5]/30" },
+              { value: "25 Years", label: "Clinical Experience", bgColor: "bg-[#b2cbde]", textColor: "text-[#304674]", shadow: "hover:shadow-[#98bad5]/30" },
             ].map((stat, index) => (
               <div
                 key={index}
-                className={`rounded-2xl p-8 text-center bg-gradient-to-br ${stat.color} border-2 border-[#3895D3] shadow-lg ${stat.shadow} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-[#1261A0]`}
+                className={`rounded-2xl p-8 text-center ${stat.bgColor} border-2 border-[#c6d3e3] shadow-lg ${stat.shadow} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-[#98bad5]`}
               >
                 <div className={`text-5xl font-bold ${stat.textColor} mb-2`}>
                   {stat.value}
                 </div>
-                <div className="text-sm text-[#072F5F] font-medium">{stat.label}</div>
+                <div className="text-sm text-[#304674] font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -228,13 +228,13 @@ export default function HomePage() {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-300 hover:-translate-y-2 border-2 border-[#3895D3] hover:border-[#1261A0] bg-white"
+                className="group hover:shadow-2xl hover:shadow-[#98bad5]/30 transition-all duration-300 hover:-translate-y-2 border-2 border-[#c6d3e3] hover:border-[#98bad5] bg-white"
               >
                 <CardHeader>
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-pink-500/20 text-purple-600 mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/50">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#d8e1e8] text-[#304674] mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 group-hover:shadow-lg group-hover:shadow-[#98bad5]/50">
                     <feature.icon className="h-7 w-7" />
                   </div>
-                  <CardTitle className="text-xl group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:via-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text transition-colors">{feature.title}</CardTitle>
+                  <CardTitle className="text-xl text-[#304674] group-hover:text-[#304674] transition-colors">{feature.title}</CardTitle>
                   <CardDescription className="text-base leading-relaxed">{feature.description}</CardDescription>
                 </CardHeader>
               </Card>
@@ -244,33 +244,33 @@ export default function HomePage() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50/50 via-purple-50/50 to-pink-50/50">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#d8e1e8] via-[#c6d3e3] to-[#b2cbde]">
         <div className="mx-auto max-w-6xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in-up">
-            <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl sm:text-5xl font-bold text-[#304674]">
               Our Mission & Vision
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="group hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-300 border-2 border-[#3895D3] hover:border-[#1261A0] bg-white">
+            <Card className="group hover:shadow-2xl hover:shadow-[#98bad5]/30 transition-all duration-300 border-2 border-[#c6d3e3] hover:border-[#98bad5] bg-white">
               <CardHeader className="space-y-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 text-indigo-600 mb-2 group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-indigo-500/50">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#d8e1e8] text-[#304674] mb-2 group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-[#98bad5]/50">
                   <Target className="h-7 w-7" />
                 </div>
-                <CardTitle className="text-2xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Mission</CardTitle>
+                <CardTitle className="text-2xl text-[#304674]">Mission</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-foreground">
                   NCLEX KEYS is dedicated to empowering future nurses by providing intensive, results-driven coaching and strategic mentorship. We decode the NCLEX exam through expert guidance, ensuring our students achieve licensure with confidence, efficiency, and the knowledge required for immediate professional success.
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="group hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-300 border-2 border-[#3895D3] hover:border-[#1261A0] bg-white">
+            <Card className="group hover:shadow-2xl hover:shadow-[#98bad5]/30 transition-all duration-300 border-2 border-[#c6d3e3] hover:border-[#98bad5] bg-white">
               <CardHeader className="space-y-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 text-pink-600 mb-2 group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-pink-500/50">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#b2cbde] text-[#304674] mb-2 group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-[#98bad5]/50">
                   <Sparkles className="h-7 w-7" />
                 </div>
-                <CardTitle className="text-2xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Vision</CardTitle>
+                <CardTitle className="text-2xl text-[#304674]">Vision</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-foreground">
                   To be the globally recognized, premier standard for strategic NCLEX preparation, transforming aspiring nurses into confident, licensed clinicians ready to excel and lead in patient care.
                 </CardDescription>
@@ -305,13 +305,13 @@ export default function HomePage() {
                   />
                 </div>
               ) : (
-                <div className="p-8 bg-gradient-to-br from-[#072F5F]/10 via-white to-[#3895D3]/10 min-h-[22rem] flex flex-col justify-between">
+                <div className="p-8 bg-gradient-to-br from-[#d8e1e8] via-white to-[#c6d3e3] min-h-[22rem] flex flex-col justify-between">
                   <div className="space-y-4">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#072F5F]/10 text-[#072F5F] text-xs font-semibold uppercase tracking-wide">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d8e1e8] text-[#304674] text-xs font-semibold uppercase tracking-wide">
                       <Sparkles className="h-3 w-3" />
                       Testimonial Spotlight
                     </span>
-                    <h3 className="text-2xl font-bold text-[#072F5F]">
+                    <h3 className="text-2xl font-bold text-[#304674]">
                       {currentSlide.headline}
                     </h3>
                     <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
@@ -320,7 +320,7 @@ export default function HomePage() {
                       ))}
                     </div>
                   </div>
-                  <div className="pt-6 text-right text-sm font-semibold text-[#072F5F]">
+                  <div className="pt-6 text-right text-sm font-semibold text-[#304674]">
                     — {currentSlide.person}
                   </div>
                 </div>

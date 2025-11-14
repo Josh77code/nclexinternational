@@ -112,14 +112,14 @@ export default function UploadQuestionsPage() {
       <Header />
       <main className="flex-1 pt-24 pb-12 bg-white">
         <div className="max-w-3xl mx-auto px-4">
-          <Card className="border-2 border-[#3895D3] bg-white">
+          <Card className="border-2 border-[#c6d3e3] bg-white">
             <CardHeader>
-              <CardTitle className="text-2xl text-[#072F5F]">Upload Weekly Questions (CSV)</CardTitle>
+              <CardTitle className="text-2xl text-[#304674]">Upload Weekly Questions (CSV)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="bg-[#3895D3]/10 border border-[#3895D3]/30 rounded-lg p-4 space-y-2">
-                <p className="font-semibold text-[#072F5F]">How Course-Based Question Uploads Work:</p>
-                <ul className="text-sm text-[#072F5F] space-y-1 list-disc list-inside">
+              <div className="bg-[#d8e1e8] border border-[#c6d3e3] rounded-lg p-4 space-y-2">
+                <p className="font-semibold text-[#304674]">How Course-Based Question Uploads Work:</p>
+                <ul className="text-sm text-[#304674] space-y-1 list-disc list-inside">
                   <li><strong>Each course can have its own questions:</strong> Select the course before uploading</li>
                   <li><strong>Recommended: 100+ questions</strong> per course exam for best results</li>
                   <li>Upload different question sets for each of the 5 courses separately</li>
@@ -142,26 +142,26 @@ export default function UploadQuestionsPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="course-select" className="text-sm font-medium text-gray-700">
-                  Course: <span className="text-[#072F5F] font-semibold">*Required for course-specific questions</span>
+                  Course: <span className="text-[#304674] font-semibold">*Required for course-specific questions</span>
                 </Label>
                 <Select value={selectedCourseId} onValueChange={setSelectedCourseId}>
-                  <SelectTrigger id="course-select" className="w-full border-2 border-[#3895D3] text-[#3895D3]">
-                    <SelectValue placeholder="Select a course (required for 5 courses setup)" className="text-[#3895D3]" />
+                  <SelectTrigger id="course-select" className="w-full border-2 border-[#c6d3e3] text-[#304674]">
+                    <SelectValue placeholder="Select a course (required for 5 courses setup)" className="text-[#304674]" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="none" className="text-[#3895D3] focus:text-[#3895D3]">General Questions (No specific course)</SelectItem>
+                    <SelectItem value="none" className="text-[#304674] focus:text-[#304674]">General Questions (No specific course)</SelectItem>
                     {courses.map((course) => (
-                      <SelectItem key={course.id} value={course.id} className="text-[#3895D3] focus:text-[#3895D3]">
+                      <SelectItem key={course.id} value={course.id} className="text-[#304674] focus:text-[#304674]">
                         {course.title}
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                <div className="bg-[#3895D3]/10 border border-[#3895D3]/30 rounded-lg p-3">
-                  <p className="text-xs text-[#072F5F] font-semibold">
+                <div className="bg-[#d8e1e8] border border-[#c6d3e3] rounded-lg p-3">
+                  <p className="text-xs text-[#304674] font-semibold">
                     <strong>⚠️ IMPORTANT for 5 Courses Setup:</strong>
                   </p>
-                  <ul className="text-xs text-[#072F5F] mt-1 space-y-1 list-disc list-inside">
+                  <ul className="text-xs text-[#304674] mt-1 space-y-1 list-disc list-inside">
                     <li>Select the course BEFORE uploading questions</li>
                     <li>Upload different question sets for each of the 5 courses separately</li>
                     <li>Students will see and select exams by course name</li>
@@ -175,13 +175,13 @@ export default function UploadQuestionsPage() {
                   Student Grade (Required):
                 </Label>
                 <Select value={selectedGrade} onValueChange={setSelectedGrade}>
-                  <SelectTrigger id="student-grade" className="w-full border-2 border-[#3895D3] text-[#3895D3]">
-                    <SelectValue placeholder="Select grade level for these questions" className="text-[#3895D3]" />
+                  <SelectTrigger id="student-grade" className="w-full border-2 border-[#c6d3e3] text-[#304674]">
+                    <SelectValue placeholder="Select grade level for these questions" className="text-[#304674]" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="starter" className="text-[#3895D3] focus:text-[#3895D3]">Starter (Beginner)</SelectItem>
-                    <SelectItem value="mid" className="text-[#3895D3] focus:text-[#3895D3]">Mid (Intermediate)</SelectItem>
-                    <SelectItem value="higher" className="text-[#3895D3] focus:text-[#3895D3]">Higher (Advanced)</SelectItem>
+                    <SelectItem value="starter" className="text-[#304674] focus:text-[#304674]">Starter (Beginner)</SelectItem>
+                    <SelectItem value="mid" className="text-[#304674] focus:text-[#304674]">Mid (Intermediate)</SelectItem>
+                    <SelectItem value="higher" className="text-[#304674] focus:text-[#304674]">Higher (Advanced)</SelectItem>
                   </SelectContent>
                 </Select>
                 <p className="text-xs text-gray-500">Students will only see questions for their grade level. This is required.</p>
@@ -206,7 +206,7 @@ export default function UploadQuestionsPage() {
 
               <div className="flex items-center gap-3">
                 <Input type="file" accept=".csv" onChange={onChange} className="flex-1" />
-                <Button onClick={() => window.open('/questions-template.csv', '_blank')} variant="outline" className="border-2 border-[#3895D3] text-[#3895D3]">
+                <Button onClick={() => window.open('/questions-template.csv', '_blank')} variant="outline" className="border-2 border-[#c6d3e3] text-[#304674]">
                   Download Template
                 </Button>
               </div>
@@ -242,16 +242,16 @@ export default function UploadQuestionsPage() {
               </div>
 
               <div className="flex gap-3 pt-2">
-                <Button disabled={!file || isUploading || !selectedGrade} onClick={onSubmit} className="bg-[#3895D3] hover:bg-[#1261A0]">
+                <Button disabled={!file || isUploading || !selectedGrade} onClick={onSubmit} className="bg-[#304674] hover:bg-[#304674]/90">
                   {isUploading ? 'Uploading...' : 'Upload CSV'}
                 </Button>
               </div>
               {!selectedGrade && (
-                <p className="text-sm text-[#072F5F]">Please select a student grade level before uploading.</p>
+                <p className="text-sm text-[#304674]">Please select a student grade level before uploading.</p>
               )}
               {result && (
-                <div className={`mt-4 p-3 rounded border ${result.ok ? 'bg-[#3895D3]/10 border-[#3895D3]/30' : 'bg-[#072F5F]/10 border-[#072F5F]/30'}`}>
-                  <pre className={`whitespace-pre-wrap text-sm ${result.ok ? 'text-[#072F5F]' : 'text-[#072F5F]'}`}>{JSON.stringify(result.data, null, 2)}</pre>
+                <div className={`mt-4 p-3 rounded border ${result.ok ? 'bg-[#304674]/10 border-[#3895D3]/30' : 'bg-[#072F5F]/10 border-[#072F5F]/30'}`}>
+                  <pre className={`whitespace-pre-wrap text-sm ${result.ok ? 'text-[#304674]' : 'text-[#304674]'}`}>{JSON.stringify(result.data, null, 2)}</pre>
                 </div>
               )}
             </CardContent>
