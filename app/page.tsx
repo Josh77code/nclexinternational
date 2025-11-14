@@ -138,7 +138,7 @@ export default function HomePage() {
   const isImageSlide = currentSlide.type === "image"
 
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden">
+    <div className="min-h-screen flex flex-col overflow-hidden bg-white">
       <Header />
 
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white">
@@ -239,7 +239,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="mx-auto max-w-7xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in-up">
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">

@@ -27,7 +27,7 @@
   --chart-2: 192 132 252; /* Purple-400 */
   --chart-3: 217 70 239; /* Fuchsia-500 */
   --chart-4: 236 72 153; /* Pink-500 */
-  --chart-5: 251 146 60; /* Orange-400 */
+  --chart-5: 192 132 252; /* Purple-400 - Changed from Orange to match purple theme */
   --radius: 0.75rem;
   --sidebar: 243 232 255; /* Purple-50 */
   --sidebar-foreground: 107 33 168; /* Purple-800 */
@@ -78,8 +78,12 @@
   border-color: hsl(var(--border));
 }
 
+html {
+  background-color: white !important;
+}
+
 body {
-  background-color: hsl(var(--background));
+  background-color: white !important;
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
 }
