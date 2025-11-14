@@ -142,25 +142,51 @@ export default function HomePage() {
       <Header />
 
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white">
-        {/* Floating shapes */}
-        <div className="absolute top-20 -left-20 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
-        <div className="absolute top-40 -right-32 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
-        <div className="absolute bottom-20 left-1/3 w-64 h-64 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "4s" }} />
+        {/* Wave-like abstract shapes - Purple theme */}
+        <div className="absolute top-0 right-0 w-[600px] h-[700px] opacity-80 pointer-events-none">
+          <svg viewBox="0 0 600 700" className="w-full h-full absolute top-0 right-0">
+            <path
+              d="M0,300 Q150,200 300,280 T600,260 L600,700 L0,700 Z"
+              fill="#9333EA"
+              className="animate-pulse-slow"
+            />
+          </svg>
+        </div>
+        <div className="absolute top-20 right-0 w-[500px] h-[600px] opacity-60 pointer-events-none">
+          <svg viewBox="0 0 500 600" className="absolute top-0 right-0">
+            <path
+              d="M0,250 Q120,180 250,240 T500,220 L500,600 L0,600 Z"
+              fill="#A855F7"
+              className="animate-pulse-slow"
+              style={{ animationDelay: "1s" }}
+            />
+          </svg>
+        </div>
+        <div className="absolute bottom-0 right-0 w-[400px] h-[500px] opacity-40 pointer-events-none">
+          <svg viewBox="0 0 400 500" className="absolute bottom-0 right-0">
+            <path
+              d="M0,200 Q100,150 200,200 T400,180 L400,500 L0,500 Z"
+              fill="#C084FC"
+              className="animate-pulse-slow"
+              style={{ animationDelay: "2s" }}
+            />
+          </svg>
+        </div>
 
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center space-y-8">
             <div className="space-y-4 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border-2 border-[#c6d3e3] shadow-lg">
-                <Sparkles className="h-4 w-4 text-[#304674]" />
-                <span className="text-sm font-medium text-[#304674]">Premier Strategic NCLEX Coaching</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 backdrop-blur-sm border-2 border-purple-200 shadow-lg">
+                <Sparkles className="h-4 w-4 text-purple-600" />
+                <span className="text-sm font-medium text-purple-700">Premier Strategic NCLEX Coaching</span>
               </div>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-balance">
-                Your Path to <span className="text-[#304674]">NCLEX Excellence</span>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-balance text-gray-900 leading-tight">
+                Your Path to <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-purple-800">NCLEX Excellence</span>
               </h1>
             </div>
 
-            <p className="text-xl sm:text-2xl text-[#304674] max-w-3xl mx-auto text-pretty animate-fade-in-up stagger-1">
+            <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto text-pretty animate-fade-in-up stagger-1 leading-relaxed">
               Join over 100 successful nursing professionals who have unlocked their NCLEX with intensive, results-driven coaching from Boss B and the NCLEX KEYS team.
             </p>
 
@@ -168,7 +194,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 asChild
-                className="bg-[#304674] hover:bg-[#304674]/90 text-white text-lg px-8 py-6 shadow-xl shadow-[#98bad5]/40 hover:shadow-2xl hover:shadow-[#98bad5]/50 transition-all hover:scale-105"
+                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white text-lg px-8 py-6 shadow-xl shadow-purple-500/40 hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-105 rounded-lg"
               >
                 <Link href="/programs">
                   <span className="flex items-center gap-2">
@@ -181,7 +207,7 @@ export default function HomePage() {
                 size="lg"
                 variant="outline"
                 asChild
-                className="border-2 border-[#c6d3e3] hover:border-[#98bad5] bg-white hover:bg-white text-[#304674] text-lg px-8 py-6 transition-all hover:scale-105 hover:shadow-lg"
+                className="border-2 border-purple-200 hover:border-purple-400 bg-white hover:bg-purple-50 text-purple-700 hover:text-purple-800 text-lg px-8 py-6 transition-all hover:scale-105 hover:shadow-lg rounded-lg"
               >
                 <Link href="/about">
                   <span className="flex items-center gap-2">
@@ -195,18 +221,18 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-20">
             {[
-              { value: "100+", label: "Nurses Coached to Success", bgColor: "bg-white", textColor: "text-[#304674]", shadow: "hover:shadow-[#98bad5]/30" },
-              { value: "1 Year", label: "Academy Excellence", bgColor: "bg-white", textColor: "text-[#304674]", shadow: "hover:shadow-[#98bad5]/30" },
-              { value: "25 Years", label: "Clinical Experience", bgColor: "bg-white", textColor: "text-[#304674]", shadow: "hover:shadow-[#98bad5]/30" },
+              { value: "100+", label: "Nurses Coached to Success", bgColor: "bg-white", textColor: "text-gray-900", shadow: "hover:shadow-purple-300/30" },
+              { value: "1 Year", label: "Academy Excellence", bgColor: "bg-white", textColor: "text-gray-900", shadow: "hover:shadow-purple-300/30" },
+              { value: "25 Years", label: "Clinical Experience", bgColor: "bg-white", textColor: "text-gray-900", shadow: "hover:shadow-purple-300/30" },
             ].map((stat, index) => (
               <div
                 key={index}
-                className={`rounded-2xl p-8 text-center ${stat.bgColor} border-2 border-[#c6d3e3] shadow-lg ${stat.shadow} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-[#98bad5]`}
+                className={`rounded-2xl p-8 text-center ${stat.bgColor} border-2 border-purple-100 shadow-lg ${stat.shadow} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-purple-300`}
               >
                 <div className={`text-5xl font-bold ${stat.textColor} mb-2`}>
                   {stat.value}
                 </div>
-                <div className="text-sm text-[#304674] font-medium">{stat.label}</div>
+                <div className="text-sm text-gray-700 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -216,10 +242,10 @@ export default function HomePage() {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in-up">
-            <h2 className="text-4xl sm:text-5xl font-bold text-[#304674]">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
               Why Choose NCLEX KEYS?
             </h2>
-            <p className="text-lg text-[#304674] max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Strategic, intensive coaching that transforms NCLEX preparation into confident success.
             </p>
           </div>
@@ -228,13 +254,13 @@ export default function HomePage() {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-2xl hover:shadow-[#98bad5]/30 transition-all duration-300 hover:-translate-y-2 border-2 border-[#c6d3e3] hover:border-[#98bad5] bg-white"
+                className="group hover:shadow-2xl hover:shadow-purple-300/30 transition-all duration-300 hover:-translate-y-2 border-2 border-purple-100 hover:border-purple-400 bg-white"
               >
                 <CardHeader>
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white text-[#304674] mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 group-hover:shadow-lg group-hover:shadow-[#98bad5]/50">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-purple-100 text-purple-600 mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/50">
                     <feature.icon className="h-7 w-7" />
                   </div>
-                  <CardTitle className="text-xl text-[#304674] group-hover:text-[#304674] transition-colors">{feature.title}</CardTitle>
+                  <CardTitle className="text-xl text-gray-900 group-hover:text-purple-700 transition-colors">{feature.title}</CardTitle>
                   <CardDescription className="text-base leading-relaxed">{feature.description}</CardDescription>
                 </CardHeader>
               </Card>
@@ -247,31 +273,31 @@ export default function HomePage() {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="mx-auto max-w-6xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in-up">
-            <h2 className="text-4xl sm:text-5xl font-bold text-[#304674] text-[#304674]">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
               Our Mission & Vision
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="group hover:shadow-2xl hover:shadow-[#98bad5]/30 transition-all duration-300 border-2 border-[#c6d3e3] hover:border-[#98bad5] bg-white">
+            <Card className="group hover:shadow-2xl hover:shadow-purple-300/30 transition-all duration-300 border-2 border-purple-100 hover:border-purple-400 bg-white">
               <CardHeader className="space-y-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white text-[#304674] mb-2 group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-[#98bad5]/50">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-purple-100 text-purple-600 mb-2 group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-purple-500/50">
                   <Target className="h-7 w-7" />
                 </div>
-                <CardTitle className="text-2xl text-[#304674]">Mission</CardTitle>
-                <CardDescription className="text-base leading-relaxed text-[#304674]">
+                <CardTitle className="text-2xl text-gray-900">Mission</CardTitle>
+                <CardDescription className="text-base leading-relaxed text-gray-600">
                   NCLEX KEYS is dedicated to empowering future nurses by providing intensive, results-driven coaching and strategic mentorship. We decode the NCLEX exam through expert guidance, ensuring our students achieve licensure with confidence, efficiency, and the knowledge required for immediate professional success.
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="group hover:shadow-2xl hover:shadow-[#98bad5]/30 transition-all duration-300 border-2 border-[#c6d3e3] hover:border-[#98bad5] bg-white">
+            <Card className="group hover:shadow-2xl hover:shadow-purple-300/30 transition-all duration-300 border-2 border-purple-100 hover:border-purple-400 bg-white">
               <CardHeader className="space-y-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white text-[#304674] mb-2 group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-[#98bad5]/50">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-purple-100 text-purple-600 mb-2 group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-purple-500/50">
                   <Sparkles className="h-7 w-7" />
                 </div>
-                <CardTitle className="text-2xl text-[#304674]">Vision</CardTitle>
-                <CardDescription className="text-base leading-relaxed text-[#304674]">
+                <CardTitle className="text-2xl text-gray-900">Vision</CardTitle>
+                <CardDescription className="text-base leading-relaxed text-gray-600">
                   To be the globally recognized, premier standard for strategic NCLEX preparation, transforming aspiring nurses into confident, licensed clinicians ready to excel and lead in patient care.
                 </CardDescription>
               </CardHeader>
@@ -283,10 +309,10 @@ export default function HomePage() {
       <section id="testimonials" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in-up">
-            <h2 className="text-4xl sm:text-5xl font-bold text-[#304674] text-[#304674]">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
               Student Success Stories
             </h2>
-            <p className="text-lg text-[#304674] max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Hear from our students who have passed their NCLEX exams.
             </p>
           </div>
@@ -307,20 +333,20 @@ export default function HomePage() {
               ) : (
                 <div className="p-8 bg-white min-h-[22rem] flex flex-col justify-between">
                   <div className="space-y-4">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-[#304674] text-xs font-semibold uppercase tracking-wide">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-semibold uppercase tracking-wide border border-purple-200">
                       <Sparkles className="h-3 w-3" />
                       Testimonial Spotlight
                     </span>
-                    <h3 className="text-2xl font-bold text-[#304674]">
+                    <h3 className="text-2xl font-bold text-gray-900">
                       {currentSlide.headline}
                     </h3>
-                    <div className="space-y-3 text-sm text-[#304674] leading-relaxed">
+                    <div className="space-y-3 text-sm text-gray-700 leading-relaxed">
                       {currentSlide.body.map((paragraph: string) => (
                         <p key={paragraph}>{paragraph}</p>
                       ))}
                     </div>
                   </div>
-                  <div className="pt-6 text-right text-sm font-semibold text-[#304674]">
+                  <div className="pt-6 text-right text-sm font-semibold text-purple-700">
                     — {currentSlide.person}
                   </div>
                 </div>
@@ -363,7 +389,7 @@ export default function HomePage() {
 
             {/* Testimony counter */}
             <div className="text-center mt-4">
-              <span className="text-sm text-[#304674]">
+              <span className="text-sm text-gray-600">
                 {currentTestimony + 1} of {testimonySlides.length}
               </span>
             </div>
@@ -373,14 +399,14 @@ export default function HomePage() {
 
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="relative mx-auto max-w-4xl text-center space-y-8 animate-fade-in-up">
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#304674] text-[#304674]">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
             Ready to Start Your Journey?
           </h2>
-          <p className="text-xl text-[#304674]">Join our community of successful nursing professionals today.</p>
+          <p className="text-xl text-gray-600">Join our community of successful nursing professionals today.</p>
           <Button
             size="lg"
             asChild
-            className="text-lg px-10 py-7"
+            className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white text-lg px-10 py-7 shadow-xl shadow-purple-500/40 rounded-lg"
           >
             <Link href="/register">
               <span className="flex items-center gap-2">

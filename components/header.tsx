@@ -35,11 +35,11 @@ export function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-[#c6d3e3] bg-white shadow-lg shadow-[#98bad5]/40 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-2">
-              <Logo className="h-10 w-10 text-[#304674] drop-shadow-md" aria-hidden />
-              <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-[#98bad5] animate-pulse" />
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-200 bg-white shadow-lg shadow-purple-500/40 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-2">
+              <Logo className="h-10 w-10 text-purple-600 drop-shadow-md" aria-hidden />
+              <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-purple-500 animate-pulse" />
             </div>
-            <span className="text-xl font-bold text-[#304674] tracking-wide">
+            <span className="text-xl font-bold text-gray-900 tracking-wide">
               NCLEX Keys International
             </span>
           </Link>
@@ -50,10 +50,10 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 group"
+                className="relative text-sm font-medium text-gray-600 hover:text-purple-600 transition-all duration-300 group"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#304674] transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
@@ -64,7 +64,7 @@ export function Header() {
             </Button>
             <Button
               asChild
-              className="bg-[#304674] hover:bg-[#304674]/90 text-white shadow-lg shadow-[#98bad5]/40 hover:shadow-xl hover:shadow-[#98bad5]/50 transition-all duration-300 hover:scale-105"
+              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 rounded-lg"
             >
               <Link href="/contact">Request Access</Link>
             </Button>
