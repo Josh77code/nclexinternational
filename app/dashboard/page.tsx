@@ -96,7 +96,7 @@ export default async function DashboardPage() {
   const progressPercentage = totalCourses > 0 ? Math.round((completedCourses / totalCourses) * 100) : 0
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-[#d8e1e8] to-background">
+    <div className="min-h-screen bg-white">
       <DashboardHeader user={userData} />
 
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
@@ -105,7 +105,7 @@ export default async function DashboardPage() {
             <Card className="border-2 border-[#c6d3e3] shadow-sm bg-white">
               <CardHeader>
                 <CardTitle className="text-[#304674] text-2xl">Welcome back</CardTitle>
-                <CardDescription className="text-sm text-muted-foreground">
+                <CardDescription className="text-sm text-[#304674]">
                   Your profile updates automatically as we migrate you across grades.
                 </CardDescription>
               </CardHeader>
@@ -114,7 +114,7 @@ export default async function DashboardPage() {
                   <p className="text-lg font-semibold text-[#304674]">
                     {userData?.full_name || "NCLEX Keys Student"}
                   </p>
-                  <p className="text-sm text-muted-foreground">{user?.email}</p>
+                  <p className="text-sm text-[#304674]">{user?.email}</p>
                 </div>
                 {gradeLabel && (
                   <Badge className="bg-[#d8e1e8] text-[#304674] border border-[#c6d3e3] px-3 py-1 text-xs font-semibold uppercase tracking-wide">
@@ -139,7 +139,7 @@ export default async function DashboardPage() {
                   Quick Progress Snapshot
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <CardContent className="space-y-2 text-sm text-[#304674]">
                 <p>
                   Courses completed: <span className="font-semibold text-[#304674]">{completedCourses}</span> /{" "}
                   <span className="font-semibold text-[#304674]">{totalCourses}</span>

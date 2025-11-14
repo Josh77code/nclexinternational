@@ -104,8 +104,8 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="relative py-24 px-4 sm:px-6 lg:px-8 animated-bg-morphing overflow-hidden">
           {/* Advanced animated background shapes */}
-          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full floating-shape-morphing" />
-          <div className="absolute bottom-10 right-20 w-80 h-80 bg-gradient-to-br from-[#b2cbde]/30 to-[#98bad5]/30 rounded-full floating-shape-morphing stagger-2" />
+          <div className="absolute top-20 left-10 w-96 h-96 bg-white rounded-full floating-shape-morphing" />
+          <div className="absolute bottom-10 right-20 w-80 h-80 bg-white rounded-full floating-shape-morphing stagger-2" />
           <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-[#98bad5]/20 to-[#304674]/20 rounded-full floating-shape-morphing stagger-4" />
           
           <div className="mx-auto max-w-5xl text-center space-y-8 relative z-10">
@@ -123,7 +123,7 @@ export default function AboutPage() {
 
         {/* Mission Section */}
         <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-[#3895D3]/5 to-[#1261A0]/5"></div>
+          <div className="absolute inset-0 bg-white"></div>
           <div className="mx-auto max-w-5xl space-y-16 relative z-10">
             <div className="group interactive-card p-8 rounded-3xl glass-strong animate-fade-in-up">
               <h2 className="text-4xl sm:text-5xl font-black mb-8 text-[#304674] text-shadow">
@@ -149,8 +149,8 @@ export default function AboutPage() {
         <section className="relative py-24 px-4 sm:px-6 lg:px-8 animated-bg overflow-hidden">
           {/* Advanced decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none">
-            <div className="absolute top-20 right-10 w-80 h-80 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full blur-3xl floating-shape-morphing" />
-            <div className="absolute bottom-20 left-10 w-64 h-64 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full blur-3xl floating-shape-morphing stagger-3" />
+            <div className="absolute top-20 right-10 w-80 h-80 bg-white rounded-full blur-3xl floating-shape-morphing" />
+            <div className="absolute bottom-20 left-10 w-64 h-64 bg-white rounded-full blur-3xl floating-shape-morphing stagger-3" />
           </div>
           
           <div className="mx-auto max-w-7xl relative z-10">
@@ -158,7 +158,7 @@ export default function AboutPage() {
               <h2 className="text-4xl sm:text-6xl font-black gradient-text text-shadow-strong animate-text-reveal">
                 Our Core Values
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up stagger-1">
+              <p className="text-xl text-[#304674] max-w-3xl mx-auto animate-fade-in-up stagger-1">
                 These principles guide everything we do at NCLEX Keys International.
               </p>
             </div>
@@ -171,11 +171,11 @@ export default function AboutPage() {
                   style={{ animationDelay: `${index * 0.15}s` }}
                 >
                   <CardContent className="pt-10 text-center space-y-6">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 text-primary mx-auto group-hover:scale-125 transition-all duration-700 group-hover:rotate-12 animate-tilt">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white text-primary mx-auto group-hover:scale-125 transition-all duration-700 group-hover:rotate-12 animate-tilt">
                       <value.icon className="h-10 w-10 group-hover:animate-pulse" />
                     </div>
                     <h3 className="font-black text-2xl group-hover:text-primary transition-all duration-500 gradient-text-secondary">{value.title}</h3>
-                    <p className="text-base text-muted-foreground group-hover:text-foreground transition-all duration-500 leading-relaxed">{value.description}</p>
+                    <p className="text-base text-[#304674] group-hover:text-[#304674] transition-all duration-500 leading-relaxed">{value.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -184,13 +184,13 @@ export default function AboutPage() {
         </section>
 
         <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-[#c6d3e3] to-[#d8e1e8]"></div>
+      <div className="absolute inset-0 bg-white"></div>
           <div className="mx-auto max-w-7xl relative z-10">
             <div className="text-center space-y-6 mb-20">
               <h2 className="text-4xl sm:text-6xl font-black gradient-text text-shadow-strong animate-text-reveal">
                 Board of Directors
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up stagger-1">
+              <p className="text-xl text-[#304674] max-w-3xl mx-auto animate-fade-in-up stagger-1">
                 Visionary leaders driving NCLEX KEYS to excellence in nursing education and strategic global engagement.
               </p>
             </div>
@@ -205,18 +205,18 @@ export default function AboutPage() {
                       alt={boardMembers[0].name}
                       className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-all duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   </div>
                   <CardContent className="p-8 space-y-6 flex flex-col justify-center">
                     <div className="space-y-4">
-                      <div className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-primary/20 to-purple-500/20 border border-primary/30">
+                      <div className="inline-block px-4 py-2 rounded-full bg-white border border-primary/30">
                         <span className="text-xs font-bold text-primary uppercase tracking-wider">Founder & CEO</span>
                       </div>
                       <h3 className="font-black text-3xl group-hover:text-primary transition-all duration-500 gradient-text-secondary">{boardMembers[0].name}</h3>
                       <p className="text-sm text-primary font-bold">{boardMembers[0].title}</p>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-all duration-500">{boardMembers[0].bio}</p>
+                    <p className="text-sm text-[#304674] leading-relaxed group-hover:text-[#304674] transition-all duration-500">{boardMembers[0].bio}</p>
                   </CardContent>
                 </div>
               </Card>
@@ -237,15 +237,15 @@ export default function AboutPage() {
                       className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-120 group-hover:rotate-3"
                       style={member.imagePosition ? { objectPosition: member.imagePosition } : undefined}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-all duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   </div>
                   <CardContent className="pt-8 space-y-4 relative">
                     <div className="text-center space-y-3">
                       <h3 className="font-black text-xl group-hover:text-primary transition-all duration-500 gradient-text-secondary">{member.name}</h3>
-                      <p className="text-sm text-primary font-bold bg-gradient-to-r from-primary/20 to-purple-500/20 px-4 py-2 rounded-full inline-block border border-soft">{member.title}</p>
+                      <p className="text-sm text-primary font-bold bg-white px-4 py-2 rounded-full inline-block border border-soft">{member.title}</p>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-all duration-500">{member.bio}</p>
+                    <p className="text-sm text-[#304674] leading-relaxed group-hover:text-[#304674] transition-all duration-500">{member.bio}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -255,15 +255,15 @@ export default function AboutPage() {
 
         {/* Team Section */}
         <section className="relative py-24 px-4 sm:px-6 lg:px-8 animated-bg-morphing overflow-hidden">
-          <div className="absolute bottom-10 left-20 w-96 h-96 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full floating-shape-morphing blur-3xl" />
-          <div className="absolute top-10 right-20 w-80 h-80 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full floating-shape-morphing blur-3xl stagger-2" />
+          <div className="absolute bottom-10 left-20 w-96 h-96 bg-white rounded-full floating-shape-morphing blur-3xl" />
+          <div className="absolute top-10 right-20 w-80 h-80 bg-white rounded-full floating-shape-morphing blur-3xl stagger-2" />
           
           <div className="mx-auto max-w-5xl relative z-10">
             <div className="text-center space-y-8">
               <h2 className="text-4xl sm:text-6xl font-black gradient-text text-shadow-strong animate-text-reveal">
                 Our Expert Team
               </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed text-center group-hover:text-foreground transition-all duration-500 px-4 max-w-4xl mx-auto animate-fade-in-up stagger-1">
+              <p className="text-xl text-[#304674] leading-relaxed text-center group-hover:text-[#304674] transition-all duration-500 px-4 max-w-4xl mx-auto animate-fade-in-up stagger-1">
                 Our instructors are experienced nursing professionals and educators who are passionate about helping
                 students succeed. With decades of combined experience in nursing education and NCLEX preparation, our team
                 brings unparalleled expertise to every course we offer.

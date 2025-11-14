@@ -4,7 +4,7 @@ import { Logo } from "@/components/logo"
 
 export function Footer() {
   return (
-    <footer className="relative bg-gradient-to-br from-[#d8e1e8] via-[#c6d3e3] to-[#b2cbde] border-t-2 border-[#98bad5]/30 overflow-hidden">
+    <footer className="relative bg-white border-t-2 border-[#98bad5]/30 overflow-hidden">
       {/* Decorative background */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-10 right-20 w-64 h-64 bg-[#98bad5]/40 rounded-full blur-3xl animate-float" />

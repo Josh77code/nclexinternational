@@ -203,7 +203,7 @@ export default function InstructorDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#d8e1e8] via-[#c6d3e3] to-[#b2cbde]">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-white shadow-md border-b-2 border-teal-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -214,7 +214,7 @@ export default function InstructorDashboard() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-[#304674] to-[#304674] bg-clip-text text-transparent">Instructor Dashboard</h1>
-                <p className="text-gray-600 font-medium">Manage your courses and students</p>
+                <p className="text-[#304674] font-medium">Manage your courses and students</p>
               </div>
             </div>
             <div className="flex gap-3">
@@ -264,7 +264,7 @@ export default function InstructorDashboard() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-semibold text-gray-600">{stat.title}</p>
+                    <p className="text-sm font-semibold text-[#304674]">{stat.title}</p>
                     <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
                     <p className={`text-sm font-medium ${stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`}>
                       {stat.change} from last month
@@ -313,13 +313,13 @@ export default function InstructorDashboard() {
           {loading ? (
             <div className="text-center py-12">
               <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-600">Loading courses...</p>
+              <p className="text-[#304674]">Loading courses...</p>
             </div>
           ) : filteredCourses.length === 0 ? (
             <div className="text-center py-12">
               <BookOpen className="w-12 h-12 mx-auto mb-4 text-gray-400" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">No courses found</h3>
-              <p className="text-gray-600 mb-4">Create your first course to get started</p>
+              <p className="text-[#304674] mb-4">Create your first course to get started</p>
               <Button 
                 onClick={() => window.location.href = '/dashboard/instructor/create-course'}
                 className="bg-primary text-primary-foreground hover:bg-primary/90"
@@ -431,7 +431,7 @@ export default function InstructorDashboard() {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Question Bank Collections</h2>
-              <p className="text-gray-600 mt-1">Organize and manage exam questions in collections</p>
+              <p className="text-[#304674] mt-1">Organize and manage exam questions in collections</p>
             </div>
             <Button 
               onClick={() => window.location.href = '/dashboard/instructor/upload-questions'}
@@ -454,7 +454,7 @@ export default function InstructorDashboard() {
                   <div className="flex items-center justify-between mb-3">
                     <div>
                       <h4 className="font-semibold text-gray-900">{student.name}</h4>
-                      <p className="text-sm text-gray-600">{student.email}</p>
+                      <p className="text-sm text-[#304674]">{student.email}</p>
                     </div>
                     <Badge 
                       variant={student.status === 'active' ? 'default' : 'secondary'}
@@ -464,13 +464,13 @@ export default function InstructorDashboard() {
                     </Badge>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-[#304674]">
                       <span className="font-medium">Course:</span> {student.course}
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-[#304674]">
                       <span className="font-medium">Progress:</span> {student.progress}%
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-[#304674]">
                       <span className="font-medium">Last Active:</span> {student.lastActive}
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2 mt-2">

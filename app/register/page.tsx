@@ -7,9 +7,9 @@ import { AlertCircle, GraduationCap, Phone, Shield } from "lucide-react"
 
 export default function RegisterPage() {
   return (
-    <div className="relative min-h-screen flex items-center justify-center px-4 py-16 bg-gradient-to-br from-[#d8e1e8] via-[#c6d3e3] to-[#b2cbde] overflow-hidden">
-      <div className="absolute top-20 -right-20 w-96 h-96 bg-[#b2cbde] rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
-      <div className="absolute bottom-20 -left-20 w-96 h-96 bg-[#98bad5] rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
+    <div className="relative min-h-screen flex items-center justify-center px-4 py-16 bg-white overflow-hidden">
+      <div className="absolute top-20 -right-20 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
+      <div className="absolute bottom-20 -left-20 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
 
       <Card className="w-full max-w-xl relative z-10 shadow-2xl border-2 border-[#c6d3e3] bg-white/95 backdrop-blur">
         <CardHeader className="space-y-4">

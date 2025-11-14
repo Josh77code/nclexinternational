@@ -70,14 +70,14 @@ export default function ProgramsPage() {
 
       <main className="flex-1 pt-24">
         {/* Hero Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#304674]/5">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="mx-auto max-w-5xl text-center space-y-6">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#304674]/5 border border-[#304674]/20">
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white border border-[#304674]/20">
               <Sparkles className="h-4 w-4 text-[#304674]" />
               <span className="text-sm font-semibold text-[#304674] tracking-wide">OUR PACKAGES</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-balance">Tailored NCLEX Pathways for Every Nurse</h1>
-            <p className="text-xl text-muted-foreground text-pretty max-w-3xl mx-auto">
+            <p className="text-xl text-[#304674] text-pretty max-w-3xl mx-auto">
               Pricing is shared directly by our admin team so we can recommend the perfect plan for your goals, location,
               and timeline. Review the options below and reach out for your personalised quote.
             </p>
@@ -100,10 +100,10 @@ export default function ProgramsPage() {
                         <pkg.icon className="h-6 w-6" />
                       </div>
                     </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{pkg.summary}</p>
+                    <p className="text-[#304674] text-sm leading-relaxed">{pkg.summary}</p>
                   </CardHeader>
                   <CardContent className="flex-1 pt-6">
-                    <ul className="space-y-3 text-sm text-muted-foreground">
+                    <ul className="space-y-3 text-sm text-[#304674]">
                       {pkg.highlights.map((item) => (
                         <li key={item} className="flex items-start gap-2">
                           <span className="mt-1 h-2 w-2 rounded-full bg-[#304674]" />
@@ -127,43 +127,43 @@ export default function ProgramsPage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#304674]/5">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-bold mb-12 text-center">What You Enjoy in Every Package</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Strategic Video Lectures</h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-[#304674] text-sm">
                   Six hours weekly with Boss B and specialist tutors, replayable on-demand so you never miss a lesson.
                 </p>
               </div>
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Practice Questions</h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-[#304674] text-sm">
                   Curated drills, NCLEX-style assessments, and academy question banks to sharpen your exam instincts.
                 </p>
               </div>
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Study Materials</h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-[#304674] text-sm">
                   Downloadable curriculum, schedules, and revision checklists tailored to your target test date.
                 </p>
               </div>
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Progress Tracking</h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-[#304674] text-sm">
                   Monthly reviews and readiness checks backed by tutor insight and assessment data.
                 </p>
               </div>
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Community Access</h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-[#304674] text-sm">
                   Immediate entry into our Telegram and WhatsApp hubs for support, testimonies, and accountability.
                 </p>
               </div>
               <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Mobile Access</h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-[#304674] text-sm">
                   Learn anywhere, anytime with resources optimised for mobile, so shifts never slow your growth.
                 </p>
               </div>
@@ -182,7 +182,7 @@ export default function ProgramsPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Choose Your Package</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-[#304674]">
                     Pick the structure and support that align with your preferred learning style.
                   </p>
                 </div>
@@ -193,7 +193,7 @@ export default function ProgramsPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Reach Out for Pricing</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-[#304674]">
                     Chat with our admin on WhatsApp via <span className="font-semibold">+234 703 736 7480</span> or email{" "}
                     <a className="text-primary hover:underline" href="mailto:nclexkeysintl.academy@gmail.com">
                       nclexkeysintl.academy@gmail.com
@@ -208,7 +208,7 @@ export default function ProgramsPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Confirm & Enrol</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-[#304674]">
                     Finalise your plan, complete payment, and receive your access token for the academy.
                   </p>
                 </div>
@@ -219,7 +219,7 @@ export default function ProgramsPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Start Learning</h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-[#304674]">
                     Dive into classes, communities, and personalised guidance immediately.
                   </p>
                 </div>
@@ -229,10 +229,10 @@ export default function ProgramsPage() {
         </section>
 
         {/* Direct Contact CTA */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#304674]/5">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="mx-auto max-w-3xl text-center space-y-6">
             <h2 className="text-3xl font-bold text-[#304674]">Ready for Your Personalised Quote?</h2>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-[#304674] text-lg">
               Send us a message and our administrative team will guide you to the plan that guarantees your NCLEX success.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

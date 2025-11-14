@@ -69,23 +69,23 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center px-4 py-12 bg-white overflow-hidden">
       {/* Floating shapes */}
-      <div className="absolute top-20 -left-20 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
-      <div className="absolute bottom-20 -right-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-20 -left-20 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
+      <div className="absolute bottom-20 -right-20 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
       
-      <Card className="w-full max-w-md relative z-10 shadow-2xl border-2 border-purple-200 bg-white">
+      <Card className="w-full max-w-md relative z-10 shadow-2xl border-2 border-[#c6d3e3] bg-white">
         <CardHeader className="space-y-6 pb-8">
           <div className="flex justify-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/50">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#304674] text-white shadow-lg shadow-[#98bad5]/50">
               <GraduationCap className="h-9 w-9" />
             </div>
           </div>
           <div className="text-center space-y-2">
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <CardTitle className="text-3xl font-bold text-[#304674]">
               Welcome Back
             </CardTitle>
-            <CardDescription className="text-base text-gray-600">Login to access your NCLEX preparation dashboard</CardDescription>
+            <CardDescription className="text-base text-[#304674]">Login to access your NCLEX preparation dashboard</CardDescription>
           </div>
         </CardHeader>
         <CardContent className="pb-8">
@@ -98,34 +98,34 @@ export default function LoginPage() {
             )}
 
             <div className="space-y-2 group">
-              <Label htmlFor="email" className="text-sm font-semibold text-gray-700">Email</Label>
+              <Label htmlFor="email" className="text-sm font-semibold text-[#304674]">Email</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="john@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="h-11 border-2 border-gray-300 bg-white focus:border-purple-500 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:text-gray-900"
+                className="h-11 border-2 border-[#c6d3e3] bg-white focus:border-[#304674] text-[#304674] placeholder:text-[#304674] focus:bg-white focus:text-[#304674]"
                 required
               />
             </div>
 
             <div className="space-y-2 group">
-              <Label htmlFor="password" className="text-sm font-semibold text-gray-700">Password</Label>
+              <Label htmlFor="password" className="text-sm font-semibold text-[#304674]">Password</Label>
               <Input
                 id="password"
                 type="password"
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="h-11 border-2 border-gray-300 bg-white focus:border-purple-500 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:text-gray-900"
+                className="h-11 border-2 border-[#c6d3e3] bg-white focus:border-[#304674] text-[#304674] placeholder:text-[#304674] focus:bg-white focus:text-[#304674]"
                 required
               />
             </div>
 
             <Button 
               type="submit" 
-              className="w-full h-12 text-base bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700 text-white shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-500/50 transition-all" 
+              className="w-full h-12 text-base bg-[#304674] hover:bg-[#304674]/90 text-white shadow-lg shadow-[#98bad5]/40 hover:shadow-xl hover:shadow-[#98bad5]/50 transition-all" 
               disabled={loading}
             >
               {loading ? (
@@ -139,7 +139,7 @@ export default function LoginPage() {
             </Button>
 
             <div className="text-center text-sm pt-2">
-              <span className="text-gray-600">Need an account? </span>
+              <span className="text-[#304674]">Need an account? </span>
               <Link href="/contact" className="text-purple-600 hover:text-pink-600 font-semibold hover:underline">
                 Contact the Admin Team
               </Link>

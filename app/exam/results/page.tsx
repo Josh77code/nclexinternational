@@ -268,7 +268,7 @@ function ResultsContent() {
           <CardContent className="pt-6 text-center">
             <XCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <h2 className="text-xl font-bold text-[#304674] mb-2">Results Not Found</h2>
-            <p className="text-gray-600 mb-4">Unable to load exam results.</p>
+            <p className="text-[#304674] mb-4">Unable to load exam results.</p>
             <Button onClick={handleBackToDashboard} className="bg-[#304674] hover:bg-[#98bad5]">
               Return to Dashboard
             </Button>
@@ -281,7 +281,7 @@ function ResultsContent() {
   const categoryBreakdown = getCategoryBreakdown()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-[#304674]/5 to-background">
+    <div className="min-h-screen bg-white">
       <Header />
       
       <main className="pt-24 pb-8">
@@ -305,7 +305,7 @@ function ResultsContent() {
                 {result.passed ? 'Congratulations!' : 'Keep Studying!'}
               </CardTitle>
               
-              <p className="text-lg text-gray-600 mb-4">
+              <p className="text-lg text-[#304674] mb-4">
                 {getPerformanceMessage()}
               </p>
               
@@ -333,7 +333,7 @@ function ResultsContent() {
                   <div className="text-6xl font-bold text-[#304674] mb-2">
                     {result.score_percentage.toFixed(1)}%
                   </div>
-                  <div className="text-lg text-gray-600">
+                  <div className="text-lg text-[#304674]">
                     {result.correct_answers} out of {result.total_questions} correct
                   </div>
                   <Progress 
@@ -386,7 +386,7 @@ function ResultsContent() {
                       <div key={category} className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span className="font-medium text-[#304674]">{category}</span>
-                          <span className="text-gray-600">
+                          <span className="text-[#304674]">
                             {stats.correct}/{stats.total} ({percentage.toFixed(0)}%)
                           </span>
                         </div>
@@ -491,7 +491,7 @@ function ResultsContent() {
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <p className="text-sm font-medium text-gray-600 mb-2">Your Answer:</p>
+                          <p className="text-sm font-medium text-[#304674] mb-2">Your Answer:</p>
                           <div className={`p-3 rounded border-2 ${
                             question.is_correct
                               ? 'border-green-300 bg-green-100'
@@ -504,7 +504,7 @@ function ResultsContent() {
                         </div>
                         
                         <div>
-                          <p className="text-sm font-medium text-gray-600 mb-2">Correct Answer:</p>
+                          <p className="text-sm font-medium text-[#304674] mb-2">Correct Answer:</p>
                           <div className="p-3 rounded border-2 border-green-300 bg-green-100">
                             <span className="font-medium">{question.correct_answer}</span>
                           </div>

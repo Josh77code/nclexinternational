@@ -447,7 +447,7 @@ export default function ExamPage() {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-[#304674]/5 to-background">
+    <div className="min-h-screen bg-white">
       <Header />
       
       <main className="pt-24 pb-8">
