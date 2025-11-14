@@ -5,10 +5,16 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { NCLEX3DScene } from "@/components/nclex-3d-scene"
+import dynamic from "next/dynamic"
 import { CheckCircle, BookOpen, Users, Award, TrendingUp, Clock, Sparkles, Zap, Target, ChevronLeft, ChevronRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
+
+// Dynamically import Three.js component with SSR disabled (requires browser APIs)
+const NCLEX3DScene = dynamic(() => import("@/components/nclex-3d-scene").then((mod) => ({ default: mod.NCLEX3DScene })), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-transparent" />
+})
 
 export default function HomePage() {
   const [currentTestimony, setCurrentTestimony] = useState(0)
