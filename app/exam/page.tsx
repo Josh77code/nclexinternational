@@ -465,7 +465,7 @@ export default function ExamPage() {
                     <Clock className="h-5 w-5" />
                     <span className="font-bold text-lg">{formatTime(timeRemaining)}</span>
                     {isPaused && (
-                      <Badge variant="outline" className="border-orange-500 text-orange-600 bg-orange-50">
+                      <Badge variant="outline" className="border-purple-500 text-purple-600 bg-purple-50">
                         PAUSED
                       </Badge>
                     )}
@@ -480,7 +480,7 @@ export default function ExamPage() {
                     className={`border-2 ${
                       isPaused
                         ? 'border-green-500 text-green-600 hover:bg-green-50'
-                        : 'border-orange-500 text-orange-600 hover:bg-orange-50'
+                        : 'border-purple-500 text-purple-600 hover:bg-purple-50'
                     }`}
                   >
                     {isPaused ? (
@@ -675,7 +675,7 @@ export default function ExamPage() {
               <p className="text-gray-600">
                 You have answered {getAnsweredCount()} out of {questions.length} questions.
                 {getUnansweredCount() > 0 && (
-                  <span className="block mt-2 text-orange-600">
+                  <span className="block mt-2 text-purple-600">
                     {getUnansweredCount()} questions remain unanswered.
                   </span>
                 )}

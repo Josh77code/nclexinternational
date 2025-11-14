@@ -4,7 +4,7 @@ import { Logo } from "@/components/logo"
 
 export function Footer() {
   return (
-    <footer className="relative bg-white border-t-2 border-[#98bad5]/30 overflow-hidden">
+    <footer className="relative bg-white border-t-2 border-purple-200 overflow-hidden">
       {/* Decorative background */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-10 right-20 w-64 h-64 bg-[#98bad5]/40 rounded-full blur-3xl animate-float" />
@@ -16,29 +16,29 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4 group">
             <div className="flex items-center gap-3">
-              <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-[#c6d3e3] bg-white shadow-lg shadow-[#98bad5]/40 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
-                <Logo className="h-12 w-12 text-[#304674] drop-shadow-md" aria-hidden />
+              <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-purple-200 bg-white shadow-lg shadow-purple-200/40 group-hover:scale-110 transition-transform duration-500 group-hover:rotate-3">
+                <Logo className="h-12 w-12 text-purple-700 drop-shadow-md" aria-hidden />
                 <span className="sr-only">NCLEX Keys International</span>
               </div>
-              <span className="text-xl font-bold text-[#304674] tracking-wide">
+              <span className="text-xl font-bold text-purple-700 tracking-wide">
                 NCLEX Keys International
               </span>
             </div>
-            <p className="text-sm text-[#304674] leading-relaxed group-hover:text-[#304674] transition-colors duration-300 font-semibold">
+            <p className="text-sm text-purple-700 leading-relaxed group-hover:text-purple-600 transition-colors duration-300 font-semibold">
               Empowering nursing professionals with strategic coaching, relentless support, and transformative NCLEX outcomes.
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="group">
-            <h3 className="font-bold text-lg mb-5 text-secondary-solid">
+            <h3 className="font-bold text-lg mb-5 text-purple-700">
               Quick Links
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link 
                   href="/about" 
-                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                  className="text-sm text-purple-700 hover:text-purple-600 hover:translate-x-2 transition-all duration-300 inline-block font-bold"
                 >
                   → About Us
                 </Link>
@@ -46,7 +46,7 @@ export function Footer() {
               <li>
                 <Link 
                   href="/#testimonials" 
-                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                  className="text-sm text-purple-700 hover:text-purple-600 hover:translate-x-2 transition-all duration-300 inline-block font-bold"
                 >
                   → Testimonials
                 </Link>
@@ -54,7 +54,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/programs"
-                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                  className="text-sm text-purple-700 hover:text-purple-600 hover:translate-x-2 transition-all duration-300 inline-block font-bold"
                 >
                   → Programs
                 </Link>
@@ -62,7 +62,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                  className="text-sm text-purple-700 hover:text-purple-600 hover:translate-x-2 transition-all duration-300 inline-block font-bold"
                 >
                   → Services
                 </Link>
@@ -70,7 +70,7 @@ export function Footer() {
               <li>
                 <Link 
                   href="/contact" 
-                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                  className="text-sm text-purple-700 hover:text-purple-600 hover:translate-x-2 transition-all duration-300 inline-block font-bold"
                 >
                   → Contact
                 </Link>
@@ -78,7 +78,7 @@ export function Footer() {
               <li>
                 <Link 
                   href="/advertisement"
-                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                  className="text-sm text-purple-700 hover:text-purple-600 hover:translate-x-2 transition-all duration-300 inline-block font-bold"
                 >
                   → Advertisement
                 </Link>
@@ -86,7 +86,7 @@ export function Footer() {
               <li>
                 <Link 
                   href="/operations"
-                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                  className="text-sm text-purple-700 hover:text-purple-600 hover:translate-x-2 transition-all duration-300 inline-block font-bold"
                 >
                   → Our Operations
                 </Link>
@@ -94,7 +94,7 @@ export function Footer() {
               <li>
                 <Link 
                   href="/terms-policy"
-                  className="text-sm text-foreground hover:text-primary hover:translate-x-2 transition-all duration-300 inline-block font-bold"
+                  className="text-sm text-purple-700 hover:text-purple-600 hover:translate-x-2 transition-all duration-300 inline-block font-bold"
                 >
                   → Terms & Policy
                 </Link>
@@ -104,14 +104,14 @@ export function Footer() {
 
           {/* Programs */}
           <div className="group">
-            <h3 className="font-bold text-lg mb-5 text-accent-solid">
+            <h3 className="font-bold text-lg mb-5 text-purple-700">
               Programs
             </h3>
             <ul className="space-y-3">
-              <li className="text-sm text-foreground hover:text-primary transition-colors duration-300 cursor-pointer font-bold">
+              <li className="text-sm text-purple-700 hover:text-purple-600 transition-colors duration-300 cursor-pointer font-bold">
                 ✓ NCLEX-RN Review
               </li>
-              <li className="text-sm text-foreground hover:text-primary transition-colors duration-300 cursor-pointer font-bold">
+              <li className="text-sm text-purple-700 hover:text-purple-600 transition-colors duration-300 cursor-pointer font-bold">
                 ✓ NCLEX-PN Essentials
               </li>
             </ul>
@@ -119,28 +119,28 @@ export function Footer() {
 
           {/* Contact */}
           <div className="group">
-            <h3 className="font-bold text-lg mb-5 text-secondary-solid">
+            <h3 className="font-bold text-lg mb-5 text-purple-700">
               Contact Us
             </h3>
             <ul className="space-y-4">
-              <li className="flex items-center gap-3 text-sm text-foreground hover:text-[#304674] transition-all duration-300 hover:translate-x-1 cursor-pointer font-bold">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#d8e1e8] text-[#304674]">
+              <li className="flex items-center gap-3 text-sm text-purple-700 hover:text-purple-600 transition-all duration-300 hover:translate-x-1 cursor-pointer font-bold">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-100 text-purple-700">
                   <Mail className="h-4 w-4" />
                 </div>
-                <a href="mailto:nclexkeysintl.academy@gmail.com" className="hover:text-[#304674] transition-colors duration-300">
+                <a href="mailto:nclexkeysintl.academy@gmail.com" className="hover:text-purple-600 transition-colors duration-300">
                   nclexkeysintl.academy@gmail.com
                 </a>
               </li>
-              <li className="flex items-center gap-3 text-sm text-foreground hover:text-[#304674] transition-all duration-300 hover:translate-x-1 cursor-pointer font-bold">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#d8e1e8] text-[#304674]">
+              <li className="flex items-center gap-3 text-sm text-purple-700 hover:text-purple-600 transition-all duration-300 hover:translate-x-1 cursor-pointer font-bold">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-100 text-purple-700">
                   <Phone className="h-4 w-4" />
                 </div>
-                <a href="tel:+2347037367480" className="hover:text-[#304674] transition-colors duration-300">
+                <a href="tel:+2347037367480" className="hover:text-purple-600 transition-colors duration-300">
                   +234 703 736 7480
                 </a>
               </li>
-              <li className="flex items-center gap-3 text-sm text-foreground hover:text-[#304674] transition-all duration-300 hover:translate-x-1 cursor-pointer font-bold">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#d8e1e8] text-[#304674]">
+              <li className="flex items-center gap-3 text-sm text-purple-700 hover:text-purple-600 transition-all duration-300 hover:translate-x-1 cursor-pointer font-bold">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-100 text-purple-700">
                   <MapPin className="h-4 w-4" />
                 </div>
                 <span>Ikorodu, Lagos, Nigeria</span>
@@ -149,7 +149,7 @@ export function Footer() {
             
             {/* Social Media Icons */}
             <div className="mt-6">
-            <h4 className="font-black text-base mb-4 text-accent-solid">
+            <h4 className="font-black text-base mb-4 text-purple-700">
               Follow Us
             </h4>
               <div className="flex gap-3">
@@ -192,8 +192,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-soft text-center">
-          <p className="text-sm text-foreground hover:text-primary transition-colors duration-300 font-bold">
+        <div className="mt-12 pt-8 border-t border-purple-200 text-center">
+          <p className="text-sm text-purple-700 hover:text-purple-600 transition-colors duration-300 font-bold">
             &copy; {new Date().getFullYear()} <span className="font-black">NCLEX Keys International</span>. All rights reserved.
           </p>
         </div>
