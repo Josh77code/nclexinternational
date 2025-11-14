@@ -269,7 +269,7 @@ export default function AboutPage() {
                 brings unparalleled expertise to every course we offer.
               </p>
               <div className="flex justify-center animate-bounce-in stagger-3">
-                <div className="w-32 h-1 bg-gradient-to-r from-primary via-purple-600 to-pink-600 rounded-full"></div>
+                <div className="w-32 h-1 bg-[#304674] rounded-full"></div>
               </div>
             </div>
           </div>

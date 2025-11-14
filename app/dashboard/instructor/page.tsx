@@ -246,7 +246,7 @@ export default function InstructorDashboard() {
               </Button>
               <Button 
                 onClick={() => window.location.href = '/dashboard/instructor/create-course'}
-                className="bg-gradient-to-r from-[#304674] to-[#304674] hover:from-teal-600 hover:to-indigo-600 text-white font-semibold shadow-lg shadow-teal-500/40"
+                className="bg-gradient-to-r from-[#304674] to-[#304674] hover:from-[#304674]/90 hover:to-[#304674]/90 text-white font-semibold shadow-lg shadow-[#98bad5]/40"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Create Course
@@ -270,7 +270,7 @@ export default function InstructorDashboard() {
                       {stat.change} from last month
                     </p>
                   </div>
-                  <div className="p-3 bg-gradient-to-br from-[#304674] to-[#304674] rounded-lg shadow-lg shadow-teal-500/40">
+                  <div className="p-3 bg-gradient-to-br from-[#304674] to-[#304674] rounded-lg shadow-lg shadow-[#98bad5]/40">
                     <stat.icon className="w-6 h-6 text-white" />
                   </div>
                 </div>

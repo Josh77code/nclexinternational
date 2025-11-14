@@ -292,7 +292,7 @@ export function ExamSection() {
           ) : availableExams.length === 0 ? (
             <div className="text-center py-8">
               <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">No exams available at the moment. Please check back later.</p>
+              <p className="text-[#304674]">No exams available at the moment. Please check back later.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -302,7 +302,7 @@ export function ExamSection() {
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
                         <h3 className="font-semibold text-[#304674] mb-1">{exam.title}</h3>
-                        <p className="text-sm text-gray-600">{exam.description}</p>
+                        <p className="text-sm text-[#304674]">{exam.description}</p>
                       </div>
                     </div>
                     
@@ -310,7 +310,7 @@ export function ExamSection() {
                       <Badge className="bg-[#304674] text-white">
                         {exam.question_count} Questions
                       </Badge>
-                      <div className="flex items-center gap-1 text-gray-600">
+                      <div className="flex items-center gap-1 text-[#304674]">
                         <Clock className="h-3 w-3" />
                         {exam.avg_time_per_question}s/question
                       </div>
@@ -348,12 +348,12 @@ export function ExamSection() {
       <CardContent className="space-y-6">
         {/* Exam Description */}
         <div className="space-y-3">
-          <p className="text-gray-600">
+          <p className="text-[#304674]">
             Take our comprehensive NCLEX practice exam with 100 questions covering all major topics.
             Get immediate results and detailed feedback to improve your performance.
           </p>
           
-          <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+          <div className="flex flex-wrap gap-4 text-sm text-[#304674]">
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
               <span>2 hours time limit</span>
@@ -388,25 +388,25 @@ export function ExamSection() {
                 <div className="text-2xl font-bold text-[#304674]">
                   {getLatestResult()?.score_percentage.toFixed(1)}%
                 </div>
-                <div className="text-gray-600">Score</div>
+                <div className="text-[#304674]">Score</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#304674]">
                   {getLatestResult()?.correct_answers}/{getLatestResult()?.total_questions}
                 </div>
-                <div className="text-gray-600">Correct</div>
+                <div className="text-[#304674]">Correct</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#304674]">
                   {formatTime(getLatestResult()?.time_taken || 0)}
                 </div>
-                <div className="text-gray-600">Time</div>
+                <div className="text-[#304674]">Time</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#304674]">
                   {getPerformanceMessage(getLatestResult()?.score_percentage || 0)}
                 </div>
-                <div className="text-gray-600">Performance</div>
+                <div className="text-[#304674]">Performance</div>
               </div>
             </div>
           </div>
@@ -414,18 +414,18 @@ export function ExamSection() {
 
         {/* Best Result Display */}
         {hasAttempted && examResults.length > 1 && (
-          <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="p-4 bg-[#d8e1e8] rounded-lg border border-[#c6d3e3]">
             <div className="flex items-center justify-between mb-3">
               <h4 className="font-semibold text-[#304674] flex items-center gap-2">
                 <TrendingUp className="h-4 w-4" />
                 Best Performance
               </h4>
-              <Badge className="bg-blue-100 text-blue-800 border-blue-300">
+              <Badge className="bg-[#d8e1e8] text-[#304674] border-[#c6d3e3]">
                 {getBestResult()?.score_percentage.toFixed(1)}%
               </Badge>
             </div>
             
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-[#304674]">
               Completed on {new Date(getBestResult()?.completed_at || '').toLocaleDateString()}
             </div>
           </div>
