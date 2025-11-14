@@ -451,12 +451,12 @@ export function ExamSection() {
         </div>
 
         {/* Exam Tips */}
-        <div className="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+        <div className="p-4 bg-[#d8e1e8] rounded-lg border border-[#c6d3e3]">
           <div className="flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-yellow-600 mt-0.5" />
+            <AlertCircle className="h-5 w-5 text-[#304674] mt-0.5" />
             <div className="text-sm">
-              <p className="font-medium text-yellow-800 mb-1">Exam Tips:</p>
-              <ul className="text-yellow-700 space-y-1">
+              <p className="font-medium text-[#304674] mb-1">Exam Tips:</p>
+              <ul className="text-[#304674] space-y-1">
                 <li>• Read each question carefully before answering</li>
                 <li>• Use the flag feature for questions you want to review</li>
                 <li>• Aim for 75% or higher to pass</li>

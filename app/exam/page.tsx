@@ -427,7 +427,7 @@ export default function ExamPage() {
   if (questions.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Card className="max-w-md mx-auto border-2 border-[#304674]">
+        <Card className="max-w-md mx-auto border-2 border-[#c6d3e3]">
           <CardContent className="pt-6 text-center">
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <h2 className="text-xl font-bold text-[#304674] mb-2">No Questions Available</h2>
@@ -453,7 +453,7 @@ export default function ExamPage() {
       <main className="pt-24 pb-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Exam Header */}
-          <Card className="mb-6 border-2 border-[#304674] bg-white">
+          <Card className="mb-6 border-2 border-[#c6d3e3] bg-white">
             <CardHeader className="pb-4">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
@@ -511,7 +511,7 @@ export default function ExamPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Question Navigation Sidebar */}
-            <Card className="lg:col-span-1 border-2 border-[#304674] bg-white">
+            <Card className="lg:col-span-1 border-2 border-[#c6d3e3] bg-white">
               <CardHeader>
                 <CardTitle className="text-lg text-[#304674]">Question Navigation</CardTitle>
               </CardHeader>
@@ -527,7 +527,7 @@ export default function ExamPage() {
                           : answers[questions[index].id]
                           ? 'bg-green-100 text-green-700 border border-green-300'
                           : flaggedQuestions.has(index)
-                          ? 'bg-yellow-100 text-yellow-700 border border-yellow-300'
+                          ? 'bg-[#d8e1e8] text-[#304674] border border-[#c6d3e3]'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                     >
@@ -541,7 +541,7 @@ export default function ExamPage() {
                     <span>Answered ({getAnsweredCount()})</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-yellow-100 border border-yellow-300 rounded"></div>
+                    <div className="w-4 h-4 bg-[#d8e1e8] border border-[#c6d3e3] rounded"></div>
                     <span>Flagged ({flaggedQuestions.size})</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -553,7 +553,7 @@ export default function ExamPage() {
             </Card>
 
             {/* Question Content */}
-            <Card className="lg:col-span-3 border-2 border-[#304674] bg-white">
+            <Card className="lg:col-span-3 border-2 border-[#c6d3e3] bg-white">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -573,7 +573,7 @@ export default function ExamPage() {
                     onClick={handleFlagQuestion}
                     className={`border-2 ${
                       flaggedQuestions.has(currentQuestionIndex)
-                        ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
+                        ? 'border-[#98bad5] bg-[#d8e1e8] text-[#304674]'
                         : 'border-[#304674] text-[#304674] hover:bg-[#304674]/10'
                     }`}
                   >
@@ -631,7 +631,7 @@ export default function ExamPage() {
                     variant="outline"
                     onClick={handlePreviousQuestion}
                     disabled={currentQuestionIndex === 0 || isPaused}
-                    className="border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10"
+                    className="border-2 border-[#c6d3e3] text-[#304674] hover:bg-[#304674]/10"
                   >
                     <ArrowLeft className="h-4 w-4 mr-2" />
                     Previous
@@ -667,7 +667,7 @@ export default function ExamPage() {
       {/* Submit Confirmation Modal */}
       {showConfirmSubmit && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <Card className="max-w-md w-full border-2 border-[#304674] bg-white">
+          <Card className="max-w-md w-full border-2 border-[#c6d3e3] bg-white">
             <CardHeader>
               <CardTitle className="text-xl text-[#304674]">Submit Exam?</CardTitle>
             </CardHeader>
@@ -687,7 +687,7 @@ export default function ExamPage() {
                 <Button
                   variant="outline"
                   onClick={() => setShowConfirmSubmit(false)}
-                  className="flex-1 border-2 border-[#304674] text-[#304674]"
+                  className="flex-1 border-2 border-[#c6d3e3] text-[#304674]"
                 >
                   Cancel
                 </Button>

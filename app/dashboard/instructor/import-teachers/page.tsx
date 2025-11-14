@@ -365,7 +365,7 @@ Jane Smith,jane.smith@nclexkeys.com`
                         </TableCell>
                         <TableCell>
                           {teacher.status === 'pending' && (
-                            <Badge variant="outline" className="border-yellow-500 text-yellow-700">
+                            <Badge variant="outline" className="border-[#98bad5] text-[#304674]">
                               Pending
                             </Badge>
                           )}

@@ -91,7 +91,7 @@ export default function ProgramsPage() {
               {packages.map((pkg) => (
                 <Card
                   key={pkg.name}
-                  className="flex flex-col bg-white hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-[#304674] hover:border-[#98bad5]"
+                  className="flex flex-col bg-white hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 border-[#c6d3e3] hover:border-[#98bad5]"
                 >
                   <CardHeader className="space-y-4 pb-0">
                     <div className="flex items-center justify-between gap-4">
@@ -131,37 +131,37 @@ export default function ProgramsPage() {
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-bold mb-12 text-center">What You Enjoy in Every Package</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Strategic Video Lectures</h3>
                 <p className="text-muted-foreground text-sm">
                   Six hours weekly with Boss B and specialist tutors, replayable on-demand so you never miss a lesson.
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Practice Questions</h3>
                 <p className="text-muted-foreground text-sm">
                   Curated drills, NCLEX-style assessments, and academy question banks to sharpen your exam instincts.
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Study Materials</h3>
                 <p className="text-muted-foreground text-sm">
                   Downloadable curriculum, schedules, and revision checklists tailored to your target test date.
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Progress Tracking</h3>
                 <p className="text-muted-foreground text-sm">
                   Monthly reviews and readiness checks backed by tutor insight and assessment data.
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Community Access</h3>
                 <p className="text-muted-foreground text-sm">
                   Immediate entry into our Telegram and WhatsApp hubs for support, testimonies, and accountability.
                 </p>
               </div>
-              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-300">
+              <div className="p-6 bg-white rounded-lg shadow-sm border-2 border-[#c6d3e3] hover:border-[#98bad5] transition-all duration-300">
                 <h3 className="font-semibold text-lg mb-2">Mobile Access</h3>
                 <p className="text-muted-foreground text-sm">
                   Learn anywhere, anytime with resources optimised for mobile, so shifts never slow your growth.

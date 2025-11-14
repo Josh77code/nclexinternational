@@ -16,7 +16,7 @@ export function DashboardStats({
 }: DashboardStatsProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <Card className="group relative overflow-hidden hover:shadow-xl hover:shadow-[#304674]/20 transition-all duration-500 hover:-translate-y-2 border-2 border-[#304674] hover:border-[#98bad5] animate-fade-in-up">
+      <Card className="group relative overflow-hidden hover:shadow-xl hover:shadow-[#304674]/20 transition-all duration-500 hover:-translate-y-2 border-2 border-[#c6d3e3] bg-white hover:border-[#98bad5] animate-fade-in-up">
         <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
         <CardContent className="pt-8 relative z-10">
           <div className="flex items-center justify-between">
@@ -33,7 +33,7 @@ export function DashboardStats({
         </CardContent>
       </Card>
 
-      <Card className="group relative overflow-hidden hover:shadow-xl hover:shadow-green-500/20 transition-all duration-500 hover:-translate-y-2 border-2 border-[#304674] hover:border-[#98bad5] animate-fade-in-up stagger-1">
+      <Card className="group relative overflow-hidden hover:shadow-xl hover:shadow-green-500/20 transition-all duration-500 hover:-translate-y-2 border-2 border-[#c6d3e3] bg-white hover:border-[#98bad5] animate-fade-in-up stagger-1">
         <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/10 rounded-full blur-2xl" />
         <CardContent className="pt-8 relative z-10">
           <div className="flex items-center justify-between">
@@ -50,7 +50,7 @@ export function DashboardStats({
         </CardContent>
       </Card>
 
-      <Card className="group relative overflow-hidden hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-2 border-2 border-[#304674] hover:border-[#98bad5] animate-fade-in-up stagger-2">
+      <Card className="group relative overflow-hidden hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-500 hover:-translate-y-2 border-2 border-[#c6d3e3] bg-white hover:border-[#98bad5] animate-fade-in-up stagger-2">
         <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl" />
         <CardContent className="pt-8 relative z-10">
           <div className="flex items-center justify-between">
@@ -67,8 +67,8 @@ export function DashboardStats({
         </CardContent>
       </Card>
 
-      <Card className="group relative overflow-hidden hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-500 hover:-translate-y-2 border-2 border-[#304674] hover:border-[#98bad5] animate-fade-in-up stagger-3">
-        <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl" />
+      <Card className="group relative overflow-hidden hover:shadow-xl hover:shadow-[#98bad5]/20 transition-all duration-500 hover:-translate-y-2 border-2 border-[#c6d3e3] bg-white hover:border-[#98bad5] animate-fade-in-up stagger-3">
+        <div className="absolute top-0 right-0 w-24 h-24 bg-[#d8e1e8] rounded-full blur-2xl" />
         <CardContent className="pt-8 relative z-10">
           <div className="flex items-center justify-between">
             <div>

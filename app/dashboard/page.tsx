@@ -132,7 +132,7 @@ export default async function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card className="border border-[#c6d3e3] bg-white">
+            <Card className="border-2 border-[#c6d3e3] bg-white">
               <CardHeader>
                 <CardTitle className="text-sm text-[#304674] flex items-center gap-2">
                   <BookOpen className="h-4 w-4" />
@@ -163,13 +163,13 @@ export default async function DashboardPage() {
             </div>
 
             {enrollments && enrollments.length > 0 && !enrollments[0].payment_verified && (
-              <div className="relative overflow-hidden bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-xl p-6 animate-fade-in shadow-lg">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/20 rounded-full blur-2xl" />
+              <div className="relative overflow-hidden bg-gradient-to-r from-[#d8e1e8] to-[#c6d3e3] border border-[#c6d3e3] rounded-xl p-6 animate-fade-in shadow-lg">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#98bad5]/20 rounded-full blur-2xl" />
                 <div className="relative z-10">
-                  <h3 className="font-bold text-yellow-700 dark:text-yellow-400 mb-2 text-lg">
+                  <h3 className="font-bold text-[#304674] mb-2 text-lg">
                     Payment Verification Pending
                   </h3>
-                  <p className="text-sm text-yellow-600 dark:text-yellow-300">
+                  <p className="text-sm text-[#304674]">
                     Your payment is being verified. You'll get full access once verification is complete (usually within 24
                     hours).
                   </p>

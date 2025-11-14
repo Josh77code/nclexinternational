@@ -11,7 +11,7 @@ export default function RegisterPage() {
       <div className="absolute top-20 -right-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
       <div className="absolute bottom-20 -left-20 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
 
-      <Card className="w-full max-w-xl relative z-10 shadow-2xl border-2 border-purple-200 bg-white/95 backdrop-blur">
+      <Card className="w-full max-w-xl relative z-10 shadow-2xl border-2 border-[#c6d3e3] bg-white/95 backdrop-blur">
         <CardHeader className="space-y-4">
           <div className="flex justify-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-600 text-white shadow-lg shadow-purple-500/50">
@@ -19,20 +19,20 @@ export default function RegisterPage() {
             </div>
           </div>
           <div className="text-center space-y-2">
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+            <CardTitle className="text-3xl font-bold text-[#304674]">
               Accounts Are Provisioned by Admin
             </CardTitle>
-            <CardDescription className="text-base text-gray-600">
+            <CardDescription className="text-base text-[#304674]">
               NCLEX Keys creates every student profile internally to keep grades and access in sync. Please reach out when you are ready to begin and we will send your login details.
             </CardDescription>
           </div>
         </CardHeader>
 
         <CardContent className="space-y-6">
-          <div className="flex items-start gap-3 rounded-lg border border-yellow-200 bg-yellow-50 p-4">
-            <AlertCircle className="mt-1 h-5 w-5 text-yellow-600" />
+          <div className="flex items-start gap-3 rounded-lg border border-[#c6d3e3] bg-[#d8e1e8] p-4">
+            <AlertCircle className="mt-1 h-5 w-5 text-[#304674]" />
             <div className="space-y-2 text-sm text-gray-700">
-              <p className="font-semibold text-yellow-800">How onboarding works now:</p>
+              <p className="font-semibold text-[#304674]">How onboarding works now:</p>
               <ul className="list-disc list-inside space-y-1">
                 <li>Admin creates your NCLEX Keys account for you.</li>
                 <li>Your starting grade (Starter / Mid / Higher) is assigned immediately.</li>
@@ -63,7 +63,7 @@ export default function RegisterPage() {
                 Message Admin on WhatsApp
               </Link>
             </Button>
-            <Button asChild variant="outline" className="flex-1 border-2 border-purple-200 text-purple-700 hover:bg-purple-50">
+            <Button asChild variant="outline" className="flex-1 border-2 border-[#c6d3e3] text-purple-700 hover:bg-purple-50">
               <Link href="/contact">
                 Contact Page
               </Link>

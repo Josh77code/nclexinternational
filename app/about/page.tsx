@@ -150,7 +150,7 @@ export default function AboutPage() {
           {/* Advanced decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none">
             <div className="absolute top-20 right-10 w-80 h-80 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full blur-3xl floating-shape-morphing" />
-            <div className="absolute bottom-20 left-10 w-64 h-64 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full blur-3xl floating-shape-morphing stagger-3" />
+            <div className="absolute bottom-20 left-10 w-64 h-64 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full blur-3xl floating-shape-morphing stagger-3" />
           </div>
           
           <div className="mx-auto max-w-7xl relative z-10">
@@ -255,8 +255,8 @@ export default function AboutPage() {
 
         {/* Team Section */}
         <section className="relative py-24 px-4 sm:px-6 lg:px-8 animated-bg-morphing overflow-hidden">
-          <div className="absolute bottom-10 left-20 w-96 h-96 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-full floating-shape-morphing blur-3xl" />
-          <div className="absolute top-10 right-20 w-80 h-80 bg-gradient-to-br from-primary/30 to-blue-500/30 rounded-full floating-shape-morphing blur-3xl stagger-2" />
+          <div className="absolute bottom-10 left-20 w-96 h-96 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full floating-shape-morphing blur-3xl" />
+          <div className="absolute top-10 right-20 w-80 h-80 bg-gradient-to-br from-[#98bad5]/30 to-[#b2cbde]/30 rounded-full floating-shape-morphing blur-3xl stagger-2" />
           
           <div className="mx-auto max-w-5xl relative z-10">
             <div className="text-center space-y-8">

@@ -250,7 +250,7 @@ export default function TeacherDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="border-2 border-[#304674]/30">
+          <Card className="border-2 border-[#c6d3e3] bg-white">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">Total Students</CardTitle>
             </CardHeader>
@@ -262,7 +262,7 @@ export default function TeacherDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#304674]/30">
+          <Card className="border-2 border-[#c6d3e3] bg-white">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">Total Exams</CardTitle>
             </CardHeader>
@@ -274,7 +274,7 @@ export default function TeacherDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#304674]/30">
+          <Card className="border-2 border-[#c6d3e3] bg-white">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">Average Score</CardTitle>
             </CardHeader>
@@ -286,14 +286,14 @@ export default function TeacherDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-[#304674]/30">
+          <Card className="border-2 border-[#c6d3e3] bg-white">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">Pass Rate</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
                 <div className="text-3xl font-bold text-[#304674]">{stats.passRate.toFixed(1)}%</div>
-                <Award className="h-8 w-8 text-yellow-600" />
+                <Award className="h-8 w-8 text-[#304674]" />
               </div>
             </CardContent>
           </Card>
@@ -309,7 +309,7 @@ export default function TeacherDashboard() {
 
           {/* Student Activities Tab */}
           <TabsContent value="activities" className="space-y-4">
-            <Card className="border-2 border-[#304674]/30">
+            <Card className="border-2 border-[#c6d3e3] bg-white">
               <CardHeader>
                 <CardTitle className="text-[#304674]">Student Activity Overview</CardTitle>
                 <CardDescription>
@@ -382,7 +382,7 @@ export default function TeacherDashboard() {
 
           {/* Exam Results Tab */}
           <TabsContent value="exams" className="space-y-4">
-            <Card className="border-2 border-[#304674]/30">
+            <Card className="border-2 border-[#c6d3e3] bg-white">
               <CardHeader>
                 <CardTitle className="text-[#304674]">Recent Exam Results</CardTitle>
                 <CardDescription>
@@ -471,7 +471,7 @@ export default function TeacherDashboard() {
 
           {/* All Students Tab */}
           <TabsContent value="students" className="space-y-4">
-            <Card className="border-2 border-[#304674]/30">
+            <Card className="border-2 border-[#c6d3e3] bg-white">
               <CardHeader>
                 <CardTitle className="text-[#304674]">All Registered Students</CardTitle>
                 <CardDescription>

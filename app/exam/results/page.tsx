@@ -264,7 +264,7 @@ function ResultsContent() {
   if (!result) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <Card className="max-w-md mx-auto border-2 border-[#304674]">
+        <Card className="max-w-md mx-auto border-2 border-[#c6d3e3] bg-white">
           <CardContent className="pt-6 text-center">
             <XCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <h2 className="text-xl font-bold text-[#304674] mb-2">Results Not Found</h2>
@@ -287,7 +287,7 @@ function ResultsContent() {
       <main className="pt-24 pb-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Results Header */}
-          <Card className="mb-8 border-2 border-[#304674] bg-white">
+          <Card className="mb-8 border-2 border-[#c6d3e3] bg-white bg-white">
             <CardHeader className="text-center">
               <div className="flex justify-center mb-4">
                 {result.passed ? (
@@ -323,7 +323,7 @@ function ResultsContent() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Score Overview */}
-            <Card className="lg:col-span-2 border-2 border-[#304674] bg-white">
+            <Card className="lg:col-span-2 border-2 border-[#c6d3e3] bg-white bg-white">
               <CardHeader>
                 <CardTitle className="text-2xl text-[#304674]">Exam Summary</CardTitle>
               </CardHeader>
@@ -374,7 +374,7 @@ function ResultsContent() {
             </Card>
 
             {/* Category Breakdown */}
-            <Card className="border-2 border-[#304674] bg-white">
+            <Card className="border-2 border-[#c6d3e3] bg-white bg-white">
               <CardHeader>
                 <CardTitle className="text-xl text-[#304674]">Performance by Category</CardTitle>
               </CardHeader>
@@ -404,7 +404,7 @@ function ResultsContent() {
             <Button
               onClick={handlePrintResults}
               variant="outline"
-              className="border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10 px-8 py-3"
+              className="border-2 border-[#c6d3e3] bg-white text-[#304674] hover:bg-[#304674]/10 px-8 py-3"
             >
               <Printer className="h-5 w-5 mr-2" />
               Print Results
@@ -412,7 +412,7 @@ function ResultsContent() {
             <Button
               onClick={handleDownloadPdf}
               variant="outline"
-              className="border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10 px-8 py-3"
+              className="border-2 border-[#c6d3e3] bg-white text-[#304674] hover:bg-[#304674]/10 px-8 py-3"
             >
               <Download className="h-5 w-5 mr-2" />
               Download PDF
@@ -428,7 +428,7 @@ function ResultsContent() {
             <Button
               onClick={handleBackToDashboard}
               variant="outline"
-              className="border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10 px-8 py-3"
+              className="border-2 border-[#c6d3e3] bg-white text-[#304674] hover:bg-[#304674]/10 px-8 py-3"
             >
               <BookOpen className="h-5 w-5 mr-2" />
               Back to Dashboard
@@ -440,7 +440,7 @@ function ResultsContent() {
             <Button
               variant="outline"
               onClick={() => setShowDetails(!showDetails)}
-              className="border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10"
+              className="border-2 border-[#c6d3e3] bg-white text-[#304674] hover:bg-[#304674]/10"
             >
               {showDetails ? 'Hide' : 'Show'} Detailed Results
             </Button>
@@ -448,7 +448,7 @@ function ResultsContent() {
 
           {/* Detailed Question Results */}
           {showDetails && (
-            <Card className="mt-8 border-2 border-[#304674] bg-white">
+            <Card className="mt-8 border-2 border-[#c6d3e3] bg-white bg-white">
               <CardHeader>
                 <CardTitle className="text-2xl text-[#304674]">Question-by-Question Review</CardTitle>
               </CardHeader>

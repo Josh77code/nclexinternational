@@ -344,7 +344,7 @@ export function QuestionBankSection() {
   return (
     <div className="space-y-6">
       {/* Question Bank Collections */}
-      <Card className="border-2 border-[#c6d3e3]">
+      <Card className="border-2 border-[#c6d3e3] bg-white">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
@@ -406,33 +406,33 @@ export function QuestionBankSection() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="border-2 border-[#c6d3e3]">
+        <Card className="border-2 border-[#c6d3e3] bg-white">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Total Questions</CardTitle>
+            <CardTitle className="text-sm font-medium text-[#304674]">Total Questions</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-[#304674]">{stats.total}</div>
           </CardContent>
         </Card>
-        <Card className="border-2 border-[#c6d3e3]">
+        <Card className="border-2 border-[#c6d3e3] bg-white">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Active</CardTitle>
+            <CardTitle className="text-sm font-medium text-[#304674]">Active</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-[#304674]">{stats.active}</div>
           </CardContent>
         </Card>
-        <Card className="border-2 border-[#c6d3e3]">
+        <Card className="border-2 border-[#c6d3e3] bg-white">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Easy</CardTitle>
+            <CardTitle className="text-sm font-medium text-[#304674]">Easy</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-[#304674]">{stats.byDifficulty.easy}</div>
           </CardContent>
         </Card>
-        <Card className="border-2 border-[#c6d3e3]">
+        <Card className="border-2 border-[#c6d3e3] bg-white">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Medium/Hard</CardTitle>
+            <CardTitle className="text-sm font-medium text-[#304674]">Medium/Hard</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-[#304674]">
@@ -443,7 +443,7 @@ export function QuestionBankSection() {
       </div>
 
       {/* Filters */}
-      <Card className="border-2 border-[#c6d3e3]">
+      <Card className="border-2 border-[#c6d3e3] bg-white">
         <CardHeader>
           <CardTitle className="text-[#304674] flex items-center gap-2">
             <BookOpen className="h-5 w-5" />
@@ -535,7 +535,7 @@ export function QuestionBankSection() {
                         {question.is_active ? (
                           <Badge className="bg-[#304674]/10 text-[#304674] border-[#c6d3e3]/40">Active</Badge>
                         ) : (
-                          <Badge variant="outline" className="border-[#c6d3e3]/40 text-gray-600">Inactive</Badge>
+                          <Badge variant="outline" className="border-[#c6d3e3]/40 text-[#304674]">Inactive</Badge>
                         )}
                       </TableCell>
                       <TableCell>
