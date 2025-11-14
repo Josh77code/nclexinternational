@@ -64,9 +64,9 @@ export function Header() {
             </Button>
             <Button
               asChild
-              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg shadow-purple-500/40 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 rounded-lg"
+              className="bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
             >
-              <Link href="/contact">Request Access</Link>
+              <Link href="/contact">Call Now</Link>
             </Button>
           </div>
 
@@ -97,8 +97,8 @@ export function Header() {
               <Button variant="ghost" asChild className="w-full">
                 <Link href="/login">Login</Link>
               </Button>
-              <Button asChild className="w-full bg-[#304674] hover:bg-[#304674]/90 text-white">
-                <Link href="/contact">Request Access</Link>
+              <Button asChild className="w-full bg-purple-600 hover:bg-purple-700 text-white rounded-lg">
+                <Link href="/contact">Call Now</Link>
               </Button>
             </div>
           </div>

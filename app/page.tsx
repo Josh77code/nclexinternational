@@ -141,100 +141,52 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col overflow-hidden bg-white">
       <Header />
 
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white">
-        {/* Wave-like abstract shapes - Purple theme */}
-        <div className="absolute top-0 right-0 w-[600px] h-[700px] opacity-80 pointer-events-none">
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
+        {/* Large Purple Wave Shapes on Right */}
+        <div className="absolute top-0 right-0 w-[600px] h-[700px] opacity-90 pointer-events-none z-0">
           <svg viewBox="0 0 600 700" className="w-full h-full absolute top-0 right-0">
             <path
               d="M0,300 Q150,200 300,280 T600,260 L600,700 L0,700 Z"
               fill="#9333EA"
-              className="animate-pulse-slow"
             />
           </svg>
         </div>
-        <div className="absolute top-20 right-0 w-[500px] h-[600px] opacity-60 pointer-events-none">
+        {/* Lighter Purple Wave Overlay */}
+        <div className="absolute top-20 right-0 w-[500px] h-[600px] opacity-60 pointer-events-none z-0">
           <svg viewBox="0 0 500 600" className="absolute top-0 right-0">
             <path
               d="M0,250 Q120,180 250,240 T500,220 L500,600 L0,600 Z"
               fill="#A855F7"
-              className="animate-pulse-slow"
-              style={{ animationDelay: "1s" }}
             />
-          </svg>
-        </div>
-        <div className="absolute bottom-0 right-0 w-[400px] h-[500px] opacity-40 pointer-events-none">
-          <svg viewBox="0 0 400 500" className="absolute bottom-0 right-0">
-            <path
-              d="M0,200 Q100,150 200,200 T400,180 L400,500 L0,500 Z"
-              fill="#C084FC"
-              className="animate-pulse-slow"
-              style={{ animationDelay: "2s" }}
-            />
+            {/* White circular highlight on wave crest */}
+            <circle cx="400" cy="240" r="12" fill="white" opacity="0.8" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.1))" />
           </svg>
         </div>
 
-        <div className="relative mx-auto max-w-7xl">
-          <div className="text-center space-y-8">
-            <div className="space-y-4 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 backdrop-blur-sm border-2 border-purple-200 shadow-lg">
-                <Sparkles className="h-4 w-4 text-purple-600" />
-                <span className="text-sm font-medium text-purple-700">Premier Strategic NCLEX Coaching</span>
-              </div>
+        <div className="relative mx-auto max-w-7xl z-10">
+          <div className="max-w-2xl space-y-8 text-left">
+            {/* Headline - Split into two lines */}
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 leading-tight">
+              The Power<br />of Good Advice
+            </h1>
 
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-balance text-gray-900 leading-tight">
-                Your Path to <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-purple-800">NCLEX Excellence</span>
-              </h1>
-            </div>
-
-            <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto text-pretty animate-fade-in-up stagger-1 leading-relaxed">
-              Join over 100 successful nursing professionals who have unlocked their NCLEX with intensive, results-driven coaching from Boss B and the NCLEX KEYS team.
+            {/* Paragraph */}
+            <p className="text-xl sm:text-2xl text-gray-600 max-w-xl leading-relaxed">
+              I'm a paragraph. Click here to add your own text and edit me.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6 animate-fade-in-up stagger-2">
+            {/* Single CTA Button */}
+            <div className="pt-4">
               <Button
                 size="lg"
                 asChild
-                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white text-lg px-8 py-6 shadow-xl shadow-purple-500/40 hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-105 rounded-lg"
+                className="bg-purple-600 hover:bg-purple-700 text-white text-lg px-8 py-6 rounded-lg transition-colors"
               >
                 <Link href="/programs">
-                  <span className="flex items-center gap-2">
-                    Explore Programs
-                    <Zap className="h-5 w-5" />
-                  </span>
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                asChild
-                className="border-2 border-purple-200 hover:border-purple-400 bg-white hover:bg-purple-50 text-purple-700 hover:text-purple-800 text-lg px-8 py-6 transition-all hover:scale-105 hover:shadow-lg rounded-lg"
-              >
-                <Link href="/about">
-                  <span className="flex items-center gap-2">
-                    Meet Our Team
-                    <Target className="h-5 w-5" />
-                  </span>
+                  Learn More
                 </Link>
               </Button>
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-20">
-            {[
-              { value: "100+", label: "Nurses Coached to Success", bgColor: "bg-white", textColor: "text-gray-900", shadow: "hover:shadow-purple-300/30" },
-              { value: "1 Year", label: "Academy Excellence", bgColor: "bg-white", textColor: "text-gray-900", shadow: "hover:shadow-purple-300/30" },
-              { value: "25 Years", label: "Clinical Experience", bgColor: "bg-white", textColor: "text-gray-900", shadow: "hover:shadow-purple-300/30" },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className={`rounded-2xl p-8 text-center ${stat.bgColor} border-2 border-purple-100 shadow-lg ${stat.shadow} hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-purple-300`}
-              >
-                <div className={`text-5xl font-bold ${stat.textColor} mb-2`}>
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-700 font-medium">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
