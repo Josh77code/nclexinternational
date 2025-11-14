@@ -11,10 +11,13 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 
 // Dynamically import Three.js component with SSR disabled (requires browser APIs)
-const NCLEX3DScene = dynamic(() => import("@/components/nclex-3d-scene").then((mod) => ({ default: mod.NCLEX3DScene })), {
-  ssr: false,
-  loading: () => <div className="w-full h-full bg-transparent" />
-})
+const NCLEX3DScene = dynamic(
+  () => import("@/components/nclex-3d-scene").then((mod) => ({ default: mod.NCLEX3DScene })).catch(() => ({ default: () => null })),
+  {
+    ssr: false,
+    loading: () => <div className="w-full h-full bg-transparent" />
+  }
+)
 
 export default function HomePage() {
   const [currentTestimony, setCurrentTestimony] = useState(0)
