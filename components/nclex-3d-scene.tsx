@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Text3D, Center, Float, MeshDistortMaterial } from '@react-three/drei'
+import { OrbitControls, Float, MeshDistortMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 
 function RotatingKey() {
@@ -76,43 +76,6 @@ function FloatingCertificates() {
         </Float>
       ))}
     </group>
-  )
-}
-
-function AnimatedText() {
-  const textRef = useRef<THREE.Mesh>(null)
-
-  useFrame((state) => {
-    if (textRef.current) {
-      textRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.2
-    }
-  })
-
-  return (
-    <Center position={[0, -2, 0]}>
-      <Text3D
-        ref={textRef}
-        font="/fonts/helvetiker_regular.typeface.json"
-        size={0.5}
-        height={0.1}
-        curveSegments={12}
-        bevelEnabled
-        bevelThickness={0.02}
-        bevelSize={0.01}
-        bevelOffset={0}
-        bevelSegments={5}
-      >
-        PASS
-        <MeshDistortMaterial
-          color="#9333EA"
-          attach="material"
-          distort={0.1}
-          speed={1.5}
-          metalness={0.9}
-          roughness={0.1}
-        />
-      </Text3D>
-    </Center>
   )
 }
 
