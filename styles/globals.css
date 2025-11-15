@@ -119,11 +119,15 @@
   * {
     @apply border-border outline-ring/50;
   }
-  /* AGGRESSIVE OVERRIDE - Prevent ANY yellow background from appearing */
-  html,
-  body,
-  html *,
-  body * {
+  /* AGGRESSIVE OVERRIDE - Prevent ANY yellow background from appearing on html/body only */
+  html {
+    background: #F1F7F9 !important;
+    background-color: #F1F7F9 !important;
+    background-image: none !important;
+  }
+  
+  body {
+    background: #F1F7F9 !important;
     background-color: #F1F7F9 !important;
     background-image: none !important;
   }
