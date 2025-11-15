@@ -170,12 +170,12 @@ export default function HomePage() {
           <div className="max-w-2xl">
             {/* Headline - Large, Bold, White */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Find Your Perfect Tutor
+              Find Your Perfect NCLEX Tutor
             </h1>
 
             {/* Descriptive Text - White, Smaller */}
             <p className="text-lg sm:text-xl text-white/95 mb-8 leading-relaxed max-w-xl">
-              Whether studying for a big exam, learning something new, or brushing up on old skills, the right tutor can help you feel empowered, knowledgeable, and ready for anything.
+              Whether preparing for your NCLEX exam, mastering complex nursing concepts, or building confidence for licensure, the right tutor can help you feel empowered, knowledgeable, and ready to succeed.
             </p>
 
             {/* CTA Buttons */}
@@ -198,7 +198,7 @@ export default function HomePage() {
                 variant="outline"
                 className="px-8 py-6 text-lg font-semibold border-2 border-white text-white hover:bg-white/10 rounded-lg backdrop-blur-sm transition-all duration-300 hover:scale-105"
               >
-                <Link href="/contact" className="flex items-center gap-2">
+                <Link href="/programs" className="flex items-center gap-2">
                   <Award className="w-5 h-5" />
                   Featured Tutors
                 </Link>
