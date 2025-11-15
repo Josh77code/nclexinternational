@@ -152,163 +152,64 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col overflow-hidden bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)] dark:from-background dark:to-background">
       <Header />
 
-      {/* MEGA HERO SECTION - MAD DESIGN */}
-      <section className="relative min-h-[90vh] pt-24 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-[var(--bg-gradient-start)] via-[var(--bg-gradient-end)] to-[var(--bg-gradient-start)] dark:from-background dark:via-background dark:to-background">
-        {/* Animated Gradient Mesh Background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(10,97,201,0.15),transparent_50%)] animate-pulse"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(116,157,200,0.15),transparent_50%)] animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(6,64,137,0.1),transparent_50%)] animate-pulse" style={{ animationDelay: '2s' }}></div>
+      {/* CLEAN HERO SECTION - Inspired by Reference Design */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/nclexk background image.jpeg)'
+          }}
+        >
+          {/* Gradient Overlay - Dark blue to light blue (like teal gradient in reference) */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#064089]/90 via-[#064089]/70 to-[#749DC8]/60 dark:from-[#07326A]/95 dark:via-[#064089]/85 dark:to-[#749DC8]/70"></div>
         </div>
 
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 opacity-20 dark:opacity-10" style={{
-          backgroundImage: 'linear-gradient(rgba(10,97,201,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(10,97,201,0.1) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-          animation: 'gridMove 20s linear infinite'
-        }}></div>
-
-        {/* Floating Geometric Shapes */}
-        <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-[#0A61C9]/20 to-[#749DC8]/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-tr from-[#064089]/20 to-[#0A61C9]/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-gradient-to-bl from-[#749DC8]/15 to-transparent rounded-full blur-2xl animate-float" style={{ animationDelay: '4s' }}></div>
-
-        {/* 3D Floating Orbs */}
-        <div className="absolute top-32 right-32 w-32 h-32 rounded-full bg-gradient-to-br from-[#0A61C9] to-[#749DC8] opacity-30 blur-xl animate-bounce" style={{ animationDuration: '6s' }}></div>
-        <div className="absolute bottom-32 left-32 w-24 h-24 rounded-full bg-gradient-to-tr from-[#064089] to-[#0A61C9] opacity-25 blur-lg animate-bounce" style={{ animationDuration: '8s', animationDelay: '1s' }}></div>
-
-        {/* Animated SVG Waves with Glassmorphism */}
-        <div className="absolute top-0 right-0 w-full md:w-2/3 h-full opacity-40 dark:opacity-20 pointer-events-none z-0">
-          <svg viewBox="0 0 1200 800" className="w-full h-full" preserveAspectRatio="xMidYMax slice">
-            <defs>
-              <linearGradient id="waveGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#0A61C9" stopOpacity="0.8">
-                  <animate attributeName="stop-opacity" values="0.6;0.9;0.6" dur="4s" repeatCount="indefinite" />
-                </stop>
-                <stop offset="100%" stopColor="#749DC8" stopOpacity="0.6">
-                  <animate attributeName="stop-opacity" values="0.4;0.7;0.4" dur="4s" repeatCount="indefinite" />
-                </stop>
-              </linearGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            <path
-              d="M0,400 Q300,300 600,350 T1200,320 L1200,800 L0,800 Z"
-              fill="url(#waveGradient1)"
-              filter="url(#glow)"
-            >
-              <animateTransform
-                attributeName="transform"
-                type="translate"
-                values="0,0; 50,20; 0,0"
-                dur="8s"
-                repeatCount="indefinite"
-              />
-            </path>
-            <path
-              d="M0,450 Q400,350 800,400 T1600,370 L1600,800 L0,800 Z"
-              fill="#749DC8"
-              opacity="0.4"
-            >
-              <animateTransform
-                attributeName="transform"
-                type="translate"
-                values="0,0; -30,15; 0,0"
-                dur="10s"
-                repeatCount="indefinite"
-              />
-            </path>
-          </svg>
-        </div>
-
-        {/* Glassmorphism Card Background */}
-        <div className="absolute inset-x-0 top-1/4 h-96 bg-gradient-to-r from-white/5 via-white/10 to-white/5 dark:from-white/5 dark:via-white/10 dark:to-white/5 backdrop-blur-3xl border-y border-white/20 dark:border-white/10"></div>
-
-        {/* Main Content */}
-        <div className="relative mx-auto max-w-7xl z-10 pt-20">
-          <div className="max-w-3xl space-y-10">
-            {/* Animated Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#0A61C9]/20 to-[#749DC8]/20 dark:from-[#0A61C9]/30 dark:to-[#749DC8]/30 backdrop-blur-md border border-[#0A61C9]/30 dark:border-[#749DC8]/30 text-[#064089] dark:text-[#749DC8] text-sm font-semibold animate-fade-in-up">
-              <Sparkles className="w-4 h-4 animate-pulse" />
-              <span>100+ Success Stories</span>
-              <Award className="w-4 h-4 ml-1" />
-            </div>
-
-            {/* Headline with Gradient Text */}
-            <h1 className="text-7xl sm:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-[0.9] animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <span className="block bg-gradient-to-r from-[#0A61C9] via-[#064089] to-[#0A61C9] dark:from-[#749DC8] dark:via-[#0A61C9] dark:to-[#749DC8] bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-                NCLEX
-              </span>
-              <span className="block bg-gradient-to-r from-[#064089] via-[#0A61C9] to-[#749DC8] dark:from-[#0A61C9] dark:via-[#749DC8] dark:to-[#0A61C9] bg-clip-text text-transparent animate-gradient bg-[length:200%_auto] mt-2">
-                KEYS
-              </span>
+        {/* Main Content Container */}
+        <div className="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-24">
+          <div className="max-w-2xl">
+            {/* Headline - Large, Bold, White */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+              Find Your Perfect Tutor
             </h1>
 
-            {/* Subheading with Glow Effect */}
-            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#064089] dark:text-[#749DC8] leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              Unlock Your NCLEX Success
+            {/* Descriptive Text - White, Smaller */}
+            <p className="text-lg sm:text-xl text-white/95 mb-8 leading-relaxed max-w-xl">
+              Whether studying for a big exam, learning something new, or brushing up on old skills, the right tutor can help you feel empowered, knowledgeable, and ready for anything.
             </p>
 
-            {/* Description */}
-            <p className="text-lg sm:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              Join over 100 successful nursing professionals who have transformed their NCLEX preparation into confident success through intensive, results-driven coaching from Boss B and the NCLEX KEYS team.
-            </p>
-
-            {/* CTA Buttons with Hover Effects */}
-            <div className="flex flex-wrap gap-4 pt-6 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4">
+              {/* Primary Button - Solid Blue */}
               <Button
                 size="lg"
                 asChild
-                variant="default"
-                className="text-lg px-8 py-7 rounded-full bg-gradient-to-r from-[#0A61C9] to-[#064089] hover:from-[#064089] hover:to-[#0A61C9] dark:from-[#749DC8] dark:to-[#0A61C9] dark:hover:from-[#0A61C9] dark:hover:to-[#749DC8] shadow-2xl shadow-[#0A61C9]/30 dark:shadow-[#749DC8]/30 hover:shadow-[#0A61C9]/50 dark:hover:shadow-[#749DC8]/50 hover:scale-105 transition-all duration-300 border-0"
+                className="px-8 py-6 text-lg font-semibold bg-[#0A61C9] hover:bg-[#064089] text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
-                <Link href="/programs" className="flex items-center gap-2">
-                  <Zap className="w-5 h-5" />
-                  Start Your Journey
+                <Link href="/programs">
+                  Find Your Tutor
                 </Link>
               </Button>
+
+              {/* Secondary Button - Outlined White */}
               <Button
                 size="lg"
                 asChild
                 variant="outline"
-                className="text-lg px-8 py-7 rounded-full border-2 border-[#0A61C9] dark:border-[#749DC8] text-[#0A61C9] dark:text-[#749DC8] hover:bg-[#0A61C9]/10 dark:hover:bg-[#749DC8]/10 backdrop-blur-sm hover:scale-105 transition-all duration-300"
+                className="px-8 py-6 text-lg font-semibold border-2 border-white text-white hover:bg-white/10 rounded-lg backdrop-blur-sm transition-all duration-300 hover:scale-105"
               >
                 <Link href="/contact" className="flex items-center gap-2">
-                  <Users className="w-5 h-5" />
-                  Learn More
+                  <Award className="w-5 h-5" />
+                  Featured Tutors
                 </Link>
               </Button>
-            </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-6 pt-12 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-              {[
-                { number: '100+', label: 'Success Stories', icon: Award },
-                { number: '95%', label: 'Pass Rate', icon: TrendingUp },
-                { number: '24/7', label: 'Support', icon: Clock },
-              ].map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="group relative p-6 rounded-2xl bg-white/40 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 hover:border-[#0A61C9]/50 dark:hover:border-[#749DC8]/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#0A61C9]/20 dark:hover:shadow-[#749DC8]/20"
-                >
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#0A61C9]/10 to-transparent dark:from-[#749DC8]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <stat.icon className="w-8 h-8 text-[#0A61C9] dark:text-[#749DC8] mb-3 relative z-10" />
-                  <div className="text-3xl font-bold text-[#064089] dark:text-[#749DC8] mb-1 relative z-10">{stat.number}</div>
-                  <div className="text-sm text-[var(--text-secondary)] relative z-10">{stat.label}</div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-          <ChevronRight className="w-6 h-6 text-[#0A61C9] dark:text-[#749DC8] rotate-90" />
+        {/* Scroll Indicator - Bottom Center */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+          <ChevronRight className="w-6 h-6 text-white rotate-90" />
         </div>
       </section>
 
