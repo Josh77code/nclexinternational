@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Sparkles } from "lucide-react"
 import { Logo } from "@/components/logo"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -35,11 +36,11 @@ export function Header() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-200 bg-white shadow-lg shadow-purple-500/40 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-2">
-              <Logo className="h-10 w-10 text-purple-600 drop-shadow-md" aria-hidden />
-              <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-purple-500 animate-pulse" />
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--border)] bg-white dark:bg-card shadow-lg shadow-[var(--primary)]/40 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-2">
+              <Logo className="h-10 w-10 text-[var(--primary)] drop-shadow-md" aria-hidden />
+              <Sparkles className="absolute -top-1 -right-1 h-3 w-3 text-[var(--primary-light)] animate-pulse" />
             </div>
-            <span className="text-xl font-bold text-gray-900 tracking-wide">
+            <span className="text-xl font-bold text-[var(--text-primary)] tracking-wide">
               NCLEX Keys International
             </span>
           </Link>
@@ -50,21 +51,23 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="relative text-sm font-medium text-gray-600 hover:text-purple-600 transition-all duration-300 group"
+                className="relative text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary)] transition-all duration-300 group"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--primary)] transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
 
           <div className="hidden md:flex md:items-center md:gap-3">
+            <ThemeToggle />
             <Button variant="ghost" asChild className="hover:scale-105 transition-transform">
               <Link href="/login">Login</Link>
             </Button>
             <Button
               asChild
-              className="bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+              variant="default"
+              className="rounded-lg"
             >
               <Link href="/contact">Call Now</Link>
             </Button>
@@ -94,10 +97,14 @@ export function Header() {
               </Link>
             ))}
             <div className="flex flex-col gap-2 pt-4 border-t border-border">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm text-[var(--text-secondary)]">Theme</span>
+                <ThemeToggle />
+              </div>
               <Button variant="ghost" asChild className="w-full">
                 <Link href="/login">Login</Link>
               </Button>
-              <Button asChild className="w-full bg-purple-600 hover:bg-purple-700 text-white rounded-lg">
+              <Button asChild variant="default" className="w-full rounded-lg">
                 <Link href="/contact">Call Now</Link>
               </Button>
             </div>

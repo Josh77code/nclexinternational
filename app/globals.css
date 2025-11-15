@@ -4,74 +4,144 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: 255 255 255; /* White */
-  --foreground: 107 33 168; /* Purple-800 - Changed to purple */
+  /* Blue Theme - Primary Colors */
+  --primary: 30 64 175; /* #1E40AF - Deep blue (buttons, accents) */
+  --primary-light: 59 130 246; /* #3B82F6 - Lighter blue (hover, active) */
+  --primary-dark: 30 58 138; /* #1E3A8A - Darker blue (active, shadows) */
+  --primary-foreground: 255 255 255; /* White */
+  
+  /* Background Colors */
+  --background: 239 246 255; /* #EFF6FF - Lighter blue (gradient end) */
+  --bg-start: 219 234 254; /* #DBEAFE - Very light blue (gradient start) */
+  --bg-end: 239 246 255; /* #EFF6FF - Lighter blue (gradient end) */
+  --foreground: 17 24 39; /* #111827 - Dark gray (headings) */
+  
+  /* Card Colors */
   --card: 255 255 255; /* White */
-  --card-foreground: 107 33 168; /* Purple-800 - Changed to purple */
+  --card-foreground: 17 24 39; /* #111827 - Dark gray */
+  
+  /* Popover Colors */
   --popover: 255 255 255; /* White */
   --popover-foreground: 17 24 39; /* Gray-900 */
-  --primary: 147 51 234; /* Purple-600 */
-  --primary-foreground: 255 255 255; /* White */
-  --secondary: 192 132 252; /* Purple-400 */
+  
+  /* Secondary Colors */
+  --secondary: 59 130 246; /* #3B82F6 - Light blue */
   --secondary-foreground: 255 255 255; /* White */
-  --muted: 243 232 255; /* Purple-50 */
-  --muted-foreground: 107 114 128; /* Gray-500 */
-  --accent: 167 139 250; /* Purple-400 */
-  --accent-foreground: 255 255 255; /* White */
-  --destructive: 239 68 68; /* Red-500 */
+  
+  /* Muted Colors */
+  --muted: 219 234 254; /* #DBEAFE - Very light blue */
+  --muted-foreground: 75 85 99; /* #4B5563 - Medium gray (body) */
+  
+  /* Accent Colors */
+  --accent: 191 219 254; /* #BFDBFE - Border color */
+  --accent-foreground: 17 24 39; /* Dark gray */
+  
+  /* Semantic Colors */
+  --success: 16 185 129; /* #10B981 - Green */
+  --success-foreground: 255 255 255; /* White */
+  --warning: 245 158 11; /* #F59E0B - Yellow/Amber */
+  --warning-foreground: 255 255 255; /* White */
+  --danger: 239 68 68; /* #EF4444 - Red */
+  --destructive: 239 68 68; /* #EF4444 - Red */
   --destructive-foreground: 255 255 255; /* White */
-  --border: 221 214 254; /* Purple-200 */
-  --input: 221 214 254; /* Purple-200 */
-  --ring: 147 51 234; /* Purple-600 */
-  --chart-1: 147 51 234; /* Purple-600 */
-  --chart-2: 192 132 252; /* Purple-400 */
-  --chart-3: 217 70 239; /* Fuchsia-500 */
-  --chart-4: 236 72 153; /* Pink-500 */
-  --chart-5: 192 132 252; /* Purple-400 - Changed from Orange to match purple theme */
+  
+  /* Text Colors */
+  --text-primary: 17 24 39; /* #111827 - Dark gray (headings) */
+  --text-secondary: 75 85 99; /* #4B5563 - Medium gray (body) */
+  
+  /* Border & Input Colors */
+  --border: 191 219 254; /* #BFDBFE */
+  --input: 191 219 254; /* #BFDBFE */
+  --ring: 59 130 246; /* #3B82F6 - Primary light for focus rings */
+  
+  /* Chart Colors */
+  --chart-1: 30 64 175; /* #1E40AF - Deep blue */
+  --chart-2: 59 130 246; /* #3B82F6 - Light blue */
+  --chart-3: 96 165 250; /* #60A5FA - Lighter blue */
+  --chart-4: 16 185 129; /* #10B981 - Green (success) */
+  --chart-5: 245 158 11; /* #F59E0B - Amber (warning) */
+  
+  /* Radius */
   --radius: 0.75rem;
-  --sidebar: 243 232 255; /* Purple-50 */
-  --sidebar-foreground: 107 33 168; /* Purple-800 */
-  --sidebar-primary: 147 51 234; /* Purple-600 */
+  
+  /* Sidebar Colors */
+  --sidebar: 255 255 255; /* White */
+  --sidebar-foreground: 17 24 39; /* Dark gray */
+  --sidebar-primary: 30 64 175; /* #1E40AF - Deep blue */
   --sidebar-primary-foreground: 255 255 255; /* White */
-  --sidebar-accent: 221 214 254; /* Purple-200 */
-  --sidebar-accent-foreground: 107 33 168; /* Purple-800 */
-  --sidebar-border: 221 214 254; /* Purple-200 */
-  --sidebar-ring: 147 51 234; /* Purple-600 */
+  --sidebar-accent: 219 234 254; /* #DBEAFE - Very light blue */
+  --sidebar-accent-foreground: 17 24 39; /* Dark gray */
+  --sidebar-border: 191 219 254; /* #BFDBFE */
+  --sidebar-ring: 59 130 246; /* #3B82F6 - Primary light */
 }
 
 .dark {
+  /* Blue Theme - Dark Mode Primary Colors */
+  --primary: 96 165 250; /* #60A5FA - Lighter blue for dark mode */
+  --primary-light: 59 130 246; /* #3B82F6 */
+  --primary-dark: 30 64 175; /* #1E40AF */
+  --primary-foreground: 17 24 39; /* Dark gray */
+  
+  /* Background Colors - Dark Mode */
   --background: 15 23 42; /* Slate-900 */
+  --bg-start: 30 41 59; /* Slate-800 */
+  --bg-end: 15 23 42; /* Slate-900 */
   --foreground: 248 250 252; /* Slate-50 */
+  
+  /* Card Colors - Dark Mode */
   --card: 30 41 59; /* Slate-800 */
   --card-foreground: 248 250 252; /* Slate-50 */
+  
+  /* Popover Colors - Dark Mode */
   --popover: 30 41 59; /* Slate-800 */
   --popover-foreground: 248 250 252; /* Slate-50 */
-  --primary: 152 186 213; /* #98bad5 - lighter for dark mode */
-  --primary-foreground: 15 23 42; /* Slate-900 */
-  --secondary: 152 186 213; /* #98bad5 */
-  --secondary-foreground: 248 250 252; /* Slate-50 */
+  
+  /* Secondary Colors - Dark Mode */
+  --secondary: 96 165 250; /* #60A5FA */
+  --secondary-foreground: 17 24 39; /* Dark gray */
+  
+  /* Muted Colors - Dark Mode */
   --muted: 51 65 85; /* Slate-700 */
   --muted-foreground: 148 163 184; /* Slate-400 */
-  --accent: 152 186 213; /* #98bad5 */
+  
+  /* Accent Colors - Dark Mode */
+  --accent: 51 65 85; /* Slate-700 */
   --accent-foreground: 248 250 252; /* Slate-50 */
-  --destructive: 239 68 68; /* Red-500 */
+  
+  /* Semantic Colors - Dark Mode */
+  --success: 16 185 129; /* #10B981 - Green */
+  --success-foreground: 255 255 255; /* White */
+  --warning: 245 158 11; /* #F59E0B - Yellow/Amber */
+  --warning-foreground: 255 255 255; /* White */
+  --danger: 239 68 68; /* #EF4444 - Red */
+  --destructive: 239 68 68; /* #EF4444 - Red */
   --destructive-foreground: 248 250 252; /* Slate-50 */
+  
+  /* Text Colors - Dark Mode */
+  --text-primary: 248 250 252; /* Slate-50 */
+  --text-secondary: 148 163 184; /* Slate-400 */
+  
+  /* Border & Input Colors - Dark Mode */
   --border: 51 65 85; /* Slate-700 */
   --input: 51 65 85; /* Slate-700 */
-  --ring: 152 186 213; /* #98bad5 */
-  --chart-1: 152 186 213; /* #98bad5 */
-  --chart-2: 178 203 222; /* #b2cbde */
-  --chart-3: 198 211 227; /* #c6d3e3 */
-  --chart-4: 216 225 232; /* #d8e1e8 */
-  --chart-5: 48 70 116; /* #304674 */
-  --sidebar: 15 23 42; /* Slate-900 */
+  --ring: 96 165 250; /* #60A5FA */
+  
+  /* Chart Colors - Dark Mode */
+  --chart-1: 96 165 250; /* #60A5FA */
+  --chart-2: 59 130 246; /* #3B82F6 */
+  --chart-3: 30 64 175; /* #1E40AF */
+  --chart-4: 16 185 129; /* #10B981 - Green */
+  --chart-5: 245 158 11; /* #F59E0B - Amber */
+  
+  /* Sidebar Colors - Dark Mode */
+  --sidebar: 30 41 59; /* Slate-800 */
   --sidebar-foreground: 248 250 252; /* Slate-50 */
-  --sidebar-primary: 152 186 213; /* #98bad5 */
-  --sidebar-primary-foreground: 15 23 42; /* Slate-900 */
-  --sidebar-accent: 30 41 59; /* Slate-800 */
+  --sidebar-primary: 96 165 250; /* #60A5FA */
+  --sidebar-primary-foreground: 17 24 39; /* Dark gray */
+  --sidebar-accent: 51 65 85; /* Slate-700 */
   --sidebar-accent-foreground: 248 250 252; /* Slate-50 */
   --sidebar-border: 51 65 85; /* Slate-700 */
-  --sidebar-ring: 152 186 213; /* #98bad5 */
+  --sidebar-ring: 96 165 250; /* #60A5FA */
 }
 
 * {
@@ -79,13 +149,26 @@
 }
 
 html {
-  background-color: white !important;
+  background: linear-gradient(to bottom, hsl(var(--bg-start)), hsl(var(--bg-end)));
 }
 
 body {
-  background-color: white !important;
+  background: linear-gradient(to bottom, hsl(var(--bg-start)), hsl(var(--bg-end)));
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Utility Classes */
+.hover-scale {
+  @apply transition-transform duration-200 hover:scale-105;
+}
+
+.shadow-hover {
+  @apply transition-shadow duration-200 hover:shadow-lg;
+}
+
+.fade-in {
+  @apply animate-in fade-in duration-300;
 }
 
 /* Print Styles for Exam Results */
