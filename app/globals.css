@@ -155,19 +155,7 @@
   border-color: hsl(var(--border));
 }
 
-/* AGGRESSIVE OVERRIDE - Prevent ANY yellow background from appearing on html/body only */
-html {
-  background: #F1F7F9 !important;
-  background-color: #F1F7F9 !important;
-  background-image: none !important;
-}
-
-body {
-  background: #F1F7F9 !important;
-  background-color: #F1F7F9 !important;
-  background-image: none !important;
-}
-
+/* AGGRESSIVE OVERRIDE - Prevent ANY yellow background (#ffff00) from appearing on html/body */
 html {
   background: #F1F7F9 !important; /* New Professional Palette - Explicit blue - NO YELLOW */
   background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue - NO YELLOW */
