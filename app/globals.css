@@ -167,9 +167,6 @@ body {
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
   body {
     background: linear-gradient(to bottom right, rgb(219, 234, 254), rgb(239, 246, 255)) !important;
     background-image: linear-gradient(to bottom right, hsl(var(--bg-gradient-start)), hsl(var(--bg-gradient-end))) !important;
