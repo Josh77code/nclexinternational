@@ -119,25 +119,17 @@
   * {
     @apply border-border outline-ring/50;
   }
-  /* AGGRESSIVE OVERRIDE - Prevent ANY yellow background from appearing on html/body only */
+  /* AGGRESSIVE OVERRIDE - Prevent ANY yellow background (#ffff00) from appearing on html/body */
   html {
-    background: #F1F7F9 !important;
-    background-color: #F1F7F9 !important;
+    background: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
+    background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
     background-image: none !important;
   }
   
   body {
-    background: #F1F7F9 !important;
-    background-color: #F1F7F9 !important;
-    background-image: none !important;
-  }
-  body {
     @apply bg-background text-foreground;
     background: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
     background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
-  }
-  html {
-    background: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
-    background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
+    background-image: none !important;
   }
 }
