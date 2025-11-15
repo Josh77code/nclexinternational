@@ -39,7 +39,7 @@
   /* Semantic Colors */
   --success: 16 185 129; /* #10B981 - Green */
   --success-foreground: 255 255 255; /* White */
-  --warning: 245 158 11; /* #F59E0B - Yellow/Amber */
+  --warning: 59 130 246; /* #3B82F6 - Blue (warning uses blue instead of yellow) */
   --warning-foreground: 255 255 255; /* White */
   --danger: 239 68 68; /* #EF4444 - Red */
   --destructive: 239 68 68; /* #EF4444 - Red */
@@ -59,7 +59,7 @@
   --chart-2: 59 130 246; /* #3B82F6 - Light blue */
   --chart-3: 96 165 250; /* #60A5FA - Lighter blue */
   --chart-4: 16 185 129; /* #10B981 - Green (success) */
-  --chart-5: 245 158 11; /* #F59E0B - Amber (warning) */
+  --chart-5: 59 130 246; /* #3B82F6 - Blue (warning uses blue) */
   
   /* Radius */
   --radius: 0.75rem;
@@ -111,7 +111,7 @@
   /* Semantic Colors - Dark Mode */
   --success: 16 185 129; /* #10B981 - Green */
   --success-foreground: 255 255 255; /* White */
-  --warning: 245 158 11; /* #F59E0B - Yellow/Amber */
+  --warning: 96 165 250; /* #60A5FA - Blue (warning uses blue instead of yellow) */
   --warning-foreground: 255 255 255; /* White */
   --danger: 239 68 68; /* #EF4444 - Red */
   --destructive: 239 68 68; /* #EF4444 - Red */
@@ -131,7 +131,7 @@
   --chart-2: 59 130 246; /* #3B82F6 */
   --chart-3: 30 64 175; /* #1E40AF */
   --chart-4: 16 185 129; /* #10B981 - Green */
-  --chart-5: 245 158 11; /* #F59E0B - Amber */
+  --chart-5: 96 165 250; /* #60A5FA - Blue (warning uses blue) */
   
   /* Sidebar Colors - Dark Mode */
   --sidebar: 30 41 59; /* Slate-800 */
