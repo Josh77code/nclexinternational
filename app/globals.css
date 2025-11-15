@@ -91,15 +91,15 @@
   /* Background Colors - Dark Mode - New Professional Palette */
   --background: 7 50 106; /* #07326A - Darkest blue */
   --bg-gradient-start: 6 64 137; /* #064089 - Dark blue */
-  --bg-gradient-end: 7 50 106; /* #07326A - Darkest blue */
+  --bg-gradient-end: 4 44 84; /* #042C54 - Very dark blue for depth */
   --foreground: 116 157 200; /* #749DC8 - Medium blue (text color for dark mode) */
   
-  /* Card Colors - Dark Mode */
-  --card: 30 41 59; /* Slate-800 */
+  /* Card Colors - Dark Mode - Improved contrast */
+  --card: 10 60 110; /* #0A3C6E - Darker blue card background */
   --card-foreground: 116 157 200; /* #749DC8 - Medium blue */
   
-  /* Popover Colors - Dark Mode */
-  --popover: 30 41 59; /* Slate-800 */
+  /* Popover Colors - Dark Mode - Improved */
+  --popover: 10 60 110; /* #0A3C6E - Darker blue popover background */
   --popover-foreground: 116 157 200; /* #749DC8 - Medium blue */
   
   /* Secondary Colors - Dark Mode - New Professional Palette */
@@ -285,4 +285,43 @@ body {
 
 .animate-pulse-slow {
   animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* Hero Section Animations */
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(60px, 60px);
+  }
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 3s ease infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
 }
