@@ -131,5 +131,6 @@
     background: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
     background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
     background-image: none !important;
+    color: #0A61C9 !important; /* Bright blue text color */
   }
 }
