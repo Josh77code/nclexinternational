@@ -4,16 +4,16 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Blue Theme - Primary Colors */
-  --primary: 30 64 175; /* #1E40AF - Deep blue (buttons, accents) */
+  /* Blue Theme - Primary Colors (Replace ALL orange) */
+  --primary: 30 64 175; /* #1E40AF - Deep blue (buttons, headers, accents) */
   --primary-light: 59 130 246; /* #3B82F6 - Lighter blue (hover, active) */
-  --primary-dark: 30 58 138; /* #1E3A8A - Darker blue (active, shadows) */
+  --primary-dark: 30 58 138; /* #1E3A8A - Darker blue (shadows, active) */
   --primary-foreground: 255 255 255; /* White */
   
-  /* Background Colors - Explicit Blue (NO YELLOW) */
-  --background: 239 246 255; /* #EFF6FF - Light blue (gradient end) */
-  --bg-start: 191 219 254; /* #BFDBFE - Blue (gradient start) - explicitly blue, no yellow */
-  --bg-end: 239 246 255; /* #EFF6FF - Light blue (gradient end) */
+  /* Background Gradient Colors */
+  --background: 239 246 255; /* #EFF6FF - Light blue */
+  --bg-gradient-start: 219 234 254; /* #DBEAFE - Light blue (top of gradient) */
+  --bg-gradient-end: 239 246 255; /* #EFF6FF - Lighter blue (bottom) */
   --foreground: 17 24 39; /* #111827 - Dark gray (headings) */
   
   /* Card Colors */
@@ -33,13 +33,14 @@
   --muted-foreground: 75 85 99; /* #4B5563 - Medium gray (body) */
   
   /* Accent Colors */
-  --accent: 191 219 254; /* #BFDBFE - Border color */
+  --accent: 96 165 250; /* #60A5FA - Soft blue accent */
+  --accent-blue: 96 165 250; /* #60A5FA - Soft blue accent */
   --accent-foreground: 17 24 39; /* Dark gray */
   
   /* Semantic Colors */
   --success: 16 185 129; /* #10B981 - Green */
   --success-foreground: 255 255 255; /* White */
-  --warning: 59 130 246; /* #3B82F6 - Blue (warning uses blue instead of yellow) */
+  --warning: 245 158 11; /* #F59E0B - Yellow (warning) */
   --warning-foreground: 255 255 255; /* White */
   --danger: 239 68 68; /* #EF4444 - Red */
   --destructive: 239 68 68; /* #EF4444 - Red */
@@ -53,6 +54,9 @@
   --border: 191 219 254; /* #BFDBFE */
   --input: 191 219 254; /* #BFDBFE */
   --ring: 59 130 246; /* #3B82F6 - Primary light for focus rings */
+  
+  /* Additional Colors */
+  --white: 255 255 255; /* #FFFFFF */
   
   /* Chart Colors */
   --chart-1: 30 64 175; /* #1E40AF - Deep blue */
@@ -84,8 +88,8 @@
   
   /* Background Colors - Dark Mode */
   --background: 15 23 42; /* Slate-900 */
-  --bg-start: 30 41 59; /* Slate-800 */
-  --bg-end: 15 23 42; /* Slate-900 */
+  --bg-gradient-start: 30 41 59; /* Slate-800 */
+  --bg-gradient-end: 15 23 42; /* Slate-900 */
   --foreground: 248 250 252; /* Slate-50 */
   
   /* Card Colors - Dark Mode */
@@ -111,7 +115,7 @@
   /* Semantic Colors - Dark Mode */
   --success: 16 185 129; /* #10B981 - Green */
   --success-foreground: 255 255 255; /* White */
-  --warning: 96 165 250; /* #60A5FA - Blue (warning uses blue instead of yellow) */
+  --warning: 245 158 11; /* #F59E0B - Yellow (warning) */
   --warning-foreground: 255 255 255; /* White */
   --danger: 239 68 68; /* #EF4444 - Red */
   --destructive: 239 68 68; /* #EF4444 - Red */
@@ -149,15 +153,21 @@
 }
 
 html {
-  background: linear-gradient(to bottom, hsl(var(--bg-start)), hsl(var(--bg-end))) !important;
-  background-color: hsl(219, 92%, 96%) !important; /* Explicit blue - #DBEAFE - NO YELLOW */
+  background: linear-gradient(to bottom right, hsl(var(--bg-gradient-start)), hsl(var(--bg-gradient-end))) !important;
+  background-color: hsl(219, 92%, 96%) !important;
 }
 
 body {
-  background: linear-gradient(to bottom, hsl(var(--bg-start)), hsl(var(--bg-end))) !important;
-  background-color: hsl(219, 92%, 96%) !important; /* Explicit blue - #DBEAFE - NO YELLOW */
+  background: linear-gradient(to bottom right, hsl(var(--bg-gradient-start)), hsl(var(--bg-gradient-end))) !important;
+  background-color: hsl(219, 92%, 96%) !important;
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)] min-h-screen font-sans;
+  }
 }
 
 /* Utility Classes */

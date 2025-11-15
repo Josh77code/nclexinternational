@@ -149,10 +149,10 @@ export default function HomePage() {
   const isImageSlide = currentSlide.type === "image"
 
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden bg-gradient-to-b from-[var(--bg-start)] to-[var(--bg-end)] dark:from-background dark:to-background">
+    <div className="min-h-screen flex flex-col overflow-hidden bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)] dark:from-background dark:to-background">
       <Header />
 
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-[var(--bg-start)] to-[var(--bg-end)] dark:from-background dark:to-background" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)] dark:from-background dark:to-background" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px)', backgroundSize: '50px 50px' }}>
         {/* Enhanced SVG Wave Shapes on Right */}
         <div className="absolute top-0 right-0 w-[700px] h-[800px] opacity-90 pointer-events-none z-0">
           <svg viewBox="0 0 700 800" className="w-full h-full absolute top-0 right-0">
@@ -235,7 +235,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[var(--bg-start)] to-[var(--bg-end)] dark:from-background dark:to-background">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)] dark:from-background dark:to-background">
         <div className="mx-auto max-w-7xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in-up">
             <h2 className="text-4xl sm:text-5xl font-bold text-[var(--text-primary)]">
@@ -266,7 +266,7 @@ export default function HomePage() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[var(--bg-start)] to-[var(--bg-end)] dark:from-background dark:to-background">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)] dark:from-background dark:to-background">
         <div className="mx-auto max-w-6xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in-up">
             <h2 className="text-4xl sm:text-5xl font-bold text-[var(--text-primary)]">
@@ -302,7 +302,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="testimonials" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[var(--bg-start)] to-[var(--bg-end)] dark:from-background dark:to-background">
+      <section id="testimonials" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)] dark:from-background dark:to-background">
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in-up">
             <h2 className="text-4xl sm:text-5xl font-bold text-[var(--text-primary)]">
@@ -393,7 +393,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[var(--bg-start)] to-[var(--bg-end)] dark:from-background dark:to-background">
+      <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)] dark:from-background dark:to-background">
         <div className="relative mx-auto max-w-4xl text-center space-y-8 animate-fade-in-up">
           <h2 className="text-4xl sm:text-5xl font-bold text-[var(--text-primary)]">
             Ready to Start Your Journey?

@@ -16,7 +16,7 @@ const buttonVariants = cva(
         success:
           'bg-[var(--success)] text-white hover:bg-green-700 shadow-md hover:shadow-lg hover:scale-105',
         warning:
-          'bg-[var(--warning)] text-white hover:bg-blue-700 shadow-md hover:shadow-lg hover:scale-105',
+          'bg-[var(--warning)] text-white hover:bg-amber-600 shadow-md hover:shadow-lg hover:scale-105',
         outline:
           'bg-white border border-[var(--border)] text-[var(--text-primary)] hover:bg-blue-50 shadow-xs',
         secondary:
