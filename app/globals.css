@@ -38,13 +38,13 @@
   --accent-blue: 116 157 200; /* #749DC8 - Medium blue accent */
   --accent-foreground: 255 255 255; /* White */
   
-  /* Semantic Colors */
-  --success: 16 185 129; /* #10B981 - Green */
+  /* Semantic Colors - Success is Green, Error/Failure is Red */
+  --success: 16 185 129; /* #10B981 - Green (success) */
   --success-foreground: 255 255 255; /* White */
   --warning: 245 158 11; /* #F59E0B - Yellow (warning) */
   --warning-foreground: 255 255 255; /* White */
-  --danger: 239 68 68; /* #EF4444 - Red */
-  --destructive: 239 68 68; /* #EF4444 - Red */
+  --danger: 239 68 68; /* #EF4444 - Red (failure/error) */
+  --destructive: 239 68 68; /* #EF4444 - Red (failure/error) */
   --destructive-foreground: 255 255 255; /* White */
   
   /* Text Colors - Blue Palette */
@@ -81,74 +81,74 @@
 }
 
 .dark {
-  /* Blue Theme - Dark Mode Primary Colors - New Professional Palette */
-  --primary: 116 157 200; /* #749DC8 - Medium blue for dark mode */
-  --primary-light: 116 157 200; /* #749DC8 - Medium blue */
-  --primary-dark: 6 64 137; /* #064089 - Dark blue */
-  --primary-darkest: 7 50 106; /* #07326A - Darkest blue */
+  /* Dark Mode Colors - Exact Match to User Specified Palette */
+  --primary: 96 165 250; /* #60A5FA - dark-primary */
+  --primary-light: 96 165 250; /* #60A5FA - dark-primary */
+  --primary-dark: 59 130 246; /* #3B82F6 - Darker blue */
+  --primary-darkest: 37 99 235; /* #2563EB - Darkest blue */
   --primary-foreground: 255 255 255; /* White */
   
-  /* Background Colors - Dark Mode - New Professional Palette */
-  --background: 7 50 106; /* #07326A - Darkest blue */
-  --bg-gradient-start: 6 64 137; /* #064089 - Dark blue */
-  --bg-gradient-end: 4 44 84; /* #042C54 - Very dark blue for depth */
-  --foreground: 116 157 200; /* #749DC8 - Medium blue (text color for dark mode) */
+  /* Background Colors - Dark Mode - Exact Match: #0F172A */
+  --background: 15 23 42; /* #0F172A - dark-bg */
+  --bg-gradient-start: 15 23 42; /* #0F172A - dark-bg */
+  --bg-gradient-end: 30 41 59; /* #1E293B - dark-card */
+  --foreground: 219 234 254; /* #DBEAFE - dark-text */
   
-  /* Card Colors - Dark Mode - Improved contrast */
-  --card: 10 60 110; /* #0A3C6E - Darker blue card background */
-  --card-foreground: 116 157 200; /* #749DC8 - Medium blue */
+  /* Card Colors - Dark Mode - Exact Match: #1E293B */
+  --card: 30 41 59; /* #1E293B - dark-card */
+  --card-foreground: 219 234 254; /* #DBEAFE - dark-text */
   
-  /* Popover Colors - Dark Mode - Improved */
-  --popover: 10 60 110; /* #0A3C6E - Darker blue popover background */
-  --popover-foreground: 116 157 200; /* #749DC8 - Medium blue */
+  /* Popover Colors - Dark Mode - Exact Match: #1E293B */
+  --popover: 30 41 59; /* #1E293B - dark-card */
+  --popover-foreground: 219 234 254; /* #DBEAFE - dark-text */
   
-  /* Secondary Colors - Dark Mode - New Professional Palette */
-  --secondary: 116 157 200; /* #749DC8 - Medium blue */
+  /* Secondary Colors - Dark Mode */
+  --secondary: 96 165 250; /* #60A5FA - dark-primary */
   --secondary-foreground: 255 255 255; /* White */
   
-  /* Muted Colors - Dark Mode - New Professional Palette */
-  --muted: 6 64 137; /* #064089 - Dark blue */
-  --muted-foreground: 10 97 201; /* #0A61C9 - Bright blue */
+  /* Muted Colors - Dark Mode - Exact Match: #334155 */
+  --muted: 51 65 85; /* #334155 - dark-border */
+  --muted-foreground: 147 197 253; /* #93C5FD - dark-text-secondary */
   
-  /* Accent Colors - Dark Mode - New Professional Palette */
-  --accent: 10 97 201; /* #0A61C9 - Bright blue */
-  --accent-blue: 116 157 200; /* #749DC8 - Medium blue */
+  /* Accent Colors - Dark Mode */
+  --accent: 96 165 250; /* #60A5FA - dark-primary */
+  --accent-blue: 96 165 250; /* #60A5FA - dark-primary */
   --accent-foreground: 255 255 255; /* White */
   
-  /* Semantic Colors - Dark Mode */
-  --success: 16 185 129; /* #10B981 - Green */
+  /* Semantic Colors - Success is Green, Failure/Error is Red */
+  --success: 16 185 129; /* #10B981 - Green (success) */
   --success-foreground: 255 255 255; /* White */
   --warning: 245 158 11; /* #F59E0B - Yellow (warning) */
   --warning-foreground: 255 255 255; /* White */
-  --danger: 239 68 68; /* #EF4444 - Red */
-  --destructive: 239 68 68; /* #EF4444 - Red */
-  --destructive-foreground: 248 250 252; /* Slate-50 */
+  --danger: 239 68 68; /* #EF4444 - Red (failure/error) */
+  --destructive: 239 68 68; /* #EF4444 - Red (failure/error) */
+  --destructive-foreground: 255 255 255; /* White */
   
-  /* Text Colors - Dark Mode - Blue Palette */
-  --text-primary: 116 157 200; /* #749DC8 - Medium blue (headings) */
-  --text-secondary: 10 97 201; /* #0A61C9 - Bright blue (body text) */
+  /* Text Colors - Dark Mode - Exact Match: #DBEAFE, #93C5FD */
+  --text-primary: 219 234 254; /* #DBEAFE - dark-text */
+  --text-secondary: 147 197 253; /* #93C5FD - dark-text-secondary */
   
-  /* Border & Input Colors - Dark Mode - New Professional Palette */
-  --border: 116 157 200; /* #749DC8 - Medium blue */
-  --input: 116 157 200; /* #749DC8 - Medium blue */
-  --ring: 116 157 200; /* #749DC8 - Medium blue */
+  /* Border & Input Colors - Dark Mode - Exact Match: #334155 */
+  --border: 51 65 85; /* #334155 - dark-border */
+  --input: 51 65 85; /* #334155 - dark-border */
+  --ring: 96 165 250; /* #60A5FA - dark-primary */
   
-  /* Chart Colors - Dark Mode - New Professional Palette */
-  --chart-1: 116 157 200; /* #749DC8 - Medium blue */
-  --chart-2: 10 97 201; /* #0A61C9 - Bright blue */
-  --chart-3: 6 64 137; /* #064089 - Dark blue */
-  --chart-4: 16 185 129; /* #10B981 - Green */
-  --chart-5: 7 50 106; /* #07326A - Darkest blue */
+  /* Chart Colors - Dark Mode */
+  --chart-1: 96 165 250; /* #60A5FA - dark-primary */
+  --chart-2: 147 197 253; /* #93C5FD - dark-text-secondary */
+  --chart-3: 59 130 246; /* #3B82F6 - Blue */
+  --chart-4: 16 185 129; /* #10B981 - Green (success) */
+  --chart-5: 239 68 68; /* #EF4444 - Red (error) */
   
-  /* Sidebar Colors - Dark Mode - New Professional Palette */
-  --sidebar: 7 50 106; /* #07326A - Darkest blue */
-  --sidebar-foreground: 116 157 200; /* #749DC8 - Medium blue */
-  --sidebar-primary: 116 157 200; /* #749DC8 - Medium blue */
+  /* Sidebar Colors - Dark Mode - Exact Match: #1E293B, #334155 */
+  --sidebar: 30 41 59; /* #1E293B - dark-card */
+  --sidebar-foreground: 219 234 254; /* #DBEAFE - dark-text */
+  --sidebar-primary: 96 165 250; /* #60A5FA - dark-primary */
   --sidebar-primary-foreground: 255 255 255; /* White */
-  --sidebar-accent: 6 64 137; /* #064089 - Dark blue */
-  --sidebar-accent-foreground: 116 157 200; /* #749DC8 - Medium blue */
-  --sidebar-border: 116 157 200; /* #749DC8 - Medium blue */
-  --sidebar-ring: 116 157 200; /* #749DC8 - Medium blue */
+  --sidebar-accent: 51 65 85; /* #334155 - dark-border */
+  --sidebar-accent-foreground: 219 234 254; /* #DBEAFE - dark-text */
+  --sidebar-border: 51 65 85; /* #334155 - dark-border */
+  --sidebar-ring: 96 165 250; /* #60A5FA - dark-primary */
 }
 
 * {

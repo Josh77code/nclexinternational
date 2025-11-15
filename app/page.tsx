@@ -152,64 +152,95 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col overflow-hidden bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)] dark:from-background dark:to-background">
       <Header />
 
-      {/* CLEAN HERO SECTION - Inspired by Reference Design */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(/nclexk background image.jpeg)'
-          }}
-        >
-          {/* Gradient Overlay - Dark blue to light blue (like teal gradient in reference) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#064089]/90 via-[#064089]/70 to-[#749DC8]/60 dark:from-[#07326A]/95 dark:via-[#064089]/85 dark:to-[#749DC8]/70"></div>
+      {/* HERO SECTION WITH BACKGROUND IMAGE */}
+      <section className="relative min-h-[90vh] pt-24 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background Image with Proper Sizing */}
+        <div className="absolute inset-0 w-full h-full">
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/nclexk background image.jpeg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover"
+            }}
+          />
+          {/* Gradient Overlay for Better Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#064089]/85 via-[#0A61C9]/75 to-[#749DC8]/65 dark:from-[#0F172A]/90 dark:via-[#0F172A]/85 dark:to-[#0F172A]/80"></div>
         </div>
 
-        {/* Main Content Container */}
-        <div className="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-24">
-          <div className="max-w-2xl">
-            {/* Headline - Large, Bold, White */}
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Find Your Perfect NCLEX Tutor
+        {/* Main Content */}
+        <div className="relative mx-auto max-w-7xl z-10 pt-20">
+          <div className="max-w-3xl space-y-10">
+
+            {/* Headline - White Text */}
+            <h1 className="text-7xl sm:text-8xl lg:text-9xl font-extrabold tracking-tighter leading-[0.9] text-white animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              NCLEX<br />KEYS
             </h1>
 
-            {/* Descriptive Text - White, Smaller */}
-            <p className="text-lg sm:text-xl text-white/95 mb-8 leading-relaxed max-w-xl">
-              Whether preparing for your NCLEX exam, mastering complex nursing concepts, or building confidence for licensure, the right tutor can help you feel empowered, knowledgeable, and ready to succeed.
+            {/* Subheading */}
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              Unlock Your NCLEX Success
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
-              {/* Primary Button - Solid Blue */}
+            {/* Description */}
+            <p className="text-lg sm:text-xl text-white/90 max-w-2xl leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+              Join over 100 successful nursing professionals who have transformed their NCLEX preparation into confident success through intensive, results-driven coaching from Boss B and the NCLEX KEYS team.
+            </p>
+
+            {/* CTA Buttons - Register Now */}
+            <div className="flex flex-wrap gap-4 pt-6 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <Button
                 size="lg"
                 asChild
-                className="px-8 py-6 text-lg font-semibold bg-[#0A61C9] hover:bg-[#064089] text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                variant="default"
+                className="text-lg px-10 py-7 rounded-full bg-[#0A61C9] hover:bg-[#064089] dark:bg-[#60A5FA] dark:hover:bg-[#3B82F6] text-white shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300 border-0"
               >
-                <Link href="/programs">
-                  Find Your Tutor
+                <Link href="/programs" className="flex items-center gap-2">
+                  <Zap className="w-5 h-5" />
+                  Register Now
                 </Link>
               </Button>
-
-              {/* Secondary Button - Outlined White */}
               <Button
                 size="lg"
                 asChild
                 variant="outline"
-                className="px-8 py-6 text-lg font-semibold border-2 border-white text-white hover:bg-white/10 rounded-lg backdrop-blur-sm transition-all duration-300 hover:scale-105"
+                className="text-lg px-10 py-7 rounded-full border-2 border-white/80 text-white hover:bg-white/10 backdrop-blur-sm hover:scale-105 transition-all duration-300"
               >
                 <Link href="/programs" className="flex items-center gap-2">
-                  <Award className="w-5 h-5" />
-                  Featured Tutors
+                  <Users className="w-5 h-5" />
+                  Register Now
                 </Link>
               </Button>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-3 gap-6 pt-12 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+              {[
+                { number: '100+', label: 'Success Stories', icon: Award },
+                { number: '95%', label: 'Pass Rate', icon: TrendingUp },
+                { number: '24/7', label: 'Support', icon: Clock },
+              ].map((stat, idx) => (
+                <div
+                  key={idx}
+                  className="group relative p-6 rounded-2xl bg-white/40 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 hover:border-[#0A61C9]/50 dark:hover:border-[#749DC8]/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#0A61C9]/20 dark:hover:shadow-[#749DC8]/20"
+                >
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#0A61C9]/10 to-transparent dark:from-[#749DC8]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <stat.icon className="w-8 h-8 text-[#0A61C9] dark:text-[#749DC8] mb-3 relative z-10" />
+                  <div className="text-3xl font-bold text-[#064089] dark:text-[#749DC8] mb-1 relative z-10">{stat.number}</div>
+                  <div className="text-sm text-[var(--text-secondary)] relative z-10">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Scroll Indicator - Bottom Center */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-          <ChevronRight className="w-6 h-6 text-white rotate-90" />
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+          <ChevronRight className="w-6 h-6 text-[#0A61C9] dark:text-[#749DC8] rotate-90" />
         </div>
       </section>
 
