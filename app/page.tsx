@@ -302,7 +302,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="testimonials" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="testimonials" className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[var(--bg-start)] to-[var(--bg-end)] dark:from-background dark:to-background">
         <div className="relative mx-auto max-w-7xl">
           <div className="text-center space-y-4 mb-16 animate-fade-in-up">
             <h2 className="text-4xl sm:text-5xl font-bold text-[var(--text-primary)]">

@@ -10,10 +10,10 @@
   --primary-dark: 30 58 138; /* #1E3A8A - Darker blue (active, shadows) */
   --primary-foreground: 255 255 255; /* White */
   
-  /* Background Colors */
-  --background: 239 246 255; /* #EFF6FF - Lighter blue (gradient end) */
-  --bg-start: 219 234 254; /* #DBEAFE - Very light blue (gradient start) */
-  --bg-end: 239 246 255; /* #EFF6FF - Lighter blue (gradient end) */
+  /* Background Colors - Explicit Blue (NO YELLOW) */
+  --background: 239 246 255; /* #EFF6FF - Light blue (gradient end) */
+  --bg-start: 191 219 254; /* #BFDBFE - Blue (gradient start) - explicitly blue, no yellow */
+  --bg-end: 239 246 255; /* #EFF6FF - Light blue (gradient end) */
   --foreground: 17 24 39; /* #111827 - Dark gray (headings) */
   
   /* Card Colors */
@@ -29,7 +29,7 @@
   --secondary-foreground: 255 255 255; /* White */
   
   /* Muted Colors */
-  --muted: 219 234 254; /* #DBEAFE - Very light blue */
+  --muted: 191 219 254; /* #BFDBFE - Blue (no yellow) */
   --muted-foreground: 75 85 99; /* #4B5563 - Medium gray (body) */
   
   /* Accent Colors */
@@ -69,7 +69,7 @@
   --sidebar-foreground: 17 24 39; /* Dark gray */
   --sidebar-primary: 30 64 175; /* #1E40AF - Deep blue */
   --sidebar-primary-foreground: 255 255 255; /* White */
-  --sidebar-accent: 219 234 254; /* #DBEAFE - Very light blue */
+  --sidebar-accent: 191 219 254; /* #BFDBFE - Blue (no yellow) */
   --sidebar-accent-foreground: 17 24 39; /* Dark gray */
   --sidebar-border: 191 219 254; /* #BFDBFE */
   --sidebar-ring: 59 130 246; /* #3B82F6 - Primary light */
@@ -149,11 +149,13 @@
 }
 
 html {
-  background: linear-gradient(to bottom, hsl(var(--bg-start)), hsl(var(--bg-end)));
+  background: linear-gradient(to bottom, hsl(var(--bg-start)), hsl(var(--bg-end))) !important;
+  background-color: hsl(219, 92%, 96%) !important; /* Explicit blue - #DBEAFE - NO YELLOW */
 }
 
 body {
-  background: linear-gradient(to bottom, hsl(var(--bg-start)), hsl(var(--bg-end)));
+  background: linear-gradient(to bottom, hsl(var(--bg-start)), hsl(var(--bg-end))) !important;
+  background-color: hsl(219, 92%, 96%) !important; /* Explicit blue - #DBEAFE - NO YELLOW */
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
 }
