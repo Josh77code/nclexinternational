@@ -199,14 +199,14 @@ export default function AboutPage() {
             <div className="max-w-4xl mx-auto mb-16">
               <Card className="group card-3d-strong overflow-hidden hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-700 border-2 border-[#3895D3] hover:border-[#1261A0] glass-ultra">
                 <div className="grid md:grid-cols-2 gap-0">
-                  <div className="relative aspect-square md:aspect-auto overflow-hidden bg-gradient-to-br from-primary/20 to-purple-500/20">
+                  <div className="relative aspect-square md:aspect-auto overflow-hidden bg-gradient-to-br from-primary/20 to-[#0A61C9]/20">
                     <img
                       src={boardMembers[0].image || "/placeholder.svg"}
                       alt={boardMembers[0].name}
                       className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-[#0A61C9]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   </div>
                   <CardContent className="p-8 space-y-6 flex flex-col justify-center">
                     <div className="space-y-4">
@@ -230,7 +230,7 @@ export default function AboutPage() {
                   className="group card-3d-strong overflow-hidden hover:shadow-2xl hover:shadow-[#3895D3]/30 transition-all duration-700 hover:-translate-y-6 border-2 border-[#3895D3] hover:border-[#1261A0] animate-bounce-in glass-ultra"
                   style={{ animationDelay: `${index * 0.15}s` }}
                 >
-                  <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/20 to-purple-500/20">
+                  <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/20 to-[#0A61C9]/20">
                     <img
                       src={member.image || "/placeholder.svg"}
                       alt={member.name}
@@ -238,7 +238,7 @@ export default function AboutPage() {
                       style={member.imagePosition ? { objectPosition: member.imagePosition } : undefined}
                     />
                     <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-[#0A61C9]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   </div>
                   <CardContent className="pt-8 space-y-4 relative">
                     <div className="text-center space-y-3">

@@ -10,7 +10,7 @@ export function ExternalLinks() {
   return (
     <Card className="border-soft hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 animate-fade-in">
       <CardHeader>
-        <CardTitle className="text-2xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+        <CardTitle className="text-2xl bg-gradient-to-r from-primary to-[#0A61C9] bg-clip-text text-transparent">
           Community & Resources
         </CardTitle>
         <CardDescription className="text-base">

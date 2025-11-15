@@ -465,7 +465,7 @@ export default function ExamPage() {
                     <Clock className="h-5 w-5" />
                     <span className="font-bold text-lg">{formatTime(timeRemaining)}</span>
                     {isPaused && (
-                      <Badge variant="outline" className="border-purple-500 text-purple-600 bg-purple-50">
+                      <Badge variant="outline" className="border-[#0A61C9] dark:border-[#60A5FA] text-[#0A61C9] dark:text-[#60A5FA] bg-[#F1F7F9] dark:bg-[#1E293B]">
                         PAUSED
                       </Badge>
                     )}
@@ -479,8 +479,8 @@ export default function ExamPage() {
                     onClick={isPaused ? handleResumeExam : handlePauseExam}
                     className={`border-2 ${
                       isPaused
-                        ? 'border-green-500 text-green-600 hover:bg-green-50'
-                        : 'border-purple-500 text-purple-600 hover:bg-purple-50'
+                        ? 'border-green-500 text-green-600 hover:bg-green-50 dark:border-green-400 dark:text-green-400 dark:hover:bg-green-950/20'
+                        : 'border-[#0A61C9] dark:border-[#60A5FA] text-[#0A61C9] dark:text-[#60A5FA] hover:bg-[#F1F7F9] dark:hover:bg-[#1E293B]'
                     }`}
                   >
                     {isPaused ? (
@@ -675,7 +675,7 @@ export default function ExamPage() {
               <p className="text-gray-600">
                 You have answered {getAnsweredCount()} out of {questions.length} questions.
                 {getUnansweredCount() > 0 && (
-                  <span className="block mt-2 text-purple-600">
+                  <span className="block mt-2 text-[#0A61C9] dark:text-[#60A5FA]">
                     {getUnansweredCount()} questions remain unanswered.
                   </span>
                 )}

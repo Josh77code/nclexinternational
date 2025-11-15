@@ -362,12 +362,12 @@ function ResultsContent() {
                     <div className="text-sm text-blue-600">Time Taken</div>
                   </div>
                   
-                  <div className="text-center p-4 bg-purple-50 rounded-lg border border-purple-200">
-                    <Target className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-                    <div className="text-2xl font-bold text-purple-700">
+                  <div className="text-center p-4 bg-[#F1F7F9] dark:bg-[#1E293B] rounded-lg border border-[#749DC8] dark:border-[#334155]">
+                    <Target className="h-8 w-8 text-[#0A61C9] dark:text-[#60A5FA] mx-auto mb-2" />
+                    <div className="text-2xl font-bold text-[#064089] dark:text-[#DBEAFE]">
                       {result.passed ? '75%+' : '<75%'}
                     </div>
-                    <div className="text-sm text-purple-600">Passing Grade</div>
+                    <div className="text-sm text-[#0A61C9] dark:text-[#93C5FD]">Passing Grade</div>
                   </div>
                 </div>
               </CardContent>

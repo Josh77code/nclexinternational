@@ -140,7 +140,7 @@ export default function LoginPage() {
 
             <div className="text-center text-sm pt-2">
               <span className="text-[#0A61C9]">Need an account? </span>
-              <Link href="/contact" className="text-purple-600 hover:text-pink-600 font-semibold hover:underline">
+              <Link href="/contact" className="text-[#0A61C9] hover:text-[#064089] font-semibold hover:underline">
                 Contact the Admin Team
               </Link>
             </div>

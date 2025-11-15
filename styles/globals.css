@@ -62,7 +62,7 @@
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 240); /* Blue - changed from yellow to blue */
-  --chart-4: oklch(0.627 0.265 303.9); /* Purple - keeping */
+  --chart-4: oklch(0.828 0.189 84.429); /* Green - keeping for success */
   --chart-5: oklch(0.645 0.246 240); /* Blue - changed from orange (16.439) to blue (240) */
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
@@ -119,18 +119,29 @@
   * {
     @apply border-border outline-ring/50;
   }
-  /* AGGRESSIVE OVERRIDE - Prevent ANY yellow background (#ffff00) from appearing on html/body */
-  html {
-    background: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
-    background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
-    background-image: none !important;
+  /* Base styles - Allow dark theme override */
+  html:not(.dark) {
+    background: #F1F7F9 !important;
+    background-color: #F1F7F9 !important;
   }
   
-  body {
+  html:not(.dark) body {
     @apply bg-background text-foreground;
-    background: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
-    background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
-    background-image: none !important;
-    color: #0A61C9 !important; /* Bright blue text color */
+    background: #F1F7F9 !important;
+    background-color: #F1F7F9 !important;
+    color: #0A61C9 !important;
+  }
+  
+  /* Dark mode styles */
+  html.dark {
+    background: hsl(var(--background)) !important;
+    background-color: hsl(var(--background)) !important;
+  }
+  
+  html.dark body {
+    @apply bg-background text-foreground;
+    background: hsl(var(--background)) !important;
+    background-color: hsl(var(--background)) !important;
+    color: hsl(var(--foreground)) !important;
   }
 }

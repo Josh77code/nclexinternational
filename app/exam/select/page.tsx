@@ -266,7 +266,7 @@ export default function ExamSelectPage() {
           {courses.length === 0 ? (
             <Card className="border-2 border-[#0A61C9]">
               <CardContent className="pt-6 text-center">
-                <AlertCircle className="h-12 w-12 text-purple-500 mx-auto mb-4" />
+                <AlertCircle className="h-12 w-12 text-[#0A61C9] mx-auto mb-4" />
                 <h2 className="text-xl font-bold text-[#0A61C9] mb-2">No Exams Available</h2>
                 <p className="text-gray-600 mb-4">There are currently no active exams available. Please check back later.</p>
                 <Button onClick={() => router.push('/dashboard')} className="bg-[#0A61C9] hover:bg-[#749DC8]">

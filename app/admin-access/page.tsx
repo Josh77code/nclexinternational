@@ -19,21 +19,21 @@ export default function AdminAccessPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A] flex items-center justify-center p-4">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-40 left-40 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#0A61C9] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#60A5FA] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-40 left-40 w-80 h-80 bg-[#749DC8] rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
       </div>
 
       <div className="relative z-10 w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full mb-6 animate-bounce">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-[#0A61C9] to-[#60A5FA] rounded-full mb-6 animate-bounce">
             <Shield className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-4xl font-bold text-white mb-2 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold text-white mb-2 bg-gradient-to-r from-[#60A5FA] to-[#93C5FD] bg-clip-text text-transparent">
             Admin Access
           </h1>
           <p className="text-slate-300 text-lg">
@@ -65,11 +65,11 @@ export default function AdminAccessPage() {
                 <span className="text-sm text-white">Create Courses</span>
               </div>
               <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10">
-                <BarChart3 className="w-5 h-5 text-purple-400" />
+                <BarChart3 className="w-5 h-5 text-[#60A5FA]" />
                 <span className="text-sm text-white">View Analytics</span>
               </div>
               <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10">
-                <Settings className="w-5 h-5 text-purple-500" />
+                <Settings className="w-5 h-5 text-[#60A5FA]" />
                 <span className="text-sm text-white">System Settings</span>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default function AdminAccessPage() {
             <Button 
               onClick={handleAdminAccess}
               disabled={isAccessing}
-              className="w-full h-12 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full h-12 bg-gradient-to-r from-[#0A61C9] to-[#60A5FA] hover:from-[#064089] hover:to-[#3B82F6] text-white font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isAccessing ? (
                 <div className="flex items-center gap-2">

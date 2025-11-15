@@ -191,7 +191,7 @@ export default function HomePage() {
               Join over 100 successful nursing professionals who have transformed their NCLEX preparation into confident success through intensive, results-driven coaching from Boss B and the NCLEX KEYS team.
             </p>
 
-            {/* CTA Buttons - Register Now */}
+            {/* CTA Button - Register Now (Single Button) */}
             <div className="flex flex-wrap gap-4 pt-6 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <Button
                 size="lg"
@@ -201,17 +201,6 @@ export default function HomePage() {
               >
                 <Link href="/programs" className="flex items-center gap-2">
                   <Zap className="w-5 h-5" />
-                  Register Now
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                asChild
-                variant="outline"
-                className="text-lg px-10 py-7 rounded-full border-2 border-white/80 text-white hover:bg-white/10 backdrop-blur-sm hover:scale-105 transition-all duration-300"
-              >
-                <Link href="/programs" className="flex items-center gap-2">
-                  <Users className="w-5 h-5" />
                   Register Now
                 </Link>
               </Button>
