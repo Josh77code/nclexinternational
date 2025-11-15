@@ -246,8 +246,8 @@ export default function ExamSelectPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#304674] mx-auto mb-4"></div>
-          <p className="text-lg text-[#304674]">Loading available exams...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0A61C9] mx-auto mb-4"></div>
+          <p className="text-lg text-[#0A61C9]">Loading available exams...</p>
         </div>
       </div>
     )
@@ -259,17 +259,17 @@ export default function ExamSelectPage() {
       <main className="pt-24 pb-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-[#304674] mb-2">Available Exams</h1>
+            <h1 className="text-4xl font-bold text-[#0A61C9] mb-2">Available Exams</h1>
             <p className="text-lg text-gray-600">Choose an exam to begin practicing for your NCLEX</p>
           </div>
 
           {courses.length === 0 ? (
-            <Card className="border-2 border-[#304674]">
+            <Card className="border-2 border-[#0A61C9]">
               <CardContent className="pt-6 text-center">
                 <AlertCircle className="h-12 w-12 text-purple-500 mx-auto mb-4" />
-                <h2 className="text-xl font-bold text-[#304674] mb-2">No Exams Available</h2>
+                <h2 className="text-xl font-bold text-[#0A61C9] mb-2">No Exams Available</h2>
                 <p className="text-gray-600 mb-4">There are currently no active exams available. Please check back later.</p>
-                <Button onClick={() => router.push('/dashboard')} className="bg-[#304674] hover:bg-[#98bad5]">
+                <Button onClick={() => router.push('/dashboard')} className="bg-[#0A61C9] hover:bg-[#749DC8]">
                   Return to Dashboard
                 </Button>
               </CardContent>
@@ -279,21 +279,21 @@ export default function ExamSelectPage() {
               {courses.map((course) => (
                 <Card
                   key={course.id}
-                  className="border-2 border-[#304674] hover:border-[#98bad5] transition-all hover:shadow-xl bg-white"
+                  className="border-2 border-[#0A61C9] hover:border-[#749DC8] transition-all hover:shadow-xl bg-white"
                 >
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <CardTitle className="text-2xl text-[#304674] mb-2">{course.title}</CardTitle>
+                        <CardTitle className="text-2xl text-[#0A61C9] mb-2">{course.title}</CardTitle>
                         <CardDescription className="text-gray-600">{course.description}</CardDescription>
                       </div>
-                      <BookOpen className="w-8 h-8 text-[#304674]" />
+                      <BookOpen className="w-8 h-8 text-[#0A61C9]" />
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center gap-4">
-                      <Badge className="bg-[#304674] text-white text-sm px-3 py-1">{course.question_count} Questions</Badge>
-                      <Badge variant="outline" className="border-[#98bad5] text-[#98bad5] text-sm px-3 py-1">
+                      <Badge className="bg-[#0A61C9] text-white text-sm px-3 py-1">{course.question_count} Questions</Badge>
+                      <Badge variant="outline" className="border-[#749DC8] text-[#749DC8] text-sm px-3 py-1">
                         <Clock className="w-3 h-3 mr-1" />
                         {course.avg_time_per_question}s per question
                       </Badge>
@@ -304,7 +304,7 @@ export default function ExamSelectPage() {
                       </p>
                       <Button 
                         onClick={() => router.push(`/exam?courseId=${course.id}`)}
-                        className="w-full bg-[#304674] hover:bg-[#98bad5] text-white font-semibold"
+                        className="w-full bg-[#0A61C9] hover:bg-[#749DC8] text-white font-semibold"
                       >
                         Start Exam
                       </Button>

@@ -19,10 +19,10 @@ export default function ContactPage() {
           <div className="absolute bottom-10 left-20 w-96 h-96 bg-white rounded-full floating-shape stagger-2 blur-3xl" />
           
           <div className="mx-auto max-w-4xl text-center space-y-6 relative z-10">
-            <h1 className="text-4xl sm:text-6xl font-bold animate-fade-in-up text-[#304674]">
+            <h1 className="text-4xl sm:text-6xl font-bold animate-fade-in-up text-[#0A61C9]">
               Get In Touch
             </h1>
-            <p className="text-xl text-[#304674] text-pretty animate-fade-in-up stagger-1">
+            <p className="text-xl text-[#0A61C9] text-pretty animate-fade-in-up stagger-1">
               Have questions? We're here to help you on your NCLEX journey.
             </p>
           </div>
@@ -33,9 +33,9 @@ export default function ContactPage() {
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}
-              <Card className="group hover:shadow-2xl hover:shadow-[#98bad5]/20 transition-all duration-500 border-[#c6d3e3] animate-slide-in-left">
+              <Card className="group hover:shadow-2xl hover:shadow-[#749DC8]/20 transition-all duration-500 border-[#749DC8] animate-slide-in-left">
                 <CardHeader className="space-y-2">
-                  <CardTitle className="text-2xl text-[#304674]">
+                  <CardTitle className="text-2xl text-[#0A61C9]">
                     Send Us a Message
                   </CardTitle>
                   <CardDescription className="text-base">
@@ -51,7 +51,7 @@ export default function ContactPage() {
                       <Input 
                         id="name" 
                         placeholder="John Doe"
-                        className="h-11 transition-all duration-300 focus:scale-[1.02] border-[#c6d3e3] focus:border-[#304674]/50"
+                        className="h-11 transition-all duration-300 focus:scale-[1.02] border-[#749DC8] focus:border-[#0A61C9]/50"
                       />
                     </div>
                     <div className="space-y-2 group/input">
@@ -62,7 +62,7 @@ export default function ContactPage() {
                         id="email" 
                         type="email" 
                         placeholder="john@example.com"
-                        className="h-11 transition-all duration-300 focus:scale-[1.02] border-[#c6d3e3] focus:border-[#304674]/50"
+                        className="h-11 transition-all duration-300 focus:scale-[1.02] border-[#749DC8] focus:border-[#0A61C9]/50"
                       />
                     </div>
                     <div className="space-y-2 group/input">
@@ -73,7 +73,7 @@ export default function ContactPage() {
                         id="phone" 
                         type="tel" 
                 placeholder="+234 703 736 7480"
-                        className="h-11 transition-all duration-300 focus:scale-[1.02] border-[#c6d3e3] focus:border-[#304674]/50"
+                        className="h-11 transition-all duration-300 focus:scale-[1.02] border-[#749DC8] focus:border-[#0A61C9]/50"
                       />
                     </div>
                     <div className="space-y-2 group/input">
@@ -84,12 +84,12 @@ export default function ContactPage() {
                         id="message" 
                         placeholder="Tell us how we can help you..." 
                         rows={5}
-                        className="transition-all duration-300 focus:scale-[1.02] border-[#c6d3e3] focus:border-[#304674]/50 resize-none"
+                        className="transition-all duration-300 focus:scale-[1.02] border-[#749DC8] focus:border-[#0A61C9]/50 resize-none"
                       />
                     </div>
                     <Button 
                       type="submit" 
-                      className="w-full h-12 text-base bg-[#304674] hover:bg-[#304674]/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                      className="w-full h-12 text-base bg-[#0A61C9] hover:bg-[#0A61C9]/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
                     >
                       Send Message
                     </Button>
@@ -100,70 +100,70 @@ export default function ContactPage() {
               {/* Contact Information */}
               <div className="space-y-6 animate-slide-in-right">
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-[#304674]">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-[#0A61C9]">
                     Contact Information
                   </h2>
                   <div className="space-y-4">
-                    <Card className="group hover:shadow-xl hover:shadow-[#98bad5]/10 transition-all duration-500 hover:-translate-y-1 border-[#c6d3e3] animate-fade-in stagger-1">
+                    <Card className="group hover:shadow-xl hover:shadow-[#749DC8]/10 transition-all duration-500 hover:-translate-y-1 border-[#749DC8] animate-fade-in stagger-1">
                       <CardContent className="flex items-start gap-4 pt-6">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#304674] shrink-0 group-hover:scale-110 transition-transform duration-500">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#0A61C9] shrink-0 group-hover:scale-110 transition-transform duration-500">
                           <Mail className="h-6 w-6" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-lg mb-2 group-hover:text-[#304674] transition-colors duration-300">Email</h3>
-                          <p className="text-sm text-[#304674] hover:text-[#304674] transition-colors duration-300">nclexkeysintl.academy@gmail.com</p>
+                          <h3 className="font-bold text-lg mb-2 group-hover:text-[#0A61C9] transition-colors duration-300">Email</h3>
+                          <p className="text-sm text-[#0A61C9] hover:text-[#0A61C9] transition-colors duration-300">nclexkeysintl.academy@gmail.com</p>
                         </div>
                       </CardContent>
                     </Card>
 
-                    <Card className="group hover:shadow-xl hover:shadow-[#98bad5]/10 transition-all duration-500 hover:-translate-y-1 border-[#c6d3e3] animate-fade-in stagger-2">
+                    <Card className="group hover:shadow-xl hover:shadow-[#749DC8]/10 transition-all duration-500 hover:-translate-y-1 border-[#749DC8] animate-fade-in stagger-2">
                       <CardContent className="flex items-start gap-4 pt-6">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#304674] shrink-0 group-hover:scale-110 transition-transform duration-500">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#0A61C9] shrink-0 group-hover:scale-110 transition-transform duration-500">
                           <Phone className="h-6 w-6" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-lg mb-2 group-hover:text-[#304674] transition-colors duration-300">Phone</h3>
-                          <p className="text-sm text-[#304674] hover:text-[#304674] transition-colors duration-300">+234 703 736 7480</p>
-                          <p className="text-sm text-[#304674] hover:text-[#304674] transition-colors duration-300">Mon-Fri: 9AM - 6PM EST</p>
+                          <h3 className="font-bold text-lg mb-2 group-hover:text-[#0A61C9] transition-colors duration-300">Phone</h3>
+                          <p className="text-sm text-[#0A61C9] hover:text-[#0A61C9] transition-colors duration-300">+234 703 736 7480</p>
+                          <p className="text-sm text-[#0A61C9] hover:text-[#0A61C9] transition-colors duration-300">Mon-Fri: 9AM - 6PM EST</p>
                         </div>
                       </CardContent>
                     </Card>
 
-                    <Card className="group hover:shadow-xl hover:shadow-[#98bad5]/10 transition-all duration-500 hover:-translate-y-1 border-[#c6d3e3] animate-fade-in stagger-3">
+                    <Card className="group hover:shadow-xl hover:shadow-[#749DC8]/10 transition-all duration-500 hover:-translate-y-1 border-[#749DC8] animate-fade-in stagger-3">
                       <CardContent className="flex items-start gap-4 pt-6">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#304674] shrink-0 group-hover:scale-110 transition-transform duration-500">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#0A61C9] shrink-0 group-hover:scale-110 transition-transform duration-500">
                           <MessageCircle className="h-6 w-6" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-lg mb-2 group-hover:text-[#304674] transition-colors duration-300">WhatsApp</h3>
-                          <p className="text-sm text-[#304674] hover:text-[#304674] transition-colors duration-300">+234 703 736 7480</p>
-                          <p className="text-sm text-[#304674] hover:text-[#304674] transition-colors duration-300">24/7 Support Available</p>
+                          <h3 className="font-bold text-lg mb-2 group-hover:text-[#0A61C9] transition-colors duration-300">WhatsApp</h3>
+                          <p className="text-sm text-[#0A61C9] hover:text-[#0A61C9] transition-colors duration-300">+234 703 736 7480</p>
+                          <p className="text-sm text-[#0A61C9] hover:text-[#0A61C9] transition-colors duration-300">24/7 Support Available</p>
                         </div>
                       </CardContent>
                     </Card>
 
-                    <Card className="group hover:shadow-xl hover:shadow-[#98bad5]/10 transition-all duration-500 hover:-translate-y-1 border-[#c6d3e3] animate-fade-in stagger-4">
+                    <Card className="group hover:shadow-xl hover:shadow-[#749DC8]/10 transition-all duration-500 hover:-translate-y-1 border-[#749DC8] animate-fade-in stagger-4">
                       <CardContent className="flex items-start gap-4 pt-6">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#304674] shrink-0 group-hover:scale-110 transition-transform duration-500">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#0A61C9] shrink-0 group-hover:scale-110 transition-transform duration-500">
                           <MapPin className="h-6 w-6" />
                         </div>
                         <div>
-                          <h3 className="font-bold text-lg mb-2 group-hover:text-[#304674] transition-colors duration-300">Location</h3>
-                          <p className="text-sm text-[#304674] hover:text-[#304674] transition-colors duration-300">Serving Students Worldwide</p>
-                          <p className="text-sm text-[#304674] hover:text-[#304674] transition-colors duration-300">International Support</p>
+                          <h3 className="font-bold text-lg mb-2 group-hover:text-[#0A61C9] transition-colors duration-300">Location</h3>
+                          <p className="text-sm text-[#0A61C9] hover:text-[#0A61C9] transition-colors duration-300">Serving Students Worldwide</p>
+                          <p className="text-sm text-[#0A61C9] hover:text-[#0A61C9] transition-colors duration-300">International Support</p>
                         </div>
                       </CardContent>
                     </Card>
                   </div>
                 </div>
 
-                <Card className="relative overflow-hidden bg-white border-[#c6d3e3] hover:shadow-xl hover:shadow-[#98bad5]/20 transition-all duration-500 hover:scale-[1.02] animate-fade-in stagger-5">
+                <Card className="relative overflow-hidden bg-white border-[#749DC8] hover:shadow-xl hover:shadow-[#749DC8]/20 transition-all duration-500 hover:scale-[1.02] animate-fade-in stagger-5">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl" />
                   <CardContent className="pt-6 relative z-10">
-                    <h3 className="font-bold text-lg mb-3 text-[#304674]">
+                    <h3 className="font-bold text-lg mb-3 text-[#0A61C9]">
                       Quick Response
                     </h3>
-                    <p className="text-sm text-[#304674] leading-relaxed">
+                    <p className="text-sm text-[#0A61C9] leading-relaxed">
                       For immediate assistance, reach out via WhatsApp. Our support team is available 24/7 to answer
                       your questions about programs, enrollment, and payment verification.
                     </p>

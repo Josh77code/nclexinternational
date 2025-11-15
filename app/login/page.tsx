@@ -74,18 +74,18 @@ export default function LoginPage() {
       <div className="absolute top-20 -left-20 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" />
       <div className="absolute bottom-20 -right-20 w-96 h-96 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float" style={{ animationDelay: "2s" }} />
       
-      <Card className="w-full max-w-md relative z-10 shadow-2xl border-2 border-[#c6d3e3] bg-white">
+      <Card className="w-full max-w-md relative z-10 shadow-2xl border-2 border-[#749DC8] bg-white">
         <CardHeader className="space-y-6 pb-8">
           <div className="flex justify-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#304674] text-white shadow-lg shadow-[#98bad5]/50">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0A61C9] text-white shadow-lg shadow-[#749DC8]/50">
               <GraduationCap className="h-9 w-9" />
             </div>
           </div>
           <div className="text-center space-y-2">
-            <CardTitle className="text-3xl font-bold text-[#304674]">
+            <CardTitle className="text-3xl font-bold text-[#0A61C9]">
               Welcome Back
             </CardTitle>
-            <CardDescription className="text-base text-[#304674]">Login to access your NCLEX preparation dashboard</CardDescription>
+            <CardDescription className="text-base text-[#0A61C9]">Login to access your NCLEX preparation dashboard</CardDescription>
           </div>
         </CardHeader>
         <CardContent className="pb-8">
@@ -98,34 +98,34 @@ export default function LoginPage() {
             )}
 
             <div className="space-y-2 group">
-              <Label htmlFor="email" className="text-sm font-semibold text-[#304674]">Email</Label>
+              <Label htmlFor="email" className="text-sm font-semibold text-[#0A61C9]">Email</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="john@example.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="h-11 border-2 border-[#c6d3e3] bg-white focus:border-[#304674] text-[#304674] placeholder:text-[#304674] focus:bg-white focus:text-[#304674]"
+                className="h-11 border-2 border-[#749DC8] bg-white focus:border-[#0A61C9] text-[#0A61C9] placeholder:text-[#0A61C9] focus:bg-white focus:text-[#0A61C9]"
                 required
               />
             </div>
 
             <div className="space-y-2 group">
-              <Label htmlFor="password" className="text-sm font-semibold text-[#304674]">Password</Label>
+              <Label htmlFor="password" className="text-sm font-semibold text-[#0A61C9]">Password</Label>
               <Input
                 id="password"
                 type="password"
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="h-11 border-2 border-[#c6d3e3] bg-white focus:border-[#304674] text-[#304674] placeholder:text-[#304674] focus:bg-white focus:text-[#304674]"
+                className="h-11 border-2 border-[#749DC8] bg-white focus:border-[#0A61C9] text-[#0A61C9] placeholder:text-[#0A61C9] focus:bg-white focus:text-[#0A61C9]"
                 required
               />
             </div>
 
             <Button 
               type="submit" 
-              className="w-full h-12 text-base bg-[#304674] hover:bg-[#304674]/90 text-white shadow-lg shadow-[#98bad5]/40 hover:shadow-xl hover:shadow-[#98bad5]/50 transition-all" 
+              className="w-full h-12 text-base bg-[#0A61C9] hover:bg-[#0A61C9]/90 text-white shadow-lg shadow-[#749DC8]/40 hover:shadow-xl hover:shadow-[#749DC8]/50 transition-all" 
               disabled={loading}
             >
               {loading ? (
@@ -139,7 +139,7 @@ export default function LoginPage() {
             </Button>
 
             <div className="text-center text-sm pt-2">
-              <span className="text-[#304674]">Need an account? </span>
+              <span className="text-[#0A61C9]">Need an account? </span>
               <Link href="/contact" className="text-purple-600 hover:text-pink-600 font-semibold hover:underline">
                 Contact the Admin Team
               </Link>

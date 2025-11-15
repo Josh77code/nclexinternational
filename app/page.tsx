@@ -158,8 +158,8 @@ export default function HomePage() {
           <svg viewBox="0 0 700 800" className="w-full h-full absolute top-0 right-0">
             <defs>
               <linearGradient id="waveGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#1E40AF" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.7" />
+                <stop offset="0%" stopColor="#0A61C9" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#749DC8" stopOpacity="0.7" />
               </linearGradient>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -177,7 +177,7 @@ export default function HomePage() {
             />
             <path
               d="M0,300 Q150,220 300,290 T600,270 L600,800 L0,800 Z"
-              fill="#3B82F6"
+              fill="#749DC8"
               opacity="0.6"
             />
           </svg>
@@ -187,8 +187,8 @@ export default function HomePage() {
           <svg viewBox="0 0 600 700" className="absolute top-0 right-0">
             <defs>
               <radialGradient id="waveGradient2">
-                <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.4" />
+                <stop offset="0%" stopColor="#749DC8" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#0A61C9" stopOpacity="0.4" />
               </radialGradient>
             </defs>
             <path
@@ -196,10 +196,10 @@ export default function HomePage() {
               fill="url(#waveGradient2)"
             />
             {/* Enhanced white highlight on wave crest */}
-            <circle cx="450" cy="250" r="15" fill="white" opacity="0.9" filter="drop-shadow(0 4px 8px rgba(30, 64, 175, 0.3))">
+            <circle cx="450" cy="250" r="15" fill="white" opacity="0.9" filter="drop-shadow(0 4px 8px rgba(10, 97, 201, 0.3))">
               <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
             </circle>
-            <circle cx="380" cy="280" r="8" fill="white" opacity="0.6" filter="drop-shadow(0 2px 4px rgba(30, 64, 175, 0.2))" />
+            <circle cx="380" cy="280" r="8" fill="white" opacity="0.6" filter="drop-shadow(0 2px 4px rgba(10, 97, 201, 0.2))" />
           </svg>
         </div>
         

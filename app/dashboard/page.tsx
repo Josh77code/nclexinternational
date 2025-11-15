@@ -102,27 +102,27 @@ export default async function DashboardPage() {
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col gap-10 lg:flex-row">
           <aside className="lg:w-80 flex-shrink-0 space-y-6">
-            <Card className="border-2 border-[#c6d3e3] shadow-sm bg-white">
+            <Card className="border-2 border-[#749DC8] shadow-sm bg-white">
               <CardHeader>
-                <CardTitle className="text-[#304674] text-2xl">Welcome back</CardTitle>
-                <CardDescription className="text-sm text-[#304674]">
+                <CardTitle className="text-[#0A61C9] text-2xl">Welcome back</CardTitle>
+                <CardDescription className="text-sm text-[#0A61C9]">
                   Your profile updates automatically as we migrate you across grades.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-1">
-                  <p className="text-lg font-semibold text-[#304674]">
+                  <p className="text-lg font-semibold text-[#0A61C9]">
                     {userData?.full_name || "NCLEX Keys Student"}
                   </p>
-                  <p className="text-sm text-[#304674]">{user?.email}</p>
+                  <p className="text-sm text-[#0A61C9]">{user?.email}</p>
                 </div>
                 {gradeLabel && (
-                  <Badge className="bg-[#d8e1e8] text-[#304674] border border-[#c6d3e3] px-3 py-1 text-xs font-semibold uppercase tracking-wide">
+                  <Badge className="bg-[#F1F7F9] text-[#0A61C9] border border-[#749DC8] px-3 py-1 text-xs font-semibold uppercase tracking-wide">
                     <Shield className="mr-1 h-3 w-3" />
                     {gradeLabel}
                   </Badge>
                 )}
-                <div className="rounded-lg border border-[#c6d3e3] bg-[#d8e1e8] p-3 text-xs text-[#304674] space-y-2">
+                <div className="rounded-lg border border-[#749DC8] bg-[#F1F7F9] p-3 text-xs text-[#0A61C9] space-y-2">
                   <p className="font-semibold">Grade migration</p>
                   <p>
                     The admin team upgrades you from Starter → Mid → Higher as you complete coaching milestones.
@@ -132,21 +132,21 @@ export default async function DashboardPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-[#c6d3e3] bg-white">
+            <Card className="border-2 border-[#749DC8] bg-white">
               <CardHeader>
-                <CardTitle className="text-sm text-[#304674] flex items-center gap-2">
+                <CardTitle className="text-sm text-[#0A61C9] flex items-center gap-2">
                   <BookOpen className="h-4 w-4" />
                   Quick Progress Snapshot
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-sm text-[#304674]">
+              <CardContent className="space-y-2 text-sm text-[#0A61C9]">
                 <p>
-                  Courses completed: <span className="font-semibold text-[#304674]">{completedCourses}</span> /{" "}
-                  <span className="font-semibold text-[#304674]">{totalCourses}</span>
+                  Courses completed: <span className="font-semibold text-[#0A61C9]">{completedCourses}</span> /{" "}
+                  <span className="font-semibold text-[#0A61C9]">{totalCourses}</span>
                 </p>
                 <p>
                   Overall progress:{" "}
-                  <span className="font-semibold text-[#304674]">{progressPercentage}%</span>
+                  <span className="font-semibold text-[#0A61C9]">{progressPercentage}%</span>
                 </p>
               </CardContent>
             </Card>
@@ -154,7 +154,7 @@ export default async function DashboardPage() {
 
           <section className="flex-1 space-y-10">
             <div className="animate-fade-in-up">
-              <h1 className="text-4xl sm:text-5xl font-bold text-[#304674]">
+              <h1 className="text-4xl sm:text-5xl font-bold text-[#0A61C9]">
                 Welcome back, {userData?.full_name}!
               </h1>
               <p className="text-enhanced mt-3 text-lg">
@@ -163,13 +163,13 @@ export default async function DashboardPage() {
             </div>
 
             {enrollments && enrollments.length > 0 && !enrollments[0].payment_verified && (
-              <div className="relative overflow-hidden bg-gradient-to-r from-[#d8e1e8] to-[#c6d3e3] border border-[#c6d3e3] rounded-xl p-6 animate-fade-in shadow-lg">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#98bad5]/20 rounded-full blur-2xl" />
+              <div className="relative overflow-hidden bg-gradient-to-r from-[#F1F7F9] to-[#749DC8] border border-[#749DC8] rounded-xl p-6 animate-fade-in shadow-lg">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#749DC8]/20 rounded-full blur-2xl" />
                 <div className="relative z-10">
-                  <h3 className="font-bold text-[#304674] mb-2 text-lg">
+                  <h3 className="font-bold text-[#0A61C9] mb-2 text-lg">
                     Payment Verification Pending
                   </h3>
-                  <p className="text-sm text-[#304674]">
+                  <p className="text-sm text-[#0A61C9]">
                     Your payment is being verified. You'll get full access once verification is complete (usually within 24
                     hours).
                   </p>

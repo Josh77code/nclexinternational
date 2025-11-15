@@ -52,17 +52,17 @@ export function ExternalLinks() {
           </Button>
 
           {/* NCLEX Keys Exam Practice */}
-          <Button variant="outline" className="h-auto py-4 justify-start bg-transparent hover:bg-[#304674]/10 hover:border-[#304674]/50 transition-all duration-300 group" asChild>
+          <Button variant="outline" className="h-auto py-4 justify-start bg-transparent hover:bg-[#0A61C9]/10 hover:border-[#0A61C9]/50 transition-all duration-300 group" asChild>
             <Link href="/exam">
               <div className="flex items-center gap-3 w-full">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#304674]/10 text-[#304674] shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0A61C9]/10 text-[#0A61C9] shrink-0 group-hover:scale-110 transition-transform duration-300">
                   <BookOpen className="h-5 w-5" />
                 </div>
                 <div className="text-left flex-1">
-                  <div className="font-semibold text-[#304674] group-hover:text-[#98bad5]">NCLEX Practice Exam</div>
+                  <div className="font-semibold text-[#0A61C9] group-hover:text-[#749DC8]">NCLEX Practice Exam</div>
                   <div className="text-xs text-muted-foreground">100 questions with instant results</div>
                 </div>
-                <BookOpen className="h-4 w-4 text-muted-foreground group-hover:text-[#304674]" />
+                <BookOpen className="h-4 w-4 text-muted-foreground group-hover:text-[#0A61C9]" />
               </div>
             </Link>
           </Button>

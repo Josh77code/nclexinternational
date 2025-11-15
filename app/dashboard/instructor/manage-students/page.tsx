@@ -245,11 +245,11 @@ export default function ManageStudentsPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-[#304674]">
+            <div className="flex items-center gap-2 text-[#0A61C9]">
               <GraduationCap className="h-6 w-6" />
               <span className="text-sm font-semibold uppercase tracking-wide">Admin Tools</span>
             </div>
-            <h1 className="text-3xl font-bold text-[#304674]">Manage Student Accounts</h1>
+            <h1 className="text-3xl font-bold text-[#0A61C9]">Manage Student Accounts</h1>
             <p className="text-sm text-muted-foreground max-w-2xl">
               Create student logins, assign initial grade levels, and migrate learners between Starter,
               Mid, and Higher categories as they progress.
@@ -258,7 +258,7 @@ export default function ManageStudentsPage() {
           <div className="flex flex-wrap gap-3">
             <Button
               variant="outline"
-              className="border-2 border-[#304674]/40 text-[#304674] hover:bg-[#304674]/10"
+              className="border-2 border-[#0A61C9]/40 text-[#0A61C9] hover:bg-[#0A61C9]/10"
               onClick={() => router.push("/dashboard/instructor")}
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -266,7 +266,7 @@ export default function ManageStudentsPage() {
             </Button>
             <Button
               variant="outline"
-              className="border-2 border-[#304674]/40 text-[#304674] hover:bg-[#304674]/10"
+              className="border-2 border-[#0A61C9]/40 text-[#0A61C9] hover:bg-[#0A61C9]/10"
               onClick={() => setRefreshToken((prev) => prev + 1)}
               disabled={loading}
             >
@@ -276,9 +276,9 @@ export default function ManageStudentsPage() {
           </div>
         </div>
 
-        <Card className="border-2 border-[#304674]/30">
+        <Card className="border-2 border-[#0A61C9]/30">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-[#304674]">
+            <CardTitle className="flex items-center gap-2 text-[#0A61C9]">
               <Users className="h-5 w-5" />
               Provision a New Student
             </CardTitle>
@@ -362,7 +362,7 @@ export default function ManageStudentsPage() {
               <div className="flex items-end">
                 <Button
                   type="submit"
-                  className="w-full bg-[#304674] hover:bg-[#98bad5]"
+                  className="w-full bg-[#0A61C9] hover:bg-[#749DC8]"
                   disabled={creating}
                 >
                   {creating ? (
@@ -382,9 +382,9 @@ export default function ManageStudentsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-2 border-[#304674]/30">
+        <Card className="border-2 border-[#0A61C9]/30">
           <CardHeader>
-            <CardTitle className="text-[#304674]">All Students</CardTitle>
+            <CardTitle className="text-[#0A61C9]">All Students</CardTitle>
             <CardDescription>
               Promote learners between grades or reset their credentials as needed.
             </CardDescription>
@@ -417,7 +417,7 @@ export default function ManageStudentsPage() {
                   />
                   <Button
                     variant="outline"
-                    className="border-2 border-[#304674]/40 text-[#304674] hover:bg-[#304674]/10"
+                    className="border-2 border-[#0A61C9]/40 text-[#0A61C9] hover:bg-[#0A61C9]/10"
                     onClick={() => setRefreshToken((prev) => prev + 1)}
                     disabled={loading}
                   >
@@ -428,21 +428,21 @@ export default function ManageStudentsPage() {
             </div>
 
             <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-              <Badge variant="outline" className="border-[#304674]/40 text-[#304674]">
+              <Badge variant="outline" className="border-[#0A61C9]/40 text-[#0A61C9]">
                 Starter: {quickStats.starter}
               </Badge>
-              <Badge variant="outline" className="border-[#304674]/40 text-[#304674]">
+              <Badge variant="outline" className="border-[#0A61C9]/40 text-[#0A61C9]">
                 Mid: {quickStats.mid}
               </Badge>
-              <Badge variant="outline" className="border-[#304674]/40 text-[#304674]">
+              <Badge variant="outline" className="border-[#0A61C9]/40 text-[#0A61C9]">
                 Higher: {quickStats.higher}
               </Badge>
-              <Badge variant="outline" className="border-[#304674]/40 text-[#304674]">
+              <Badge variant="outline" className="border-[#0A61C9]/40 text-[#0A61C9]">
                 Unassigned: {quickStats.unassigned}
               </Badge>
             </div>
 
-            <div className="rounded-lg border border-[#304674]/20 bg-white shadow-sm">
+            <div className="rounded-lg border border-[#0A61C9]/20 bg-white shadow-sm">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -470,7 +470,7 @@ export default function ManageStudentsPage() {
                   ) : (
                     students.map((student) => (
                       <TableRow key={student.id}>
-                        <TableCell className="font-medium text-[#304674]">
+                        <TableCell className="font-medium text-[#0A61C9]">
                           {student.full_name || "—"}
                           <div className="text-xs text-muted-foreground">
                             ID: {student.id.slice(0, 8)}…{student.id.slice(-4)}
@@ -479,14 +479,14 @@ export default function ManageStudentsPage() {
                         <TableCell>
                           <Link
                             href={`mailto:${student.email}`}
-                            className="text-[#98bad5] hover:underline"
+                            className="text-[#749DC8] hover:underline"
                           >
                             {student.email}
                           </Link>
                         </TableCell>
                         <TableCell>{student.phone_number || "—"}</TableCell>
                         <TableCell>
-                          <Badge variant="outline" className="border-[#304674]/40 text-[#304674]">
+                          <Badge variant="outline" className="border-[#0A61C9]/40 text-[#0A61C9]">
                             {formatGrade(student.student_grade)}
                           </Badge>
                         </TableCell>
@@ -512,7 +512,7 @@ export default function ManageStudentsPage() {
                         <TableCell className="text-right">
                           <Button
                             size="sm"
-                            className="bg-[#304674] hover:bg-[#98bad5]"
+                            className="bg-[#0A61C9] hover:bg-[#749DC8]"
                             onClick={() => handleUpdateStudent(student)}
                             disabled={savingId === student.id}
                           >
@@ -535,9 +535,9 @@ export default function ManageStudentsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-2 border-[#304674]/30">
+        <Card className="border-2 border-[#0A61C9]/30">
           <CardHeader>
-            <CardTitle className="text-[#304674] text-lg">Need help migrating a group?</CardTitle>
+            <CardTitle className="text-[#0A61C9] text-lg">Need help migrating a group?</CardTitle>
             <CardDescription>
               Export student emails by grade and promote them in bulk using the Supabase SQL helper scripts.
             </CardDescription>

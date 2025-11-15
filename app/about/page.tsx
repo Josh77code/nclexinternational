@@ -106,17 +106,17 @@ export default function AboutPage() {
           {/* Advanced animated background shapes */}
           <div className="absolute top-20 left-10 w-96 h-96 bg-white rounded-full floating-shape-morphing" />
           <div className="absolute bottom-10 right-20 w-80 h-80 bg-white rounded-full floating-shape-morphing stagger-2" />
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-[#98bad5]/20 to-[#304674]/20 rounded-full floating-shape-morphing stagger-4" />
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-[#749DC8]/20 to-[#0A61C9]/20 rounded-full floating-shape-morphing stagger-4" />
           
           <div className="mx-auto max-w-5xl text-center space-y-8 relative z-10">
-            <h1 className="text-5xl sm:text-7xl font-black animate-fade-in-up text-[#304674] text-shadow-strong">
+            <h1 className="text-5xl sm:text-7xl font-black animate-fade-in-up text-[#0A61C9] text-shadow-strong">
               About NCLEX Keys International
             </h1>
-            <p className="text-2xl text-[#304674] text-pretty animate-fade-in-up stagger-1 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-2xl text-[#0A61C9] text-pretty animate-fade-in-up stagger-1 max-w-4xl mx-auto leading-relaxed">
               We are Global NCLEX Tutoring institute with high reputation home and abroad based on the incomparable level of EXCELLENCE we project in ensuring details content, strategic teaching and close monitoring.
             </p>
             <div className="flex justify-center animate-bounce-in stagger-3">
-              <div className="w-24 h-1 bg-[#304674] rounded-full"></div>
+              <div className="w-24 h-1 bg-[#0A61C9] rounded-full"></div>
             </div>
           </div>
         </section>
@@ -126,19 +126,19 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-white"></div>
           <div className="mx-auto max-w-5xl space-y-16 relative z-10">
             <div className="group interactive-card p-8 rounded-3xl glass-strong animate-fade-in-up">
-              <h2 className="text-4xl sm:text-5xl font-black mb-8 text-[#304674] text-shadow">
+              <h2 className="text-4xl sm:text-5xl font-black mb-8 text-[#0A61C9] text-shadow">
                 Our Mission
               </h2>
-              <p className="text-xl text-[#304674] leading-relaxed group-hover:text-[#304674] transition-all duration-500">
+              <p className="text-xl text-[#0A61C9] leading-relaxed group-hover:text-[#0A61C9] transition-all duration-500">
                 NCLEX KEYS is dedicated to empowering future nurses by providing intensive, results-driven coaching and strategic mentorship. We decode the NCLEX exam through expert guidance, ensuring our students achieve licensure with confidence, efficiency, and the knowledge required for immediate professional success.
               </p>
             </div>
 
             <div className="group interactive-card p-8 rounded-3xl glass-strong animate-fade-in-up stagger-2">
-              <h2 className="text-4xl sm:text-5xl font-black mb-8 text-#304674 text-shadow">
+              <h2 className="text-4xl sm:text-5xl font-black mb-8 text-#0A61C9 text-shadow">
                 Our Vision
               </h2>
-              <p className="text-xl text-[#304674] leading-relaxed group-hover:text-[#304674] transition-all duration-500">
+              <p className="text-xl text-[#0A61C9] leading-relaxed group-hover:text-[#0A61C9] transition-all duration-500">
                 To be the globally recognized, premier standard for strategic NCLEX preparation, transforming aspiring nurses into confident, licensed clinicians ready to excel and lead in patient care.
               </p>
             </div>
@@ -158,7 +158,7 @@ export default function AboutPage() {
               <h2 className="text-4xl sm:text-6xl font-black gradient-text text-shadow-strong animate-text-reveal">
                 Our Core Values
               </h2>
-              <p className="text-xl text-[#304674] max-w-3xl mx-auto animate-fade-in-up stagger-1">
+              <p className="text-xl text-[#0A61C9] max-w-3xl mx-auto animate-fade-in-up stagger-1">
                 These principles guide everything we do at NCLEX Keys International.
               </p>
             </div>
@@ -175,7 +175,7 @@ export default function AboutPage() {
                       <value.icon className="h-10 w-10 group-hover:animate-pulse" />
                     </div>
                     <h3 className="font-black text-2xl group-hover:text-primary transition-all duration-500 gradient-text-secondary">{value.title}</h3>
-                    <p className="text-base text-[#304674] group-hover:text-[#304674] transition-all duration-500 leading-relaxed">{value.description}</p>
+                    <p className="text-base text-[#0A61C9] group-hover:text-[#0A61C9] transition-all duration-500 leading-relaxed">{value.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -190,7 +190,7 @@ export default function AboutPage() {
               <h2 className="text-4xl sm:text-6xl font-black gradient-text text-shadow-strong animate-text-reveal">
                 Board of Directors
               </h2>
-              <p className="text-xl text-[#304674] max-w-3xl mx-auto animate-fade-in-up stagger-1">
+              <p className="text-xl text-[#0A61C9] max-w-3xl mx-auto animate-fade-in-up stagger-1">
                 Visionary leaders driving NCLEX KEYS to excellence in nursing education and strategic global engagement.
               </p>
             </div>
@@ -216,7 +216,7 @@ export default function AboutPage() {
                       <h3 className="font-black text-3xl group-hover:text-primary transition-all duration-500 gradient-text-secondary">{boardMembers[0].name}</h3>
                       <p className="text-sm text-primary font-bold">{boardMembers[0].title}</p>
                     </div>
-                    <p className="text-sm text-[#304674] leading-relaxed group-hover:text-[#304674] transition-all duration-500">{boardMembers[0].bio}</p>
+                    <p className="text-sm text-[#0A61C9] leading-relaxed group-hover:text-[#0A61C9] transition-all duration-500">{boardMembers[0].bio}</p>
                   </CardContent>
                 </div>
               </Card>
@@ -245,7 +245,7 @@ export default function AboutPage() {
                       <h3 className="font-black text-xl group-hover:text-primary transition-all duration-500 gradient-text-secondary">{member.name}</h3>
                       <p className="text-sm text-primary font-bold bg-white px-4 py-2 rounded-full inline-block border border-soft">{member.title}</p>
                     </div>
-                    <p className="text-sm text-[#304674] leading-relaxed group-hover:text-[#304674] transition-all duration-500">{member.bio}</p>
+                    <p className="text-sm text-[#0A61C9] leading-relaxed group-hover:text-[#0A61C9] transition-all duration-500">{member.bio}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -263,13 +263,13 @@ export default function AboutPage() {
               <h2 className="text-4xl sm:text-6xl font-black gradient-text text-shadow-strong animate-text-reveal">
                 Our Expert Team
               </h2>
-              <p className="text-xl text-[#304674] leading-relaxed text-center group-hover:text-[#304674] transition-all duration-500 px-4 max-w-4xl mx-auto animate-fade-in-up stagger-1">
+              <p className="text-xl text-[#0A61C9] leading-relaxed text-center group-hover:text-[#0A61C9] transition-all duration-500 px-4 max-w-4xl mx-auto animate-fade-in-up stagger-1">
                 Our instructors are experienced nursing professionals and educators who are passionate about helping
                 students succeed. With decades of combined experience in nursing education and NCLEX preparation, our team
                 brings unparalleled expertise to every course we offer.
               </p>
               <div className="flex justify-center animate-bounce-in stagger-3">
-                <div className="w-32 h-1 bg-[#304674] rounded-full"></div>
+                <div className="w-32 h-1 bg-[#0A61C9] rounded-full"></div>
               </div>
             </div>
           </div>

@@ -79,7 +79,7 @@ export default function OperationsPage() {
       <Header />
 
       <main className="flex-1 pt-24">
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#304674]/10">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#0A61C9]/10">
           <div className="mx-auto max-w-5xl text-center space-y-6">
             <h1 className="text-4xl sm:text-5xl font-bold text-balance">How NCLEX KEYS Operates</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -90,7 +90,7 @@ export default function OperationsPage() {
         </section>
 
         <section className="py-12 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl rounded-3xl overflow-hidden shadow-lg border border-[#304674]/10 bg-white">
+          <div className="mx-auto max-w-5xl rounded-3xl overflow-hidden shadow-lg border border-[#0A61C9]/10 bg-white">
             <div className="w-full bg-white flex flex-col">
               <div className="w-full bg-white flex items-center justify-center">
                 <Image
@@ -103,8 +103,8 @@ export default function OperationsPage() {
                 />
               </div>
               <div className="px-8 py-6 text-center space-y-3">
-                <p className="text-sm uppercase tracking-[0.35em] text-[#98bad5]">Operations Spotlight</p>
-                <h2 className="text-2xl sm:text-3xl font-bold leading-tight text-[#304674]">
+                <p className="text-sm uppercase tracking-[0.35em] text-[#749DC8]">Operations Spotlight</p>
+                <h2 className="text-2xl sm:text-3xl font-bold leading-tight text-[#0A61C9]">
                   Structured systems that translate passion into predictable NCLEX success.
                 </h2>
               </div>
@@ -117,12 +117,12 @@ export default function OperationsPage() {
             {operationPillars.map((pillar) => (
               <Card
                 key={pillar.title}
-                className="border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+                className="border-2 border-[#0A61C9] hover:border-[#749DC8] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
               >
                 <CardHeader className="space-y-4">
                   <div className="flex items-center justify-between gap-4">
-                    <CardTitle className="text-2xl font-bold text-[#304674]">{pillar.title}</CardTitle>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#304674]/15 to-[#304674]/20 text-[#304674]">
+                    <CardTitle className="text-2xl font-bold text-[#0A61C9]">{pillar.title}</CardTitle>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#0A61C9]/15 to-[#0A61C9]/20 text-[#0A61C9]">
                       <pillar.icon className="h-6 w-6" />
                     </div>
                   </div>
@@ -132,7 +132,7 @@ export default function OperationsPage() {
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     {pillar.highlights.map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <span className="mt-1 h-2 w-2 rounded-full bg-[#304674]" />
+                        <span className="mt-1 h-2 w-2 rounded-full bg-[#0A61C9]" />
                         <span>{item}</span>
                       </li>
                     ))}

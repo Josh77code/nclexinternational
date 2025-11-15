@@ -255,13 +255,13 @@ export function ExamSection() {
 
   if (isLoading) {
     return (
-      <Card className="border-2 border-[#304674] bg-white">
+      <Card className="border-2 border-[#0A61C9] bg-white">
         <CardHeader>
-          <CardTitle className="text-xl text-[#304674]">Practice Exam</CardTitle>
+          <CardTitle className="text-xl text-[#0A61C9]">Practice Exam</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#304674]"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A61C9]"></div>
           </div>
         </CardContent>
       </Card>
@@ -271,14 +271,14 @@ export function ExamSection() {
   return (
     <div className="space-y-6">
       {/* Available Exams Section */}
-      <Card className="border-2 border-[#304674] bg-white hover:shadow-lg transition-all duration-300">
+      <Card className="border-2 border-[#0A61C9] bg-white hover:shadow-lg transition-all duration-300">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-xl text-[#304674] flex items-center gap-2">
-              <ListChecks className="h-6 w-6 text-[#304674]" />
+            <CardTitle className="text-xl text-[#0A61C9] flex items-center gap-2">
+              <ListChecks className="h-6 w-6 text-[#0A61C9]" />
               Available Exams
             </CardTitle>
-            <Badge className="bg-[#304674] text-white">
+            <Badge className="bg-[#0A61C9] text-white">
               {availableExams.length} {availableExams.length === 1 ? 'Exam' : 'Exams'}
             </Badge>
           </div>
@@ -287,30 +287,30 @@ export function ExamSection() {
         <CardContent>
           {isLoadingExams ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#304674]"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0A61C9]"></div>
             </div>
           ) : availableExams.length === 0 ? (
             <div className="text-center py-8">
               <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-[#304674]">No exams available at the moment. Please check back later.</p>
+              <p className="text-[#0A61C9]">No exams available at the moment. Please check back later.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {availableExams.map((exam) => (
-                <Card key={exam.id} className="border border-gray-200 hover:border-[#304674] transition-all">
+                <Card key={exam.id} className="border border-gray-200 hover:border-[#0A61C9] transition-all">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-[#304674] mb-1">{exam.title}</h3>
-                        <p className="text-sm text-[#304674]">{exam.description}</p>
+                        <h3 className="font-semibold text-[#0A61C9] mb-1">{exam.title}</h3>
+                        <p className="text-sm text-[#0A61C9]">{exam.description}</p>
                       </div>
                     </div>
                     
                     <div className="flex items-center gap-4 mb-4 text-sm">
-                      <Badge className="bg-[#304674] text-white">
+                      <Badge className="bg-[#0A61C9] text-white">
                         {exam.question_count} Questions
                       </Badge>
-                      <div className="flex items-center gap-1 text-[#304674]">
+                      <div className="flex items-center gap-1 text-[#0A61C9]">
                         <Clock className="h-3 w-3" />
                         {exam.avg_time_per_question}s/question
                       </div>
@@ -318,7 +318,7 @@ export function ExamSection() {
                     
                     <Button
                       onClick={() => router.push(`/exam?courseId=${exam.id}`)}
-                      className="w-full bg-[#304674] hover:bg-[#98bad5] text-white"
+                      className="w-full bg-[#0A61C9] hover:bg-[#749DC8] text-white"
                     >
                       <Play className="h-4 w-4 mr-2" />
                       Start Exam
@@ -332,14 +332,14 @@ export function ExamSection() {
       </Card>
 
       {/* Exam Results Section */}
-      <Card className="border-2 border-[#304674] bg-white hover:shadow-lg transition-all duration-300">
+      <Card className="border-2 border-[#0A61C9] bg-white hover:shadow-lg transition-all duration-300">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-xl text-[#304674] flex items-center gap-2">
-              <BookOpen className="h-6 w-6 text-[#304674]" />
+            <CardTitle className="text-xl text-[#0A61C9] flex items-center gap-2">
+              <BookOpen className="h-6 w-6 text-[#0A61C9]" />
               Exam Results
             </CardTitle>
-            <Badge className="bg-[#304674] text-white">
+            <Badge className="bg-[#0A61C9] text-white">
               {hasAttempted ? 'Available' : 'New'}
             </Badge>
           </div>
@@ -348,12 +348,12 @@ export function ExamSection() {
       <CardContent className="space-y-6">
         {/* Exam Description */}
         <div className="space-y-3">
-          <p className="text-[#304674]">
+          <p className="text-[#0A61C9]">
             Take our comprehensive NCLEX practice exam with 100 questions covering all major topics.
             Get immediate results and detailed feedback to improve your performance.
           </p>
           
-          <div className="flex flex-wrap gap-4 text-sm text-[#304674]">
+          <div className="flex flex-wrap gap-4 text-sm text-[#0A61C9]">
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
               <span>2 hours time limit</span>
@@ -373,7 +373,7 @@ export function ExamSection() {
         {hasAttempted && getLatestResult() && (
           <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
             <div className="flex items-center justify-between mb-3">
-              <h4 className="font-semibold text-[#304674]">Latest Attempt</h4>
+              <h4 className="font-semibold text-[#0A61C9]">Latest Attempt</h4>
               <Badge className={`${
                 getLatestResult()?.passed 
                   ? 'bg-green-100 text-green-800 border-green-300' 
@@ -385,28 +385,28 @@ export function ExamSection() {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
               <div className="text-center">
-                <div className="text-2xl font-bold text-[#304674]">
+                <div className="text-2xl font-bold text-[#0A61C9]">
                   {getLatestResult()?.score_percentage.toFixed(1)}%
                 </div>
-                <div className="text-[#304674]">Score</div>
+                <div className="text-[#0A61C9]">Score</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-[#304674]">
+                <div className="text-2xl font-bold text-[#0A61C9]">
                   {getLatestResult()?.correct_answers}/{getLatestResult()?.total_questions}
                 </div>
-                <div className="text-[#304674]">Correct</div>
+                <div className="text-[#0A61C9]">Correct</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-[#304674]">
+                <div className="text-2xl font-bold text-[#0A61C9]">
                   {formatTime(getLatestResult()?.time_taken || 0)}
                 </div>
-                <div className="text-[#304674]">Time</div>
+                <div className="text-[#0A61C9]">Time</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-[#304674]">
+                <div className="text-2xl font-bold text-[#0A61C9]">
                   {getPerformanceMessage(getLatestResult()?.score_percentage || 0)}
                 </div>
-                <div className="text-[#304674]">Performance</div>
+                <div className="text-[#0A61C9]">Performance</div>
               </div>
             </div>
           </div>
@@ -414,18 +414,18 @@ export function ExamSection() {
 
         {/* Best Result Display */}
         {hasAttempted && examResults.length > 1 && (
-          <div className="p-4 bg-[#d8e1e8] rounded-lg border border-[#c6d3e3]">
+          <div className="p-4 bg-[#F1F7F9] rounded-lg border border-[#749DC8]">
             <div className="flex items-center justify-between mb-3">
-              <h4 className="font-semibold text-[#304674] flex items-center gap-2">
+              <h4 className="font-semibold text-[#0A61C9] flex items-center gap-2">
                 <TrendingUp className="h-4 w-4" />
                 Best Performance
               </h4>
-              <Badge className="bg-[#d8e1e8] text-[#304674] border-[#c6d3e3]">
+              <Badge className="bg-[#F1F7F9] text-[#0A61C9] border-[#749DC8]">
                 {getBestResult()?.score_percentage.toFixed(1)}%
               </Badge>
             </div>
             
-            <div className="text-sm text-[#304674]">
+            <div className="text-sm text-[#0A61C9]">
               Completed on {new Date(getBestResult()?.completed_at || '').toLocaleDateString()}
             </div>
           </div>
@@ -433,7 +433,7 @@ export function ExamSection() {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button asChild className="flex-1 bg-[#304674] hover:bg-[#98bad5] text-white">
+          <Button asChild className="flex-1 bg-[#0A61C9] hover:bg-[#749DC8] text-white">
             <Link href="/exam" className="flex items-center justify-center gap-2">
               <Play className="h-4 w-4" />
               {hasAttempted ? 'Retake Exam' : 'Start Exam'}
@@ -441,7 +441,7 @@ export function ExamSection() {
           </Button>
           
           {hasAttempted && getLatestResult() && (
-            <Button asChild variant="outline" className="flex-1 border-2 border-[#304674] text-[#304674] hover:bg-[#304674]/10">
+            <Button asChild variant="outline" className="flex-1 border-2 border-[#0A61C9] text-[#0A61C9] hover:bg-[#0A61C9]/10">
               <Link href={`/exam/results?session=${getLatestResult()?.id}`} className="flex items-center justify-center gap-2">
                 <CheckCircle className="h-4 w-4" />
                 View Results
@@ -451,12 +451,12 @@ export function ExamSection() {
         </div>
 
         {/* Exam Tips */}
-        <div className="p-4 bg-[#d8e1e8] rounded-lg border border-[#c6d3e3]">
+        <div className="p-4 bg-[#F1F7F9] rounded-lg border border-[#749DC8]">
           <div className="flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-[#304674] mt-0.5" />
+            <AlertCircle className="h-5 w-5 text-[#0A61C9] mt-0.5" />
             <div className="text-sm">
-              <p className="font-medium text-[#304674] mb-1">Exam Tips:</p>
-              <ul className="text-[#304674] space-y-1">
+              <p className="font-medium text-[#0A61C9] mb-1">Exam Tips:</p>
+              <ul className="text-[#0A61C9] space-y-1">
                 <li>• Read each question carefully before answering</li>
                 <li>• Use the flag feature for questions you want to review</li>
                 <li>• Aim for 75% or higher to pass</li>

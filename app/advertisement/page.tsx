@@ -49,11 +49,11 @@ export default function AdvertisementPage() {
       <Header />
 
       <main className="flex-1 pt-24">
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#304674]/10">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-[#0A61C9]/10">
           <div className="mx-auto max-w-5xl text-center space-y-6">
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/80 backdrop-blur border border-[#304674]/20 shadow-sm">
-              <Megaphone className="h-5 w-5 text-[#304674]" />
-              <span className="text-sm font-semibold text-[#304674] tracking-wide">Strategic Advertisements</span>
+            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/80 backdrop-blur border border-[#0A61C9]/20 shadow-sm">
+              <Megaphone className="h-5 w-5 text-[#0A61C9]" />
+              <span className="text-sm font-semibold text-[#0A61C9] tracking-wide">Strategic Advertisements</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-balance">
               Discover Our Latest NCLEX KEYS Campaigns
@@ -70,7 +70,7 @@ export default function AdvertisementPage() {
             {adverts.map((advert) => (
               <Card
                 key={advert.title}
-                className="overflow-hidden border-2 border-[#304674] hover:border-[#98bad5] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl bg-white"
+                className="overflow-hidden border-2 border-[#0A61C9] hover:border-[#749DC8] transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl bg-white"
               >
                 <div className="w-full bg-white flex flex-col">
                   <div className="w-full h-64 bg-white flex items-center justify-center">
@@ -84,21 +84,21 @@ export default function AdvertisementPage() {
                     />
                   </div>
                   <div className="px-5 pt-4">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-[#304674]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#304674]">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-[#0A61C9]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#0A61C9]">
                       <Sparkles className="h-4 w-4" />
                       Spotlight
                     </span>
                   </div>
                 </div>
                 <CardHeader className="space-y-3">
-                  <CardTitle className="text-2xl font-bold text-[#304674]">{advert.title}</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-[#0A61C9]">{advert.title}</CardTitle>
                   <p className="text-sm text-muted-foreground leading-relaxed">{advert.summary}</p>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 text-sm text-muted-foreground">
                     {advert.highlightPoints.map((point) => (
                       <li key={point} className="flex items-start gap-2">
-                        <span className="mt-1 h-2 w-2 rounded-full bg-[#304674]" />
+                        <span className="mt-1 h-2 w-2 rounded-full bg-[#0A61C9]" />
                         <span>{point}</span>
                       </li>
                     ))}
@@ -106,7 +106,7 @@ export default function AdvertisementPage() {
                 </CardContent>
                 <CardFooter className="pt-0">
                   <Button
-                    className="w-full bg-[#304674] hover:bg-[#98bad5] text-white font-semibold"
+                    className="w-full bg-[#0A61C9] hover:bg-[#749DC8] text-white font-semibold"
                     onClick={() => setSelectedAdvert(advert)}
                   >
                     View Offer & Message Admin
@@ -123,7 +123,7 @@ export default function AdvertisementPage() {
       <Dialog open={!!selectedAdvert} onOpenChange={() => setSelectedAdvert(null)}>
         <DialogContent className="sm:max-w-lg bg-background border-soft shadow-2xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-center text-[#304674]">
+            <DialogTitle className="text-2xl font-bold text-center text-[#0A61C9]">
               {selectedAdvert?.title}
             </DialogTitle>
             <DialogDescription className="text-center text-muted-foreground">
@@ -132,7 +132,7 @@ export default function AdvertisementPage() {
           </DialogHeader>
           <div className="space-y-4 py-4">
             <Button
-              className="w-full h-12 bg-[#304674] hover:bg-[#98bad5] text-white"
+              className="w-full h-12 bg-[#0A61C9] hover:bg-[#749DC8] text-white"
               onClick={() => selectedAdvert && contactAdmin(selectedAdvert.title)}
             >
               <MessageCircle className="h-5 w-5 mr-2" />

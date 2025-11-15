@@ -224,18 +224,18 @@ Jane Smith,jane.smith@nclexkeys.com`
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-[#304674]">
+            <div className="flex items-center gap-2 text-[#0A61C9]">
               <Users className="h-6 w-6" />
               <span className="text-sm font-semibold uppercase tracking-wide">Admin Tools</span>
             </div>
-            <h1 className="text-3xl font-bold text-[#304674]">Import Teachers from Google Form</h1>
+            <h1 className="text-3xl font-bold text-[#0A61C9]">Import Teachers from Google Form</h1>
             <p className="text-sm text-muted-foreground max-w-2xl">
               Upload a CSV file exported from Google Forms with teacher names and emails. Passwords will be auto-generated.
             </p>
           </div>
           <Button
             variant="outline"
-            className="border-2 border-[#304674]/40 text-[#304674] hover:bg-[#304674]/10"
+            className="border-2 border-[#0A61C9]/40 text-[#0A61C9] hover:bg-[#0A61C9]/10"
             onClick={() => router.push('/dashboard/instructor')}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -244,9 +244,9 @@ Jane Smith,jane.smith@nclexkeys.com`
         </div>
 
         {/* Instructions */}
-        <Card className="border-2 border-[#304674]/30">
+        <Card className="border-2 border-[#0A61C9]/30">
           <CardHeader>
-            <CardTitle className="text-[#304674] flex items-center gap-2">
+            <CardTitle className="text-[#0A61C9] flex items-center gap-2">
               <AlertCircle className="h-5 w-5" />
               Instructions
             </CardTitle>
@@ -263,7 +263,7 @@ Jane Smith,jane.smith@nclexkeys.com`
               <Button
                 variant="outline"
                 onClick={downloadTemplate}
-                className="border-2 border-[#304674]/40 text-[#304674] hover:bg-[#304674]/10"
+                className="border-2 border-[#0A61C9]/40 text-[#0A61C9] hover:bg-[#0A61C9]/10"
               >
                 <Download className="h-4 w-4 mr-2" />
                 Download CSV Template
@@ -273,9 +273,9 @@ Jane Smith,jane.smith@nclexkeys.com`
         </Card>
 
         {/* Upload Section */}
-        <Card className="border-2 border-[#304674]/30">
+        <Card className="border-2 border-[#0A61C9]/30">
           <CardHeader>
-            <CardTitle className="text-[#304674]">Upload CSV File</CardTitle>
+            <CardTitle className="text-[#0A61C9]">Upload CSV File</CardTitle>
             <CardDescription>Upload a CSV file from Google Forms or paste CSV content</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -302,7 +302,7 @@ Jane Smith,jane.smith@nclexkeys.com`
             <Button
               onClick={handlePasteCSV}
               disabled={!csvContent || isProcessing}
-              className="bg-[#304674] hover:bg-[#98bad5] text-white"
+              className="bg-[#0A61C9] hover:bg-[#749DC8] text-white"
             >
               <Upload className="h-4 w-4 mr-2" />
               Parse CSV
@@ -312,11 +312,11 @@ Jane Smith,jane.smith@nclexkeys.com`
 
         {/* Teachers Preview */}
         {teachers.length > 0 && (
-          <Card className="border-2 border-[#304674]/30">
+          <Card className="border-2 border-[#0A61C9]/30">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-[#304674]">Teachers Preview</CardTitle>
+                  <CardTitle className="text-[#0A61C9]">Teachers Preview</CardTitle>
                   <CardDescription>
                     {teachers.length} teacher(s) ready to create. Passwords are auto-generated.
                   </CardDescription>
@@ -341,7 +341,7 @@ Jane Smith,jane.smith@nclexkeys.com`
               </div>
             </CardHeader>
             <CardContent>
-              <div className="rounded-lg border border-[#304674]/20 bg-white">
+              <div className="rounded-lg border border-[#0A61C9]/20 bg-white">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -354,7 +354,7 @@ Jane Smith,jane.smith@nclexkeys.com`
                   <TableBody>
                     {teachers.map((teacher, index) => (
                       <TableRow key={index}>
-                        <TableCell className="font-medium text-[#304674]">
+                        <TableCell className="font-medium text-[#0A61C9]">
                           {teacher.name}
                         </TableCell>
                         <TableCell>{teacher.email}</TableCell>
@@ -365,7 +365,7 @@ Jane Smith,jane.smith@nclexkeys.com`
                         </TableCell>
                         <TableCell>
                           {teacher.status === 'pending' && (
-                            <Badge variant="outline" className="border-[#98bad5] text-[#304674]">
+                            <Badge variant="outline" className="border-[#749DC8] text-[#0A61C9]">
                               Pending
                             </Badge>
                           )}

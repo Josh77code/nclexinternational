@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="relative bg-white border-t-2 border-purple-200 overflow-hidden">
       {/* Decorative background */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-10 right-20 w-64 h-64 bg-[#98bad5]/40 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-10 right-20 w-64 h-64 bg-[#749DC8]/40 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-10 left-20 w-64 h-64 bg-[#b2cbde]/40 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
       </div>
       
