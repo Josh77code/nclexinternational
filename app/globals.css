@@ -160,13 +160,21 @@ html {
 body {
   background: linear-gradient(to bottom right, hsl(var(--bg-gradient-start)), hsl(var(--bg-gradient-end))) !important;
   background-color: hsl(219, 92%, 96%) !important;
+  background-image: linear-gradient(to bottom right, hsl(var(--bg-gradient-start)), hsl(var(--bg-gradient-end))) !important;
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
+  min-height: 100vh;
 }
 
 @layer base {
+  * {
+    @apply border-border;
+  }
   body {
-    @apply bg-gradient-to-br from-[var(--bg-gradient-start)] to-[var(--bg-gradient-end)] min-h-screen font-sans;
+    background: linear-gradient(to bottom right, rgb(219, 234, 254), rgb(239, 246, 255)) !important;
+    background-image: linear-gradient(to bottom right, hsl(var(--bg-gradient-start)), hsl(var(--bg-gradient-end))) !important;
+    min-height: 100vh;
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
   }
 }
 
