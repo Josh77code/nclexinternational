@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.96 0.05 240); /* Blue background - NO YELLOW (hue 240 = blue) */
+  --background: oklch(0.96 0.05 240); /* Blue background - NO YELLOW (hue 240 = blue) - Explicit blue #F1F7F9 */
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -119,11 +119,21 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /* AGGRESSIVE OVERRIDE - Prevent ANY yellow background from appearing */
+  html,
+  body,
+  html *,
+  body * {
+    background-color: #F1F7F9 !important;
+    background-image: none !important;
+  }
   body {
     @apply bg-background text-foreground;
-    background: hsl(219, 92%, 96%) !important; /* Explicit blue background - NO YELLOW */
+    background: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
+    background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
   }
   html {
-    background: hsl(219, 92%, 96%) !important; /* Explicit blue background - NO YELLOW */
+    background: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
+    background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue background - NO YELLOW */
   }
 }

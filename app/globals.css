@@ -155,25 +155,47 @@
   border-color: hsl(var(--border));
 }
 
+/* AGGRESSIVE OVERRIDE - Prevent ANY yellow background from appearing */
+html,
+body,
+html *,
+body * {
+  background-color: #F1F7F9 !important;
+  background-image: none !important;
+}
+
+/* Allow specific elements to override if needed */
+html,
+body {
+  background: #F1F7F9 !important;
+  background-color: #F1F7F9 !important;
+}
+
 html {
-  background: #F1F7F9 !important; /* New Professional Palette - Very light blue */
-  background: linear-gradient(to bottom right, hsl(var(--bg-gradient-start)), hsl(var(--bg-gradient-end))) !important;
+  background: #F1F7F9 !important; /* New Professional Palette - Explicit blue - NO YELLOW */
+  background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue - NO YELLOW */
+  background-image: none !important;
 }
 
 body {
-  background: #F1F7F9 !important; /* New Professional Palette - Very light blue */
-  background: linear-gradient(to bottom right, hsl(var(--bg-gradient-start)), hsl(var(--bg-gradient-end))) !important;
-  background-image: linear-gradient(to bottom right, hsl(var(--bg-gradient-start)), hsl(var(--bg-gradient-end))) !important;
+  background: #F1F7F9 !important; /* New Professional Palette - Explicit blue - NO YELLOW */
+  background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue - NO YELLOW */
+  background-image: none !important;
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
   min-height: 100vh;
 }
 
 @layer base {
+  html {
+    background: #F1F7F9 !important; /* New Professional Palette - Explicit blue - NO YELLOW */
+    background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue - NO YELLOW */
+    background-image: none !important;
+  }
   body {
-    background: #F1F7F9 !important; /* New Professional Palette - Very light blue */
-    background: linear-gradient(to bottom right, rgb(241, 247, 249), rgb(241, 247, 249)) !important;
-    background-image: linear-gradient(to bottom right, hsl(var(--bg-gradient-start)), hsl(var(--bg-gradient-end))) !important;
+    background: #F1F7F9 !important; /* New Professional Palette - Explicit blue - NO YELLOW */
+    background-color: #F1F7F9 !important; /* New Professional Palette - Explicit blue - NO YELLOW */
+    background-image: none !important;
     min-height: 100vh;
     font-family: var(--font-geist-sans), system-ui, sans-serif;
   }
