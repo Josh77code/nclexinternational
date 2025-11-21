@@ -132,36 +132,20 @@ export async function POST(req: Request) {
   try {
     const admin = createAdminClient()
     
-    // Always deactivate all currently active questions matching the exact course and grade combination
-    // This ensures old questions don't appear on student dashboards
-    let deactivateQuery = admin
+    // Deactivate ALL currently active questions in the database
+    // This ensures students only see the newly uploaded questions
+    const { data: deactivatedData, error: deactivateError } = await admin
       .from('exam_questions')
       .update({ is_active: false })
       .eq('is_active', true)
-    
-    // Match exact course_id (including NULL for general questions)
-    if (courseId) {
-      deactivateQuery = deactivateQuery.eq('course_id', courseId)
-    } else {
-      // If no course_id provided, deactivate general questions (course_id is NULL)
-      deactivateQuery = deactivateQuery.is('course_id', null)
-    }
-    
-    // Match exact student_grade (including NULL for all-grade questions)
-    if (studentGrade && ['starter', 'mid', 'higher'].includes(studentGrade)) {
-      deactivateQuery = deactivateQuery.eq('student_grade', studentGrade)
-    } else {
-      // If no student_grade provided, deactivate questions with NULL student_grade
-      deactivateQuery = deactivateQuery.is('student_grade', null)
-    }
-    
-    const { error: deactivateError } = await deactivateQuery
+      .select('id')
     
     if (deactivateError) {
       console.error('Error deactivating previous questions:', deactivateError)
       // Continue anyway - this is not critical
     } else {
-      console.log(`Deactivated previous questions for course: ${courseId || 'general'}, grade: ${studentGrade || 'all'}`)
+      const deactivatedCount = deactivatedData?.length || 0
+      console.log(`Deactivated ${deactivatedCount} previous active questions. Students will now only see newly uploaded questions.`)
     }
     
     // Batch insert in chunks of 500
@@ -177,8 +161,8 @@ export async function POST(req: Request) {
     const response: any = { 
       inserted: toInsert.length, 
       invalid: errors,
-      deactivated_previous: true, // Always true now
-      message: `Successfully uploaded ${toInsert.length} questions. Previous questions for this course/grade have been deactivated.`
+      deactivated_previous: true, // Always true - ALL previous questions are deactivated
+      message: `Successfully uploaded ${toInsert.length} questions. ALL previous active questions have been deactivated. Students will now only see these newly uploaded questions.`
     }
     
     if (weekLabel) {
