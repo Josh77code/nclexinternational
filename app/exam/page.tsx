@@ -189,7 +189,8 @@ export default function ExamPage() {
         activeQuery = activeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
       }
 
-      activeQuery = activeQuery.eq('is_active', true).limit(100)
+      // Accept all active questions - no limit (supports 30+ questions)
+      activeQuery = activeQuery.eq('is_active', true)
 
       const activeResult = await activeQuery
       questionsData = activeResult.data
@@ -197,7 +198,8 @@ export default function ExamPage() {
 
       if (questionsError) {
         console.warn('Error with is_active filter, trying without:', questionsError)
-        let allQuery = supabase.from('exam_questions').select('*').limit(100)
+        // Accept all questions - no limit (supports 30+ questions)
+        let allQuery = supabase.from('exam_questions').select('*')
 
         if (course && course !== 'general') {
           allQuery = allQuery.eq('course_id', course)
