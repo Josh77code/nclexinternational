@@ -195,26 +195,51 @@ export default function ExamPage() {
         console.log('No course filter - getting all questions')
       }
 
+      // Filter by student grade: show questions with matching grade OR null (all grades)
+      // Using separate queries and combining results for better compatibility
       if (userGrade) {
-        activeQuery = activeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
-        console.log('Filtering by student_grade:', userGrade, 'OR null')
+        // First try: questions with matching grade
+        let gradeQuery = supabase.from('exam_questions').select('*')
+        if (course && course !== 'general') {
+          gradeQuery = gradeQuery.eq('course_id', course)
+        } else if (course === 'general') {
+          gradeQuery = gradeQuery.is('course_id', null)
+        }
+        gradeQuery = gradeQuery.eq('student_grade', userGrade).eq('is_active', true)
+        const { data: gradeData } = await gradeQuery
+        
+        // Second try: questions with null grade (visible to all)
+        let nullGradeQuery = supabase.from('exam_questions').select('*')
+        if (course && course !== 'general') {
+          nullGradeQuery = nullGradeQuery.eq('course_id', course)
+        } else if (course === 'general') {
+          nullGradeQuery = nullGradeQuery.is('course_id', null)
+        }
+        nullGradeQuery = nullGradeQuery.is('student_grade', null).eq('is_active', true)
+        const { data: nullGradeData } = await nullGradeQuery
+        
+        // Combine results
+        const combinedData = [...(gradeData || []), ...(nullGradeData || [])]
+        questionsData = combinedData
+        questionsError = null
+        console.log(`Filtering by student_grade: ${userGrade} OR null - Found ${combinedData.length} questions`)
       } else {
         console.log('No student_grade filter - getting questions for all grades')
+        // Continue with the original query
+        // Accept all active questions - no limit (supports 30+ questions)
+        activeQuery = activeQuery.eq('is_active', true)
+        console.log('Filtering by is_active: true')
+
+        const activeResult = await activeQuery
+        questionsData = activeResult.data
+        questionsError = activeResult.error
+
+        console.log('Query result:', {
+          count: questionsData?.length || 0,
+          error: questionsError?.message || null,
+          sample: questionsData?.[0] || null
+        })
       }
-
-      // Accept all active questions - no limit (supports 30+ questions)
-      activeQuery = activeQuery.eq('is_active', true)
-      console.log('Filtering by is_active: true')
-
-      const activeResult = await activeQuery
-      questionsData = activeResult.data
-      questionsError = activeResult.error
-
-      console.log('Query result:', {
-        count: questionsData?.length || 0,
-        error: questionsError?.message || null,
-        sample: questionsData?.[0] || null
-      })
 
       if (questionsError) {
         console.warn('Error with is_active filter, trying without:', questionsError)
