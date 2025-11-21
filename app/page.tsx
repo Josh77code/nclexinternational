@@ -42,6 +42,11 @@ export default function HomePage() {
     { type: "image", src: "/testimony16.jpeg", alt: "NCLEX Keys student success highlight 16" },
     { type: "image", src: "/testimony17.jpeg", alt: "NCLEX Keys student success highlight 17" },
     { type: "image", src: "/testimony18.jpeg", alt: "NCLEX Keys student success highlight 18" },
+    { type: "image", src: "/testimony19.jpeg", alt: "NCLEX Keys student success highlight 19" },
+    { type: "image", src: "/testimony20.jpeg", alt: "NCLEX Keys student success highlight 20" },
+    { type: "image", src: "/testimony21.jpeg", alt: "NCLEX Keys student success highlight 21" },
+    { type: "image", src: "/testimony22.jpeg", alt: "NCLEX Keys student success highlight 22" },
+    { type: "image", src: "/testimony23.jpeg", alt: "NCLEX Keys student success highlight 23" },
     {
       type: "quote",
       headline: "Boss B the NCLEX Teacher",
