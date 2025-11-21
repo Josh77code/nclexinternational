@@ -242,7 +242,7 @@ export default function ExamPage() {
       }
 
       if (!questionsError && (!questionsData || questionsData.length === 0)) {
-        console.warn('=== NO QUESTIONS FOUND ===')
+        console.warn('=== NO QUESTIONS FOUND WITH FILTERS ===')
         console.warn('Course:', course || 'general')
         console.warn('User Grade:', userGrade || 'none')
         
@@ -265,11 +265,28 @@ export default function ExamPage() {
           error: debugError?.message || null
         })
         
-        console.warn('This might mean:')
-        console.warn('1. Questions were uploaded with different course_id')
-        console.warn('2. Questions were uploaded with different student_grade')
-        console.warn('3. Questions are not marked as is_active=true')
-        console.warn('4. No questions exist in database')
+        // FALLBACK: If no questions found with filters, try to get ALL active questions
+        // This ensures students can still take exams even if there's a filter mismatch
+        console.warn('Attempting fallback: Getting ALL active questions regardless of filters...')
+        const fallbackQuery = supabase
+          .from('exam_questions')
+          .select('*')
+          .eq('is_active', true)
+        
+        const { data: fallbackData, error: fallbackError } = await fallbackQuery
+        
+        if (!fallbackError && fallbackData && fallbackData.length > 0) {
+          console.warn(`Fallback successful: Found ${fallbackData.length} active questions. Using these questions.`)
+          questionsData = fallbackData
+          questionsError = null
+        } else {
+          console.warn('Fallback also failed. No active questions exist in database.')
+          console.warn('This might mean:')
+          console.warn('1. Questions were uploaded with different course_id')
+          console.warn('2. Questions were uploaded with different student_grade')
+          console.warn('3. Questions are not marked as is_active=true')
+          console.warn('4. No questions exist in database')
+        }
         console.warn('========================')
       }
 
