@@ -152,17 +152,55 @@ export async function POST(req: Request) {
     const chunkSize = 500
     for (let i = 0; i < toInsert.length; i += chunkSize) {
       const chunk = toInsert.slice(i, i + chunkSize)
-      const { error } = await admin.from('exam_questions').insert(chunk)
+      const { data: insertedData, error } = await admin.from('exam_questions').insert(chunk).select('id, course_id, student_grade, is_active')
       if (error) {
+        console.error('Error inserting questions:', error)
         return NextResponse.json({ error: error.message, at: i }, { status: 500 })
       }
+      // Log first chunk for debugging
+      if (i === 0 && insertedData && insertedData.length > 0) {
+        const sample = insertedData[0]
+        console.log('Sample inserted question:', {
+          id: sample.id,
+          course_id: sample.course_id || 'null (general)',
+          student_grade: sample.student_grade || 'null (all grades)',
+          is_active: sample.is_active
+        })
+      }
     }
+    
+    // Verify questions were inserted correctly
+    let verifyQuery = admin
+      .from('exam_questions')
+      .select('id, course_id, student_grade, is_active', { count: 'exact', head: false })
+      .eq('is_active', true)
+      .limit(5)
+    
+    if (courseId) {
+      verifyQuery = verifyQuery.eq('course_id', courseId)
+    } else {
+      verifyQuery = verifyQuery.is('course_id', null)
+    }
+    
+    if (studentGrade) {
+      verifyQuery = verifyQuery.eq('student_grade', studentGrade)
+    } else {
+      verifyQuery = verifyQuery.is('student_grade', null)
+    }
+    
+    const { count: verifyCount, data: verifyData } = await verifyQuery
     
     const response: any = { 
       inserted: toInsert.length, 
       invalid: errors,
       deactivated_previous: true, // Always true - ALL previous questions are deactivated
-      message: `Successfully uploaded ${toInsert.length} questions. ALL previous active questions have been deactivated. Students will now only see these newly uploaded questions.`
+      verified_active: verifyCount || 0,
+      message: `Successfully uploaded ${toInsert.length} questions. ALL previous active questions have been deactivated. Students will now only see these newly uploaded questions.`,
+      debug: {
+        course_id: courseId || 'null (general)',
+        student_grade: studentGrade || 'null (all grades)',
+        sample_question: verifyData?.[0] || null
+      }
     }
     
     if (weekLabel) {

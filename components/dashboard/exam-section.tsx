@@ -145,6 +145,7 @@ export function ExamSection() {
 
           // If error (likely is_active column doesn't exist), try without it
           if (countError) {
+            console.warn(`Error counting questions for course ${course.id}, trying without is_active:`, countError)
             query = supabase
               .from('exam_questions')
               .select('*, question_time_limit', { count: 'exact', head: true })
@@ -158,6 +159,9 @@ export function ExamSection() {
             count = retryResult.count
             countError = retryResult.error
           }
+
+          // Log for debugging
+          console.log(`Course "${course.title}" (${course.id}): Found ${count || 0} questions for grade ${userGrade || 'all'}`)
 
           // Accept any question count (30 or more) - no minimum requirement
           if (countError || !count || count === 0) {
@@ -224,6 +228,7 @@ export function ExamSection() {
       let { count: generalCount, error: generalError } = await generalQuery
 
       if (generalError) {
+        console.warn('Error counting general questions, trying without is_active:', generalError)
         generalQuery = supabase
           .from('exam_questions')
           .select('*', { count: 'exact', head: true })
@@ -236,6 +241,9 @@ export function ExamSection() {
         const retryGeneral = await generalQuery
         generalCount = retryGeneral.count
       }
+
+      // Log for debugging
+      console.log(`General exam: Found ${generalCount || 0} questions for grade ${userGrade || 'all'}`)
 
       // Accept any question count (30 or more) for general exam
       if (generalCount && generalCount > 0) {
@@ -280,7 +288,13 @@ export function ExamSection() {
         })
       }
 
-      console.log('Available exams found:', validCourses)
+      console.log('=== EXAM FETCH SUMMARY ===')
+      console.log('User grade:', userGrade || 'none (all grades)')
+      console.log('Active courses found:', coursesData?.length || 0)
+      console.log('Courses with questions:', validCourses.length)
+      console.log('Available exams:', validCourses.map(e => `${e.title} (${e.question_count} questions)`))
+      console.log('========================')
+      
       setAvailableExams(validCourses)
       setIsLoadingExams(false)
     } catch (error) {
