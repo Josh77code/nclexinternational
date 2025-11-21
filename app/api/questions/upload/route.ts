@@ -92,6 +92,16 @@ export async function POST(req: Request) {
           : Boolean(row.is_active))
       : true // Default to active if not specified
     
+    // Log first question's is_active value for debugging
+    if (i === 0) {
+      console.log('First question is_active handling:', {
+        csvValue: row.is_active,
+        csvType: typeof row.is_active,
+        finalValue: isActive,
+        willBeActive: isActive === true
+      })
+    }
+    
     // Handle course_id and question_time_limit
     // If CSV has empty string or 'none', treat it as null (general questions)
     const csvCourseId = row.course_id?.trim()
@@ -174,24 +184,43 @@ export async function POST(req: Request) {
     
     // Batch insert in chunks of 500
     const chunkSize = 500
+    let totalInserted = 0
     for (let i = 0; i < toInsert.length; i += chunkSize) {
       const chunk = toInsert.slice(i, i + chunkSize)
+      
+      // Verify all questions in chunk have is_active = true
+      const activeCount = chunk.filter(q => q.is_active === true).length
+      console.log(`Inserting chunk ${Math.floor(i/chunkSize) + 1}: ${chunk.length} questions, ${activeCount} marked as active`)
+      
       const { data: insertedData, error } = await admin.from('exam_questions').insert(chunk).select('id, course_id, student_grade, is_active')
       if (error) {
         console.error('Error inserting questions:', error)
-        return NextResponse.json({ error: error.message, at: i }, { status: 500 })
+        // REACTIVATE questions if insert fails
+        console.error('CRITICAL: Insert failed after deactivation. Attempting to reactivate previous questions...')
+        await admin
+          .from('exam_questions')
+          .update({ is_active: true })
+          .in('id', deactivatedData?.map(d => d.id) || [])
+        return NextResponse.json({ error: error.message, at: i, reactivated_previous: true }, { status: 500 })
       }
+      
+      totalInserted += insertedData?.length || 0
+      
       // Log first chunk for debugging
       if (i === 0 && insertedData && insertedData.length > 0) {
         const sample = insertedData[0]
+        const activeInSample = insertedData.filter(q => q.is_active === true).length
         console.log('Sample inserted question:', {
           id: sample.id,
           course_id: sample.course_id || 'null (general)',
           student_grade: sample.student_grade || 'null (all grades)',
-          is_active: sample.is_active
+          is_active: sample.is_active,
+          activeInChunk: `${activeInSample}/${insertedData.length}`
         })
       }
     }
+    
+    console.log(`Successfully inserted ${totalInserted} questions. All should be marked as is_active=true.`)
     
     // Verify questions were inserted correctly
     let verifyQuery = admin
