@@ -93,14 +93,38 @@ export async function POST(req: Request) {
       : true // Default to active if not specified
     
     // Handle course_id and question_time_limit
-    const rowCourseId = courseId || row.course_id?.trim() || null
+    // If CSV has empty string or 'none', treat it as null (general questions)
+    const csvCourseId = row.course_id?.trim()
+    const rowCourseId = courseId && courseId !== 'none' 
+      ? courseId 
+      : (csvCourseId && csvCourseId.length > 0 && csvCourseId !== 'none' ? csvCourseId : null)
+    
+    // Log for debugging
+    if (i === 0) {
+      console.log('First question course handling:', {
+        formCourseId: courseId,
+        csvCourseId: csvCourseId,
+        finalCourseId: rowCourseId || 'null (general)'
+      })
+    }
     const timeLimit = questionTimeLimit || row.question_time_limit?.trim() || '60'
     const parsedTimeLimit = parseInt(timeLimit, 10)
     const finalTimeLimit = isNaN(parsedTimeLimit) ? 60 : parsedTimeLimit
     
     // Handle student_grade - use form data or row data, validate it's one of the allowed values
-    const rowGrade = studentGrade || row.student_grade?.trim().toLowerCase() || null
+    // If CSV has empty string, treat it as null (visible to all grades)
+    const csvGrade = row.student_grade?.trim()
+    const rowGrade = studentGrade || (csvGrade && csvGrade.length > 0 ? csvGrade.toLowerCase() : null) || null
     const validGrade = rowGrade && ['starter', 'mid', 'higher'].includes(rowGrade) ? rowGrade : null
+    
+    // Log for debugging
+    if (i === 0) {
+      console.log('First question grade handling:', {
+        formGrade: studentGrade,
+        csvGrade: csvGrade,
+        finalGrade: validGrade || 'null (all grades)'
+      })
+    }
     
     toInsert.push({
       question_text: q,

@@ -177,24 +177,44 @@ export default function ExamPage() {
       const userGrade = userData?.role === 'student' ? userData?.student_grade : null
 
       let questionsData, questionsError
+      
+      console.log('=== EXAM INITIALIZATION DEBUG ===')
+      console.log('Course ID:', course || 'general')
+      console.log('User Grade:', userGrade || 'none (all grades)')
+      
       let activeQuery = supabase.from('exam_questions').select('*')
 
       if (course && course !== 'general') {
         activeQuery = activeQuery.eq('course_id', course)
+        console.log('Filtering by course_id:', course)
       } else if (course === 'general') {
         activeQuery = activeQuery.is('course_id', null)
+        console.log('Filtering for general questions (course_id IS NULL)')
+      } else {
+        // No course specified - get all questions
+        console.log('No course filter - getting all questions')
       }
 
       if (userGrade) {
         activeQuery = activeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+        console.log('Filtering by student_grade:', userGrade, 'OR null')
+      } else {
+        console.log('No student_grade filter - getting questions for all grades')
       }
 
       // Accept all active questions - no limit (supports 30+ questions)
       activeQuery = activeQuery.eq('is_active', true)
+      console.log('Filtering by is_active: true')
 
       const activeResult = await activeQuery
       questionsData = activeResult.data
       questionsError = activeResult.error
+
+      console.log('Query result:', {
+        count: questionsData?.length || 0,
+        error: questionsError?.message || null,
+        sample: questionsData?.[0] || null
+      })
 
       if (questionsError) {
         console.warn('Error with is_active filter, trying without:', questionsError)
@@ -214,10 +234,43 @@ export default function ExamPage() {
         const allResult = await allQuery
         questionsData = allResult.data
         questionsError = allResult.error
+        
+        console.log('Retry query result (without is_active):', {
+          count: questionsData?.length || 0,
+          error: questionsError?.message || null
+        })
       }
 
       if (!questionsError && (!questionsData || questionsData.length === 0)) {
-        console.warn('No questions found for course:', course)
+        console.warn('=== NO QUESTIONS FOUND ===')
+        console.warn('Course:', course || 'general')
+        console.warn('User Grade:', userGrade || 'none')
+        
+        // Debug: Check what questions actually exist in database
+        const debugQuery = supabase
+          .from('exam_questions')
+          .select('id, course_id, student_grade, is_active')
+          .eq('is_active', true)
+          .limit(10)
+        
+        const { data: debugData, error: debugError } = await debugQuery
+        
+        console.warn('Debug - All active questions in DB (first 10):', {
+          count: debugData?.length || 0,
+          questions: debugData?.map(q => ({
+            course_id: q.course_id || 'null',
+            student_grade: q.student_grade || 'null',
+            is_active: q.is_active
+          })) || [],
+          error: debugError?.message || null
+        })
+        
+        console.warn('This might mean:')
+        console.warn('1. Questions were uploaded with different course_id')
+        console.warn('2. Questions were uploaded with different student_grade')
+        console.warn('3. Questions are not marked as is_active=true')
+        console.warn('4. No questions exist in database')
+        console.warn('========================')
       }
 
       if (questionsError) {
