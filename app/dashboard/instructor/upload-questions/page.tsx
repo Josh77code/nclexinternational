@@ -17,7 +17,8 @@ export default function UploadQuestionsPage() {
   const [file, setFile] = useState<File | null>(null)
   const [isUploading, setIsUploading] = useState(false)
   const [result, setResult] = useState<any>(null)
-  const [deactivatePrevious, setDeactivatePrevious] = useState(true)
+  // Always deactivate previous questions when uploading new ones
+  const deactivatePrevious = true
   const [weekLabel, setWeekLabel] = useState('')
   const [courses, setCourses] = useState<any[]>([])
   const [selectedCourseId, setSelectedCourseId] = useState<string>('none')
@@ -212,17 +213,10 @@ export default function UploadQuestionsPage() {
               </div>
 
               <div className="space-y-3 border-t pt-3">
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="deactivate"
-                    checked={deactivatePrevious}
-                    onChange={(e) => setDeactivatePrevious(e.target.checked)}
-                    className="w-4 h-4"
-                  />
-                  <label htmlFor="deactivate" className="text-sm text-gray-700 cursor-pointer">
-                    <strong>Deactivate Previous Questions</strong> - Hide all existing questions and show only these new ones
-                  </label>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                  <p className="text-sm text-blue-800 font-semibold">
+                    <strong>ℹ️ Automatic Deactivation:</strong> Previous questions will be automatically deactivated when you upload new questions.
+                  </p>
                 </div>
 
                 <div className="space-y-1">

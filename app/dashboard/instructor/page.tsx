@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { getInstructorCourses, updateCourseStatus, deleteCourse } from "@/lib/actions/courses";
 import { getInstructorLiveClassLinks } from "@/lib/actions/live-class-links";
 import { LiveClassManagement } from "@/components/dashboard/live-class-management";
-import { QuestionBankSection } from "@/components/dashboard/question-bank";
+// Question Bank feature removed - using upload questions only
+// import { QuestionBankSection } from "@/components/dashboard/question-bank";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -426,12 +427,12 @@ export default function InstructorDashboard() {
           )}
         </div>
 
-        {/* Question Bank Section */}
+        {/* Upload Questions Section */}
         <div className="space-y-6 mt-8">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">Question Bank Collections</h2>
-              <p className="text-[#0A61C9] mt-1">Organize and manage exam questions in collections</p>
+              <h2 className="text-2xl font-bold text-gray-900">Question Management</h2>
+              <p className="text-[#0A61C9] mt-1">Upload and manage exam questions via CSV</p>
             </div>
             <Button 
               onClick={() => window.location.href = '/dashboard/instructor/upload-questions'}
@@ -441,7 +442,22 @@ export default function InstructorDashboard() {
               Upload Questions
             </Button>
           </div>
-          <QuestionBankSection />
+          <Card className="border-2 border-[#749DC8] bg-white">
+            <CardContent className="p-6">
+              <div className="text-center py-8">
+                <Upload className="w-12 h-12 mx-auto mb-4 text-[#0A61C9]" />
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Upload Questions via CSV</h3>
+                <p className="text-[#0A61C9] mb-4">Use the Upload Questions button to add new questions. Previous questions will be automatically deactivated when you upload new ones.</p>
+                <Button 
+                  onClick={() => window.location.href = '/dashboard/instructor/upload-questions'}
+                  className="bg-[#0A61C9] hover:bg-[#749DC8] text-white font-semibold"
+                >
+                  <Upload className="w-4 h-4 mr-2" />
+                  Go to Upload Questions
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Students Section */}

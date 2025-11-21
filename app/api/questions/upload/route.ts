@@ -132,27 +132,25 @@ export async function POST(req: Request) {
   try {
     const admin = createAdminClient()
     
-    // If deactivate_previous is true, deactivate all currently active questions for this course and grade
-    if (deactivatePrevious) {
-      let deactivateQuery = admin
-        .from('exam_questions')
-        .update({ is_active: false })
-        .eq('is_active', true)
-      
-      if (courseId) {
-        deactivateQuery = deactivateQuery.eq('course_id', courseId)
-      }
-      
-      if (studentGrade && ['starter', 'mid', 'higher'].includes(studentGrade)) {
-        deactivateQuery = deactivateQuery.eq('student_grade', studentGrade)
-      }
-      
-      const { error: deactivateError } = await deactivateQuery
-      
-      if (deactivateError) {
-        console.error('Error deactivating previous questions:', deactivateError)
-        // Continue anyway - this is not critical
-      }
+    // Always deactivate all currently active questions for this course and grade when uploading new questions
+    let deactivateQuery = admin
+      .from('exam_questions')
+      .update({ is_active: false })
+      .eq('is_active', true)
+    
+    if (courseId) {
+      deactivateQuery = deactivateQuery.eq('course_id', courseId)
+    }
+    
+    if (studentGrade && ['starter', 'mid', 'higher'].includes(studentGrade)) {
+      deactivateQuery = deactivateQuery.eq('student_grade', studentGrade)
+    }
+    
+    const { error: deactivateError } = await deactivateQuery
+    
+    if (deactivateError) {
+      console.error('Error deactivating previous questions:', deactivateError)
+      // Continue anyway - this is not critical
     }
     
     // Batch insert in chunks of 500
