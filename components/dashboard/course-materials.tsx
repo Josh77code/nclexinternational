@@ -71,7 +71,7 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
       })
     }
     // Also handle old-style courses with video_url and materials_url
-    const isCompleted = isCourseCompleted(course.id)
+    // Note: isCompleted is already defined above for this course
     
     if (course.video_url) {
       allMaterials.push({
