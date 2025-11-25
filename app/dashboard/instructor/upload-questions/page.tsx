@@ -171,21 +171,30 @@ export default function UploadQuestionsPage() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="student-grade" className="text-sm font-medium text-gray-700">
-                  Student Grade (Required):
+              <div className="space-y-2 bg-[#F1F7F9] border-2 border-[#0A61C9] rounded-lg p-4">
+                <Label htmlFor="student-grade" className="text-base font-bold text-[#0A61C9] flex items-center gap-2">
+                  <span className="text-red-500">*</span>
+                  Student Grade Level (Required)
                 </Label>
                 <Select value={selectedGrade} onValueChange={setSelectedGrade}>
-                  <SelectTrigger id="student-grade" className="w-full border-2 border-[#749DC8] text-[#0A61C9]">
-                    <SelectValue placeholder="Select grade level for these questions" className="text-[#0A61C9]" />
+                  <SelectTrigger id="student-grade" className="w-full border-2 border-[#0A61C9] text-[#0A61C9] bg-white font-semibold">
+                    <SelectValue placeholder="⚠️ Select grade level for these questions" className="text-[#0A61C9]" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="starter" className="text-[#0A61C9] focus:text-[#0A61C9]">Starter (Beginner)</SelectItem>
-                    <SelectItem value="mid" className="text-[#0A61C9] focus:text-[#0A61C9]">Mid (Intermediate)</SelectItem>
-                    <SelectItem value="higher" className="text-[#0A61C9] focus:text-[#0A61C9]">Higher (Advanced)</SelectItem>
+                    <SelectItem value="starter" className="text-[#0A61C9] focus:text-[#0A61C9] font-medium">Starter (Beginner)</SelectItem>
+                    <SelectItem value="mid" className="text-[#0A61C9] focus:text-[#0A61C9] font-medium">Mid (Intermediate)</SelectItem>
+                    <SelectItem value="higher" className="text-[#0A61C9] focus:text-[#0A61C9] font-medium">Higher (Advanced)</SelectItem>
                   </SelectContent>
                 </Select>
-                <p className="text-xs text-gray-500">Students will only see questions for their grade level. This is required.</p>
+                <div className="bg-white border border-[#749DC8] rounded p-3 mt-2">
+                  <p className="text-sm font-semibold text-[#0A61C9] mb-1">📚 How Grade Levels Work:</p>
+                  <ul className="text-xs text-[#0A61C9] space-y-1 list-disc list-inside">
+                    <li><strong>Starter:</strong> Questions visible to Starter (Beginner) students only</li>
+                    <li><strong>Mid:</strong> Questions visible to Mid (Intermediate) students only</li>
+                    <li><strong>Higher:</strong> Questions visible to Higher (Advanced) students only</li>
+                    <li>Students will only see questions matching their assigned grade level</li>
+                  </ul>
+                </div>
               </div>
 
               <div className="space-y-1">

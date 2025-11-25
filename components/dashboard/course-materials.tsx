@@ -52,19 +52,27 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
     return "File"
   }
 
-  // Extract all materials from courses
+  // Extract all materials from courses - INCLUDING completed courses
+  // Students should be able to access materials even after completing a course
   const allMaterials: any[] = []
   courses.forEach(course => {
+    // Check if course is completed
+    const isCompleted = isCourseCompleted(course.id)
+    
     if (course.course_materials && course.course_materials.length > 0) {
       course.course_materials.forEach((material: any) => {
         allMaterials.push({
           ...material,
           courseTitle: course.title,
-          courseDescription: course.description
+          courseDescription: course.description,
+          courseCompleted: isCompleted, // Track completion status for display
+          courseId: course.id
         })
       })
     }
     // Also handle old-style courses with video_url and materials_url
+    const isCompleted = isCourseCompleted(course.id)
+    
     if (course.video_url) {
       allMaterials.push({
         id: `${course.id}-video`,
@@ -73,7 +81,9 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
         description: course.description,
         file_url: course.video_url,
         courseTitle: course.title,
-        courseDescription: course.description
+        courseDescription: course.description,
+        courseCompleted: isCompleted,
+        courseId: course.id
       })
     }
     if (course.materials_url) {
@@ -84,7 +94,9 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
         description: course.description,
         file_url: course.materials_url,
         courseTitle: course.title,
-        courseDescription: course.description
+        courseDescription: course.description,
+        courseCompleted: isCompleted,
+        courseId: course.id
       })
     }
   })
@@ -158,9 +170,17 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
                           <h3 className="font-bold text-lg group-hover:text-primary transition-colors duration-300">
                             {material.title}
                           </h3>
-                          <p className="text-xs text-gray-500 mt-1">
-                            Course: {material.courseTitle}
-                          </p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <p className="text-xs text-gray-500">
+                              Course: {material.courseTitle}
+                            </p>
+                            {material.courseCompleted && (
+                              <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-300">
+                                <CheckCircle className="h-3 w-3 mr-1" />
+                                Completed
+                              </Badge>
+                            )}
+                          </div>
                           {material.description && (
                             <p className="text-sm text-enhanced mt-2 group-hover:text-foreground transition-colors duration-300">
                               {material.description}
@@ -224,9 +244,17 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
                           <h3 className="font-bold text-lg group-hover:text-primary transition-colors duration-300">
                             {material.title}
                           </h3>
-                          <p className="text-xs text-gray-500 mt-1">
-                            Course: {material.courseTitle}
-                          </p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <p className="text-xs text-gray-500">
+                              Course: {material.courseTitle}
+                            </p>
+                            {material.courseCompleted && (
+                              <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-300">
+                                <CheckCircle className="h-3 w-3 mr-1" />
+                                Completed
+                              </Badge>
+                            )}
+                          </div>
                           {material.description && (
                             <p className="text-sm text-enhanced mt-2 group-hover:text-foreground transition-colors duration-300">
                               {material.description}
@@ -234,6 +262,12 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
                           )}
                         </div>
                         <div className="flex items-center gap-2">
+                          {material.courseCompleted && (
+                            <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-300">
+                              <CheckCircle className="h-3 w-3 mr-1" />
+                              Completed
+                            </Badge>
+                          )}
                           <Badge variant="outline" className="text-xs">
                             {material.type === 'pdf' ? 'PDF' : 'Slides'}
                           </Badge>
