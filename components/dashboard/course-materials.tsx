@@ -57,31 +57,48 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
   const allMaterials: any[] = []
   
   // Debug logging - show ALL courses including completed ones
-  console.log('CourseMaterials: Processing courses', {
-    totalCourses: courses.length,
-    coursesWithMaterials: courses.filter(c => c.course_materials && c.course_materials.length > 0).length,
-    coursesWithVideoUrl: courses.filter(c => c.video_url).length,
-    coursesWithMaterialsUrl: courses.filter(c => c.materials_url).length,
-    completedCourses: courses.filter(c => isCourseCompleted(c.id)).length,
-    completedCoursesWithMaterials: courses.filter(c => isCourseCompleted(c.id) && c.course_materials && c.course_materials.length > 0).length
+  console.log('=== CourseMaterials Component Debug ===')
+  console.log('Total courses received:', courses.length)
+  console.log('Courses array:', courses.map(c => ({
+    id: c.id,
+    title: c.title,
+    hasCourseMaterials: !!(c.course_materials),
+    courseMaterialsType: Array.isArray(c.course_materials) ? 'array' : typeof c.course_materials,
+    courseMaterialsLength: Array.isArray(c.course_materials) ? c.course_materials.length : 'N/A',
+    hasVideoUrl: !!c.video_url,
+    hasMaterialsUrl: !!c.materials_url
+  })))
+  
+  const coursesWithMaterials = courses.filter(c => {
+    const hasMaterials = c.course_materials && Array.isArray(c.course_materials) && c.course_materials.length > 0
+    const hasVideo = !!c.video_url
+    const hasMaterialsUrl = !!c.materials_url
+    return hasMaterials || hasVideo || hasMaterialsUrl
   })
+  
+  console.log('Courses with materials:', coursesWithMaterials.length)
+  console.log('Courses with course_materials array:', courses.filter(c => Array.isArray(c.course_materials) && c.course_materials.length > 0).length)
+  console.log('Courses with video_url:', courses.filter(c => c.video_url).length)
+  console.log('Courses with materials_url:', courses.filter(c => c.materials_url).length)
+  console.log('Completed courses:', courses.filter(c => isCourseCompleted(c.id)).length)
+  console.log('=====================================')
   
   courses.forEach(course => {
     // Check if course is completed
     const isCompleted = isCourseCompleted(course.id)
     
-    // Log each course for debugging - especially completed ones
-    if (isCompleted || course.course_materials?.length > 0 || course.video_url || course.materials_url) {
-      console.log(`CourseMaterials: Processing course "${course.title}"`, {
-        id: course.id,
-        isCompleted,
-        hasCourseMaterials: !!(course.course_materials && course.course_materials.length > 0),
-        courseMaterialsCount: course.course_materials?.length || 0,
-        courseMaterials: course.course_materials?.map((m: any) => ({ id: m.id, type: m.type, title: m.title })) || [],
-        hasVideoUrl: !!course.video_url,
-        hasMaterialsUrl: !!course.materials_url
-      })
-    }
+    // Log EVERY course for debugging
+    console.log(`CourseMaterials: Course "${course.title}" (${course.id})`, {
+      isCompleted,
+      course_materials_exists: !!course.course_materials,
+      course_materials_type: Array.isArray(course.course_materials) ? 'array' : typeof course.course_materials,
+      course_materials_length: Array.isArray(course.course_materials) ? course.course_materials.length : 'N/A',
+      course_materials_raw: course.course_materials,
+      hasVideoUrl: !!course.video_url,
+      videoUrl: course.video_url,
+      hasMaterialsUrl: !!course.materials_url,
+      materialsUrl: course.materials_url
+    })
     
     if (course.course_materials && course.course_materials.length > 0) {
       course.course_materials.forEach((material: any) => {

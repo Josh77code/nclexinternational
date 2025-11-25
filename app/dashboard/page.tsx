@@ -59,25 +59,72 @@ export default async function DashboardPage() {
 
   // Get ALL active courses from the courses table (instructor-created courses)
   // Filter by student grade if user is a student
+  // IMPORTANT: Load course_materials for ALL courses (including completed ones)
   let coursesQuery = supabase
     .from("courses")
-    .select("*, course_materials(*)")
+    .select(`
+      *,
+      course_materials (
+        id,
+        course_id,
+        type,
+        title,
+        description,
+        file_url,
+        duration,
+        file_size,
+        order_index
+      )
+    `)
     .eq("status", "active")
   
   if (userGrade) {
     coursesQuery = coursesQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
   }
   
-  const { data: instructorCourses } = await coursesQuery.order("created_at", { ascending: false })
+  const { data: instructorCourses, error: instructorCoursesError } = await coursesQuery.order("created_at", { ascending: false })
+  
+  // Log for debugging
+  if (instructorCoursesError) {
+    console.error('Error loading instructor courses:', instructorCoursesError)
+  } else {
+    console.log('Loaded instructor courses:', {
+      count: instructorCourses?.length || 0,
+      coursesWithMaterials: instructorCourses?.filter(c => c.course_materials && c.course_materials.length > 0).length || 0
+    })
+  }
 
   // Get courses for enrolled programs (old system)
   // IMPORTANT: Include course_materials so students can access materials even after completing courses
   const programIds = enrollments?.map((e) => e.program_id) || []
-  const { data: programCourses } = await supabase
+  const { data: programCourses, error: programCoursesError } = await supabase
     .from("courses")
-    .select("*, course_materials(*)")
+    .select(`
+      *,
+      course_materials (
+        id,
+        course_id,
+        type,
+        title,
+        description,
+        file_url,
+        duration,
+        file_size,
+        order_index
+      )
+    `)
     .in("program_id", programIds)
     .order("order_index", { ascending: true })
+  
+  // Log for debugging
+  if (programCoursesError) {
+    console.error('Error loading program courses:', programCoursesError)
+  } else {
+    console.log('Loaded program courses:', {
+      count: programCourses?.length || 0,
+      coursesWithMaterials: programCourses?.filter(c => c.course_materials && c.course_materials.length > 0).length || 0
+    })
+  }
 
   // Combine both course types (instructor courses and program courses)
   const courses = [...(instructorCourses || []), ...(programCourses || [])]
