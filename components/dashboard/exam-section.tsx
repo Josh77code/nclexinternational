@@ -274,14 +274,11 @@ export function ExamSection() {
                 .from('exam_questions')
                 .select('question_time_limit')
                 .eq('course_id', course.id)
-              .limit(100)
-            
-            if (userGrade) {
-              timeQuery = timeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+                .limit(100)
+              
+              const result = await timeQuery
+              timeData = result.data || []
             }
-            
-            const retryTime = await timeQuery
-            timeData = retryTime.data
           }
 
           const avgTime = timeData && timeData.length > 0
