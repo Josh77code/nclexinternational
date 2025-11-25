@@ -147,7 +147,27 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
   const slidesMaterials = allMaterials.filter(m => m.type === 'slides')
   const studyMaterials = [...pdfMaterials, ...slidesMaterials]
 
+  // Enhanced empty state with more information
   if (allMaterials.length === 0) {
+    const hasCourses = courses.length > 0
+    const hasCoursesWithMaterials = courses.some(c => 
+      (c.course_materials && Array.isArray(c.course_materials) && c.course_materials.length > 0) ||
+      c.video_url ||
+      c.materials_url
+    )
+    
+    console.warn('CourseMaterials: No materials found', {
+      totalCourses: courses.length,
+      hasCoursesWithMaterials,
+      coursesSummary: courses.map(c => ({
+        title: c.title,
+        id: c.id,
+        materialsCount: Array.isArray(c.course_materials) ? c.course_materials.length : 0,
+        hasVideo: !!c.video_url,
+        hasMaterialsUrl: !!c.materials_url
+      }))
+    })
+    
     return (
       <Card className="border-soft animate-fade-in">
         <CardHeader>
@@ -155,9 +175,19 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
             Course Materials
           </CardTitle>
           <CardDescription className="text-base">
-            No course materials available yet. Check back soon!
+            {hasCourses 
+              ? "No course materials have been added to your courses yet. Please contact your instructor or check back later."
+              : "No courses available yet. Please complete your enrollment."}
           </CardDescription>
         </CardHeader>
+        {hasCourses && (
+          <CardContent>
+            <div className="text-sm text-muted-foreground space-y-1">
+              <p>You have {courses.length} course(s) enrolled, but none have materials yet.</p>
+              <p>Materials will appear here once your instructor adds them to your courses.</p>
+            </div>
+          </CardContent>
+        )}
       </Card>
     )
   }
