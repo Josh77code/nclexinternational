@@ -129,35 +129,78 @@ export function ExamSection() {
       // For each course, count available questions
       const coursesWithCounts = await Promise.all(
         (coursesData || []).map(async (course) => {
-          // Try with is_active filter first - also filter by student grade
-          let query = supabase
-            .from('exam_questions')
-            .select('*, question_time_limit', { count: 'exact', head: true })
-            .eq('course_id', course.id)
-            .eq('is_active', true)
+          let count = 0
+          let countError = null
           
-          // Filter by student grade if user is a student
+          // Use separate queries for better compatibility (same approach as exam/page.tsx)
           if (userGrade) {
-            query = query.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+            // Query 1: Questions with matching grade
+            let gradeQuery = supabase
+              .from('exam_questions')
+              .select('id', { count: 'exact', head: true })
+              .eq('course_id', course.id)
+              .eq('student_grade', userGrade)
+              .eq('is_active', true)
+            
+            const { count: gradeCount, error: gradeError } = await gradeQuery
+            
+            // Query 2: Questions with null grade (visible to all)
+            let nullGradeQuery = supabase
+              .from('exam_questions')
+              .select('id', { count: 'exact', head: true })
+              .eq('course_id', course.id)
+              .is('student_grade', null)
+              .eq('is_active', true)
+            
+            const { count: nullGradeCount, error: nullGradeError } = await nullGradeQuery
+            
+            // Combine counts
+            count = (gradeCount || 0) + (nullGradeCount || 0)
+            countError = gradeError || nullGradeError
+            
+            console.log(`Course "${course.title}": ${gradeCount || 0} grade-specific + ${nullGradeCount || 0} general = ${count} total for grade ${userGrade}`)
+          } else {
+            // No grade filter - get all active questions
+            let query = supabase
+              .from('exam_questions')
+              .select('id', { count: 'exact', head: true })
+              .eq('course_id', course.id)
+              .eq('is_active', true)
+            
+            const result = await query
+            count = result.count || 0
+            countError = result.error
           }
 
-          let { count, error: countError } = await query
-
-          // If error (likely is_active column doesn't exist), try without it
+          // If error, try without is_active filter
           if (countError) {
             console.warn(`Error counting questions for course ${course.id}, trying without is_active:`, countError)
-            query = supabase
-              .from('exam_questions')
-              .select('*, question_time_limit', { count: 'exact', head: true })
-              .eq('course_id', course.id)
-            
             if (userGrade) {
-              query = query.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
+              let gradeQuery = supabase
+                .from('exam_questions')
+                .select('id', { count: 'exact', head: true })
+                .eq('course_id', course.id)
+                .eq('student_grade', userGrade)
+              
+              let nullGradeQuery = supabase
+                .from('exam_questions')
+                .select('id', { count: 'exact', head: true })
+                .eq('course_id', course.id)
+                .is('student_grade', null)
+              
+              const [gradeResult, nullGradeResult] = await Promise.all([gradeQuery, nullGradeQuery])
+              count = (gradeResult.count || 0) + (nullGradeResult.count || 0)
+              countError = gradeResult.error || nullGradeResult.error
+            } else {
+              let query = supabase
+                .from('exam_questions')
+                .select('id', { count: 'exact', head: true })
+                .eq('course_id', course.id)
+              
+              const result = await query
+              count = result.count || 0
+              countError = result.error
             }
-            
-            const retryResult = await query
-            count = retryResult.count
-            countError = retryResult.error
           }
 
           // Log for debugging
@@ -168,25 +211,69 @@ export function ExamSection() {
             return null
           }
 
-          // Get average time limit - filter by student grade
-          let timeQuery = supabase
-            .from('exam_questions')
-            .select('question_time_limit')
-            .eq('course_id', course.id)
-            .eq('is_active', true)
-            .limit(100)
+          // Get average time limit - filter by student grade using separate queries
+          let timeData: any[] = []
+          let timeError = null
           
           if (userGrade) {
-            timeQuery = timeQuery.or(`student_grade.is.null,student_grade.eq.${userGrade}`)
-          }
-
-          let { data: timeData, error: timeError } = await timeQuery
-
-          if (timeError) {
-            timeQuery = supabase
+            // Query 1: Questions with matching grade
+            let gradeTimeQuery = supabase
               .from('exam_questions')
               .select('question_time_limit')
               .eq('course_id', course.id)
+              .eq('student_grade', userGrade)
+              .eq('is_active', true)
+              .limit(100)
+            
+            // Query 2: Questions with null grade
+            let nullGradeTimeQuery = supabase
+              .from('exam_questions')
+              .select('question_time_limit')
+              .eq('course_id', course.id)
+              .is('student_grade', null)
+              .eq('is_active', true)
+              .limit(100)
+            
+            const [gradeResult, nullGradeResult] = await Promise.all([gradeTimeQuery, nullGradeTimeQuery])
+            timeData = [...(gradeResult.data || []), ...(nullGradeResult.data || [])]
+            timeError = gradeResult.error || nullGradeResult.error
+          } else {
+            let timeQuery = supabase
+              .from('exam_questions')
+              .select('question_time_limit')
+              .eq('course_id', course.id)
+              .eq('is_active', true)
+              .limit(100)
+            
+            const result = await timeQuery
+            timeData = result.data || []
+            timeError = result.error
+          }
+
+          if (timeError) {
+            // Retry without is_active filter
+            if (userGrade) {
+              let gradeTimeQuery = supabase
+                .from('exam_questions')
+                .select('question_time_limit')
+                .eq('course_id', course.id)
+                .eq('student_grade', userGrade)
+                .limit(100)
+              
+              let nullGradeTimeQuery = supabase
+                .from('exam_questions')
+                .select('question_time_limit')
+                .eq('course_id', course.id)
+                .is('student_grade', null)
+                .limit(100)
+              
+              const [gradeResult, nullGradeResult] = await Promise.all([gradeTimeQuery, nullGradeTimeQuery])
+              timeData = [...(gradeResult.data || []), ...(nullGradeResult.data || [])]
+            } else {
+              let timeQuery = supabase
+                .from('exam_questions')
+                .select('question_time_limit')
+                .eq('course_id', course.id)
               .limit(100)
             
             if (userGrade) {

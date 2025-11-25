@@ -55,9 +55,28 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
   // Extract all materials from courses - INCLUDING completed courses
   // Students should be able to access materials even after completing a course
   const allMaterials: any[] = []
+  
+  // Debug logging
+  console.log('CourseMaterials: Processing courses', {
+    totalCourses: courses.length,
+    coursesWithMaterials: courses.filter(c => c.course_materials && c.course_materials.length > 0).length,
+    coursesWithVideoUrl: courses.filter(c => c.video_url).length,
+    coursesWithMaterialsUrl: courses.filter(c => c.materials_url).length
+  })
+  
   courses.forEach(course => {
     // Check if course is completed
     const isCompleted = isCourseCompleted(course.id)
+    
+    // Log each course for debugging
+    console.log(`CourseMaterials: Processing course "${course.title}"`, {
+      id: course.id,
+      hasCourseMaterials: !!(course.course_materials && course.course_materials.length > 0),
+      courseMaterialsCount: course.course_materials?.length || 0,
+      hasVideoUrl: !!course.video_url,
+      hasMaterialsUrl: !!course.materials_url,
+      isCompleted
+    })
     
     if (course.course_materials && course.course_materials.length > 0) {
       course.course_materials.forEach((material: any) => {
