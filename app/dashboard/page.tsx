@@ -71,10 +71,11 @@ export default async function DashboardPage() {
   const { data: instructorCourses } = await coursesQuery.order("created_at", { ascending: false })
 
   // Get courses for enrolled programs (old system)
+  // IMPORTANT: Include course_materials so students can access materials even after completing courses
   const programIds = enrollments?.map((e) => e.program_id) || []
   const { data: programCourses } = await supabase
     .from("courses")
-    .select("*")
+    .select("*, course_materials(*)")
     .in("program_id", programIds)
     .order("order_index", { ascending: true })
 

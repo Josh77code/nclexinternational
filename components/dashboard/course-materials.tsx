@@ -56,27 +56,32 @@ export function CourseMaterials({ courses, userProgress }: CourseMaterialsProps)
   // Students should be able to access materials even after completing a course
   const allMaterials: any[] = []
   
-  // Debug logging
+  // Debug logging - show ALL courses including completed ones
   console.log('CourseMaterials: Processing courses', {
     totalCourses: courses.length,
     coursesWithMaterials: courses.filter(c => c.course_materials && c.course_materials.length > 0).length,
     coursesWithVideoUrl: courses.filter(c => c.video_url).length,
-    coursesWithMaterialsUrl: courses.filter(c => c.materials_url).length
+    coursesWithMaterialsUrl: courses.filter(c => c.materials_url).length,
+    completedCourses: courses.filter(c => isCourseCompleted(c.id)).length,
+    completedCoursesWithMaterials: courses.filter(c => isCourseCompleted(c.id) && c.course_materials && c.course_materials.length > 0).length
   })
   
   courses.forEach(course => {
     // Check if course is completed
     const isCompleted = isCourseCompleted(course.id)
     
-    // Log each course for debugging
-    console.log(`CourseMaterials: Processing course "${course.title}"`, {
-      id: course.id,
-      hasCourseMaterials: !!(course.course_materials && course.course_materials.length > 0),
-      courseMaterialsCount: course.course_materials?.length || 0,
-      hasVideoUrl: !!course.video_url,
-      hasMaterialsUrl: !!course.materials_url,
-      isCompleted
-    })
+    // Log each course for debugging - especially completed ones
+    if (isCompleted || course.course_materials?.length > 0 || course.video_url || course.materials_url) {
+      console.log(`CourseMaterials: Processing course "${course.title}"`, {
+        id: course.id,
+        isCompleted,
+        hasCourseMaterials: !!(course.course_materials && course.course_materials.length > 0),
+        courseMaterialsCount: course.course_materials?.length || 0,
+        courseMaterials: course.course_materials?.map((m: any) => ({ id: m.id, type: m.type, title: m.title })) || [],
+        hasVideoUrl: !!course.video_url,
+        hasMaterialsUrl: !!course.materials_url
+      })
+    }
     
     if (course.course_materials && course.course_materials.length > 0) {
       course.course_materials.forEach((material: any) => {
