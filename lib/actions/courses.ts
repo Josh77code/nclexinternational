@@ -161,7 +161,7 @@ export async function getStudentCourses() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       // If not authenticated, return empty courses
-      return { success: true, courses: [] };
+      return { success: true, enrollments: [] };
     }
 
     // Get enrolled courses with materials and progress - try relationship first, fallback to separate queries
@@ -185,6 +185,12 @@ export async function getStudentCourses() {
       
       enrollments = result.data;
       enrollmentsError = result.error;
+      
+      // If relationship query fails or returns error, try separate queries
+      if (enrollmentsError || !enrollments) {
+        console.log('Relationship query failed or returned error, trying separate queries...', enrollmentsError);
+        throw new Error('Relationship query failed');
+      }
     } catch (relationshipError) {
       // If relationship query fails, try separate queries
       console.log('Relationship query failed for enrollments, trying separate queries...');
@@ -198,45 +204,83 @@ export async function getStudentCourses() {
       
       if (enrollmentsErr) {
         enrollmentsError = enrollmentsErr;
-      } else {
+        console.error('Error fetching enrollments:', enrollmentsErr);
+      } else if (enrollmentsData && enrollmentsData.length > 0) {
         // Get courses, materials, and progress separately
-        const courseIds = enrollmentsData?.map(e => e.course_id) || [];
+        const courseIds = enrollmentsData.map(e => e.course_id).filter(Boolean);
         
-        const { data: courses } = await supabase
-          .from('courses')
-          .select('*')
-          .in('id', courseIds);
-        
-        const { data: materials } = await supabase
-          .from('course_materials')
-          .select('*')
-          .in('course_id', courseIds);
-        
-        const { data: progress } = await supabase
-          .from('material_progress')
-          .select('*')
-          .in('enrollment_id', enrollmentsData?.map(e => e.id) || []);
-        
-        // Combine the data
-        enrollments = enrollmentsData?.map(enrollment => ({
-          ...enrollment,
-          courses: {
-            ...courses?.find(c => c.id === enrollment.course_id),
-            course_materials: materials?.filter(m => m.course_id === enrollment.course_id) || []
-          },
-          material_progress: progress?.filter(p => p.enrollment_id === enrollment.id) || []
-        }));
+        if (courseIds.length === 0) {
+          enrollments = [];
+        } else {
+          // Fetch courses
+          const { data: courses, error: coursesErr } = await supabase
+            .from('courses')
+            .select('*')
+            .in('id', courseIds);
+          
+          if (coursesErr) {
+            console.error('Error fetching courses:', coursesErr);
+          }
+          
+          // Fetch materials - this might fail due to RLS, so we'll handle it gracefully
+          let materials: any[] = [];
+          try {
+            const { data: materialsData, error: materialsErr } = await supabase
+              .from('course_materials')
+              .select('*')
+              .in('course_id', courseIds);
+            
+            if (materialsErr) {
+              console.error('Error fetching course materials (RLS might be blocking):', materialsErr);
+              // Don't throw - just log and continue with empty materials
+            } else {
+              materials = materialsData || [];
+            }
+          } catch (materialsError) {
+            console.error('Exception fetching materials:', materialsError);
+            // Continue with empty materials array
+          }
+          
+          // Fetch progress
+          const enrollmentIds = enrollmentsData.map(e => e.id).filter(Boolean);
+          const { data: progress, error: progressErr } = enrollmentIds.length > 0
+            ? await supabase
+                .from('material_progress')
+                .select('*')
+                .in('enrollment_id', enrollmentIds)
+            : { data: [], error: null };
+          
+          if (progressErr) {
+            console.error('Error fetching progress:', progressErr);
+          }
+          
+          // Combine the data
+          enrollments = enrollmentsData.map(enrollment => ({
+            ...enrollment,
+            courses: {
+              ...courses?.find(c => c.id === enrollment.course_id),
+              course_materials: materials.filter(m => m.course_id === enrollment.course_id) || []
+            },
+            material_progress: (progress || []).filter(p => p.enrollment_id === enrollment.id) || []
+          }));
+        }
+      } else {
+        enrollments = [];
       }
     }
 
-    if (enrollmentsError) {
+    if (enrollmentsError && !enrollments) {
       throw new Error(`Failed to fetch enrollments: ${enrollmentsError.message}`);
     }
 
     return { success: true, enrollments: enrollments || [] };
   } catch (error) {
     console.error('Error fetching student courses:', error);
-    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Unknown error',
+      enrollments: [] // Return empty array on error so UI doesn't break
+    };
   }
 }
 
